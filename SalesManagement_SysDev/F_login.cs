@@ -762,7 +762,7 @@ namespace SalesManagement_SysDev
 
             context.Dispose();
 
-            MessageBox.Show("サンプルデータ登録完了");
+            //MessageBox.Show("サンプルデータ登録完了");
         }
 
         private void button1_Click(object sender, EventArgs e)

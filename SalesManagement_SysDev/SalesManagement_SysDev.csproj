@@ -105,6 +105,12 @@
     <Compile Include="Syouhin.Designer.cs">
       <DependentUpon>Syouhin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Zaiko.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Zaiko.Designer.cs">
+      <DependentUpon>Zaiko.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Buturyuu.resx">
       <DependentUpon>Buturyuu.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="Syouhin.resx">
       <DependentUpon>Syouhin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zaiko.resx">
+      <DependentUpon>Zaiko.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

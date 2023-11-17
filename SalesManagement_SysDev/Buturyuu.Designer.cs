@@ -35,6 +35,7 @@
             this.button_Zaiko_Kannri = new System.Windows.Forms.Button();
             this.button_Syouhin_Kannri = new System.Windows.Forms.Button();
             this.syouhin1 = new SalesManagement_SysDev.Syouhin();
+            this.zaiko1 = new SalesManagement_SysDev.Zaiko();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -57,6 +58,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.zaiko1);
             this.splitContainer1.Panel2.Controls.Add(this.syouhin1);
             this.splitContainer1.Size = new System.Drawing.Size(1579, 862);
             this.splitContainer1.SplitterDistance = 354;
@@ -97,6 +99,7 @@
             this.button_Zaiko_Kannri.TabIndex = 1;
             this.button_Zaiko_Kannri.Text = "在庫管理";
             this.button_Zaiko_Kannri.UseVisualStyleBackColor = true;
+            this.button_Zaiko_Kannri.Click += new System.EventHandler(this.button_Zaiko_Kannri_Click);
             // 
             // button_Syouhin_Kannri
             // 
@@ -115,6 +118,14 @@
             this.syouhin1.Name = "syouhin1";
             this.syouhin1.Size = new System.Drawing.Size(1579, 862);
             this.syouhin1.TabIndex = 0;
+            // 
+            // zaiko1
+            // 
+            this.zaiko1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.zaiko1.Location = new System.Drawing.Point(3, 3);
+            this.zaiko1.Name = "zaiko1";
+            this.zaiko1.Size = new System.Drawing.Size(1579, 862);
+            this.zaiko1.TabIndex = 1;
             // 
             // Buturyuu
             // 
@@ -140,5 +151,6 @@
         private System.Windows.Forms.Button button_Zaiko_Kannri;
         private System.Windows.Forms.Button button_Syouhin_Kannri;
         private Syouhin syouhin1;
+        private Zaiko zaiko1;
     }
 }
