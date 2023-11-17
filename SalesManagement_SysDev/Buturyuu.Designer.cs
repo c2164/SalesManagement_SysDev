@@ -34,8 +34,9 @@
             this.button_Syukko_Kannri = new System.Windows.Forms.Button();
             this.button_Zaiko_Kannri = new System.Windows.Forms.Button();
             this.button_Syouhin_Kannri = new System.Windows.Forms.Button();
-            this.syouhin1 = new SalesManagement_SysDev.Syouhin();
             this.zaiko1 = new SalesManagement_SysDev.Zaiko();
+            this.syouhin1 = new SalesManagement_SysDev.Syouhin();
+            this.syukko1 = new SalesManagement_SysDev.Syukko();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,6 +59,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.syukko1);
             this.splitContainer1.Panel2.Controls.Add(this.zaiko1);
             this.splitContainer1.Panel2.Controls.Add(this.syouhin1);
             this.splitContainer1.Size = new System.Drawing.Size(1579, 862);
@@ -90,6 +92,7 @@
             this.button_Syukko_Kannri.TabIndex = 2;
             this.button_Syukko_Kannri.Text = "出庫管理";
             this.button_Syukko_Kannri.UseVisualStyleBackColor = true;
+            this.button_Syukko_Kannri.Click += new System.EventHandler(this.button_Syukko_Kannri_Click);
             // 
             // button_Zaiko_Kannri
             // 
@@ -111,6 +114,14 @@
             this.button_Syouhin_Kannri.UseVisualStyleBackColor = true;
             this.button_Syouhin_Kannri.Click += new System.EventHandler(this.button_Syouhin_Kannri_Click);
             // 
+            // zaiko1
+            // 
+            this.zaiko1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.zaiko1.Location = new System.Drawing.Point(3, 3);
+            this.zaiko1.Name = "zaiko1";
+            this.zaiko1.Size = new System.Drawing.Size(1579, 862);
+            this.zaiko1.TabIndex = 1;
+            // 
             // syouhin1
             // 
             this.syouhin1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
@@ -119,13 +130,13 @@
             this.syouhin1.Size = new System.Drawing.Size(1579, 862);
             this.syouhin1.TabIndex = 0;
             // 
-            // zaiko1
+            // syukko1
             // 
-            this.zaiko1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
-            this.zaiko1.Location = new System.Drawing.Point(3, 3);
-            this.zaiko1.Name = "zaiko1";
-            this.zaiko1.Size = new System.Drawing.Size(1579, 862);
-            this.zaiko1.TabIndex = 1;
+            this.syukko1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.syukko1.Location = new System.Drawing.Point(3, 3);
+            this.syukko1.Name = "syukko1";
+            this.syukko1.Size = new System.Drawing.Size(1579, 862);
+            this.syukko1.TabIndex = 2;
             // 
             // Buturyuu
             // 
@@ -152,5 +163,6 @@
         private System.Windows.Forms.Button button_Syouhin_Kannri;
         private Syouhin syouhin1;
         private Zaiko zaiko1;
+        private Syukko syukko1;
     }
 }

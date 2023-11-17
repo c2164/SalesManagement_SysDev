@@ -105,6 +105,12 @@
     <Compile Include="Syouhin.Designer.cs">
       <DependentUpon>Syouhin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Syukko.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Syukko.Designer.cs">
+      <DependentUpon>Syukko.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zaiko.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="Syouhin.resx">
       <DependentUpon>Syouhin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Syukko.resx">
+      <DependentUpon>Syukko.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Zaiko.resx">
       <DependentUpon>Zaiko.cs</DependentUpon>
