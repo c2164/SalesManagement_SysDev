@@ -19,6 +19,8 @@ namespace SalesManagement_SysDev
         public F_Login()
         {
             InitializeComponent();
+
+            buturyuu1.Visible = false;
         }
 
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -761,6 +763,11 @@ namespace SalesManagement_SysDev
             context.Dispose();
 
             MessageBox.Show("サンプルデータ登録完了");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            buturyuu1.Visible = true;
         }
     }
 }

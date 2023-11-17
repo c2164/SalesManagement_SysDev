@@ -15,6 +15,16 @@ namespace SalesManagement_SysDev
         public Buturyuu()
         {
             InitializeComponent();
+
+            syouhin1.Visible = false;
+        }
+
+        private void button_Syouhin_Kannri_Click(object sender, EventArgs e)
+        {
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer1.Panel2Collapsed = false;
+
+            syouhin1.Visible = true;
         }
     }
 }

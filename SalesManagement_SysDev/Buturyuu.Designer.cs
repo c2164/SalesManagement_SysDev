@@ -34,8 +34,10 @@
             this.button_Syukko_Kannri = new System.Windows.Forms.Button();
             this.button_Zaiko_Kannri = new System.Windows.Forms.Button();
             this.button_Syouhin_Kannri = new System.Windows.Forms.Button();
+            this.syouhin1 = new SalesManagement_SysDev.Syouhin();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +54,10 @@
             this.splitContainer1.Panel1.Controls.Add(this.button_Syukko_Kannri);
             this.splitContainer1.Panel1.Controls.Add(this.button_Zaiko_Kannri);
             this.splitContainer1.Panel1.Controls.Add(this.button_Syouhin_Kannri);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.syouhin1);
             this.splitContainer1.Size = new System.Drawing.Size(1579, 862);
             this.splitContainer1.SplitterDistance = 354;
             this.splitContainer1.TabIndex = 0;
@@ -100,6 +106,15 @@
             this.button_Syouhin_Kannri.TabIndex = 0;
             this.button_Syouhin_Kannri.Text = "商品管理";
             this.button_Syouhin_Kannri.UseVisualStyleBackColor = true;
+            this.button_Syouhin_Kannri.Click += new System.EventHandler(this.button_Syouhin_Kannri_Click);
+            // 
+            // syouhin1
+            // 
+            this.syouhin1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.syouhin1.Location = new System.Drawing.Point(3, 0);
+            this.syouhin1.Name = "syouhin1";
+            this.syouhin1.Size = new System.Drawing.Size(1579, 862);
+            this.syouhin1.TabIndex = 0;
             // 
             // Buturyuu
             // 
@@ -109,6 +124,7 @@
             this.Name = "Buturyuu";
             this.Size = new System.Drawing.Size(1579, 862);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -123,5 +139,6 @@
         private System.Windows.Forms.Button button_Syukko_Kannri;
         private System.Windows.Forms.Button button_Zaiko_Kannri;
         private System.Windows.Forms.Button button_Syouhin_Kannri;
+        private Syouhin syouhin1;
     }
 }

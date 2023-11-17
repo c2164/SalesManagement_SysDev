@@ -35,6 +35,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.buturyuu1 = new SalesManagement_SysDev.Buturyuu();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +83,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "物流担当";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 
@@ -113,11 +115,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "販売管理";
             // 
+            // buturyuu1
+            // 
+            this.buturyuu1.Location = new System.Drawing.Point(307, 149);
+            this.buturyuu1.Name = "buturyuu1";
+            this.buturyuu1.Size = new System.Drawing.Size(1591, 862);
+            this.buturyuu1.TabIndex = 2;
+            // 
             // F_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1894, 1009);
+            this.Controls.Add(this.buturyuu1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -139,6 +149,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label1;
+        private Buturyuu buturyuu1;
     }
 }
 
