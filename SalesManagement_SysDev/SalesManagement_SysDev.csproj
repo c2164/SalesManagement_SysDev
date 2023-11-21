@@ -135,6 +135,12 @@
     <Compile Include="Syukko.Designer.cs">
       <DependentUpon>Syukko.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tyuumon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tyuumon.Designer.cs">
+      <DependentUpon>Tyuumon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zaiko.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Syukko.resx">
       <DependentUpon>Syukko.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tyuumon.resx">
+      <DependentUpon>Tyuumon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Zaiko.resx">
       <DependentUpon>Zaiko.cs</DependentUpon>
