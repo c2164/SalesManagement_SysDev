@@ -28,83 +28,83 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.button_Kousin = new System.Windows.Forms.Button();
+            this.button_Kensaku = new System.Windows.Forms.Button();
+            this.button_Itirannhyouzi = new System.Windows.Forms.Button();
+            this.button_Sakuzyo = new System.Windows.Forms.Button();
+            this.button_Kuria = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.textBox_Zaiko_ID = new System.Windows.Forms.TextBox();
+            this.comboBox_Meka_Namae = new System.Windows.Forms.ComboBox();
+            this.comboBox_Syouhin_Namae = new System.Windows.Forms.ComboBox();
+            this.domainUpDown_Zaikosuu = new System.Windows.Forms.NumericUpDown();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.domainUpDown_Zaikosuu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // button_Kousin
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
-            this.button1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(56, 55);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(155, 74);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "↻更新";
-            this.button1.UseVisualStyleBackColor = false;
+            this.button_Kousin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
+            this.button_Kousin.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.button_Kousin.ForeColor = System.Drawing.Color.White;
+            this.button_Kousin.Location = new System.Drawing.Point(56, 55);
+            this.button_Kousin.Name = "button_Kousin";
+            this.button_Kousin.Size = new System.Drawing.Size(155, 74);
+            this.button_Kousin.TabIndex = 0;
+            this.button_Kousin.Text = "↻更新";
+            this.button_Kousin.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // button_Kensaku
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
-            this.button2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(360, 55);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(155, 74);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "🔍検索";
-            this.button2.UseVisualStyleBackColor = false;
+            this.button_Kensaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
+            this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.button_Kensaku.ForeColor = System.Drawing.Color.White;
+            this.button_Kensaku.Location = new System.Drawing.Point(360, 55);
+            this.button_Kensaku.Name = "button_Kensaku";
+            this.button_Kensaku.Size = new System.Drawing.Size(155, 74);
+            this.button_Kensaku.TabIndex = 1;
+            this.button_Kensaku.Text = "🔍検索";
+            this.button_Kensaku.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // button_Itirannhyouzi
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
-            this.button3.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(659, 55);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(212, 74);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "📖一覧表示";
-            this.button3.UseVisualStyleBackColor = false;
+            this.button_Itirannhyouzi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
+            this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
+            this.button_Itirannhyouzi.Location = new System.Drawing.Point(659, 55);
+            this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
+            this.button_Itirannhyouzi.Size = new System.Drawing.Size(212, 74);
+            this.button_Itirannhyouzi.TabIndex = 2;
+            this.button_Itirannhyouzi.Text = "📖一覧表示";
+            this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // button_Sakuzyo
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
-            this.button4.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(1028, 55);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(155, 74);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "🚮削除";
-            this.button4.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
+            this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
+            this.button_Sakuzyo.Location = new System.Drawing.Point(1028, 55);
+            this.button_Sakuzyo.Name = "button_Sakuzyo";
+            this.button_Sakuzyo.Size = new System.Drawing.Size(155, 74);
+            this.button_Sakuzyo.TabIndex = 3;
+            this.button_Sakuzyo.Text = "🚮削除";
+            this.button_Sakuzyo.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // button_Kuria
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
-            this.button5.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(1324, 55);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(155, 74);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "クリア";
-            this.button5.UseVisualStyleBackColor = false;
+            this.button_Kuria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
+            this.button_Kuria.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.button_Kuria.ForeColor = System.Drawing.Color.White;
+            this.button_Kuria.Location = new System.Drawing.Point(1324, 55);
+            this.button_Kuria.Name = "button_Kuria";
+            this.button_Kuria.Size = new System.Drawing.Size(155, 74);
+            this.button_Kuria.TabIndex = 4;
+            this.button_Kuria.Text = "クリア";
+            this.button_Kuria.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -142,35 +142,35 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "在庫数";
             // 
-            // textBox1
+            // textBox_Zaiko_ID
             // 
-            this.textBox1.Location = new System.Drawing.Point(242, 239);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(250, 31);
-            this.textBox1.TabIndex = 9;
+            this.textBox_Zaiko_ID.Location = new System.Drawing.Point(242, 239);
+            this.textBox_Zaiko_ID.Name = "textBox_Zaiko_ID";
+            this.textBox_Zaiko_ID.Size = new System.Drawing.Size(250, 31);
+            this.textBox_Zaiko_ID.TabIndex = 9;
             // 
-            // comboBox1
+            // comboBox_Meka_Namae
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(703, 239);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(273, 32);
-            this.comboBox1.TabIndex = 10;
+            this.comboBox_Meka_Namae.FormattingEnabled = true;
+            this.comboBox_Meka_Namae.Location = new System.Drawing.Point(703, 239);
+            this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
+            this.comboBox_Meka_Namae.Size = new System.Drawing.Size(273, 32);
+            this.comboBox_Meka_Namae.TabIndex = 10;
             // 
-            // comboBox2
+            // comboBox_Syouhin_Namae
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(1202, 238);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(277, 32);
-            this.comboBox2.TabIndex = 11;
+            this.comboBox_Syouhin_Namae.FormattingEnabled = true;
+            this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(1202, 238);
+            this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
+            this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(277, 32);
+            this.comboBox_Syouhin_Namae.TabIndex = 11;
             // 
-            // numericUpDown1
+            // domainUpDown_Zaikosuu
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(242, 387);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(250, 31);
-            this.numericUpDown1.TabIndex = 12;
+            this.domainUpDown_Zaikosuu.Location = new System.Drawing.Point(242, 387);
+            this.domainUpDown_Zaikosuu.Name = "domainUpDown_Zaikosuu";
+            this.domainUpDown_Zaikosuu.Size = new System.Drawing.Size(250, 31);
+            this.domainUpDown_Zaikosuu.TabIndex = 12;
             // 
             // dataGridView1
             // 
@@ -188,22 +188,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.domainUpDown_Zaikosuu);
+            this.Controls.Add(this.comboBox_Syouhin_Namae);
+            this.Controls.Add(this.comboBox_Meka_Namae);
+            this.Controls.Add(this.textBox_Zaiko_ID);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_Kuria);
+            this.Controls.Add(this.button_Sakuzyo);
+            this.Controls.Add(this.button_Itirannhyouzi);
+            this.Controls.Add(this.button_Kensaku);
+            this.Controls.Add(this.button_Kousin);
             this.Name = "Zaiko";
             this.Size = new System.Drawing.Size(1579, 862);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.domainUpDown_Zaikosuu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -212,19 +212,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button_Kousin;
+        private System.Windows.Forms.Button button_Kensaku;
+        private System.Windows.Forms.Button button_Itirannhyouzi;
+        private System.Windows.Forms.Button button_Sakuzyo;
+        private System.Windows.Forms.Button button_Kuria;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.TextBox textBox_Zaiko_ID;
+        private System.Windows.Forms.ComboBox comboBox_Meka_Namae;
+        private System.Windows.Forms.ComboBox comboBox_Syouhin_Namae;
+        private System.Windows.Forms.NumericUpDown domainUpDown_Zaikosuu;
         private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
