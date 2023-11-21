@@ -34,10 +34,11 @@
             this.button_Syukko_Kannri = new System.Windows.Forms.Button();
             this.button_Zaiko_Kannri = new System.Windows.Forms.Button();
             this.button_Syouhin_Kannri = new System.Windows.Forms.Button();
+            this.hattyuu1 = new SalesManagement_SysDev.Hattyuu();
             this.syukko1 = new SalesManagement_SysDev.Syukko();
             this.zaiko1 = new SalesManagement_SysDev.Zaiko();
             this.syouhin1 = new SalesManagement_SysDev.Syouhin();
-            this.hattyuu1 = new SalesManagement_SysDev.Hattyuu();
+            this.nyuuko1 = new SalesManagement_SysDev.Nyuuko();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.nyuuko1);
             this.splitContainer1.Panel2.Controls.Add(this.hattyuu1);
             this.splitContainer1.Panel2.Controls.Add(this.syukko1);
             this.splitContainer1.Panel2.Controls.Add(this.zaiko1);
@@ -76,6 +78,7 @@
             this.button_Nyuuko_Kannri.TabIndex = 4;
             this.button_Nyuuko_Kannri.Text = "入庫管理";
             this.button_Nyuuko_Kannri.UseVisualStyleBackColor = true;
+            this.button_Nyuuko_Kannri.Click += new System.EventHandler(this.button_Nyuuko_Kannri_Click);
             // 
             // button_Hattyuu_Kannri
             // 
@@ -117,6 +120,14 @@
             this.button_Syouhin_Kannri.UseVisualStyleBackColor = true;
             this.button_Syouhin_Kannri.Click += new System.EventHandler(this.button_Syouhin_Kannri_Click);
             // 
+            // hattyuu1
+            // 
+            this.hattyuu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.hattyuu1.Location = new System.Drawing.Point(3, 3);
+            this.hattyuu1.Name = "hattyuu1";
+            this.hattyuu1.Size = new System.Drawing.Size(1579, 862);
+            this.hattyuu1.TabIndex = 3;
+            // 
             // syukko1
             // 
             this.syukko1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
@@ -141,13 +152,13 @@
             this.syouhin1.Size = new System.Drawing.Size(1579, 862);
             this.syouhin1.TabIndex = 0;
             // 
-            // hattyuu1
+            // nyuuko1
             // 
-            this.hattyuu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
-            this.hattyuu1.Location = new System.Drawing.Point(3, 3);
-            this.hattyuu1.Name = "hattyuu1";
-            this.hattyuu1.Size = new System.Drawing.Size(1579, 862);
-            this.hattyuu1.TabIndex = 3;
+            this.nyuuko1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.nyuuko1.Location = new System.Drawing.Point(3, 3);
+            this.nyuuko1.Name = "nyuuko1";
+            this.nyuuko1.Size = new System.Drawing.Size(1579, 862);
+            this.nyuuko1.TabIndex = 4;
             // 
             // Buturyuu
             // 
@@ -176,5 +187,6 @@
         private Zaiko zaiko1;
         private Syukko syukko1;
         private Hattyuu hattyuu1;
+        private Nyuuko nyuuko1;
     }
 }

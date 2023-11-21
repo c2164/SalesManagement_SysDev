@@ -20,6 +20,7 @@ namespace SalesManagement_SysDev
             zaiko1.Visible = false;
             syukko1.Visible = false;
             hattyuu1.Visible = false;
+            nyuuko1.Visible = false;
         }
 
         private void button_Syouhin_Kannri_Click(object sender, EventArgs e)
@@ -50,7 +51,16 @@ namespace SalesManagement_SysDev
         {
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
+
             hattyuu1.Visible = true;
+        }
+
+        private void button_Nyuuko_Kannri_Click(object sender, EventArgs e)
+        {
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer1.Panel2Collapsed = false;
+
+            nyuuko1.Visible = true;
         }
     }
 }
