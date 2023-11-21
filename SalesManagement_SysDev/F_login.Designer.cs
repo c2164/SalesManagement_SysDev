@@ -113,7 +113,7 @@
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 19.875F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(898, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(242, 94);
+            this.label1.Size = new System.Drawing.Size(315, 94);
             this.label1.TabIndex = 0;
             this.label1.Text = "販売管理";
             // 

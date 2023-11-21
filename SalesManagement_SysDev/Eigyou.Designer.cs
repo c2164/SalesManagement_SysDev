@@ -36,6 +36,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.kokyaku1 = new SalesManagement_SysDev.Kokyaku();
+            this.zyutyuu1 = new SalesManagement_SysDev.Zyutyuu();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -59,6 +60,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.zyutyuu1);
             this.splitContainer1.Panel2.Controls.Add(this.kokyaku1);
             this.splitContainer1.Size = new System.Drawing.Size(1579, 862);
             this.splitContainer1.SplitterDistance = 355;
@@ -108,6 +110,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "受注管理";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -126,6 +129,14 @@
             this.kokyaku1.Name = "kokyaku1";
             this.kokyaku1.Size = new System.Drawing.Size(1579, 862);
             this.kokyaku1.TabIndex = 0;
+            // 
+            // zyutyuu1
+            // 
+            this.zyutyuu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.zyutyuu1.Location = new System.Drawing.Point(3, 3);
+            this.zyutyuu1.Name = "zyutyuu1";
+            this.zyutyuu1.Size = new System.Drawing.Size(1579, 862);
+            this.zyutyuu1.TabIndex = 1;
             // 
             // Eigyou
             // 
@@ -152,5 +163,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private Kokyaku kokyaku1;
+        private Zyutyuu zyutyuu1;
     }
 }

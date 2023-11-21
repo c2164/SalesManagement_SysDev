@@ -141,6 +141,12 @@
     <Compile Include="Zaiko.Designer.cs">
       <DependentUpon>Zaiko.cs</DependentUpon>
     </Compile>
+    <Compile Include="Zyutyuu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Zyutyuu.Designer.cs">
+      <DependentUpon>Zyutyuu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Buturyuu.resx">
       <DependentUpon>Buturyuu.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Zaiko.resx">
       <DependentUpon>Zaiko.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Zyutyuu.resx">
+      <DependentUpon>Zyutyuu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
