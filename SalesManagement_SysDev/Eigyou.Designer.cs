@@ -35,9 +35,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.tyuumon1 = new SalesManagement_SysDev.Tyuumon();
             this.zyutyuu1 = new SalesManagement_SysDev.Zyutyuu();
             this.kokyaku1 = new SalesManagement_SysDev.Kokyaku();
-            this.tyuumon1 = new SalesManagement_SysDev.Tyuumon();
+            this.nyuuka1 = new SalesManagement_SysDev.Nyuuka();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,6 +62,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.nyuuka1);
             this.splitContainer1.Panel2.Controls.Add(this.tyuumon1);
             this.splitContainer1.Panel2.Controls.Add(this.zyutyuu1);
             this.splitContainer1.Panel2.Controls.Add(this.kokyaku1);
@@ -94,6 +96,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "入荷管理";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -125,6 +128,14 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // tyuumon1
+            // 
+            this.tyuumon1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.tyuumon1.Location = new System.Drawing.Point(3, 3);
+            this.tyuumon1.Name = "tyuumon1";
+            this.tyuumon1.Size = new System.Drawing.Size(1579, 862);
+            this.tyuumon1.TabIndex = 2;
+            // 
             // zyutyuu1
             // 
             this.zyutyuu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
@@ -141,13 +152,13 @@
             this.kokyaku1.Size = new System.Drawing.Size(1579, 862);
             this.kokyaku1.TabIndex = 0;
             // 
-            // tyuumon1
+            // nyuuka1
             // 
-            this.tyuumon1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
-            this.tyuumon1.Location = new System.Drawing.Point(3, 3);
-            this.tyuumon1.Name = "tyuumon1";
-            this.tyuumon1.Size = new System.Drawing.Size(1579, 862);
-            this.tyuumon1.TabIndex = 2;
+            this.nyuuka1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.nyuuka1.Location = new System.Drawing.Point(3, 3);
+            this.nyuuka1.Name = "nyuuka1";
+            this.nyuuka1.Size = new System.Drawing.Size(1579, 862);
+            this.nyuuka1.TabIndex = 3;
             // 
             // Eigyou
             // 
@@ -176,5 +187,6 @@
         private Kokyaku kokyaku1;
         private Zyutyuu zyutyuu1;
         private Tyuumon tyuumon1;
+        private Nyuuka nyuuka1;
     }
 }

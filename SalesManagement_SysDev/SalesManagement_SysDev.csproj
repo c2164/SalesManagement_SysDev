@@ -95,6 +95,12 @@
     <Compile Include="Kokyaku.Designer.cs">
       <DependentUpon>Kokyaku.cs</DependentUpon>
     </Compile>
+    <Compile Include="Nyuuka.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Nyuuka.Designer.cs">
+      <DependentUpon>Nyuuka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Nyuuko.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Kokyaku.resx">
       <DependentUpon>Kokyaku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nyuuka.resx">
+      <DependentUpon>Nyuuka.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nyuuko.resx">
       <DependentUpon>Nyuuko.cs</DependentUpon>
