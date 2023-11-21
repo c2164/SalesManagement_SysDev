@@ -23,6 +23,7 @@ namespace SalesManagement_SysDev
             buturyuu1.Visible = false;
             eigyou1.Visible = false;
             syain1.Visible = false;
+            roguin1.Visible = false;
         }
 
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -780,6 +781,11 @@ namespace SalesManagement_SysDev
         private void button3_Click(object sender, EventArgs e)
         {
             syain1.Visible = true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            roguin1.Visible = true;
         }
     }
 }

@@ -128,6 +128,12 @@
     <Compile Include="Entity\T_SyukkoDetail.cs" />
     <Compile Include="Entity\T_Warehousing.cs" />
     <Compile Include="Entity\T_WarehousingDetail.cs" />
+    <Compile Include="Roguin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Roguin.Designer.cs">
+      <DependentUpon>Roguin.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesManagement_DevContext.cs" />
     <Compile Include="Syain.cs">
       <SubType>UserControl</SubType>
@@ -208,6 +214,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Roguin.resx">
+      <DependentUpon>Roguin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Syain.resx">
       <DependentUpon>Syain.cs</DependentUpon>
     </EmbeddedResource>
