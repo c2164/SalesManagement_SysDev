@@ -153,6 +153,12 @@
     <Compile Include="Tyuumon.Designer.cs">
       <DependentUpon>Tyuumon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uriage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uriage.Designer.cs">
+      <DependentUpon>Uriage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zaiko.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -207,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tyuumon.resx">
       <DependentUpon>Tyuumon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uriage.resx">
+      <DependentUpon>Uriage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Zaiko.resx">
       <DependentUpon>Zaiko.cs</DependentUpon>

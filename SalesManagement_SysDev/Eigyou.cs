@@ -21,6 +21,7 @@ namespace SalesManagement_SysDev
             tyuumon1.Visible = false;
             nyuuka1.Visible = false;
             syukka1.Visible = false;
+            uriage1.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -61,6 +62,14 @@ namespace SalesManagement_SysDev
             splitContainer1.Panel2Collapsed = false;
 
             syukka1.Visible = true;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            splitContainer1.Panel1Collapsed = true;
+            splitContainer1.Panel2Collapsed = false;
+
+            uriage1.Visible = true;
         }
     }
 }
