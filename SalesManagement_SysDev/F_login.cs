@@ -21,6 +21,7 @@ namespace SalesManagement_SysDev
             InitializeComponent();
 
             buturyuu1.Visible = false;
+            eigyou1.Visible = false;
         }
 
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -768,6 +769,11 @@ namespace SalesManagement_SysDev
         private void button1_Click(object sender, EventArgs e)
         {
             buturyuu1.Visible = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            eigyou1.Visible = true;
         }
     }
 }

@@ -63,6 +63,12 @@
     <Compile Include="Buturyuu.Designer.cs">
       <DependentUpon>Buturyuu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Eigyou.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Eigyou.Designer.cs">
+      <DependentUpon>Eigyou.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entity\M_MajorClassification.cs" />
     <Compile Include="Entity\M_Product.cs" />
     <Compile Include="F_login.cs">
@@ -82,6 +88,12 @@
     </Compile>
     <Compile Include="Hattyuu.Designer.cs">
       <DependentUpon>Hattyuu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kokyaku.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Kokyaku.Designer.cs">
+      <DependentUpon>Kokyaku.cs</DependentUpon>
     </Compile>
     <Compile Include="Nyuuko.cs">
       <SubType>UserControl</SubType>
@@ -132,11 +144,17 @@
     <EmbeddedResource Include="Buturyuu.resx">
       <DependentUpon>Buturyuu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Eigyou.resx">
+      <DependentUpon>Eigyou.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F_login.resx">
       <DependentUpon>F_login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hattyuu.resx">
       <DependentUpon>Hattyuu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kokyaku.resx">
+      <DependentUpon>Kokyaku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nyuuko.resx">
       <DependentUpon>Nyuuko.cs</DependentUpon>

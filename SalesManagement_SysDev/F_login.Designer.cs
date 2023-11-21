@@ -36,6 +36,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buturyuu1 = new SalesManagement_SysDev.Buturyuu();
+            this.eigyou1 = new SalesManagement_SysDev.Eigyou();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -72,12 +73,13 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "営業担当";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(-3, 139);
+            this.button1.Location = new System.Drawing.Point(-6, 143);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(306, 227);
             this.button1.TabIndex = 2;
@@ -122,11 +124,19 @@
             this.buturyuu1.Size = new System.Drawing.Size(1591, 862);
             this.buturyuu1.TabIndex = 2;
             // 
+            // eigyou1
+            // 
+            this.eigyou1.Location = new System.Drawing.Point(303, 146);
+            this.eigyou1.Name = "eigyou1";
+            this.eigyou1.Size = new System.Drawing.Size(1592, 862);
+            this.eigyou1.TabIndex = 3;
+            // 
             // F_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1894, 1009);
+            this.Controls.Add(this.eigyou1);
             this.Controls.Add(this.buturyuu1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -150,6 +160,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label1;
         private Buturyuu buturyuu1;
+        private Eigyou eigyou1;
     }
 }
 
