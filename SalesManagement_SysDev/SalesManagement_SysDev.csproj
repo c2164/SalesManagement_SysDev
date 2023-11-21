@@ -129,6 +129,12 @@
     <Compile Include="Entity\T_Warehousing.cs" />
     <Compile Include="Entity\T_WarehousingDetail.cs" />
     <Compile Include="SalesManagement_DevContext.cs" />
+    <Compile Include="Syain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Syain.Designer.cs">
+      <DependentUpon>Syain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Syouhin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +208,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Syain.resx">
+      <DependentUpon>Syain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Syouhin.resx">
       <DependentUpon>Syouhin.cs</DependentUpon>
     </EmbeddedResource>

@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buturyuu1 = new SalesManagement_SysDev.Buturyuu();
             this.eigyou1 = new SalesManagement_SysDev.Eigyou();
+            this.syain1 = new SalesManagement_SysDev.Syain();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +63,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "社員管理";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -131,12 +133,21 @@
             this.eigyou1.Size = new System.Drawing.Size(1592, 862);
             this.eigyou1.TabIndex = 3;
             // 
+            // syain1
+            // 
+            this.syain1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(235)))), ((int)(((byte)(196)))));
+            this.syain1.Location = new System.Drawing.Point(303, 146);
+            this.syain1.Name = "syain1";
+            this.syain1.Size = new System.Drawing.Size(1592, 862);
+            this.syain1.TabIndex = 4;
+            // 
             // F_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1894, 1009);
+            this.Controls.Add(this.syain1);
             this.Controls.Add(this.eigyou1);
             this.Controls.Add(this.buturyuu1);
             this.Controls.Add(this.panel1);
@@ -162,6 +173,7 @@
         private System.Windows.Forms.Label label1;
         private Buturyuu buturyuu1;
         private Eigyou eigyou1;
+        private Syain syain1;
     }
 }
 
