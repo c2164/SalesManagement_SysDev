@@ -35,8 +35,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.buturyuu1 = new SalesManagement_SysDev.Buturyuu();
+            this.syain1 = new SalesManagement_SysDev.Syain();
             this.eigyou1 = new SalesManagement_SysDev.Eigyou();
+            this.buturyuu1 = new SalesManagement_SysDev.Buturyuu();
+            this.roguin1 = new SalesManagement_SysDev.Roguin();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +66,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "社員管理";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -112,6 +115,7 @@
             this.button4.TabIndex = 1;
             this.button4.Text = "👤ログイン";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label1
             // 
@@ -124,6 +128,21 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "販売管理";
             // 
+            // syain1
+            // 
+            this.syain1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(235)))), ((int)(((byte)(196)))));
+            this.syain1.Location = new System.Drawing.Point(303, 146);
+            this.syain1.Name = "syain1";
+            this.syain1.Size = new System.Drawing.Size(1592, 862);
+            this.syain1.TabIndex = 4;
+            // 
+            // eigyou1
+            // 
+            this.eigyou1.Location = new System.Drawing.Point(303, 146);
+            this.eigyou1.Name = "eigyou1";
+            this.eigyou1.Size = new System.Drawing.Size(1592, 862);
+            this.eigyou1.TabIndex = 3;
+            // 
             // buturyuu1
             // 
             this.buturyuu1.Location = new System.Drawing.Point(142, 74);
@@ -132,20 +151,21 @@
             this.buturyuu1.Size = new System.Drawing.Size(734, 431);
             this.buturyuu1.TabIndex = 2;
             // 
-            // eigyou1
+            // roguin1
             // 
-            this.eigyou1.Location = new System.Drawing.Point(140, 73);
-            this.eigyou1.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
-            this.eigyou1.Name = "eigyou1";
-            this.eigyou1.Size = new System.Drawing.Size(735, 431);
-            this.eigyou1.TabIndex = 3;
+            this.roguin1.Location = new System.Drawing.Point(295, 146);
+            this.roguin1.Name = "roguin1";
+            this.roguin1.Size = new System.Drawing.Size(1600, 862);
+            this.roguin1.TabIndex = 5;
             // 
             // F_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(874, 504);
+            this.ClientSize = new System.Drawing.Size(1894, 1009);
+            this.Controls.Add(this.roguin1);
+            this.Controls.Add(this.syain1);
             this.Controls.Add(this.eigyou1);
             this.Controls.Add(this.buturyuu1);
             this.Controls.Add(this.panel1);
@@ -170,6 +190,8 @@
         private System.Windows.Forms.Label label1;
         private Buturyuu buturyuu1;
         private Eigyou eigyou1;
+        private Syain syain1;
+        private Roguin roguin1;
     }
 }
 

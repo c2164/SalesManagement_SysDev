@@ -128,7 +128,19 @@
     <Compile Include="Entity\T_SyukkoDetail.cs" />
     <Compile Include="Entity\T_Warehousing.cs" />
     <Compile Include="Entity\T_WarehousingDetail.cs" />
+    <Compile Include="Roguin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Roguin.Designer.cs">
+      <DependentUpon>Roguin.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalesManagement_DevContext.cs" />
+    <Compile Include="Syain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Syain.Designer.cs">
+      <DependentUpon>Syain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Syouhin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,6 +164,12 @@
     </Compile>
     <Compile Include="Tyuumon.Designer.cs">
       <DependentUpon>Tyuumon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uriage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uriage.Designer.cs">
+      <DependentUpon>Uriage.cs</DependentUpon>
     </Compile>
     <Compile Include="Zaiko.cs">
       <SubType>UserControl</SubType>
@@ -196,6 +214,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Roguin.resx">
+      <DependentUpon>Roguin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Syain.resx">
+      <DependentUpon>Syain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Syouhin.resx">
       <DependentUpon>Syouhin.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tyuumon.resx">
       <DependentUpon>Tyuumon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uriage.resx">
+      <DependentUpon>Uriage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Zaiko.resx">
       <DependentUpon>Zaiko.cs</DependentUpon>
