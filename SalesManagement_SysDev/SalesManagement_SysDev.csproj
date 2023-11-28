@@ -63,12 +63,26 @@
     <Compile Include="Buturyuu.Designer.cs">
       <DependentUpon>Buturyuu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\ArraivalDataAccess.cs" />
+    <Compile Include="Common\ChumonDataAccess.cs" />
+    <Compile Include="Common\ClientDataAccess.cs" />
+    <Compile Include="Common\DataInputFormCheck.cs" />
+    <Compile Include="Common\EmployeeDataAccess.cs" />
+    <Compile Include="Common\MessageDsp.cs" />
+    <Compile Include="Common\OrderDataAccess.cs" />
+    <Compile Include="Common\ProductDataAccess.cs" />
+    <Compile Include="Common\SaleDataAccess.cs" />
+    <Compile Include="Common\SalesOfficeDataAccess.cs" />
+    <Compile Include="Common\ShipmentDataAccess.cs" />
+    <Compile Include="Common\ShukkoDataAccess.cs" />
+    <Compile Include="Common\StockDataAccess.cs" />
     <Compile Include="Eigyou.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Eigyou.Designer.cs">
       <DependentUpon>Eigyou.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entity\AggDTO.cs" />
     <Compile Include="Entity\M_MajorClassification.cs" />
     <Compile Include="Entity\M_Product.cs" />
     <Compile Include="F_login.cs">
@@ -255,6 +269,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
