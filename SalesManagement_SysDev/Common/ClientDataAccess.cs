@@ -99,7 +99,7 @@ namespace SalesManagement_SysDev.Common
             var context = new SalesManagement_DevContext();
             try
             {
-                //「T_Arrival」テーブルから「M_SalesOffice」「M_Employee] 「M_Client] [T_Order]を参照
+                //「M_Client」テーブルから「M_SalesOffice」を参照
                 var tb = from Client in context.M_Clients
                          join SalesOffice in context.M_SalesOffices
                          on Client.SoID equals SalesOffice.SoID
@@ -109,6 +109,8 @@ namespace SalesManagement_SysDev.Common
                          {
                              ClName = Client.ClName,
                              ClID = Client.ClID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName,
                              ClPostal = Client.ClPostal,
                              ClAddress = Client.ClAddress,
                              ClPhone = Client.ClPhone,

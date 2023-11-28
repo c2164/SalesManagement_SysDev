@@ -28,7 +28,7 @@ namespace SalesManagement_SysDev
             SetCtrlFormat();
 
             //データの取得
-            if (GetSelectData())
+            if (!GetSelectData())
             {
                 messageDsp.MessageBoxDsp("顧客情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
@@ -97,7 +97,7 @@ namespace SalesManagement_SysDev
             //住所
             dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 100;
+            dataGridView1.Columns[4].Width = 150;
             //電話番号
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -105,7 +105,7 @@ namespace SalesManagement_SysDev
             //郵便番号
             dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[6].Width = 100;
+            dataGridView1.Columns[6].Width = 60;
             //FAX
             dataGridView1.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
