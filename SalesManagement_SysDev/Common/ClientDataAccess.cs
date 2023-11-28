@@ -86,7 +86,6 @@ namespace SalesManagement_SysDev.Common
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("在庫データ取得時に例外エラーが発生しました", "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             return null;

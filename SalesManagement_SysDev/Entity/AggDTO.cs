@@ -116,6 +116,12 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("発売日")]
         public DateTime? PrReleaseDate { get; set; }
 
+        [DisplayName("検索用発売日(開始期間)")]
+        public DateTime? PrReleseFromDate { get; set; }
+
+        [DisplayName("発売日(終了期間)")]
+        public DateTime? PrReleaseToDate { get; set; }
+
         [DisplayName("商品管理フラグ")]
         public string PrFlag { get; set; }
 

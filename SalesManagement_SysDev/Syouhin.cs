@@ -16,5 +16,10 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
         }
+
+        private void Syouhin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
