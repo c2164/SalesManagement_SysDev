@@ -37,7 +37,7 @@ namespace SalesManagement_SysDev
         private bool GetSelectData()
         {
             ShipmentDataAccess access = new ShipmentDataAccess();
-            //顧客情報の全件取得
+            //出荷情報の全件取得
             List<DispShipmentDTO> tb = access.GetShipmentData();
             if (tb == null)
                 return false;
@@ -65,11 +65,13 @@ namespace SalesManagement_SysDev
             comboBox_Eigyousyo.DataSource = salesOfficeDataAccess.GetSalesOfficeData();
             comboBox_Eigyousyo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Eigyousyo.SelectedIndex = -1;
+
             comboBox_Meka_Namae.DisplayMember = "MaName";
             comboBox_Meka_Namae.ValueMember = "MaID";
             comboBox_Meka_Namae.DataSource = makerDateAccess.GetMakerData();
             comboBox_Meka_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Meka_Namae.SelectedIndex = -1;
+
             comboBox_Syouhin_Namae.DisplayMember = "PrName";
             comboBox_Syouhin_Namae.ValueMember = "PrID";
             comboBox_Syouhin_Namae.DataSource = productDataAccess.GetProductData();
