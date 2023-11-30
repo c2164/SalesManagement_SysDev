@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Common\ArraivalDataAccess.cs" />
     <Compile Include="Common\ChumonDataAccess.cs" />
+    <Compile Include="Common\WarehousingDataAccess.cs" />
     <Compile Include="Common\ClientDataAccess.cs" />
     <Compile Include="Common\DataInputFormCheck.cs" />
     <Compile Include="Common\EmployeeDataAccess.cs" />
