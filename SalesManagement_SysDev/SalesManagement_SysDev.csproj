@@ -68,6 +68,7 @@
     <Compile Include="Common\ClientDataAccess.cs" />
     <Compile Include="Common\DataInputFormCheck.cs" />
     <Compile Include="Common\EmployeeDataAccess.cs" />
+    <Compile Include="Common\MakerDateAccess.cs" />
     <Compile Include="Common\MessageDsp.cs" />
     <Compile Include="Common\OrderDataAccess.cs" />
     <Compile Include="Common\ProductDataAccess.cs" />
