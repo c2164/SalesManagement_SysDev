@@ -83,7 +83,7 @@ namespace SalesManagement_SysDev.Common
                          Order.OrID == int.Parse(dispChumonDTO.OrID)) && //受注ID
                          Client.ClName.Contains(dispChumonDTO.ClName) && //顧客名
                          Employee.EmName.Contains(dispChumonDTO.EmName) &&//社員名
-                         //Chumon.ChDate.Contains(dispChumonDTO.ChDate)&&//注文年月日
+                         //Chumon.ChDate.(dispChumonDTO.ChDate)&&//注文年月日
                          ((dispChumonDTO.ChQuantity == "") ? true :
                          ChumonDetail.ChQuantity == int.Parse(dispChumonDTO.ChQuantity)) &&//数量
                          Chumon.ChFlag == 0 //非表示フラグ
