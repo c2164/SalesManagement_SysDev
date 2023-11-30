@@ -139,8 +139,11 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("商品ID")]
         public string PrID { get; set; }
 
-        [DisplayName("商品ID")]
+        [DisplayName("商品名")]
         public string PrName { get; set; }
+
+        [DisplayName("メーカー名")]
+        public string MaName { get; set; }
 
         [DisplayName("在庫数")]
         public string StQuantity { get; set; }

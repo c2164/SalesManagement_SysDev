@@ -59,25 +59,23 @@ namespace SalesManagement_SysDev.Common
                 //「T_Stock」テーブルから「M_Product」を参照
                 var tb = from Stock in context.T_Stocks
                          join Product in context.M_Products
-                         on Product.PrID equals Product.PrID
-
-
+                         on Stock.PrID equals Product.PrID
+                         join Maker in context.M_Makers
+                         on Product.MaID equals Maker.MaID
 
                          where
-                         Stock.StID.Contains(dispStockDTO.StID) && //在庫ID
-                         Maker.MaName.ToString().Contains(dispClientDTO.ClID) && //メーカー名
-                         SalesOffice.SoName.Contains(dispClientDTO.SoName) && //商品名
-                         Client.ClPostal.Contains(dispClientDTO.ClPostal)//在庫数
-
-                         select new DispClientDTO
+                         Stock.StID.ToString().Contains(dispStockDTO.StID) && //在庫ID
+                         Maker.MaName.Contains(dispStockDTO.MaName) && //メーカー名
+                         Product.PrName.Contains(dispStockDTO.PrName) && //商品名
+                         ((dispStockDTO.StQuantity == "") ? true :
+                         Stock.StQuantity == int.Parse(dispStockDTO.PrID)) //在庫数
+                         select new DispStockDTO
                          {
-                             StID = Stock.StID,
-                             ClID = Client.ClID.ToString(),
-                             ClPostal = Client.ClPostal,
-                             ClAddress = Client.ClAddress,
-                             ClPhone = Client.ClPhone,
-                             ClFAX = Client.ClFAX,
-
+                             StID = Stock.StID.ToString(),
+                             PrID = Product.PrID.ToString(),
+                             MaName = Maker.MaName,
+                             PrName = Product.PrName,
+                             StQuantity = Stock.StQuantity.ToString(),
                          };
 
                 return tb.ToList();
@@ -90,29 +88,29 @@ namespace SalesManagement_SysDev.Common
 
         }
 
-        //顧客全表示：オーバーロード
-        public List<DispClientDTO> GetClientData()
+        //在庫全表示：オーバーロード
+        public List<DispStockDTO> GetStockData()
         {
             var context = new SalesManagement_DevContext();
             try
             {
-                //「M_Client」テーブルから「M_SalesOffice」を参照
-                var tb = from Client in context.M_Clients
-                         join SalesOffice in context.M_SalesOffices
-                         on Client.SoID equals SalesOffice.SoID
-                         where Client.ClFlag == 0
+                //「T_Stock」テーブルから「M_Product」を参照
+                var tb = from Stock in context.T_Stocks
+                         join Product in context.M_Products
+                         on Stock.PrID equals Product.PrID
+                         join Maker in context.M_Makers
+                         on Product.MaID equals Maker.MaID
 
-                         select new DispClientDTO
+                         where
+                         Stock.StFlag == 0 //在庫管理フラグ
+
+                         select new DispStockDTO
                          {
-                             ClName = Client.ClName,
-                             ClID = Client.ClID.ToString(),
-                             SoID = SalesOffice.SoID.ToString(),
-                             SoName = SalesOffice.SoName,
-                             ClPostal = Client.ClPostal,
-                             ClAddress = Client.ClAddress,
-                             ClPhone = Client.ClPhone,
-                             ClFAX = Client.ClFAX,
-
+                             StID = Stock.StID.ToString(),
+                             PrID = Product.PrID.ToString(),
+                             MaName = Maker.MaName,
+                             PrName = Product.PrName,
+                             StQuantity = Stock.StQuantity.ToString(),
                          };
 
                 return tb.ToList();
