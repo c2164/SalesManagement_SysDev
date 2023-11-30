@@ -379,17 +379,41 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("出荷ID")]
         public string ShID { get; set; }
 
+        [DisplayName("出荷詳細ID")]
+        public string ShDetailID { get; set; }
+
+        [DisplayName("メーカーID")]
+        public string MaID { get; set; }
+
+        [DisplayName("メーカー名")]
+        public string MaName { get; set; }
+
+        [DisplayName("商品ID")]
+        public string PrID { get; set; }
+
+        [DisplayName("商品名")]
+        public string PrName { get; set; }
+
+        [DisplayName("数量")]
+        public string ArQuantity { get; set; }
+
         [DisplayName("営業所ID")]
         public string SoID { get; set; }
 
         [DisplayName("営業所名")]
         public string SoName { get; set; }
 
-        [DisplayName("社員ID")]
-        public string EmID { get; set; }
+        [DisplayName("入荷社員ID")]
+        public string ArrivalEmID { get; set; }
 
-        [DisplayName("社員名")]
-        public string EmName { get; set; }
+        [DisplayName("入荷社員名")]
+        public string ArrivalEmName { get; set; }
+
+        [DisplayName("確定社員ID")]
+        public string ConfEmID { get; set; }
+
+        [DisplayName("確定社員名")]
+        public string ConfEmName { get; set; }
 
         [DisplayName("顧客ID")]
         public string ClID { get; set; }
@@ -542,7 +566,7 @@ namespace SalesManagement_SysDev.Entity
         public string EmName { get; set; }
 
         [DisplayName("受注ID")]
-        public string ChID { get; set; }
+        public string OrID { get; set; }
 
         [DisplayName("売上日時")]
         public DateTime? SaDate { get; set; }
