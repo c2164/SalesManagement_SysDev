@@ -429,8 +429,14 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("商品名")]
         public string PrName { get; set; }
 
+        [DisplayName("メーカID")]
+        public string MaID { get; set; }
+
+        [DisplayName("メーカ名")]
+        public string MaName { get; set; }
+
         [DisplayName("数量")]
-        public string ArQuantity { get; set; }
+        public string HaQuantity { get; set; }
 
         [DisplayName("社員ID")]
         public string EmID { get; set; }
