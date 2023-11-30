@@ -56,51 +56,46 @@ namespace SalesManagement_SysDev.Common
             var context = new SalesManagement_DevContext();
             try
             {
-                //「T_Werehousing」テーブルから「M_SalesOffice」「M_Employee] 「M_Client] [T_Order]を参照
+                //「T_Werehousing」テーブルから「T_WarehousingDetail」「M_Product] 「M_Maker] 「M_hattyu] 「M_Employee] 「M_HattyuEmployee] を参照
                 var tb = from WarehousingDetail in context.T_WarehousingDetails
                          join Warehousing in context.T_Warehousings
                          on WarehousingDetail.WaID equals Warehousing.WaID
                          join Product in context.M_Products
                          on WarehousingDetail.PrID equals Product.PrID
-                         join Hattyuu in context.T_Hattyus
-                         on Warehousing.HaID equals Hattyuu.HaID
+                         join Maker in context.M_Makers
+                         on Product.MaID equals Maker.MaID
+                         join Hattyu in context.T_Hattyus
+                         on Warehousing.HaID equals Hattyu.HaID
                          join Employee in context.M_Employees
                          on Warehousing.EmID equals Employee.EmID
+                         join HattyuEmployee in context.M_Employees
+                         on Hattyu.EmID equals HattyuEmployee.EmID
                          where
                           ((dispWarehousingDTO.WaID == "") ? true :
                          Warehousing.WaID == int.Parse(dispWarehousingDTO.WaID)) &&//入庫ID
                           ((dispWarehousingDTO.WaID == "") ? true :
-                         Hattyuu.HaID == int.Parse(dispWarehousingDTO.HaID)) && //発注ID
+                         Hattyu.HaID == int.Parse(dispWarehousingDTO.HaID)) && //発注ID
                           ((dispWarehousingDTO.WaID == "") ? true :
-                         WarehousingDetail.WaDetailID == int.Parse(dispWarehousingDTO.WaID)) && //入庫詳細ID
-                         Hattyuu.EmID.Contains(dispWarehousingDTO.EmName) && //発注社員名
+                         WarehousingDetail.WaDetailID == int.Parse(dispWarehousingDTO.WaDetailID)) && //入庫詳細ID
+                         HattyuEmployee.EmName.Contains(dispWarehousingDTO.HattyuEmName) && //発注社員名
                          Employee.EmID.ToString().Contains(dispWarehousingDTO.ConfEmName) && //確定社員名
                          Maker.MaName.Contains(dispWarehousingDTO.MaName) && //メーカー名
                          Product.PrName.Contains(dispWarehousingDTO.PrName) && //商品名
-                         WarehousingDetail.ToString().Contains(dispWarehousingDTO.ArQuantity) && //数量
+                         WarehousingDetail.ToString().Contains(dispWarehousingDTO.ArQuantity)  //数量
 
 
 
-                         select new DispArrivalDTO
+                         select new DispWerehousingDTO
                          {
-                             ArID = Arrival.ArID.ToString(),
-                             ArDetailID = ArrivalDetail.ArDetailID.ToString(),
-                             PrID = Product.PrID.ToString(),
-                             PrName = Product.PrName.ToString(),
-                             MaID = Product.MaID.ToString(),
-                             MaName = Maker.MaName.ToString(),
-                             ArQuantity = ArrivalDetail.ArQuantity.ToString(),
-                             SoID = Arrival.SoID.ToString(),
-                             SoName = SalesOffice.SoName.ToString(),
-                             ArrivalEmID = Chumon.ClID.ToString(),
-                             ArrivalEmName = ChumonEm.EmName.ToString(),
-                             ConfEmID = Arrival.EmID.ToString(),
+                             WaID = Warehousing.WaID.ToString(),
+                             HaID = Hattyu.HaID.ToString(),
+                             WaDetailID = WarehousingDetail.WaDetailID.ToString(),
+                             HattyuEmName = HattyuEmployee.EmName.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
-                             ClID = Arrival.ClID.ToString(),
-                             ClName = Client.ClName.ToString(),
-                             OrID = Arrival.OrID.ToString(),
-                             ArDate = Arrival.ArDate,
-                             ArStateFlag = Arrival.ArStateFlag.ToString()
+                             MaName = Maker.MaName.ToString(),
+                             PrName = Product.PrName.ToString(),
+                             ArQuantity = WarehousingDetail.ToString(),
+                            
 
                          };
 
@@ -115,36 +110,37 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫全表示：オーバーロード
-        public List<DispProductDTO> GetProductData()
+        public List<DispWerehousingDTO> GetProductData()
         {
             var context = new SalesManagement_DevContext();
             try
             {
-                //「M_Product」テーブルから「M_SmallClassfication」「M_Maker」を参照
-                var tb = from Product in context.M_Products
+                //「T_Werehousing」テーブルから「T_WarehousingDetail」「M_Product] 「M_Maker] 「M_hattyu] 「M_Employee] 「M_HattyuEmployee] を参照
+                var tb = from WarehousingDetail in context.T_WarehousingDetails
+                         join Warehousing in context.T_Warehousings
+                         on WarehousingDetail.WaID equals Warehousing.WaID
+                         join Product in context.M_Products
+                         on WarehousingDetail.PrID equals Product.PrID
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
-                         join SmallClassification in context.M_SmallClassifications
-                         on Product.ScID equals SmallClassification.ScID
-                         join MajorCassifications in context.M_MajorCassifications
-                         on SmallClassification.McID equals MajorCassifications.McID
+                         join Hattyu in context.T_Hattyus
+                         on Warehousing.HaID equals Hattyu.HaID
+                         join Employee in context.M_Employees
+                         on Warehousing.EmID equals Employee.EmID
+                         join HattyuEmployee in context.M_Employees
+                         on Hattyu.EmID equals HattyuEmployee.EmID
+                         
 
-                         where
-                         Product.PrFlag == 0 //非表示フラグ
-
-                         select new DispProductDTO
+                         select new DispWerehousingDTO
                          {
-                             PrID = Product.PrID.ToString(),
-                             PrName = Product.PrName,
-                             MaID = Product.MaID.ToString(),
-                             MaName = Maker.MaName,
-                             Price = Product.Price.ToString(),
-                             PrSafetyStock = Product.PrSafetyStock.ToString(),
-                             ScID = Product.ScID.ToString(),
-                             ScName = SmallClassification.ScName,
-                             PrModelNumber = Product.PrModelNumber,
-                             PrColor = Product.PrColor,
-                             PrReleaseDate = Product.PrReleaseDate,
+                             WaID = Warehousing.WaID.ToString(),
+                             HaID = Hattyu.HaID.ToString(),
+                             WaDetailID = WarehousingDetail.WaDetailID.ToString(),
+                             HattyuEmName = HattyuEmployee.EmName.ToString(),
+                             ConfEmName = Employee.EmName.ToString(),
+                             MaName = Maker.MaName.ToString(),
+                             PrName = Product.PrName.ToString(),
+                             ArQuantity = WarehousingDetail.ToString(),
                          };
 
                 return tb.ToList();
