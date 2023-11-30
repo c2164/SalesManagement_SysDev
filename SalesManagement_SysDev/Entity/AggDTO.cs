@@ -555,7 +555,7 @@ namespace SalesManagement_SysDev.Entity
         public string EmName { get; set; }
 
         [DisplayName("受注ID")]
-        public string ChID { get; set; }
+        public string OrID { get; set; }
 
         [DisplayName("売上日時")]
         public DateTime? SaDate { get; set; }
