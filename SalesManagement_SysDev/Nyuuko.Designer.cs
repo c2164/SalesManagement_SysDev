@@ -46,10 +46,10 @@
             this.textBox_Hattyuu_ID = new System.Windows.Forms.TextBox();
             this.textBox_Nyuukosyousai_ID = new System.Windows.Forms.TextBox();
             this.textBox_Hattyuu_Syain_Namae = new System.Windows.Forms.TextBox();
-            this.textBox_Kakutei_Syain_Namae = new System.Windows.Forms.TextBox();
-            this.textBox_Meka_Namae = new System.Windows.Forms.TextBox();
-            this.textBox_Syouhin_Namae = new System.Windows.Forms.TextBox();
             this.numericUpDown_Suuryou = new System.Windows.Forms.NumericUpDown();
+            this.comboBox_Meka_Namae = new System.Windows.Forms.ComboBox();
+            this.comboBox_Syouhin_Namae = new System.Windows.Forms.ComboBox();
+            this.comboBox_Kakutei_Syain_Namae = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).BeginInit();
             this.SuspendLayout();
@@ -233,27 +233,6 @@
             this.textBox_Hattyuu_Syain_Namae.Size = new System.Drawing.Size(294, 31);
             this.textBox_Hattyuu_Syain_Namae.TabIndex = 17;
             // 
-            // textBox_Kakutei_Syain_Namae
-            // 
-            this.textBox_Kakutei_Syain_Namae.Location = new System.Drawing.Point(760, 303);
-            this.textBox_Kakutei_Syain_Namae.Name = "textBox_Kakutei_Syain_Namae";
-            this.textBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(281, 31);
-            this.textBox_Kakutei_Syain_Namae.TabIndex = 18;
-            // 
-            // textBox_Meka_Namae
-            // 
-            this.textBox_Meka_Namae.Location = new System.Drawing.Point(222, 411);
-            this.textBox_Meka_Namae.Name = "textBox_Meka_Namae";
-            this.textBox_Meka_Namae.Size = new System.Drawing.Size(294, 31);
-            this.textBox_Meka_Namae.TabIndex = 19;
-            // 
-            // textBox_Syouhin_Namae
-            // 
-            this.textBox_Syouhin_Namae.Location = new System.Drawing.Point(759, 411);
-            this.textBox_Syouhin_Namae.Name = "textBox_Syouhin_Namae";
-            this.textBox_Syouhin_Namae.Size = new System.Drawing.Size(281, 31);
-            this.textBox_Syouhin_Namae.TabIndex = 20;
-            // 
             // numericUpDown_Suuryou
             // 
             this.numericUpDown_Suuryou.Location = new System.Drawing.Point(1268, 420);
@@ -261,15 +240,39 @@
             this.numericUpDown_Suuryou.Size = new System.Drawing.Size(265, 31);
             this.numericUpDown_Suuryou.TabIndex = 21;
             // 
+            // comboBox_Meka_Namae
+            // 
+            this.comboBox_Meka_Namae.FormattingEnabled = true;
+            this.comboBox_Meka_Namae.Location = new System.Drawing.Point(222, 412);
+            this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
+            this.comboBox_Meka_Namae.Size = new System.Drawing.Size(294, 32);
+            this.comboBox_Meka_Namae.TabIndex = 22;
+            // 
+            // comboBox_Syouhin_Namae
+            // 
+            this.comboBox_Syouhin_Namae.FormattingEnabled = true;
+            this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(760, 411);
+            this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
+            this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(294, 32);
+            this.comboBox_Syouhin_Namae.TabIndex = 23;
+            // 
+            // comboBox_Kakutei_Syain_Namae
+            // 
+            this.comboBox_Kakutei_Syain_Namae.FormattingEnabled = true;
+            this.comboBox_Kakutei_Syain_Namae.Location = new System.Drawing.Point(760, 301);
+            this.comboBox_Kakutei_Syain_Namae.Name = "comboBox_Kakutei_Syain_Namae";
+            this.comboBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(294, 32);
+            this.comboBox_Kakutei_Syain_Namae.TabIndex = 24;
+            // 
             // Nyuuko
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.Controls.Add(this.comboBox_Kakutei_Syain_Namae);
+            this.Controls.Add(this.comboBox_Syouhin_Namae);
+            this.Controls.Add(this.comboBox_Meka_Namae);
             this.Controls.Add(this.numericUpDown_Suuryou);
-            this.Controls.Add(this.textBox_Syouhin_Namae);
-            this.Controls.Add(this.textBox_Meka_Namae);
-            this.Controls.Add(this.textBox_Kakutei_Syain_Namae);
             this.Controls.Add(this.textBox_Hattyuu_Syain_Namae);
             this.Controls.Add(this.textBox_Nyuukosyousai_ID);
             this.Controls.Add(this.textBox_Hattyuu_ID);
@@ -290,6 +293,7 @@
             this.Controls.Add(this.button_Nyuuko_Kakutei);
             this.Name = "Nyuuko";
             this.Size = new System.Drawing.Size(1579, 862);
+            this.Load += new System.EventHandler(this.Nyuuko_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).EndInit();
             this.ResumeLayout(false);
@@ -317,9 +321,9 @@
         private System.Windows.Forms.TextBox textBox_Hattyuu_ID;
         private System.Windows.Forms.TextBox textBox_Nyuukosyousai_ID;
         private System.Windows.Forms.TextBox textBox_Hattyuu_Syain_Namae;
-        private System.Windows.Forms.TextBox textBox_Kakutei_Syain_Namae;
-        private System.Windows.Forms.TextBox textBox_Meka_Namae;
-        private System.Windows.Forms.TextBox textBox_Syouhin_Namae;
         private System.Windows.Forms.NumericUpDown numericUpDown_Suuryou;
+        private System.Windows.Forms.ComboBox comboBox_Meka_Namae;
+        private System.Windows.Forms.ComboBox comboBox_Syouhin_Namae;
+        private System.Windows.Forms.ComboBox comboBox_Kakutei_Syain_Namae;
     }
 }

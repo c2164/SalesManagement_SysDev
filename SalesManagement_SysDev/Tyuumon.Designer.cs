@@ -43,15 +43,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textbox_Tyuumon_ID = new System.Windows.Forms.TextBox();
-            this.textbox_Syouhin_Namae = new System.Windows.Forms.TextBox();
             this.textbox_Tyuumonsyousai_ID = new System.Windows.Forms.TextBox();
             this.textbox_Zyutyuusyousai = new System.Windows.Forms.TextBox();
             this.textbox_Kokyaku_Namae = new System.Windows.Forms.TextBox();
-            this.textbox_Syain_Namae = new System.Windows.Forms.TextBox();
             this.comboBox_Eigyousyo = new System.Windows.Forms.ComboBox();
             this.numericUPDown_Syouhin_Namae = new System.Windows.Forms.NumericUpDown();
             this.dateTimePicker_Tyuumon_Nenngetu = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox_Syouhin_Namae = new System.Windows.Forms.ComboBox();
+            this.comboBox_Syain_Namae = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUPDown_Syouhin_Namae)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -214,13 +214,6 @@
             this.textbox_Tyuumon_ID.Size = new System.Drawing.Size(251, 31);
             this.textbox_Tyuumon_ID.TabIndex = 14;
             // 
-            // textbox_Syouhin_Namae
-            // 
-            this.textbox_Syouhin_Namae.Location = new System.Drawing.Point(775, 190);
-            this.textbox_Syouhin_Namae.Name = "textbox_Syouhin_Namae";
-            this.textbox_Syouhin_Namae.Size = new System.Drawing.Size(270, 31);
-            this.textbox_Syouhin_Namae.TabIndex = 15;
-            // 
             // textbox_Tyuumonsyousai_ID
             // 
             this.textbox_Tyuumonsyousai_ID.Location = new System.Drawing.Point(239, 301);
@@ -241,13 +234,6 @@
             this.textbox_Kokyaku_Namae.Name = "textbox_Kokyaku_Namae";
             this.textbox_Kokyaku_Namae.Size = new System.Drawing.Size(251, 31);
             this.textbox_Kokyaku_Namae.TabIndex = 18;
-            // 
-            // textbox_Syain_Namae
-            // 
-            this.textbox_Syain_Namae.Location = new System.Drawing.Point(239, 413);
-            this.textbox_Syain_Namae.Name = "textbox_Syain_Namae";
-            this.textbox_Syain_Namae.Size = new System.Drawing.Size(251, 31);
-            this.textbox_Syain_Namae.TabIndex = 19;
             // 
             // comboBox_Eigyousyo
             // 
@@ -281,20 +267,36 @@
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
             this.dataGridView1.TabIndex = 23;
             // 
+            // comboBox_Syouhin_Namae
+            // 
+            this.comboBox_Syouhin_Namae.FormattingEnabled = true;
+            this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(761, 182);
+            this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
+            this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(284, 32);
+            this.comboBox_Syouhin_Namae.TabIndex = 24;
+            // 
+            // comboBox_Syain_Namae
+            // 
+            this.comboBox_Syain_Namae.FormattingEnabled = true;
+            this.comboBox_Syain_Namae.Location = new System.Drawing.Point(239, 415);
+            this.comboBox_Syain_Namae.Name = "comboBox_Syain_Namae";
+            this.comboBox_Syain_Namae.Size = new System.Drawing.Size(251, 32);
+            this.comboBox_Syain_Namae.TabIndex = 25;
+            // 
             // Tyuumon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.Controls.Add(this.comboBox_Syain_Namae);
+            this.Controls.Add(this.comboBox_Syouhin_Namae);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dateTimePicker_Tyuumon_Nenngetu);
             this.Controls.Add(this.numericUPDown_Syouhin_Namae);
             this.Controls.Add(this.comboBox_Eigyousyo);
-            this.Controls.Add(this.textbox_Syain_Namae);
             this.Controls.Add(this.textbox_Kokyaku_Namae);
             this.Controls.Add(this.textbox_Zyutyuusyousai);
             this.Controls.Add(this.textbox_Tyuumonsyousai_ID);
-            this.Controls.Add(this.textbox_Syouhin_Namae);
             this.Controls.Add(this.textbox_Tyuumon_ID);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -337,14 +339,14 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textbox_Tyuumon_ID;
-        private System.Windows.Forms.TextBox textbox_Syouhin_Namae;
         private System.Windows.Forms.TextBox textbox_Tyuumonsyousai_ID;
         private System.Windows.Forms.TextBox textbox_Zyutyuusyousai;
         private System.Windows.Forms.TextBox textbox_Kokyaku_Namae;
-        private System.Windows.Forms.TextBox textbox_Syain_Namae;
         private System.Windows.Forms.ComboBox comboBox_Eigyousyo;
         private System.Windows.Forms.NumericUpDown numericUPDown_Syouhin_Namae;
         private System.Windows.Forms.DateTimePicker dateTimePicker_Tyuumon_Nenngetu;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboBox_Syouhin_Namae;
+        private System.Windows.Forms.ComboBox comboBox_Syain_Namae;
     }
 }

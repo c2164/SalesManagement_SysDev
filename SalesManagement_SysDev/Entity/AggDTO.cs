@@ -510,7 +510,7 @@ namespace SalesManagement_SysDev.Entity
     }
 
     //入庫管理画面表示用
-    class DispWerehousingDTO
+    class DispWarehousingDTO
     {
         [DisplayName("入庫ID")]
         public string WaID { get; set; }
@@ -524,11 +524,14 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("商品名")]
         public string PrName { get; set; }
 
+        [DisplayName("メーカーID")]
+        public string MaID { get; set; }
+
         [DisplayName("メーカー名")]
         public string MaName { get; set; }
 
         [DisplayName("数量")]
-        public string ArQuantity { get; set; }
+        public string WaQuantity { get; set; }
 
         [DisplayName("発注ID")]
         public string HaID { get; set; }
