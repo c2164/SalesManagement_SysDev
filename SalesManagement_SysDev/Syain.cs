@@ -87,9 +87,7 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[6].Width = 120;
             //パスワード
-            dataGridView1.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[7].Width = 120;
+            dataGridView1.Columns[7].Visible = false;
             //電話番号
             dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -111,6 +109,7 @@ namespace SalesManagement_SysDev
             textBox_Syain_ID.Text = "";
             textBox_Yakusyoku.Text = "";
             textBox_Syain_Nenngetu.Text = "";
+            textBox_Dennwa.Text = "";
             textBox_FAX.Text = "";
             textBox_Pass.Text = "";
 
@@ -120,6 +119,12 @@ namespace SalesManagement_SysDev
             comboBox_Eigyousyo.DataSource = salesofficeDateAccess.GetSalesOfficeData();
             comboBox_Eigyousyo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Eigyousyo.SelectedIndex = -1;
+        }
+
+        private void button_Kuria_Click(object sender, EventArgs e)
+        {
+            SetCtrlFormat();
+            GetSelectData();
         }
     }
 }

@@ -80,6 +80,7 @@ namespace SalesManagement_SysDev.Common
                              EmID = Employee.EmID.ToString(),
                              SoName = SalesOffice.SoName,
                              PoName = Position.PoName,
+                             EmHiredate = Employee.EmHiredate,
                              EmPhone = Employee.EmPhone,
                              EmPassword = Employee.EmPassword,
                          };
@@ -115,6 +116,7 @@ namespace SalesManagement_SysDev.Common
                              EmID = Employee.EmID.ToString(),
                              SoName = SalesOffice.SoName,
                              PoName = Position.PoName,
+                             EmHiredate = Employee.EmHiredate,
                              EmPhone = Employee.EmPhone,
                              EmPassword = Employee.EmPassword,
                          };

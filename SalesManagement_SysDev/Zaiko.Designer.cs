@@ -105,6 +105,7 @@
             this.button_Kuria.TabIndex = 4;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
+            this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
             // 
             // label1
             // 
@@ -203,6 +204,7 @@
             this.Controls.Add(this.button_Kousin);
             this.Name = "Zaiko";
             this.Size = new System.Drawing.Size(1579, 862);
+            this.Load += new System.EventHandler(this.Zaiko_Load);
             ((System.ComponentModel.ISupportInitialize)(this.domainUpDown_Zaikosuu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

@@ -140,5 +140,11 @@ namespace SalesManagement_SysDev
             dateTimePicker_Nitizi_2.Value = DateTime.Now;
             dateTimePicker_Nitizi_3.Value = DateTime.Now;
         }
+
+        private void button_Kuria_Click(object sender, EventArgs e)
+        {
+            SetCtrlFormat();
+            GetSelectData();
+        }
     }
 }
