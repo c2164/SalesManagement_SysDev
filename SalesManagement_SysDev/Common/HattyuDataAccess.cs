@@ -10,7 +10,6 @@ namespace SalesManagement_SysDev.Common
 {
     internal class HattyuDataAccess
     {
-        //商品情報登録(登録情報)
         public bool RegisterHattyuData(T_Hattyu RegHattyu)
         {
             using (var context = new SalesManagement_DevContext())
@@ -29,7 +28,6 @@ namespace SalesManagement_SysDev.Common
             }
         }
 
-        //商品情報アップデート(アップデート情報)
         public bool UpdateHattyuData(T_Hattyu UpHattyu)
         {
             using (var context = new SalesManagement_DevContext())
@@ -57,7 +55,6 @@ namespace SalesManagement_SysDev.Common
             var context = new SalesManagement_DevContext();
             try
             {
-                //「M_Product」テーブルから「M_SmallClassfication」「M_Maker」を参照
                 var tb = from HattyuDetail in context.T_HattyuDetails
                          join Hattyu in context.T_Hattyus
                          on HattyuDetail.HaID equals Hattyu.HaID
@@ -120,43 +117,42 @@ namespace SalesManagement_SysDev.Common
         //続きから
 
         //商品全表示：オーバーロード
-        public List<DispProductDTO> GetProductData()
+        public List<DispHattyuDTO> GetHattyuData()
         {
             var context = new SalesManagement_DevContext();
             try
             {
-                //「M_Product」テーブルから「M_SmallClassfication」「M_Maker」を参照
-                var tb = from Product in context.M_Products
+                var tb = from HattyuDetail in context.T_HattyuDetails
+                         join Hattyu in context.T_Hattyus
+                         on HattyuDetail.HaID equals Hattyu.HaID
+                         join Product in context.M_Products
+                         on HattyuDetail.PrID equals Product.PrID
                          join Maker in context.M_Makers
-                         on Product.MaID equals Maker.MaID
-                         join SmallClassification in context.M_SmallClassifications
-                         on Product.ScID equals SmallClassification.ScID
-                         join MajorCassifications in context.M_MajorCassifications
-                         on SmallClassification.McID equals MajorCassifications.McID
+                         on Hattyu.MaID equals Maker.MaID
+                         join Employee in context.M_Employees
+                         on Hattyu.EmID equals Employee.EmID
 
-                         where
-                         Product.PrFlag == 0 //非表示フラグ
+                         where 
 
-                         select new DispProductDTO
+                         Hattyu.HaFlag == 0 //非表示フラグ
+
+                         select new DispHattyuDTO
                          {
+                             HaID = Hattyu.HaID.ToString(),
+                             HaDetailID = HattyuDetail.HaDetailID.ToString(),
+                             EmID = Hattyu.EmID.ToString(),
+                             EmName = Employee.EmName,
+                             MaName = Maker.MaName,
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
-                             MaID = Product.MaID.ToString(),
-                             MaName = Maker.MaName,
-                             Price = Product.Price.ToString(),
-                             PrSafetyStock = Product.PrSafetyStock.ToString(),
-                             ScID = Product.ScID.ToString(),
-                             ScName = SmallClassification.ScName,
-                             PrModelNumber = Product.PrModelNumber,
-                             PrColor = Product.PrColor,
-                             PrReleaseDate = Product.PrReleaseDate,
+                             HaDate = Hattyu.HaDate,
+                             HaQuantity = HattyuDetail.HaQuantity.ToString()
                          };
 
                 return tb.ToList();
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("在庫データ取得時に例外エラーが発生しました", "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             return null;
