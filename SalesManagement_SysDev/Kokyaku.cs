@@ -120,7 +120,60 @@ namespace SalesManagement_SysDev
 
         private void button_Touroku_Click(object sender, EventArgs e)
         {
+            RegisterClient();
+        }
+
+        private void RegisterClient()
+        {
+            DispClientDTO dispClientDTO = new DispClientDTO();
+            dispClientDTO = GetCheckedClientInf();
+            if(dispClientDTO == null) 
+            {
+                return;
+            }
+            DuplicationCheckCliantInputRecord();
+            RegisrationClientInf();
+        }
+
+        private DispClientDTO GetCheckedClientInf()
+        {
+            DispClientDTO retDispClient = new DispClientDTO();
+            string msg;
+            MessageBoxIcon icon;
+            retDispClient = GetClientInf();
+            //CheckClientInf(retDispClient, out msg, out icon);
+            return retDispClient;
+        }
+
+        private DispClientDTO GetClientInf()
+        {
+            DispClientDTO retDispClient = new DispClientDTO();
+            retDispClient.ClID = textBox_Kokyaku_ID.Text;
+            retDispClient.ClName = textBox_Kokyaku_Namae.Text;
+            retDispClient.ClPostal = textBox_Yuubin.Text;
+            retDispClient.ClPhone = textBox_Dennwa.Text;
+            retDispClient.ClFAX = textBox_FAX.Text;
+            retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
+            retDispClient.SoName = comboBox_Eigyousyo.Text;
+
+            return retDispClient;
+        }
+
+        /*private bool CheckClientInf(DispClientDTO checkClientDTO, out string msg, out MessageBoxIcon icon)
+        {
+
+        }*/
+
+        private void RegisrationClientInf()
+        {
 
         }
+
+        private bool DuplicationCheckCliantInputRecord()
+        {
+            bool ret = false;
+            return ret;
+        }
+
     }
 }

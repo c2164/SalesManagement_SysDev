@@ -81,7 +81,9 @@ namespace SalesManagement_SysDev.Common
                          on Product.MaID equals Maker.MaID
                          where
                          Client.ClName.Contains(dispArrivalDTO.ClName) && //顧客名
+
                          ArrivalDetail.ArID.ToString().Contains(dispArrivalDTO.ArID) && //入荷ID
+
                          SalesOffice.SoName.Contains(dispArrivalDTO.SoName) && //営業所名
                          ChumonEm.EmName.Contains(dispArrivalDTO.ArrivalEmName) && //入荷社員名
                          Arrival.OrID.ToString().Contains(dispArrivalDTO.OrID) && //受注ID

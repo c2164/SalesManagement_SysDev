@@ -65,10 +65,12 @@
     </Compile>
     <Compile Include="Common\ArraivalDataAccess.cs" />
     <Compile Include="Common\ChumonDataAccess.cs" />
+    <Compile Include="Common\WarehousingDataAccess.cs" />
     <Compile Include="Common\ClientDataAccess.cs" />
     <Compile Include="Common\DataInputFormCheck.cs" />
     <Compile Include="Common\EmployeeDataAccess.cs" />
     <Compile Include="Common\HattyuDataAccess.cs" />
+    <Compile Include="Common\MakerDateAccess.cs" />
     <Compile Include="Common\MessageDsp.cs" />
     <Compile Include="Common\OrderDataAccess.cs" />
     <Compile Include="Common\ProductDataAccess.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Common\SalesOfficeDataAccess.cs" />
     <Compile Include="Common\ShipmentDataAccess.cs" />
     <Compile Include="Common\ShukkoDataAccess.cs" />
+    <Compile Include="Common\SmallClassificationDataAccess.cs" />
     <Compile Include="Common\StockDataAccess.cs" />
     <Compile Include="Eigyou.cs">
       <SubType>UserControl</SubType>

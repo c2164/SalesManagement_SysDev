@@ -144,7 +144,10 @@ namespace SalesManagement_SysDev.Common
                              OrID = Order.OrID.ToString(),
                              ClName = Client.ClName,
                              EmName = Employee.EmName,
-
+                             ChQuantity = ChumonDetail.ChQuantity.ToString(),
+                             ChDate = Chumon.ChDate,
+                             ChStateFlag = Chumon.ChStateFlag.ToString(),
+                             
 
                          };
 
@@ -158,6 +161,5 @@ namespace SalesManagement_SysDev.Common
             return null;
 
         }
-
     }
 }

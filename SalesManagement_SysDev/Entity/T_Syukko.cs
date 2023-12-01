@@ -36,4 +36,5 @@ namespace SalesManagement_SysDev
         public virtual T_Order T_Order { get; set; }
         public virtual ICollection<T_SyukkoDetail> T_SyukkoDetail { get; set; }
     }
+
 }

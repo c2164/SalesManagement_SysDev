@@ -143,7 +143,10 @@ namespace SalesManagement_SysDev.Common
                              OrDetailID = OrderDetail.OrDetailID.ToString(),
                              SoName = SalesOffice.SoName,
                              PrName = Product.PrName,
-                             OrQuantity = OrderDetail.OrQuantity.ToString()
+                             OrQuantity = OrderDetail.OrQuantity.ToString(),
+                             OrTotalPrice = OrderDetail.OrTotalPrice.ToString(),
+                             OrDate=Order.OrDate,
+                             OrStateFlag=Order.OrStateFlag.ToString(),
                          };
 
                 return tb.ToList();

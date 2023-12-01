@@ -120,7 +120,7 @@
             this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
             this.label2.Location = new System.Drawing.Point(551, 232);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 41);
+            this.label2.Size = new System.Drawing.Size(133, 41);
             this.label2.TabIndex = 6;
             this.label2.Text = "メーカー名";
             // 
@@ -129,7 +129,7 @@
             this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
             this.label3.Location = new System.Drawing.Point(1049, 230);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 41);
+            this.label3.Size = new System.Drawing.Size(134, 41);
             this.label3.TabIndex = 7;
             this.label3.Text = "商品名";
             // 
