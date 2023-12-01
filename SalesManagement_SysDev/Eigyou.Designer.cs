@@ -35,12 +35,12 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.uriage1 = new SalesManagement_SysDev.Uriage();
             this.syukka1 = new SalesManagement_SysDev.Syukka();
             this.nyuuka1 = new SalesManagement_SysDev.Nyuuka();
             this.tyuumon1 = new SalesManagement_SysDev.Tyuumon();
             this.zyutyuu1 = new SalesManagement_SysDev.Zyutyuu();
             this.kokyaku1 = new SalesManagement_SysDev.Kokyaku();
-            this.uriage1 = new SalesManagement_SysDev.Uriage();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -134,12 +134,20 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // uriage1
+            // 
+            this.uriage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.uriage1.Location = new System.Drawing.Point(3, 3);
+            this.uriage1.Name = "uriage1";
+            this.uriage1.Size = new System.Drawing.Size(1579, 859);
+            this.uriage1.TabIndex = 5;
+            // 
             // syukka1
             // 
             this.syukka1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
-            this.syukka1.Location = new System.Drawing.Point(3, 0);
+            this.syukka1.Location = new System.Drawing.Point(3, 3);
             this.syukka1.Name = "syukka1";
-            this.syukka1.Size = new System.Drawing.Size(1579, 862);
+            this.syukka1.Size = new System.Drawing.Size(1579, 859);
             this.syukka1.TabIndex = 4;
             // 
             // nyuuka1
@@ -147,13 +155,13 @@
             this.nyuuka1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
             this.nyuuka1.Location = new System.Drawing.Point(3, 3);
             this.nyuuka1.Name = "nyuuka1";
-            this.nyuuka1.Size = new System.Drawing.Size(1579, 862);
+            this.nyuuka1.Size = new System.Drawing.Size(1579, 859);
             this.nyuuka1.TabIndex = 3;
             // 
             // tyuumon1
             // 
             this.tyuumon1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
-            this.tyuumon1.Location = new System.Drawing.Point(3, 3);
+            this.tyuumon1.Location = new System.Drawing.Point(3, 0);
             this.tyuumon1.Name = "tyuumon1";
             this.tyuumon1.Size = new System.Drawing.Size(1579, 862);
             this.tyuumon1.TabIndex = 2;
@@ -163,7 +171,7 @@
             this.zyutyuu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
             this.zyutyuu1.Location = new System.Drawing.Point(3, 3);
             this.zyutyuu1.Name = "zyutyuu1";
-            this.zyutyuu1.Size = new System.Drawing.Size(1579, 862);
+            this.zyutyuu1.Size = new System.Drawing.Size(1579, 859);
             this.zyutyuu1.TabIndex = 1;
             // 
             // kokyaku1
@@ -173,14 +181,6 @@
             this.kokyaku1.Name = "kokyaku1";
             this.kokyaku1.Size = new System.Drawing.Size(1579, 862);
             this.kokyaku1.TabIndex = 0;
-            // 
-            // uriage1
-            // 
-            this.uriage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
-            this.uriage1.Location = new System.Drawing.Point(3, 3);
-            this.uriage1.Name = "uriage1";
-            this.uriage1.Size = new System.Drawing.Size(1579, 862);
-            this.uriage1.TabIndex = 5;
             // 
             // Eigyou
             // 

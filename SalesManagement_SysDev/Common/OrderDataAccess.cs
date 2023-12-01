@@ -145,6 +145,8 @@ namespace SalesManagement_SysDev.Common
                              PrName = Product.PrName,
                              OrQuantity = OrderDetail.OrQuantity.ToString(),
                              OrTotalPrice = OrderDetail.OrTotalPrice.ToString(),
+                             OrDate=Order.OrDate,
+                             OrStateFlag=Order.OrStateFlag.ToString(),
                          };
 
                 return tb.ToList();
