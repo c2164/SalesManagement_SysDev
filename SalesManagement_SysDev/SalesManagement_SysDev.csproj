@@ -78,7 +78,7 @@
     <Compile Include="Common\SaleDataAccess.cs" />
     <Compile Include="Common\SalesOfficeDataAccess.cs" />
     <Compile Include="Common\ShipmentDataAccess.cs" />
-    <Compile Include="Common\ShukkoDataAccess.cs" />
+    <Compile Include="Common\SyukkoDataAccess.cs" />
     <Compile Include="Common\SmallClassificationDataAccess.cs" />
     <Compile Include="Common\StockDataAccess.cs" />
     <Compile Include="Eigyou.cs">

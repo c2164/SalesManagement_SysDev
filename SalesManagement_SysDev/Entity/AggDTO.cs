@@ -319,9 +319,6 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("受注ID")]
         public string OrID { get; set; }
 
-        [DisplayName("数量")]
-        public string ArQuantity { get; set; }
-
         [DisplayName("出庫年月日")]
         public DateTime? SyDate { get; set; }
 
