@@ -379,17 +379,41 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("出荷ID")]
         public string ShID { get; set; }
 
+        [DisplayName("出荷詳細ID")]
+        public string ShDetailID { get; set; }
+
+        [DisplayName("メーカーID")]
+        public string MaID { get; set; }
+
+        [DisplayName("メーカー名")]
+        public string MaName { get; set; }
+
+        [DisplayName("商品ID")]
+        public string PrID { get; set; }
+
+        [DisplayName("商品名")]
+        public string PrName { get; set; }
+
+        [DisplayName("数量")]
+        public string ArQuantity { get; set; }
+
         [DisplayName("営業所ID")]
         public string SoID { get; set; }
 
         [DisplayName("営業所名")]
         public string SoName { get; set; }
 
-        [DisplayName("社員ID")]
-        public string EmID { get; set; }
+        [DisplayName("入荷社員ID")]
+        public string ArrivalEmID { get; set; }
 
-        [DisplayName("社員名")]
-        public string EmName { get; set; }
+        [DisplayName("入荷社員名")]
+        public string ArrivalEmName { get; set; }
+
+        [DisplayName("確定社員ID")]
+        public string ConfEmID { get; set; }
+
+        [DisplayName("確定社員名")]
+        public string ConfEmName { get; set; }
 
         [DisplayName("顧客ID")]
         public string ClID { get; set; }
@@ -455,6 +479,7 @@ namespace SalesManagement_SysDev.Entity
 
         [DisplayName("非表示理由")]
         public string HaHidden { get; set; }
+
     }
 
     //入庫管理画面表示用
@@ -464,7 +489,7 @@ namespace SalesManagement_SysDev.Entity
         public string WaID { get; set; }
 
         [DisplayName("入庫詳細ID")]
-        public string HaDetailID { get; set; }
+        public string WaDetailID { get; set; }
 
         [DisplayName("商品ID")]
         public string PrID { get; set; }
@@ -472,17 +497,26 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("商品名")]
         public string PrName { get; set; }
 
+        [DisplayName("メーカー名")]
+        public string MaName { get; set; }
+
         [DisplayName("数量")]
         public string ArQuantity { get; set; }
 
         [DisplayName("発注ID")]
         public string HaID { get; set; }
 
-        [DisplayName("社員ID")]
-        public string EmID { get; set; }
+        [DisplayName("発注社員ID")]
+        public string HattyuEmID { get; set; }
 
-        [DisplayName("社員名")]
-        public string EmName { get; set; }
+        [DisplayName("発注社員名")]
+        public string HattyuEmName { get; set; }
+
+        [DisplayName("確定社員ID")]
+        public string ConfEmID { get; set; }
+
+        [DisplayName("確定社員名")]
+        public string ConfEmName { get; set; }
 
         [DisplayName("入庫年月日")]
         public DateTime? WaDate { get; set; }
@@ -495,6 +529,7 @@ namespace SalesManagement_SysDev.Entity
 
         [DisplayName("非表示理由")]
         public string WaHidden { get; set; }
+
     }
 
     //売上管理画面表示用
