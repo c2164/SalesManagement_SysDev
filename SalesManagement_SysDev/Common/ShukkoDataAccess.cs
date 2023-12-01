@@ -10,16 +10,16 @@ namespace SalesManagement_SysDev.Common
 {
     internal class ShukkoDataAccess
     {
-        internal class WarehousingDataAccess
-        {
+       
+       
             //入庫情報登録(登録情報)
-            public bool RegisterClientData(T_Warehousing RegWerehousing)
+            public bool RegisterClientData(T_Syukko RegSyukko)
             {
                 using (var context = new SalesManagement_DevContext())
                 {
                     try
                     {
-                        context.T_Warehousings.Add(RegWerehousing);
+                        context.T_Syukkos.Add(RegSyukko);
                         context.SaveChanges();
                         return true;
                     }
@@ -32,14 +32,14 @@ namespace SalesManagement_SysDev.Common
             }
 
             //入庫情報アップデート(アップデート情報)
-            public bool UpdateClinetData(T_Warehousing UpWarehousing)
+            public bool UpdateClinetData(T_Syukko UpSyukko)
             {
                 using (var context = new SalesManagement_DevContext())
                 {
                     try
                     {
-                        var UpdateTarget = context.T_Warehousings.Single(x => x.WaID == UpWarehousing.WaID);
-                        UpdateTarget = UpWarehousing;
+                        var UpdateTarget = context.T_Syukkos.Single(x => x.SyID == UpSyukko.SyID);
+                        UpdateTarget = UpSyukko;
 
                         context.SaveChanges();
                         return true;
@@ -53,50 +53,60 @@ namespace SalesManagement_SysDev.Common
             }
 
             //入庫検索(検索項目)：オーバーロード
-            public List<DispWerehousingDTO> GetWarehousingData(DispWerehousingDTO dispWarehousingDTO)
+            public List<DispSyukkoDTO> GetWarehousingData(DispSyukkoDTO dispSyukkoDTO)
             {
                 var context = new SalesManagement_DevContext();
                 try
                 {
-                    //「T_Werehousing」テーブルから「T_WarehousingDetail」「M_Product] 「M_Maker] 「M_hattyu] 「M_Employee] 「M_HattyuEmployee] を参照
-                    var tb = from WarehousingDetail in context.T_WarehousingDetails
-                             join Warehousing in context.T_Warehousings
-                             on WarehousingDetail.WaID equals Warehousing.WaID
+                //「T_Syukko」テーブルから「T_SyukkoDetail」「M_Product] 「M_Maker] 「M_Client] 「M_SalesOffice]「M_Employee] 「T_Order]「M_Chumon]「M_ChumonEmployee] を参照
+                var tb = from SyukkoDetail in context.T_SyukkoDetails
+                             join Syukko in context.T_Syukkos
+                             on SyukkoDetail.SyID equals Syukko.SyID
                              join Product in context.M_Products
-                             on WarehousingDetail.PrID equals Product.PrID
+                             on SyukkoDetail.PrID equals Product.PrID
                              join Maker in context.M_Makers
                              on Product.MaID equals Maker.MaID
-                             join Hattyu in context.T_Hattyus
-                             on Warehousing.HaID equals Hattyu.HaID
+                             join Client in context.M_Clients
+                             on Syukko.ClID equals Client.ClID
                              join Employee in context.M_Employees
-                             on Warehousing.EmID equals Employee.EmID
-                             join HattyuEmployee in context.M_Employees
-                             on Hattyu.EmID equals HattyuEmployee.EmID
+                             on Syukko.EmID equals Employee.EmID
+                             join Chumon in context.T_Chumons
+                            on Employee.EmID equals Chumon.EmID
+                             join SalesOffice in context.M_SalesOffices
+                             on Syukko.SoID equals SalesOffice.SoID
+                             join Order in context.T_Orders
+                             on Syukko.OrID equals Order.OrID
+                             join ChumonEmployee in context.M_Employees
+                             on Chumon.EmID equals ChumonEmployee.EmID
+                            
                              where
-                              ((dispWarehousingDTO.WaID == "") ? true :
-                             Warehousing.WaID == int.Parse(dispWarehousingDTO.WaID)) &&//入庫ID
-                              ((dispWarehousingDTO.WaID == "") ? true :
-                             Hattyu.HaID == int.Parse(dispWarehousingDTO.HaID)) && //発注ID
-                              ((dispWarehousingDTO.WaID == "") ? true :
-                             WarehousingDetail.WaDetailID == int.Parse(dispWarehousingDTO.WaDetailID)) && //入庫詳細ID
-                             HattyuEmployee.EmName.Contains(dispWarehousingDTO.HattyuEmName) && //発注社員名
-                             Employee.EmID.ToString().Contains(dispWarehousingDTO.ConfEmName) && //確定社員名
-                             Maker.MaName.Contains(dispWarehousingDTO.MaName) && //メーカー名
-                             Product.PrName.Contains(dispWarehousingDTO.PrName) && //商品名
-                             WarehousingDetail.ToString().Contains(dispWarehousingDTO.ArQuantity)  //数量
+                              ((dispSyukkoDTO.SyID == "") ? true :
+                             Syukko.SyID == int.Parse(dispSyukkoDTO.SyID)) &&//出庫ID
+                             SalesOffice.SoName.Contains(dispSyukkoDTO.SoName) && //営業所名
+                             ChumonEmployee.EmName.Contains(dispSyukkoDTO.ChumonEmName) && //注文社員名
+                             Client.ClName.Contains(dispSyukkoDTO.ClName) && //顧客名
+                              ((dispSyukkoDTO.SyID == "") ? true :
+                             Order.OrID == int.Parse(dispSyukkoDTO.OrID)) && //受注ID
+                             Employee.EmID.ToString().Contains(dispSyukkoDTO.ConfEmName) && //確定社員名
+                              ((dispSyukkoDTO.SyID == "") ? true :
+                             SyukkoDetail.SyDetailID == int.Parse(dispSyukkoDTO.SyDetailID)) && //出庫詳細ID
+                             Maker.MaName.Contains(dispSyukkoDTO.MaName) && //メーカー名
+                             Product.PrName.Contains(dispSyukkoDTO.PrName) && //商品名
+                             SyukkoDetail.ToString().Contains(dispSyukkoDTO.ArQuantity)  //数量
 
 
 
-                             select new DispWerehousingDTO
+                             select new DispSyukkoDTO
                              {
-                                 WaID = Warehousing.WaID.ToString(),
-                                 HaID = Hattyu.HaID.ToString(),
-                                 WaDetailID = WarehousingDetail.WaDetailID.ToString(),
-                                 HattyuEmName = HattyuEmployee.EmName.ToString(),
+                                 SyID = Syukko.SyID.ToString(),
+                                 ChumonEmName = Chumon.ChID.ToString(),
+                                 ClName = Client.ClName.ToString(),
+                                 OrID = Order.OrID.ToString(),
                                  ConfEmName = Employee.EmName.ToString(),
+                                 SyDetailID = SyukkoDetail.SyDetailID.ToString(),
                                  MaName = Maker.MaName.ToString(),
                                  PrName = Product.PrName.ToString(),
-                                 ArQuantity = WarehousingDetail.ToString(),
+                                 ArQuantity = SyukkoDetail.ToString(),
 
 
                              };
@@ -112,38 +122,52 @@ namespace SalesManagement_SysDev.Common
             }
 
             //入庫全表示：オーバーロード
-            public List<DispWerehousingDTO> GetProductData()
+            public List<DispSyukkoDTO> GetProductData()
             {
                 var context = new SalesManagement_DevContext();
                 try
-                {
-                    //「T_Werehousing」テーブルから「T_WarehousingDetail」「M_Product] 「M_Maker] 「M_hattyu] 「M_Employee] 「M_HattyuEmployee] を参照
-                    var tb = from WarehousingDetail in context.T_WarehousingDetails
-                             join Warehousing in context.T_Warehousings
-                             on WarehousingDetail.WaID equals Warehousing.WaID
-                             join Product in context.M_Products
-                             on WarehousingDetail.PrID equals Product.PrID
-                             join Maker in context.M_Makers
-                             on Product.MaID equals Maker.MaID
-                             join Hattyu in context.T_Hattyus
-                             on Warehousing.HaID equals Hattyu.HaID
-                             join Employee in context.M_Employees
-                             on Warehousing.EmID equals Employee.EmID
-                             join HattyuEmployee in context.M_Employees
-                             on Hattyu.EmID equals HattyuEmployee.EmID
+            {
 
 
-                             select new DispWerehousingDTO
-                             {
-                                 WaID = Warehousing.WaID.ToString(),
-                                 HaID = Hattyu.HaID.ToString(),
-                                 WaDetailID = WarehousingDetail.WaDetailID.ToString(),
-                                 HattyuEmName = HattyuEmployee.EmName.ToString(),
-                                 ConfEmName = Employee.EmName.ToString(),
-                                 MaName = Maker.MaName.ToString(),
-                                 PrName = Product.PrName.ToString(),
-                                 ArQuantity = WarehousingDetail.ToString(),
-                             };
+
+                //「T_Syukko」テーブルから「T_SyukkoDetail」「M_Product] 「M_Maker] 「M_Client] 「M_SalesOffice]「M_Employee] 「T_Order]「M_Chumon]「M_ChumonEmployee] を参照
+                var tb = from SyukkoDetail in context.T_SyukkoDetails
+                         join Syukko in context.T_Syukkos
+                         on SyukkoDetail.SyID equals Syukko.SyID
+                         join Product in context.M_Products
+                         on SyukkoDetail.PrID equals Product.PrID
+                         join Maker in context.M_Makers
+                         on Product.MaID equals Maker.MaID
+                         join Client in context.M_Clients
+                         on Syukko.ClID equals Client.ClID
+                         join Employee in context.M_Employees
+                         on Syukko.EmID equals Employee.EmID
+                         join SalesOffice in context.M_SalesOffices
+                         on Syukko.SoID equals SalesOffice.SoID
+                         join Order in context.T_Orders
+                         on Syukko.OrID equals Order.OrID
+                         join Chumon in context.T_Chumons
+                       on Employee.EmID equals Chumon.EmID
+                         join ChumonEmployee in context.M_Employees
+                         on Chumon.EmID equals ChumonEmployee.EmID
+
+
+                         select new DispSyukkoDTO
+                         {
+                             SyID = Syukko.SyID.ToString(),
+                             ChumonEmName = Chumon.ChID.ToString(),
+                             ClName = Client.ClName.ToString(),
+                             OrID = Order.OrID.ToString(),
+                             ConfEmName = Employee.EmName.ToString(),
+                             SyDetailID = SyukkoDetail.SyDetailID.ToString(),
+                             MaName = Maker.MaName.ToString(),
+                             PrName = Product.PrName.ToString(),
+                             ArQuantity = SyukkoDetail.ToString(),
+
+
+                         };
+
+            
 
                     return tb.ToList();
                 }
@@ -156,4 +180,4 @@ namespace SalesManagement_SysDev.Common
             }
         }
     }
-}
+

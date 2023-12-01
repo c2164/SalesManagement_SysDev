@@ -274,6 +274,9 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("数量")]
         public string SyQuantity { get; set; }
 
+        [DisplayName("営業所")]
+        public string SaleceOffice { get; set; }
+
         [DisplayName("営業所ID")]
         public string SoID { get; set; }
 
@@ -292,8 +295,29 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("顧客名")]
         public string ClName { get; set; }
 
+        [DisplayName("注文ID")]
+        public string ChID { get; set; }
+
+        [DisplayName("注文社員ID")]
+        public string ChumonEmID { get; set; }
+
+        [DisplayName("注文社員名")]
+        public string ChumonEmName { get; set; }
+
+        [DisplayName("確定社員ID")]
+        public string ConfEmID { get; set; }
+
+        [DisplayName("確定社員名")]
+        public string ConfEmName { get; set; }
+
+        [DisplayName("メーカー名")]
+        public string MaName { get; set; }
+
         [DisplayName("受注ID")]
         public string OrID { get; set; }
+
+        [DisplayName("数量")]
+        public string ArQuantity { get; set; }
 
         [DisplayName("出庫年月日")]
         public DateTime? SyDate { get; set; }
