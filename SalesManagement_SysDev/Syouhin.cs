@@ -123,12 +123,14 @@ namespace SalesManagement_SysDev
             textbox_Iro.Text = "";
             textbox_Kakaku.Text = "";
 
+
             //各コンボボックスを初期化
             combobox_Meka_ID.DisplayMember = "MaName";
             combobox_Meka_ID.ValueMember = "MaID";
             combobox_Meka_ID.DataSource = makerDateAccess.GetMakerData();
             combobox_Meka_ID.DropDownStyle = ComboBoxStyle.DropDownList;
             combobox_Meka_ID.SelectedIndex = -1;
+
             combobox_Syoubunnrui_ID.DisplayMember = "ScName";
             combobox_Syoubunnrui_ID.ValueMember = "ScID";
             combobox_Syoubunnrui_ID.DataSource = SCDataAccess.GetSCData();
