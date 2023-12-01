@@ -11,7 +11,7 @@ namespace SalesManagement_SysDev.Common
     internal class WarehousingDataAccess
     {
         //入庫情報登録(登録情報)
-        public bool RegisterClientData(T_Warehousing RegWerehousing)
+        public bool RegisterWerehousingData(T_Warehousing RegWerehousing)
         {
             using (var context = new SalesManagement_DevContext())
             {
@@ -30,7 +30,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫情報アップデート(アップデート情報)
-        public bool UpdateClinetData(T_Warehousing UpWarehousing)
+        public bool UpdateWerehousingData(T_Warehousing UpWarehousing)
         {
             using (var context = new SalesManagement_DevContext())
             {
@@ -51,7 +51,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫検索(検索項目)：オーバーロード
-        public List<DispWerehousingDTO> GetWarehousingData(DispWerehousingDTO dispWarehousingDTO)
+        public List<DispWarehousingDTO> GetWarehousingData(DispWarehousingDTO dispWarehousingDTO)
         {
             var context = new SalesManagement_DevContext();
             try
@@ -81,20 +81,21 @@ namespace SalesManagement_SysDev.Common
                          Employee.EmID.ToString().Contains(dispWarehousingDTO.ConfEmName) && //確定社員名
                          Maker.MaName.Contains(dispWarehousingDTO.MaName) && //メーカー名
                          Product.PrName.Contains(dispWarehousingDTO.PrName) && //商品名
-                         WarehousingDetail.ToString().Contains(dispWarehousingDTO.ArQuantity)  //数量
+                         WarehousingDetail.ToString().Contains(dispWarehousingDTO.WaQuantity)  //数量
 
 
 
-                         select new DispWerehousingDTO
+                         select new DispWarehousingDTO
                          {
                              WaID = Warehousing.WaID.ToString(),
                              HaID = Hattyu.HaID.ToString(),
                              WaDetailID = WarehousingDetail.WaDetailID.ToString(),
                              HattyuEmName = HattyuEmployee.EmName.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
+                             MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
                              PrName = Product.PrName.ToString(),
-                             ArQuantity = WarehousingDetail.ToString(),
+                             WaQuantity = WarehousingDetail.ToString(),
                             
 
                          };
@@ -110,7 +111,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫全表示：オーバーロード
-        public List<DispWerehousingDTO> GetProductData()
+        public List<DispWarehousingDTO> GetWarehousingData()
         {
             var context = new SalesManagement_DevContext();
             try
@@ -131,16 +132,19 @@ namespace SalesManagement_SysDev.Common
                          on Hattyu.EmID equals HattyuEmployee.EmID
                          
 
-                         select new DispWerehousingDTO
+                         select new DispWarehousingDTO
                          {
                              WaID = Warehousing.WaID.ToString(),
                              HaID = Hattyu.HaID.ToString(),
                              WaDetailID = WarehousingDetail.WaDetailID.ToString(),
+                             HattyuEmID = HattyuEmployee.EmID.ToString(),
                              HattyuEmName = HattyuEmployee.EmName.ToString(),
+                             ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
+                             MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
                              PrName = Product.PrName.ToString(),
-                             ArQuantity = WarehousingDetail.ToString(),
+                             WaQuantity = WarehousingDetail.WaQuantity.ToString(),
                          };
 
                 return tb.ToList();
