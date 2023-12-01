@@ -86,14 +86,14 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("商品ID")]
         public string PrID { get; set; }
 
+        [DisplayName("商品名")]
+        public string PrName { get; set; }
+
         [DisplayName("メーカーID")]
         public string MaID { get; set; }
 
         [DisplayName("メーカー名")]
         public string MaName { get; set; }
-
-        [DisplayName("商品名")]
-        public string PrName { get; set; }
 
         [DisplayName("価格")]
         public string Price { get; set; }
@@ -119,7 +119,7 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("検索用発売日(開始期間)")]
         public DateTime? PrReleseFromDate { get; set; }
 
-        [DisplayName("発売日(終了期間)")]
+        [DisplayName("検索用発売日(終了期間)")]
         public DateTime? PrReleaseToDate { get; set; }
 
         [DisplayName("商品管理フラグ")]
@@ -139,8 +139,11 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("商品ID")]
         public string PrID { get; set; }
 
-        [DisplayName("商品ID")]
+        [DisplayName("商品名")]
         public string PrName { get; set; }
+
+        [DisplayName("メーカー名")]
+        public string MaName { get; set; }
 
         [DisplayName("在庫数")]
         public string StQuantity { get; set; }
@@ -477,8 +480,14 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("商品名")]
         public string PrName { get; set; }
 
+        [DisplayName("メーカID")]
+        public string MaID { get; set; }
+
+        [DisplayName("メーカ名")]
+        public string MaName { get; set; }
+
         [DisplayName("数量")]
-        public string ArQuantity { get; set; }
+        public string HaQuantity { get; set; }
 
         [DisplayName("社員ID")]
         public string EmID { get; set; }
