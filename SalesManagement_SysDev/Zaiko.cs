@@ -104,15 +104,12 @@ namespace SalesManagement_SysDev
 
             //各ドメインアップダウンを初期化
             domainUpDown_Zaikosuu.Value = 0;
-            
-
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
             GetSelectData();
             SetCtrlFormat();
-
         }
     }
 }

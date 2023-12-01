@@ -123,8 +123,8 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            SetCtrlFormat();
             GetSelectData();
+            SetCtrlFormat();            
         }
     }
 }
