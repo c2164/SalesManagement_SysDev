@@ -311,6 +311,7 @@
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Name = "Tyuumon";
             this.Size = new System.Drawing.Size(1579, 862);
+            this.Load += new System.EventHandler(this.Tyuumon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUPDown_Syouhin_Namae)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
