@@ -771,21 +771,34 @@ namespace SalesManagement_SysDev
         private void button1_Click(object sender, EventArgs e)
         {
             buturyuu1.Visible = true;
+            eigyou1.Visible = false;
+            syain1.Visible = false;
+            roguin1.Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             eigyou1.Visible = true;
+            buturyuu1.Visible = false;
+            syain1.Visible = false;
+            roguin1.Visible = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             syain1.Visible = true;
+            buturyuu1.Visible = false;
+            eigyou1.Visible = false;
+            roguin1.Visible = false;
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             roguin1.Visible = true;
+            buturyuu1.Visible = false;
+            eigyou1.Visible = false;
+            syain1.Visible = false;
         }
     }
 }

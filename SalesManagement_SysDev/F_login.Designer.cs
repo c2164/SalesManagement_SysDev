@@ -35,10 +35,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.roguin1 = new SalesManagement_SysDev.Roguin();
             this.syain1 = new SalesManagement_SysDev.Syain();
             this.eigyou1 = new SalesManagement_SysDev.Eigyou();
             this.buturyuu1 = new SalesManagement_SysDev.Buturyuu();
-            this.roguin1 = new SalesManagement_SysDev.Roguin();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +52,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 4);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(299, 1008);
+            this.panel1.Size = new System.Drawing.Size(299, 1018);
             this.panel1.TabIndex = 0;
             // 
             // button3
@@ -128,52 +128,52 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "販売管理";
             // 
+            // roguin1
+            // 
+            this.roguin1.Location = new System.Drawing.Point(295, 148);
+            this.roguin1.Margin = new System.Windows.Forms.Padding(6);
+            this.roguin1.Name = "roguin1";
+            this.roguin1.Size = new System.Drawing.Size(1603, 861);
+            this.roguin1.TabIndex = 5;
+            // 
             // syain1
             // 
             this.syain1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(235)))), ((int)(((byte)(196)))));
             this.syain1.Location = new System.Drawing.Point(295, 148);
-            this.syain1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.syain1.Margin = new System.Windows.Forms.Padding(6);
             this.syain1.Name = "syain1";
             this.syain1.Size = new System.Drawing.Size(1603, 861);
             this.syain1.TabIndex = 4;
             // 
             // eigyou1
             // 
-            this.eigyou1.Location = new System.Drawing.Point(296, 145);
-            this.eigyou1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.eigyou1.Location = new System.Drawing.Point(296, 148);
+            this.eigyou1.Margin = new System.Windows.Forms.Padding(6);
             this.eigyou1.Name = "eigyou1";
-            this.eigyou1.Size = new System.Drawing.Size(1580, 861);
+            this.eigyou1.Size = new System.Drawing.Size(1602, 861);
             this.eigyou1.TabIndex = 3;
             // 
             // buturyuu1
             // 
-            this.buturyuu1.Location = new System.Drawing.Point(308, 148);
+            this.buturyuu1.Location = new System.Drawing.Point(296, 148);
             this.buturyuu1.Margin = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.buturyuu1.Name = "buturyuu1";
-            this.buturyuu1.Size = new System.Drawing.Size(1590, 862);
+            this.buturyuu1.Size = new System.Drawing.Size(1602, 862);
             this.buturyuu1.TabIndex = 2;
-            // 
-            // roguin1
-            // 
-            this.roguin1.Location = new System.Drawing.Point(289, 145);
-            this.roguin1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.roguin1.Name = "roguin1";
-            this.roguin1.Size = new System.Drawing.Size(1603, 861);
-            this.roguin1.TabIndex = 5;
             // 
             // F_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(3244, 2018);
+            this.ClientSize = new System.Drawing.Size(1894, 1009);
             this.Controls.Add(this.roguin1);
             this.Controls.Add(this.syain1);
             this.Controls.Add(this.eigyou1);
             this.Controls.Add(this.buturyuu1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "F_Login";
             this.Text = "販売管理システム";
             this.Load += new System.EventHandler(this.F_Login_Load);
