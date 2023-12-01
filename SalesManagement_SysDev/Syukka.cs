@@ -23,6 +23,7 @@ namespace SalesManagement_SysDev
 
         private void Syukka_Load(object sender, EventArgs e)
         {
+
             //各コントロールの初期設定
             SetCtrlFormat();
 
@@ -154,6 +155,11 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[18].Visible = false;
             //非表示理由(非表示)
             dataGridView1.Columns[19].Visible = false;
+
+        }
+
+        private void comrareInt(int i, int k)
+        {
 
         }
     }
