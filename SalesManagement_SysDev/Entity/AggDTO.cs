@@ -86,14 +86,14 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("商品ID")]
         public string PrID { get; set; }
 
+        [DisplayName("商品名")]
+        public string PrName { get; set; }
+
         [DisplayName("メーカーID")]
         public string MaID { get; set; }
 
         [DisplayName("メーカー名")]
         public string MaName { get; set; }
-
-        [DisplayName("商品名")]
-        public string PrName { get; set; }
 
         [DisplayName("価格")]
         public string Price { get; set; }
@@ -119,7 +119,7 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("検索用発売日(開始期間)")]
         public DateTime? PrReleseFromDate { get; set; }
 
-        [DisplayName("発売日(終了期間)")]
+        [DisplayName("検索用発売日(終了期間)")]
         public DateTime? PrReleaseToDate { get; set; }
 
         [DisplayName("商品管理フラグ")]
@@ -277,6 +277,9 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("数量")]
         public string SyQuantity { get; set; }
 
+        [DisplayName("営業所")]
+        public string SaleceOffice { get; set; }
+
         [DisplayName("営業所ID")]
         public string SoID { get; set; }
 
@@ -295,8 +298,29 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("顧客名")]
         public string ClName { get; set; }
 
+        [DisplayName("注文ID")]
+        public string ChID { get; set; }
+
+        [DisplayName("注文社員ID")]
+        public string ChumonEmID { get; set; }
+
+        [DisplayName("注文社員名")]
+        public string ChumonEmName { get; set; }
+
+        [DisplayName("確定社員ID")]
+        public string ConfEmID { get; set; }
+
+        [DisplayName("確定社員名")]
+        public string ConfEmName { get; set; }
+
+        [DisplayName("メーカー名")]
+        public string MaName { get; set; }
+
         [DisplayName("受注ID")]
         public string OrID { get; set; }
+
+        [DisplayName("数量")]
+        public string ArQuantity { get; set; }
 
         [DisplayName("出庫年月日")]
         public DateTime? SyDate { get; set; }
