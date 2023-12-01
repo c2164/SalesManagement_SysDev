@@ -22,5 +22,10 @@ namespace SalesManagement_SysDev
             //GetSelectData();
             //SetCtrlFormat();
         }
+
+        private void Uriage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
