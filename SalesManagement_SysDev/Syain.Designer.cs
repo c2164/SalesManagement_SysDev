@@ -150,21 +150,21 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label3.Location = new System.Drawing.Point(1115, 172);
+            this.label3.Location = new System.Drawing.Point(1086, 170);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 41);
+            this.label3.Size = new System.Drawing.Size(138, 41);
             this.label3.TabIndex = 8;
-            this.label3.Text = "営業所";
+            this.label3.Text = "営業所名";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label4.Location = new System.Drawing.Point(94, 286);
+            this.label4.Location = new System.Drawing.Point(75, 286);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 41);
+            this.label4.Size = new System.Drawing.Size(108, 41);
             this.label4.TabIndex = 9;
-            this.label4.Text = "役職";
+            this.label4.Text = "役職名";
             // 
             // label5
             // 
@@ -180,7 +180,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label6.Location = new System.Drawing.Point(45, 398);
+            this.label6.Location = new System.Drawing.Point(45, 406);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(138, 41);
             this.label6.TabIndex = 11;
@@ -190,17 +190,17 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label7.Location = new System.Drawing.Point(648, 398);
+            this.label7.Location = new System.Drawing.Point(536, 408);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 41);
+            this.label7.Size = new System.Drawing.Size(207, 41);
             this.label7.TabIndex = 12;
-            this.label7.Text = "FAX";
+            this.label7.Text = "FAX(削除予定)";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label8.Location = new System.Drawing.Point(1115, 406);
+            this.label8.Location = new System.Drawing.Point(1114, 406);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(127, 41);
             this.label8.TabIndex = 13;
@@ -236,21 +236,21 @@
             // 
             // textBox_Dennwa
             // 
-            this.textBox_Dennwa.Location = new System.Drawing.Point(240, 414);
+            this.textBox_Dennwa.Location = new System.Drawing.Point(240, 416);
             this.textBox_Dennwa.Name = "textBox_Dennwa";
             this.textBox_Dennwa.Size = new System.Drawing.Size(251, 31);
             this.textBox_Dennwa.TabIndex = 18;
             // 
             // textBox_FAX
             // 
-            this.textBox_FAX.Location = new System.Drawing.Point(749, 406);
+            this.textBox_FAX.Location = new System.Drawing.Point(749, 416);
             this.textBox_FAX.Name = "textBox_FAX";
             this.textBox_FAX.Size = new System.Drawing.Size(251, 31);
             this.textBox_FAX.TabIndex = 19;
             // 
             // textBox_Pass
             // 
-            this.textBox_Pass.Location = new System.Drawing.Point(1264, 406);
+            this.textBox_Pass.Location = new System.Drawing.Point(1264, 412);
             this.textBox_Pass.Name = "textBox_Pass";
             this.textBox_Pass.Size = new System.Drawing.Size(251, 31);
             this.textBox_Pass.TabIndex = 20;
@@ -258,7 +258,7 @@
             // comboBox_Eigyousyo
             // 
             this.comboBox_Eigyousyo.FormattingEnabled = true;
-            this.comboBox_Eigyousyo.Location = new System.Drawing.Point(1265, 172);
+            this.comboBox_Eigyousyo.Location = new System.Drawing.Point(1264, 181);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(251, 32);
             this.comboBox_Eigyousyo.TabIndex = 21;
