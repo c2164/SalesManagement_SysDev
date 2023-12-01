@@ -298,6 +298,7 @@
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Name = "Uriage";
             this.Size = new System.Drawing.Size(1580, 861);
+            this.Load += new System.EventHandler(this.Uriage_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

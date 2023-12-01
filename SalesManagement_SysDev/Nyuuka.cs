@@ -22,5 +22,10 @@ namespace SalesManagement_SysDev
             //GetSelectData();
             //SetCtrlFormat();
         }
+
+        private void Nyuuka_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
