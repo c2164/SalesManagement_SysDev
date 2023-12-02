@@ -12,13 +12,14 @@ namespace SalesManagement_SysDev.Common
     internal class ChumonDataAccess
     {
         //注文情報登録(登録情報)
-        public bool RegisterChumonData(T_Chumon RegChumon)
+        public bool RegisterChumonData(T_Chumon RegChumon, T_ChumonDetail RegChumonDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     context.T_Chumons.Add(RegChumon);
+                    context.T_ChumonDetails.Add(RegChumonDetail);
                     context.SaveChanges();
                     return true;
                 }
@@ -31,14 +32,16 @@ namespace SalesManagement_SysDev.Common
         }
 
         //注文情報アップデート(アップデート情報)
-        public bool UpdateChumonData(T_Chumon UpChumon)
+        public bool UpdateChumonData(T_Chumon UpChumon, T_ChumonDetail UpChumonDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.T_Chumons.Single(x => x.ChID == UpChumon.ChID);
+                    var UpdateTargetDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == UpChumonDetail.ChID);
                     UpdateTarget = UpChumon;
+                    UpdateTargetDetail = UpChumonDetail;
 
                     context.SaveChanges();
                     return true;
@@ -147,7 +150,7 @@ namespace SalesManagement_SysDev.Common
                              ChQuantity = ChumonDetail.ChQuantity.ToString(),
                              ChDate = Chumon.ChDate,
                              ChStateFlag = Chumon.ChStateFlag.ToString(),
-                             
+
 
                          };
 
