@@ -16,5 +16,10 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
         }
+
+        private void Zaiko_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

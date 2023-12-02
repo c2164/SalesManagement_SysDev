@@ -360,6 +360,7 @@
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Name = "Nyuuka";
             this.Size = new System.Drawing.Size(1579, 862);
+            this.Load += new System.EventHandler(this.Nyuuka_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

@@ -16,5 +16,10 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
         }
+
+        private void Syukko_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

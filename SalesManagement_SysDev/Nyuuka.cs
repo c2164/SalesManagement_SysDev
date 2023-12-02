@@ -16,5 +16,10 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
         }
+
+        private void Nyuuka_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

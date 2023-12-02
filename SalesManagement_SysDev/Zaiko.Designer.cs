@@ -203,6 +203,7 @@
             this.Controls.Add(this.button_Kousin);
             this.Name = "Zaiko";
             this.Size = new System.Drawing.Size(1579, 862);
+            this.Load += new System.EventHandler(this.Zaiko_Load);
             ((System.ComponentModel.ISupportInitialize)(this.domainUpDown_Zaikosuu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
