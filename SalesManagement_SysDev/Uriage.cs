@@ -157,9 +157,5 @@ namespace SalesManagement_SysDev
             //SetCtrlFormat();
         }
 
-        private void Uriage_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

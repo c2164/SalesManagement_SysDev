@@ -141,9 +141,5 @@ namespace SalesManagement_SysDev
             //SetCtrlFormat();
         }
 
-        private void Hattyuu_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
