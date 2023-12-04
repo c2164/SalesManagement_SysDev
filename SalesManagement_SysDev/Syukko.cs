@@ -22,11 +22,6 @@ namespace SalesManagement_SysDev
             InitializeComponent();
         }
 
-        private void button_Kuria_Click(object sender, EventArgs e)
-        {
-            //GetSelectData();
-            //SetCtrlFormat();
-        }
         private void Syukko_load(object sender, EventArgs e)
         {
             //各コントロールの初期設定
@@ -181,5 +176,11 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[21].Visible = false;
 
         } 
+
+        private void button_Kuria_Click(object sender, EventArgs e)
+        {
+            //GetSelectData();
+            //SetCtrlFormat();
+        }
     }
 }

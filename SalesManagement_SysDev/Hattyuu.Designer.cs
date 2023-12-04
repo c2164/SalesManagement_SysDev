@@ -378,6 +378,7 @@
             this.Load += new System.EventHandler(this.Hattyuu_Load);
             this.Name = "Hattyuu";
             this.Size = new System.Drawing.Size(1580, 861);
+            this.Load += new System.EventHandler(this.Hattyuu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
