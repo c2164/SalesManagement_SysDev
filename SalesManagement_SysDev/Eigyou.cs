@@ -28,7 +28,8 @@ namespace SalesManagement_SysDev
         {
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
-
+            Panel panel;
+            
             kokyaku1.Visible = true;
         }
 
