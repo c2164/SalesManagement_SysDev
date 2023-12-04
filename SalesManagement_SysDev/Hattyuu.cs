@@ -20,7 +20,6 @@ namespace SalesManagement_SysDev
             InitializeComponent();
         }
 
-<<<<<<< HEAD
         private void Hattyuu_Load(object sender, EventArgs e)
         {
             //各コントロールの初期設定
@@ -134,12 +133,12 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[11].Visible = false;
             //非表示理由
             dataGridView1.Columns[12].Visible = false;
-=======
+        }
+
         private void button_Kuria_Click(object sender, EventArgs e)
         {
             //GetSelectData();
             //SetCtrlFormat();
->>>>>>> 587590dabe4feadefa95893b8b711d0ffc27341c
         }
     }
 }
