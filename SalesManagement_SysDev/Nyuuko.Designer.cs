@@ -77,6 +77,7 @@
             this.button_Kennsaku.TabIndex = 1;
             this.button_Kennsaku.Text = "🔍検索";
             this.button_Kennsaku.UseVisualStyleBackColor = false;
+            this.button_Kennsaku.Click += new System.EventHandler(this.button_Kennsaku_Click);
             // 
             // button_Itirannhyouzi
             // 

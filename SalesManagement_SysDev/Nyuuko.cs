@@ -201,5 +201,58 @@ namespace SalesManagement_SysDev
             return dispWarehousings;
         }
 
+        private void button_Kennsaku_Click(object sender, EventArgs e)
+        {
+            SelectWarehousing();
+        }
+
+        private void SelectWarehousing()
+        {
+            //変数の宣言
+            　DispWarehousingDTO warehousingDTO = new DispWarehousingDTO();
+            List<DispWarehousingDTO> DisplayWarehousing = new List<DispWarehousingDTO>();
+
+            //データの読み取り
+            warehousingDTO = GetWarehousingInf();
+            //データの検索
+            DisplayWarehousing = SelectWarehousingInf(warehousingDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayWarehousing);
+        }
+
+        private DispWarehousingDTO GetWarehousingInf()
+        {
+            //変数の宣言
+            DispWarehousingDTO retWarehousingDTO = new DispWarehousingDTO();
+
+            //各コントロールから商品情報を読み取る
+            retWarehousingDTO.WaID = textBox_Nyuuko_ID.Text.Trim();
+            retWarehousingDTO.HaID = textBox_Hattyuu_ID.Text.Trim();
+            retWarehousingDTO.WaDetailID = textBox_Nyuukosyousai_ID.Text.Trim();
+            retWarehousingDTO.HattyuEmID = textBox_Hattyuu_Syain_Namae.Text.Trim();
+            if (!(comboBox_Kakutei_Syain_Namae.SelectedIndex == -1))
+                retWarehousingDTO.ConfEmName = comboBox_Kakutei_Syain_Namae.SelectedValue.ToString();
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1))
+                retWarehousingDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retWarehousingDTO.MaID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+            retWarehousingDTO.WaQuantity = numericUpDown_Suuryou.Value.ToString();
+
+            return retWarehousingDTO;
+        }
+
+        private List<DispWarehousingDTO> SelectWarehousingInf (DispWarehousingDTO warehousingDTO)
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> retDispWarehousing = new List<DispWarehousingDTO>();
+            //インスタンス化
+            WarehousingDataAccess access = new WarehousingDataAccess();
+
+            //商品情報検索
+            retDispWarehousing = access.GetWarehousingData(warehousingDTO);
+            return retDispWarehousing;
+
+
+        }
     }
 }
