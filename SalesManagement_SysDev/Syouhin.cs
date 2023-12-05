@@ -148,5 +148,7 @@ namespace SalesManagement_SysDev
             SetCtrlFormat();
             GetSelectData();
         }
+
+       
     }
 }
