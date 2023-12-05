@@ -126,5 +126,54 @@ namespace SalesManagement_SysDev
             GetSelectData();
             SetCtrlFormat();            
         }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayEmployee();
+        }
+
+        private void ListDisplayEmployee()
+        {
+            //変数の宣言
+            List<DispEmplyeeDTO> employee = new List<DispEmplyeeDTO>();
+            List<DispEmplyeeDTO> sortedemployee = new List<DispEmplyeeDTO>();
+
+            //テーブルデータ受け取り
+            employee = GetTableData();
+
+            //昇順に並び替える
+            sortedemployee = SortEmployeeData(employee);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedemployee);
+        }
+
+        private List<DispEmplyeeDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispEmplyeeDTO> employee = new List<DispEmplyeeDTO>();
+
+            //インスタンス化
+            EmployeeDataAccess EmAccess = new EmployeeDataAccess();
+
+            //データベースからデータを取得
+            employee = EmAccess.GetEmployeeData();
+
+
+            return employee;
+        }
+
+        private List<DispEmplyeeDTO> SortEmployeeData(List<DispEmplyeeDTO> dispEmployees)
+        {
+            //並び替え(昇順)
+            dispEmployees.OrderBy(x => x.EmID);
+            return dispEmployees;
+
+        }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -264,5 +264,55 @@ namespace SalesManagement_SysDev
             GetSelectData();
             SetCtrlFormat();
         }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayClient();
+        }
+
+        private void ListDisplayClient()
+        {
+            //変数の宣言
+            List<DispClientDTO> client = new List<DispClientDTO>();
+            List<DispClientDTO> sortedclient = new List<DispClientDTO>();
+
+            //テーブルデータ受け取り
+            client = GetTableData();
+
+            //昇順に並び替える
+            sortedclient = SortClientData(client);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedclient);
+
+        }
+
+        private List<DispClientDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispClientDTO> client = new List<DispClientDTO>();
+
+            //インスタンス化
+            ClientDataAccess ClAccess = new ClientDataAccess();
+
+            //データベースからデータを取得
+            client = ClAccess.GetClientData();
+
+
+            return client;
+        }
+
+        private List<DispClientDTO> SortClientData(List<DispClientDTO> dispClients)
+        {
+            //並び替え(昇順)
+            dispClients.OrderBy(x => x.ClID);
+            return dispClients;
+
+        }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
