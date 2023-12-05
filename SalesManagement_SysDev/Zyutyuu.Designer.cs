@@ -326,7 +326,7 @@
             this.Controls.Add(this.button_Kensaku);
             this.Controls.Add(this.button_Touroku);
             this.Name = "Zyutyuu";
-            this.Size = new System.Drawing.Size(1579, 862);
+            this.Size = new System.Drawing.Size(1610, 875);
             this.Load += new System.EventHandler(this.Zyutyuu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

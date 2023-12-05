@@ -367,7 +367,7 @@
             this.Controls.Add(this.button_Kousin);
             this.Controls.Add(this.button_Touroku);
             this.Name = "Syouhin";
-            this.Size = new System.Drawing.Size(1580, 861);
+            this.Size = new System.Drawing.Size(1610, 875);
             this.Load += new System.EventHandler(this.Syouhin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
