@@ -139,9 +139,17 @@ namespace SalesManagement_SysDev
         {
             DispClientDTO retDispClient = new DispClientDTO();
             string msg;
+            string title;
             MessageBoxIcon icon;
+            bool flg;
+
             retDispClient = GetClientInf();
-            //CheckClientInf(retDispClient, out msg, out icon);
+            flg = CheckClientInf(retDispClient, out msg, out title, out icon);
+            if (!flg)
+            {
+                MessageDsp message = new MessageDsp();
+                message.MessageBoxDsp(msg, title, icon);
+            }
             return retDispClient;
         }
 
@@ -159,10 +167,86 @@ namespace SalesManagement_SysDev
             return retDispClient;
         }
 
-        /*private bool CheckClientInf(DispClientDTO checkClientDTO, out string msg, out MessageBoxIcon icon)
+        private bool CheckClientInf(DispClientDTO checkClientDTO, out string msg, out string title, out MessageBoxIcon icon)
         {
+            DataInputFormCheck formCheck = new DataInputFormCheck();
 
-        }*/
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            if (String.IsNullOrEmpty(checkClientDTO.ClName))
+            {
+                msg = "顧客名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if(String.IsNullOrEmpty(checkClientDTO.ClAddress))
+            {
+                msg = "住所は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (String.IsNullOrEmpty(checkClientDTO.SoName))
+            {
+                msg = "営業所は必須項目です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (!String.IsNullOrEmpty(checkClientDTO.ClFAX))
+            {
+                if (!formCheck.CheckPhoneAndFAX(checkClientDTO.ClFAX))
+                {
+                    msg = "FAXの値が不正です";
+                    title = "入力エラー";
+                    return false;
+                }
+            }
+            else
+            {
+                msg = "FAXは必須項目です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if(!String.IsNullOrEmpty(checkClientDTO.ClPostal))
+            {
+                if (formCheck.CheckPostal(checkClientDTO.ClPostal))
+                {
+                    msg = "郵便番号の値が不正です";
+                    title = "入力エラー";
+                    return false;
+                }
+            }
+            else
+            {
+                msg = "郵便番号は必須項目です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (String.IsNullOrEmpty(checkClientDTO.ClPhone))
+            {
+                if (!formCheck.CheckPhoneAndFAX(checkClientDTO.ClPhone))
+                {
+                    msg = "電話番号の値が不正です";
+                    title = "入力エラー";
+                    return false;
+                }
+            }
+            else
+            {
+                msg = "電話番号は必須項目";
+                title = "入力エラー";
+                return false;
+            }
+
+            return true;
+
+        }
 
         private void RegisrationClientInf()
         {
@@ -175,5 +259,10 @@ namespace SalesManagement_SysDev
             return ret;
         }
 
+        private void button_Kuria_Click(object sender, EventArgs e)
+        {
+            GetSelectData();
+            SetCtrlFormat();
+        }
     }
 }

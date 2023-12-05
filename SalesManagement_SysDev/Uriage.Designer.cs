@@ -60,6 +60,8 @@
             this.button_Itirannhyouzi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
+            this.button_Itirannhyouzi.Location = new System.Drawing.Point(62, 31);
+            this.button_Itirannhyouzi.Margin = new System.Windows.Forms.Padding(2);
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(81, 41);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(218, 75);
@@ -73,8 +75,11 @@
             this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
             this.button_Kensaku.Location = new System.Drawing.Point(461, 41);
+            this.button_Kensaku.Location = new System.Drawing.Point(355, 31);
+            this.button_Kensaku.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Kensaku.Location = new System.Drawing.Point(461, 41);
             this.button_Kensaku.Name = "button_Kensaku";
-            this.button_Kensaku.Size = new System.Drawing.Size(218, 75);
+            this.button_Kensaku.Size = new System.Drawing.Size(168, 56);
             this.button_Kensaku.TabIndex = 1;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
@@ -84,6 +89,8 @@
             this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
+            this.button_Sakuzyo.Location = new System.Drawing.Point(678, 31);
+            this.button_Sakuzyo.Margin = new System.Windows.Forms.Padding(2);
             this.button_Sakuzyo.Location = new System.Drawing.Point(881, 41);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
             this.button_Sakuzyo.Size = new System.Drawing.Size(218, 75);
@@ -96,12 +103,15 @@
             this.button_Kuria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kuria.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
+            this.button_Kuria.Location = new System.Drawing.Point(991, 31);
+            this.button_Kuria.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kuria.Location = new System.Drawing.Point(1288, 41);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(218, 75);
             this.button_Kuria.TabIndex = 3;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
+            this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
             // 
             // label1
             // 
@@ -175,6 +185,8 @@
             // 
             // textBox_Uriage_ID
             // 
+            this.textBox_Uriage_ID.Location = new System.Drawing.Point(180, 124);
+            this.textBox_Uriage_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Uriage_ID.Location = new System.Drawing.Point(234, 165);
             this.textBox_Uriage_ID.Name = "textBox_Uriage_ID";
             this.textBox_Uriage_ID.Size = new System.Drawing.Size(346, 31);
@@ -182,6 +194,8 @@
             // 
             // textBox_Uriagesyousai_ID
             // 
+            this.textBox_Uriagesyousai_ID.Location = new System.Drawing.Point(180, 181);
+            this.textBox_Uriagesyousai_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Uriagesyousai_ID.Location = new System.Drawing.Point(234, 241);
             this.textBox_Uriagesyousai_ID.Name = "textBox_Uriagesyousai_ID";
             this.textBox_Uriagesyousai_ID.Size = new System.Drawing.Size(346, 31);
@@ -189,6 +203,8 @@
             // 
             // textBox_Zyutyuu_ID
             // 
+            this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(180, 237);
+            this.textBox_Zyutyuu_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(234, 316);
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(346, 31);
@@ -197,6 +213,8 @@
             // comboBox_Kokyaku_Namae
             // 
             this.comboBox_Kokyaku_Namae.FormattingEnabled = true;
+            this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(608, 124);
+            this.comboBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(790, 165);
             this.comboBox_Kokyaku_Namae.Name = "comboBox_Kokyaku_Namae";
             this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(287, 32);
@@ -205,6 +223,8 @@
             // comboBox_Eigyousyo_Namae
             // 
             this.comboBox_Eigyousyo_Namae.FormattingEnabled = true;
+            this.comboBox_Eigyousyo_Namae.Location = new System.Drawing.Point(991, 124);
+            this.comboBox_Eigyousyo_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Eigyousyo_Namae.Location = new System.Drawing.Point(1288, 165);
             this.comboBox_Eigyousyo_Namae.Name = "comboBox_Eigyousyo_Namae";
             this.comboBox_Eigyousyo_Namae.Size = new System.Drawing.Size(242, 32);
@@ -213,6 +233,8 @@
             // comboBox_Syain_Namae
             // 
             this.comboBox_Syain_Namae.FormattingEnabled = true;
+            this.comboBox_Syain_Namae.Location = new System.Drawing.Point(608, 181);
+            this.comboBox_Syain_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Syain_Namae.Location = new System.Drawing.Point(790, 241);
             this.comboBox_Syain_Namae.Name = "comboBox_Syain_Namae";
             this.comboBox_Syain_Namae.Size = new System.Drawing.Size(287, 32);
@@ -220,6 +242,8 @@
             // 
             // dateTimePicker_Nitizi
             // 
+            this.dateTimePicker_Nitizi.Location = new System.Drawing.Point(608, 236);
+            this.dateTimePicker_Nitizi.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi.Location = new System.Drawing.Point(790, 315);
             this.dateTimePicker_Nitizi.Name = "dateTimePicker_Nitizi";
             this.dateTimePicker_Nitizi.Size = new System.Drawing.Size(287, 31);
@@ -230,6 +254,11 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_3);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_2);
+            this.groupBox1.Location = new System.Drawing.Point(52, 299);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(640, 75);
             this.groupBox1.Location = new System.Drawing.Point(68, 399);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(832, 100);
@@ -248,6 +277,8 @@
             // 
             // dateTimePicker_Nitizi_3
             // 
+            this.dateTimePicker_Nitizi_3.Location = new System.Drawing.Point(333, 32);
+            this.dateTimePicker_Nitizi_3.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi_3.Location = new System.Drawing.Point(433, 43);
             this.dateTimePicker_Nitizi_3.Name = "dateTimePicker_Nitizi_3";
             this.dateTimePicker_Nitizi_3.Size = new System.Drawing.Size(364, 31);
@@ -255,6 +286,8 @@
             // 
             // dateTimePicker_Nitizi_2
             // 
+            this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(15, 32);
+            this.dateTimePicker_Nitizi_2.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(20, 43);
             this.dateTimePicker_Nitizi_2.Name = "dateTimePicker_Nitizi_2";
             this.dateTimePicker_Nitizi_2.Size = new System.Drawing.Size(350, 31);
@@ -263,6 +296,8 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(16, 379);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Location = new System.Drawing.Point(21, 505);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
@@ -295,6 +330,10 @@
             this.Controls.Add(this.button_Sakuzyo);
             this.Controls.Add(this.button_Kensaku);
             this.Controls.Add(this.button_Itirannhyouzi);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "Uriage";
+            this.Size = new System.Drawing.Size(1215, 646);
+            this.Load += new System.EventHandler(this.Uriage_Load);
             this.Name = "Uriage";
             this.Size = new System.Drawing.Size(1580, 861);
             this.Load += new System.EventHandler(this.Uriage_Load);

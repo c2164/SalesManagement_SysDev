@@ -105,6 +105,7 @@
             this.button_Kuria.TabIndex = 4;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
+            this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
             // 
             // label1
             // 

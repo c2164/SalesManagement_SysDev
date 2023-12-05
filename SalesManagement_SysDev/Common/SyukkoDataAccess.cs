@@ -8,12 +8,12 @@ using System.Windows.Forms;
 
 namespace SalesManagement_SysDev.Common
 {
-    internal class ShukkoDataAccess
+    internal class SyukkoDataAccess
     {
        
        
             //入庫情報登録(登録情報)
-            public bool RegisterClientData(T_Syukko RegSyukko)
+            public bool RegisterSyukkoData(T_Syukko RegSyukko)
             {
                 using (var context = new SalesManagement_DevContext())
                 {
@@ -32,7 +32,7 @@ namespace SalesManagement_SysDev.Common
             }
 
             //入庫情報アップデート(アップデート情報)
-            public bool UpdateClinetData(T_Syukko UpSyukko)
+            public bool UpdateSyukkoData(T_Syukko UpSyukko)
             {
                 using (var context = new SalesManagement_DevContext())
                 {
@@ -53,7 +53,7 @@ namespace SalesManagement_SysDev.Common
             }
 
             //入庫検索(検索項目)：オーバーロード
-            public List<DispSyukkoDTO> GetWarehousingData(DispSyukkoDTO dispSyukkoDTO)
+            public List<DispSyukkoDTO> GetSyukkoData(DispSyukkoDTO dispSyukkoDTO)
             {
                 var context = new SalesManagement_DevContext();
                 try
@@ -92,7 +92,7 @@ namespace SalesManagement_SysDev.Common
                              SyukkoDetail.SyDetailID == int.Parse(dispSyukkoDTO.SyDetailID)) && //出庫詳細ID
                              Maker.MaName.Contains(dispSyukkoDTO.MaName) && //メーカー名
                              Product.PrName.Contains(dispSyukkoDTO.PrName) && //商品名
-                             SyukkoDetail.ToString().Contains(dispSyukkoDTO.ArQuantity)  //数量
+                             SyukkoDetail.ToString().Contains(dispSyukkoDTO.SyQuantity)  //数量
 
 
 
@@ -106,7 +106,7 @@ namespace SalesManagement_SysDev.Common
                                  SyDetailID = SyukkoDetail.SyDetailID.ToString(),
                                  MaName = Maker.MaName.ToString(),
                                  PrName = Product.PrName.ToString(),
-                                 ArQuantity = SyukkoDetail.ToString(),
+                                 SyQuantity = SyukkoDetail.ToString(),
 
 
                              };
@@ -122,7 +122,7 @@ namespace SalesManagement_SysDev.Common
             }
 
             //入庫全表示：オーバーロード
-            public List<DispSyukkoDTO> GetProductData()
+            public List<DispSyukkoDTO> GetSyukkoData()
             {
                 var context = new SalesManagement_DevContext();
                 try
@@ -162,7 +162,7 @@ namespace SalesManagement_SysDev.Common
                              SyDetailID = SyukkoDetail.SyDetailID.ToString(),
                              MaName = Maker.MaName.ToString(),
                              PrName = Product.PrName.ToString(),
-                             ArQuantity = SyukkoDetail.ToString(),
+                             SyQuantity = SyukkoDetail.SyQuantity.ToString(),
 
 
                          };

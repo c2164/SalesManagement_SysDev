@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Common\ArraivalDataAccess.cs" />
     <Compile Include="Common\ChumonDataAccess.cs" />
+    <Compile Include="Common\PositionDataAccess.cs" />
     <Compile Include="Common\WarehousingDataAccess.cs" />
     <Compile Include="Common\ClientDataAccess.cs" />
     <Compile Include="Common\DataInputFormCheck.cs" />
@@ -77,7 +78,7 @@
     <Compile Include="Common\SaleDataAccess.cs" />
     <Compile Include="Common\SalesOfficeDataAccess.cs" />
     <Compile Include="Common\ShipmentDataAccess.cs" />
-    <Compile Include="Common\ShukkoDataAccess.cs" />
+    <Compile Include="Common\SyukkoDataAccess.cs" />
     <Compile Include="Common\SmallClassificationDataAccess.cs" />
     <Compile Include="Common\StockDataAccess.cs" />
     <Compile Include="Eigyou.cs">
