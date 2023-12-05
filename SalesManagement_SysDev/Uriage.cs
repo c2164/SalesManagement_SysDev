@@ -17,7 +17,7 @@ namespace SalesManagement_SysDev
             InitializeComponent();
         }
 
-        private void button_Kuria_Click(object sender, EventArgs e)
+        private void Uriage_Load(object sender, EventArgs e)
         {
             //GetSelectData();
             //SetCtrlFormat();
@@ -26,6 +26,10 @@ namespace SalesManagement_SysDev
         private void Uriage_Load(object sender, EventArgs e)
         {
 
+        private void button_Kuria_Click(object sender, EventArgs e)
+        {
+            //GetSelectData();
+            //SetCtrlFormat();
         }
     }
 }
