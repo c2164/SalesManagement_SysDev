@@ -166,5 +166,47 @@ namespace SalesManagement_SysDev
             GetSelectData();
             SetCtrlFormat();
         }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayOrder();
+        }
+
+        private void ListDisplayOrder()
+        {
+            //変数の宣言
+            List<DispOrderDTO> order = new List<DispOrderDTO>();
+            List<DispOrderDTO> sortedorder = new List<DispOrderDTO>();
+
+            //テーブルデータの受け取り
+            order = GetTableData();
+
+            //昇順に並び変え
+            sortedorder = SortOrderDate(order);
+
+            //データグリッドビューに表示
+            SetDataGridView(sortedorder);
+        }
+
+        private List<DispOrderDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispOrderDTO> order = new List<DispOrderDTO>();
+
+            //インスタンス化
+            OrderDataAccess OrAccess = new OrderDataAccess();
+
+            //データベースからデータを取得
+            order = OrAccess.GetOrderData();
+
+            return order;
+        }
+
+        private List<DispOrderDTO> SortOrderDate(List<DispOrderDTO> disporders)
+        {
+            //並び変え(昇順)
+            disporders.OrderBy(x => x.OrID);
+            return disporders;
+        }
     }
 }
