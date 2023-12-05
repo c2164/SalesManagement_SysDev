@@ -149,6 +149,104 @@ namespace SalesManagement_SysDev
             GetSelectData();
         }
 
-       
+        private void button_Itiran_Click(object sender, EventArgs e)
+        {
+            ListDisplayProduct();
+        }
+
+        private void ListDisplayProduct()
+        {
+            //変数の宣言
+            List<DispProductDTO> product = new List<DispProductDTO>();
+            List<DispProductDTO> sortedproduct = new List<DispProductDTO>();
+
+            //テーブルデータ受け取り
+            product = GetTableData();
+
+            //昇順に並び替える
+            sortedproduct = SortProductData(product);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedproduct);
+
+        }
+
+        private List<DispProductDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispProductDTO> product = new List<DispProductDTO>();
+
+            //インスタンス化
+            ProductDataAccess PrAccess = new ProductDataAccess();
+
+            //データベースからデータを取得
+            product = PrAccess.GetProductData();
+
+
+            return product;
+        }
+
+        private List<DispProductDTO> SortProductData(List<DispProductDTO> dispProducts)
+        {
+            //並び替え(昇順)
+            dispProducts.OrderBy(x => x.PrID);
+            return dispProducts;
+        }
+
+        private void button_Kennsaku_Click(object sender, EventArgs e)
+        {
+            SelectProduct();
+        }
+
+        private void SelectProduct()
+        {
+            //変数の宣言
+            DispProductDTO productDTO = new DispProductDTO();
+            List<DispProductDTO> DisplayProduct = new List<DispProductDTO>();
+
+            //データの読み取り
+            productDTO = GetProductInf();
+            //データの検索
+            DisplayProduct = SelectProductInf(productDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayProduct);
+        }
+
+        private DispProductDTO GetProductInf()
+        {
+            //変数の宣言
+            DispProductDTO retProductDTO = new DispProductDTO();
+
+            //各コントロールから商品情報を読み取る
+            retProductDTO.PrID = textbox_Syouhin_ID.Text.Trim();
+            retProductDTO.PrName = textbox_Syouhin_Namae.Text.Trim();
+            if (!(combobox_Meka_ID.SelectedIndex == -1))
+                retProductDTO.MaID = combobox_Meka_ID.SelectedValue.ToString();
+            retProductDTO.MaName = combobox_Syoubunnrui_ID.Text.Trim();
+            if (!(combobox_Syoubunnrui_ID.SelectedIndex == -1))
+                retProductDTO.ScID = combobox_Syoubunnrui_ID.SelectedIndex.ToString();
+            retProductDTO.ScName = combobox_Syoubunnrui_ID.Text.Trim();
+            retProductDTO.Price = textbox_Kakaku.Text.Trim();
+            retProductDTO.PrSafetyStock = textbox_Anzen.Text.Trim();
+            retProductDTO.PrModelNumber = textbox_Kataban.Text.Trim();
+            retProductDTO.PrColor = textbox_Iro.Text.Trim();
+            retProductDTO.PrReleseFromDate = dateTimePicker_Nitizi_2.Value;
+            retProductDTO.PrReleaseToDate = dateTimePicker_Nitizi_3.Value;
+
+            return retProductDTO;
+        }
+
+        private List<DispProductDTO> SelectProductInf(DispProductDTO productDTO)
+        {
+            //変数の宣言
+            List<DispProductDTO> retDispProduct = new List<DispProductDTO>();
+            //インスタンス化
+            ProductDataAccess access = new ProductDataAccess();
+
+            //商品情報検索
+            retDispProduct = access.GetProductData(productDTO);
+            return retDispProduct;
+
+        }
     }
 }

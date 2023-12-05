@@ -62,8 +62,8 @@ namespace SalesManagement_SysDev.Common
                          on Client.SoID equals SalesOffice.SoID
 
                          where
-                         Client.ClName.Contains(dispClientDTO.ClName) && //顧客名
-                         Client.ClID.ToString().Contains(dispClientDTO.ClID) && //顧客ID
+                         Client.ClName.Contains(dispClientDTO.ClName) &&//顧客名
+                         Client.ClID.ToString().Contains(dispClientDTO.ClID)&&  //顧客ID
                          SalesOffice.SoName.Contains(dispClientDTO.SoName) && //営業所名
                          Client.ClPostal.Contains(dispClientDTO.ClPostal) && //郵便番号
                          Client.ClAddress.Contains(dispClientDTO.ClAddress) && //住所
