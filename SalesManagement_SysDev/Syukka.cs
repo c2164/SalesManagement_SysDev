@@ -170,5 +170,49 @@ namespace SalesManagement_SysDev
             GetSelectData();
             SetCtrlFormat();
         }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayShipment();
+        }
+
+        private void ListDisplayShipment()
+        {
+            //変数の宣言
+            List<DispShipmentDTO> shipment = new List<DispShipmentDTO>();
+            List<DispShipmentDTO> sortedshipment = new List<DispShipmentDTO>();
+
+            //テーブルデータ受け取り
+            shipment = GetTableData();
+
+            //昇順に並び替える
+            sortedshipment = SortShipmentData(shipment);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedshipment);
+
+        }
+
+        private List<DispShipmentDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispShipmentDTO> shipment = new List<DispShipmentDTO>();
+
+            //インスタンス化
+            ShipmentDataAccess ShAccess = new ShipmentDataAccess();
+
+            //データベースからデータを取得
+            shipment = ShAccess.GetShipmentData();
+
+
+            return shipment;
+        }
+
+        private List<DispShipmentDTO> SortShipmentData(List<DispShipmentDTO> dispShipment)
+        {
+            //並び替え(昇順)
+            dispShipment.OrderBy(x => x.PrID);
+            return dispShipment;
+        }
     }
 }
