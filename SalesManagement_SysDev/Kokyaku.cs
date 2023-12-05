@@ -308,6 +308,5 @@ namespace SalesManagement_SysDev
             dispClients.OrderBy(x => x.ClID);
             return dispClients;
         }
-
     }
 }
