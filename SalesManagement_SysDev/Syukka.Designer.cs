@@ -66,7 +66,7 @@
             this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(38, 20);
-            this.button_Itirannhyouzi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Itirannhyouzi.Margin = new System.Windows.Forms.Padding(2);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(172, 56);
             this.button_Itirannhyouzi.TabIndex = 0;
@@ -80,12 +80,13 @@
             this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
             this.button_Kensaku.Location = new System.Drawing.Point(275, 20);
-            this.button_Kensaku.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Kensaku.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kensaku.Name = "button_Kensaku";
             this.button_Kensaku.Size = new System.Drawing.Size(172, 56);
             this.button_Kensaku.TabIndex = 1;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
+            this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
             // 
             // button_Sakuzyo
             // 
@@ -93,7 +94,7 @@
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
             this.button_Sakuzyo.Location = new System.Drawing.Point(510, 20);
-            this.button_Sakuzyo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Sakuzyo.Margin = new System.Windows.Forms.Padding(2);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
             this.button_Sakuzyo.Size = new System.Drawing.Size(172, 56);
             this.button_Sakuzyo.TabIndex = 2;
@@ -106,7 +107,7 @@
             this.button_Syukka_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Syukka_Kakutei.ForeColor = System.Drawing.Color.White;
             this.button_Syukka_Kakutei.Location = new System.Drawing.Point(740, 20);
-            this.button_Syukka_Kakutei.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Syukka_Kakutei.Margin = new System.Windows.Forms.Padding(2);
             this.button_Syukka_Kakutei.Name = "button_Syukka_Kakutei";
             this.button_Syukka_Kakutei.Size = new System.Drawing.Size(172, 56);
             this.button_Syukka_Kakutei.TabIndex = 3;
@@ -119,7 +120,7 @@
             this.button_Kuria.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
             this.button_Kuria.Location = new System.Drawing.Point(972, 20);
-            this.button_Kuria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Kuria.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(172, 56);
             this.button_Kuria.TabIndex = 4;
@@ -240,7 +241,7 @@
             // textBox_Kokyaku_Namae
             // 
             this.textBox_Kokyaku_Namae.Location = new System.Drawing.Point(193, 123);
-            this.textBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kokyaku_Namae.Name = "textBox_Kokyaku_Namae";
             this.textBox_Kokyaku_Namae.Size = new System.Drawing.Size(202, 25);
             this.textBox_Kokyaku_Namae.TabIndex = 15;
@@ -248,7 +249,7 @@
             // textBox_Syukka_ID
             // 
             this.textBox_Syukka_ID.Location = new System.Drawing.Point(583, 123);
-            this.textBox_Syukka_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Syukka_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Syukka_ID.Name = "textBox_Syukka_ID";
             this.textBox_Syukka_ID.Size = new System.Drawing.Size(221, 25);
             this.textBox_Syukka_ID.TabIndex = 16;
@@ -256,7 +257,7 @@
             // textBox_Nyuuka_Syain_Namae
             // 
             this.textBox_Nyuuka_Syain_Namae.Location = new System.Drawing.Point(190, 195);
-            this.textBox_Nyuuka_Syain_Namae.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Nyuuka_Syain_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Nyuuka_Syain_Namae.Name = "textBox_Nyuuka_Syain_Namae";
             this.textBox_Nyuuka_Syain_Namae.Size = new System.Drawing.Size(205, 25);
             this.textBox_Nyuuka_Syain_Namae.TabIndex = 17;
@@ -264,7 +265,7 @@
             // textBox_Zyutyuu_ID
             // 
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(583, 195);
-            this.textBox_Zyutyuu_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Zyutyuu_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(221, 25);
             this.textBox_Zyutyuu_ID.TabIndex = 18;
@@ -272,7 +273,7 @@
             // textBox_Kakutei_Syain_Namae
             // 
             this.textBox_Kakutei_Syain_Namae.Location = new System.Drawing.Point(190, 265);
-            this.textBox_Kakutei_Syain_Namae.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Kakutei_Syain_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kakutei_Syain_Namae.Name = "textBox_Kakutei_Syain_Namae";
             this.textBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(205, 25);
             this.textBox_Kakutei_Syain_Namae.TabIndex = 19;
@@ -280,7 +281,7 @@
             // textBox_Syukkasyousai_ID
             // 
             this.textBox_Syukkasyousai_ID.Location = new System.Drawing.Point(583, 265);
-            this.textBox_Syukkasyousai_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Syukkasyousai_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Syukkasyousai_ID.Name = "textBox_Syukkasyousai_ID";
             this.textBox_Syukkasyousai_ID.Size = new System.Drawing.Size(221, 25);
             this.textBox_Syukkasyousai_ID.TabIndex = 20;
@@ -288,7 +289,7 @@
             // numericUpDown_Suuryou
             // 
             this.numericUpDown_Suuryou.Location = new System.Drawing.Point(190, 324);
-            this.numericUpDown_Suuryou.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDown_Suuryou.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown_Suuryou.Name = "numericUpDown_Suuryou";
             this.numericUpDown_Suuryou.Size = new System.Drawing.Size(204, 25);
             this.numericUpDown_Suuryou.TabIndex = 21;
@@ -297,7 +298,7 @@
             // 
             this.radioButton_Mikakutei.AutoSize = true;
             this.radioButton_Mikakutei.Location = new System.Drawing.Point(425, 324);
-            this.radioButton_Mikakutei.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton_Mikakutei.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton_Mikakutei.Name = "radioButton_Mikakutei";
             this.radioButton_Mikakutei.Size = new System.Drawing.Size(87, 22);
             this.radioButton_Mikakutei.TabIndex = 22;
@@ -309,7 +310,7 @@
             // 
             this.radioButton_Kakutei.AutoSize = true;
             this.radioButton_Kakutei.Location = new System.Drawing.Point(583, 324);
-            this.radioButton_Kakutei.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton_Kakutei.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton_Kakutei.Name = "radioButton_Kakutei";
             this.radioButton_Kakutei.Size = new System.Drawing.Size(103, 22);
             this.radioButton_Kakutei.TabIndex = 23;
@@ -321,7 +322,7 @@
             // 
             this.comboBox_Eigyousyo.FormattingEnabled = true;
             this.comboBox_Eigyousyo.Location = new System.Drawing.Point(972, 123);
-            this.comboBox_Eigyousyo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox_Eigyousyo.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(187, 26);
             this.comboBox_Eigyousyo.TabIndex = 24;
@@ -330,7 +331,7 @@
             // 
             this.comboBox_Syouhin_Namae.FormattingEnabled = true;
             this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(972, 195);
-            this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
             this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(187, 26);
             this.comboBox_Syouhin_Namae.TabIndex = 25;
@@ -339,7 +340,7 @@
             // 
             this.comboBox_Meka_Namae.FormattingEnabled = true;
             this.comboBox_Meka_Namae.Location = new System.Drawing.Point(972, 265);
-            this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
             this.comboBox_Meka_Namae.Size = new System.Drawing.Size(187, 26);
             this.comboBox_Meka_Namae.TabIndex = 26;
@@ -348,7 +349,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(15, 364);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
@@ -388,7 +389,7 @@
             this.Controls.Add(this.button_Sakuzyo);
             this.Controls.Add(this.button_Kensaku);
             this.Controls.Add(this.button_Itirannhyouzi);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Syukka";
             this.Size = new System.Drawing.Size(1215, 646);
             this.Load += new System.EventHandler(this.Syukka_Load);

@@ -214,5 +214,10 @@ namespace SalesManagement_SysDev
             dispShipment.OrderBy(x => x.PrID);
             return dispShipment;
         }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
