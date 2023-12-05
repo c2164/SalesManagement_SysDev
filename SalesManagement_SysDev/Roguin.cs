@@ -16,5 +16,10 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
         }
+
+        private void button_Roguin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -389,7 +389,7 @@
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Nyuuka";
-            this.Size = new System.Drawing.Size(1215, 646);
+            this.Size = new System.Drawing.Size(1579, 862);
             this.Load += new System.EventHandler(this.Nyuuka_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
