@@ -21,16 +21,25 @@ namespace SalesManagement_SysDev.Common
 
         public bool CheckMailAddress(string chkData)
         {
-            Regex regex = new Regex("^-?[0-9]+$");
+            Regex regex = new Regex(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
             if (!regex.IsMatch(chkData))
                 return false;
             else
                 return true;
         }
 
-        public bool CheckPhone(string chkData)
+        public bool CheckPhoneAndFAX(string chkData)
         {
-            Regex regex = new Regex("^0\\d{9,10}$");
+            Regex regex = new Regex(@"^\d{10,13}$");
+            if (!regex.IsMatch(chkData))
+                return false;
+            else
+                return true;
+        }
+
+        public bool CheckPostal(string chkData)
+        {
+            Regex regex = new Regex(@"^\d{7}$");
             if (!regex.IsMatch(chkData))
                 return false;
             else
