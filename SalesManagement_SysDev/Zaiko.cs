@@ -111,5 +111,49 @@ namespace SalesManagement_SysDev
             GetSelectData();
             SetCtrlFormat();
         }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayStock();
+        }
+
+        private void ListDisplayStock()
+        {
+            //変数の宣言
+            List<DispStockDTO> stock = new List<DispStockDTO>();
+            List<DispStockDTO> sortedstock = new List<DispStockDTO>();
+
+            //テーブルデータ受け取り
+            stock = GetTableData();
+
+            //昇順に並び替える
+            sortedstock = SortStockData(stock);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedstock);
+        }
+
+        private List<DispStockDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispStockDTO> stock = new List<DispStockDTO>();
+
+            //インスタンス化
+            StockDataAccess StAccess = new StockDataAccess();
+
+            //データベースからデータを取得
+            stock = StAccess.GetStockData();
+
+
+            return stock;
+        }
+
+        private List<DispStockDTO> SortStockData(List<DispStockDTO> dispStocks)
+        {
+            //並び替え(昇順)
+            dispStocks.OrderBy(x => x.StID);
+            return dispStocks;
+
+        }
     }
 }
