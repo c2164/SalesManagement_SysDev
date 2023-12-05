@@ -182,5 +182,50 @@ namespace SalesManagement_SysDev
             //GetSelectData();
             //SetCtrlFormat();
         }
+
+        private void button_Itiranhyouzi_Click(object sender, EventArgs e)
+        {
+
+            ListDisplaySyukko();
+        }
+
+        private void ListDisplaySyukko()
+        {
+            //変数の宣言
+            List<DispSyukkoDTO> syukko = new List<DispSyukkoDTO>();
+            List<DispSyukkoDTO> sortedsyukko = new List<DispSyukkoDTO>();
+
+            //テーブルデータ受け取り
+            syukko = GetTableData();
+
+            //昇順に並び替える
+            sortedsyukko = SortSyukkoData(syukko);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedsyukko);
+
+        }
+
+        private List<DispSyukkoDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispSyukkoDTO> syukko = new List<DispSyukkoDTO>();
+
+            //インスタンス化
+            SyukkoDataAccess SyAccess = new SyukkoDataAccess();
+
+            //データベースからデータを取得
+            syukko = SyAccess.GetSyukkoData();
+
+
+            return syukko;
+        }
+
+        private List<DispSyukkoDTO> SortSyukkoData(List<DispSyukkoDTO> dispSyukkos)
+        {
+            //並び替え(昇順)
+            dispSyukkos.OrderBy(x => x.SyID);
+            return dispSyukkos;
+        }
     }
 }

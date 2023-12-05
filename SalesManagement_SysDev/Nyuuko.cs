@@ -57,7 +57,7 @@ namespace SalesManagement_SysDev
             textBox_Hattyuu_Syain_Namae.Text = "";
             textBox_Nyuukosyousai_ID.Text = "";
             textBox_Nyuuko_ID.Text = "";
-            
+
 
             //各コンボボックスを初期化
             comboBox_Kakutei_Syain_Namae.DisplayMember = "SoName";
@@ -154,8 +154,52 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
-            //SetCtrlFormat();
+            GetSelectData();
+            SetCtrlFormat();
         }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayWarehousing();
+        }
+
+        private void ListDisplayWarehousing()
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> warehousing = new List<DispWarehousingDTO>();
+            List<DispWarehousingDTO> sortedwarehousing = new List<DispWarehousingDTO>();
+
+            //テーブルデータ受け取り
+            warehousing = GetTableData();
+
+            //昇順に並び替える
+            sortedwarehousing = SortWarehousingData(warehousing);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedwarehousing);
+        }
+
+        private List<DispWarehousingDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> warehousing = new List<DispWarehousingDTO>();
+
+            //インスタンス化
+            WarehousingDataAccess WaAccess = new WarehousingDataAccess();
+
+            //データベースからデータを取得
+            warehousing = WaAccess.GetWarehousingData();
+
+
+            return warehousing;
+        }
+
+        private List<DispWarehousingDTO> SortWarehousingData(List<DispWarehousingDTO> dispWarehousings)
+        {
+            //並び替え(昇順)
+            dispWarehousings.OrderBy(x => x.WaID);
+            return dispWarehousings;
+        }
+
     }
 }
