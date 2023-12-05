@@ -205,6 +205,12 @@ namespace SalesManagement_SysDev.Entity
 
         [DisplayName("非表示理由")]
         public string OrHidden { get; set; }
+
+        [DisplayName("メーカー名")]
+        public string MaName { get; set; }
+
+        [DisplayName("価格")]
+        public string Price { get; set; }
     }
 
     //注文管理画面表示用
