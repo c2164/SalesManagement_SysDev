@@ -148,5 +148,10 @@ namespace SalesManagement_SysDev
             SetCtrlFormat();
             GetSelectData();
         }
+
+        private void button_Kennsaku_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
