@@ -20,10 +20,6 @@ namespace SalesManagement_SysDev
         {
             InitializeComponent();
 
-            buturyuu1.Visible = false;
-            eigyou1.Visible = false;
-            syain1.Visible = false;
-            roguin1.Visible = false;
         }
 
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -58,10 +54,7 @@ namespace SalesManagement_SysDev
             context.Dispose();
 
             MessageBox.Show("テーブル作成完了");*/
-        }
 
-        private void F_Login_Load(object sender, EventArgs e)
-        {
             panel1.BorderStyle = BorderStyle.None;
             panel2.BorderStyle = BorderStyle.None;
 
@@ -768,37 +761,53 @@ namespace SalesManagement_SysDev
             //MessageBox.Show("サンプルデータ登録完了");
         }
 
+        private void F_Login_Load(object sender, EventArgs e)
+        {
+            SalesManagement_SysDev.Roguin roguin = new Roguin();
+
+            panel3.Controls.Add(roguin);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            buturyuu1.Visible = true;
-            eigyou1.Visible = false;
-            syain1.Visible = false;
-            roguin1.Visible = false;
+            if (panel3.Controls.Count != 0)
+            {
+                Control RemCotl;
+                RemCotl = panel3.Controls[0];
+                panel3.Controls.Remove(RemCotl);
+            }
+            SalesManagement_SysDev.Buturyuu buturyuu = new Buturyuu();
+            panel3.Controls.Add(buturyuu);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            eigyou1.Visible = true;
-            buturyuu1.Visible = false;
-            syain1.Visible = false;
-            roguin1.Visible = false;
+            if (panel3.Controls.Count != 0)
+            {
+                Control RemCotl;
+                RemCotl = panel3.Controls[0];
+                panel3.Controls.Remove(RemCotl);
+            }
+            SalesManagement_SysDev.Eigyou eigyou = new Eigyou();
+            panel3.Controls.Add(eigyou);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            syain1.Visible = true;
-            buturyuu1.Visible = false;
-            eigyou1.Visible = false;
-            roguin1.Visible = false;
+            SalesManagement_SysDev.Syain syain = new Syain();
+
+            if (panel3.Controls.Count != 0)
+            {
+                Control RemCotl;
+                RemCotl = panel3.Controls[0];
+                panel3.Controls.Remove(RemCotl);
+            }
+            panel3.Controls.Add(syain);
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            roguin1.Visible = true;
-            buturyuu1.Visible = false;
-            eigyou1.Visible = false;
-            syain1.Visible = false;
         }
     }
 }
