@@ -97,6 +97,7 @@
             this.button_Itiranhyouzi.TabIndex = 2;
             this.button_Itiranhyouzi.Text = "📖一覧表示";
             this.button_Itiranhyouzi.UseVisualStyleBackColor = false;
+            this.button_Itiranhyouzi.Click += new System.EventHandler(this.button_Itiranhyouzi_Click);
             // 
             // button_Sakuzyo
             // 

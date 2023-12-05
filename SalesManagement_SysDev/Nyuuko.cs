@@ -57,7 +57,7 @@ namespace SalesManagement_SysDev
             textBox_Hattyuu_Syain_Namae.Text = "";
             textBox_Nyuukosyousai_ID.Text = "";
             textBox_Nyuuko_ID.Text = "";
-            
+
 
             //各コンボボックスを初期化
             comboBox_Kakutei_Syain_Namae.DisplayMember = "SoName";
@@ -154,8 +154,105 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
-            //SetCtrlFormat();
+            GetSelectData();
+            SetCtrlFormat();
+        }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayWarehousing();
+        }
+
+        private void ListDisplayWarehousing()
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> warehousing = new List<DispWarehousingDTO>();
+            List<DispWarehousingDTO> sortedwarehousing = new List<DispWarehousingDTO>();
+
+            //テーブルデータ受け取り
+            warehousing = GetTableData();
+
+            //昇順に並び替える
+            sortedwarehousing = SortWarehousingData(warehousing);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedwarehousing);
+        }
+
+        private List<DispWarehousingDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> warehousing = new List<DispWarehousingDTO>();
+
+            //インスタンス化
+            WarehousingDataAccess WaAccess = new WarehousingDataAccess();
+
+            //データベースからデータを取得
+            warehousing = WaAccess.GetWarehousingData();
+
+
+            return warehousing;
+        }
+
+        private List<DispWarehousingDTO> SortWarehousingData(List<DispWarehousingDTO> dispWarehousings)
+        {
+            //並び替え(昇順)
+            dispWarehousings.OrderBy(x => x.WaID);
+            return dispWarehousings;
+        }
+
+        private void button_Kennsaku_Click(object sender, EventArgs e)
+        {
+            SelectWarehousing();
+        }
+
+        private void SelectWarehousing()
+        {
+            //変数の宣言
+            　DispWarehousingDTO warehousingDTO = new DispWarehousingDTO();
+            List<DispWarehousingDTO> DisplayWarehousing = new List<DispWarehousingDTO>();
+
+            //データの読み取り
+            warehousingDTO = GetWarehousingInf();
+            //データの検索
+            DisplayWarehousing = SelectWarehousingInf(warehousingDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayWarehousing);
+        }
+
+        private DispWarehousingDTO GetWarehousingInf()
+        {
+            //変数の宣言
+            DispWarehousingDTO retWarehousingDTO = new DispWarehousingDTO();
+
+            //各コントロールから商品情報を読み取る
+            retWarehousingDTO.WaID = textBox_Nyuuko_ID.Text.Trim();
+            retWarehousingDTO.HaID = textBox_Hattyuu_ID.Text.Trim();
+            retWarehousingDTO.WaDetailID = textBox_Nyuukosyousai_ID.Text.Trim();
+            retWarehousingDTO.HattyuEmID = textBox_Hattyuu_Syain_Namae.Text.Trim();
+            if (!(comboBox_Kakutei_Syain_Namae.SelectedIndex == -1))
+                retWarehousingDTO.ConfEmName = comboBox_Kakutei_Syain_Namae.SelectedValue.ToString();
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1))
+                retWarehousingDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retWarehousingDTO.MaID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+            retWarehousingDTO.WaQuantity = numericUpDown_Suuryou.Value.ToString();
+
+            return retWarehousingDTO;
+        }
+
+        private List<DispWarehousingDTO> SelectWarehousingInf (DispWarehousingDTO warehousingDTO)
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> retDispWarehousing = new List<DispWarehousingDTO>();
+            //インスタンス化
+            WarehousingDataAccess access = new WarehousingDataAccess();
+
+            //商品情報検索
+            retDispWarehousing = access.GetWarehousingData(warehousingDTO);
+            return retDispWarehousing;
+
+
         }
     }
 }
