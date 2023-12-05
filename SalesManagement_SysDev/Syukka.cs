@@ -170,5 +170,10 @@ namespace SalesManagement_SysDev
             GetSelectData();
             SetCtrlFormat();
         }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

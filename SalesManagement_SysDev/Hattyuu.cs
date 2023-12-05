@@ -67,7 +67,7 @@ namespace SalesManagement_SysDev
             comboBox_Syain_Namae.SelectedIndex = -1;
 
             comboBox_Meka_Namae.DisplayMember = "MaName";
-            comboBox_Meka_Namae.ValueMember = "MaID"; 
+            comboBox_Meka_Namae.ValueMember = "MaID";
             comboBox_Meka_Namae.DataSource=makerDateAccess.GetMakerData();
             comboBox_Meka_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Meka_Namae.SelectedIndex= -1;
