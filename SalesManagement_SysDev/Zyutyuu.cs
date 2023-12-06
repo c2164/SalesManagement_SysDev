@@ -166,5 +166,101 @@ namespace SalesManagement_SysDev
             GetSelectData();
             SetCtrlFormat();
         }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayOrder();
+        }
+
+        private void ListDisplayOrder()
+        {
+            //変数の宣言
+            List<DispOrderDTO> order = new List<DispOrderDTO>();
+            List<DispOrderDTO> sortedorder = new List<DispOrderDTO>();
+
+            //テーブルデータの受け取り
+            order = GetTableData();
+
+            //昇順に並び変え
+            sortedorder = SortOrderDate(order);
+
+            //データグリッドビューに表示
+            SetDataGridView(sortedorder);
+        }
+
+        private List<DispOrderDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispOrderDTO> order = new List<DispOrderDTO>();
+
+            //インスタンス化
+            OrderDataAccess OrAccess = new OrderDataAccess();
+
+            //データベースからデータを取得
+            order = OrAccess.GetOrderData();
+
+            return order;
+        }
+
+        private List<DispOrderDTO> SortOrderDate(List<DispOrderDTO> disporders)
+        {
+            //並び変え(昇順)
+            disporders.OrderBy(x => x.OrID);
+            return disporders;
+        }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectOrder();
+        }
+
+        private void SelectOrder()
+        {
+            //変数の宣言
+            DispOrderDTO orderDTO = new DispOrderDTO();
+            List<DispOrderDTO> DisplayOrder = new List<DispOrderDTO>();
+
+            //データの読み取り
+            orderDTO = Getorderinf();
+
+            //データの検索
+            DisplayOrder = SelectOrderInf(orderDTO);
+
+            //データグリッドビューに表示
+            SetDataGridView(DisplayOrder);
+        }
+
+        private DispOrderDTO Getorderinf()
+        {
+            //変数の宣言
+            DispOrderDTO retOrderDTO = new DispOrderDTO();
+
+            //各コントロールから情報を読み取る
+            retOrderDTO.ClName = textBox_Kokyaku_Namae.Text.Trim();//顧客名
+            retOrderDTO.ClCharge = textBox_Kokyaku_Tantou.Text.Trim();//顧客担当者
+            retOrderDTO.EmName = textBox_Syain_Namae.Text.Trim();//社員名
+            retOrderDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();//受注ID 
+            retOrderDTO.OrDetailID = textBox_Zyutyuusyousai_ID.Text.Trim();//受注詳細ID
+            retOrderDTO.MaName = textBox_Meka_Namae.Text.Trim();//メーカー名
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1)) retOrderDTO.SoID = comboBox_Eigyousyo.SelectedIndex.ToString();//営業所名
+            retOrderDTO.PrName = textBox_Syouhin_Namae.Text.Trim();//商品名
+            retOrderDTO.OrQuantity = numericUpDown_Suuryou.Value.ToString();//数量
+
+            return retOrderDTO;
+        }
+
+        private List<DispOrderDTO> SelectOrderInf(DispOrderDTO orderDTO)
+        {
+            //変数の宣言
+            List<DispOrderDTO> retDispOrder = new List<DispOrderDTO>();
+
+            //インスタンス化
+            OrderDataAccess OrAccess = new OrderDataAccess();
+
+            //商品検索
+            retDispOrder = OrAccess.GetOrderData(orderDTO);
+
+            return retDispOrder;
+        }
     }
 }

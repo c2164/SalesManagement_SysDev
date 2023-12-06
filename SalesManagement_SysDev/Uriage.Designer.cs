@@ -222,7 +222,7 @@
             // comboBox_Eigyousyo_Namae
             // 
             this.comboBox_Eigyousyo_Namae.FormattingEnabled = true;
-            this.comboBox_Eigyousyo_Namae.Location = new System.Drawing.Point(991, 124);
+            this.comboBox_Eigyousyo_Namae.Location = new System.Drawing.Point(1288, 165);
             this.comboBox_Eigyousyo_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Eigyousyo_Namae.Name = "comboBox_Eigyousyo_Namae";
             this.comboBox_Eigyousyo_Namae.Size = new System.Drawing.Size(187, 26);
@@ -231,7 +231,7 @@
             // comboBox_Syain_Namae
             // 
             this.comboBox_Syain_Namae.FormattingEnabled = true;
-            this.comboBox_Syain_Namae.Location = new System.Drawing.Point(608, 181);
+            this.comboBox_Syain_Namae.Location = new System.Drawing.Point(790, 241);
             this.comboBox_Syain_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Syain_Namae.Name = "comboBox_Syain_Namae";
             this.comboBox_Syain_Namae.Size = new System.Drawing.Size(222, 26);
@@ -239,7 +239,7 @@
             // 
             // dateTimePicker_Nitizi
             // 
-            this.dateTimePicker_Nitizi.Location = new System.Drawing.Point(608, 236);
+            this.dateTimePicker_Nitizi.Location = new System.Drawing.Point(790, 315);
             this.dateTimePicker_Nitizi.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi.Name = "dateTimePicker_Nitizi";
             this.dateTimePicker_Nitizi.Size = new System.Drawing.Size(222, 25);
@@ -250,7 +250,7 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_3);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_2);
-            this.groupBox1.Location = new System.Drawing.Point(52, 299);
+            this.groupBox1.Location = new System.Drawing.Point(68, 399);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -271,7 +271,7 @@
             // 
             // dateTimePicker_Nitizi_3
             // 
-            this.dateTimePicker_Nitizi_3.Location = new System.Drawing.Point(333, 32);
+            this.dateTimePicker_Nitizi_3.Location = new System.Drawing.Point(433, 43);
             this.dateTimePicker_Nitizi_3.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi_3.Name = "dateTimePicker_Nitizi_3";
             this.dateTimePicker_Nitizi_3.Size = new System.Drawing.Size(281, 25);
@@ -279,7 +279,7 @@
             // 
             // dateTimePicker_Nitizi_2
             // 
-            this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(15, 32);
+            this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(20, 43);
             this.dateTimePicker_Nitizi_2.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi_2.Name = "dateTimePicker_Nitizi_2";
             this.dateTimePicker_Nitizi_2.Size = new System.Drawing.Size(270, 25);
@@ -288,7 +288,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 379);
+            this.dataGridView1.Location = new System.Drawing.Point(21, 505);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
