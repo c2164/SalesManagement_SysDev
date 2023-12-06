@@ -53,7 +53,7 @@ namespace SalesManagement_SysDev
             ProductDataAccess productDataAccess = new ProductDataAccess();
 
             //各テキストボックスに初期化(空白)
-            textBox_Hattyuu_ID.Text="";
+            textBox_Hattyuu_ID.Text = "";
             textBox_Syain_ID.Text = "";
             textBox_Syouhin_ID.Text = "";
             textBox_Suuryou.Text = "";
@@ -63,20 +63,20 @@ namespace SalesManagement_SysDev
             comboBox_Syain_Namae.DisplayMember = "EmName";
             comboBox_Syain_Namae.ValueMember = "EmID";
             comboBox_Syain_Namae.DataSource = empDataAccess.GetEmployeeData();
-            comboBox_Syain_Namae.DropDownStyle= ComboBoxStyle.DropDownList;
+            comboBox_Syain_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Syain_Namae.SelectedIndex = -1;
 
             comboBox_Meka_Namae.DisplayMember = "MaName";
-            comboBox_Meka_Namae.ValueMember = "MaID"; 
-            comboBox_Meka_Namae.DataSource=makerDateAccess.GetMakerData();
+            comboBox_Meka_Namae.ValueMember = "MaID";
+            comboBox_Meka_Namae.DataSource = makerDateAccess.GetMakerData();
             comboBox_Meka_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox_Meka_Namae.SelectedIndex= -1;
+            comboBox_Meka_Namae.SelectedIndex = -1;
 
             comboBox_Syouhin_Namae.DisplayMember = "PrName";
             comboBox_Syouhin_Namae.ValueMember = "PrID";
-            comboBox_Syouhin_Namae.DataSource=productDataAccess.GetProductData();
-            comboBox_Syouhin_Namae.DropDownStyle=ComboBoxStyle.DropDownList;
-            comboBox_Syouhin_Namae.SelectedIndex=-1;
+            comboBox_Syouhin_Namae.DataSource = productDataAccess.GetProductData();
+            comboBox_Syouhin_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Syouhin_Namae.SelectedIndex = -1;
 
             //日付を現在の日付にする
             dateTimePicker1.Value = DateTime.Now;
@@ -141,5 +141,40 @@ namespace SalesManagement_SysDev
             //SetCtrlFormat();
         }
 
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayHattyu();
+        }
+
+        private void ListDisplayHattyu()
+        {
+            List<DispHattyuDTO> hattyu= new List<DispHattyuDTO>();
+            List<DispHattyuDTO> sortedhattyu = new List<DispHattyuDTO>();
+
+            hattyu = GetTableData();
+
+            sortedhattyu = SortHattyuData(hattyu);
+
+            SetDataGridView(sortedhattyu);
+
+        }
+
+        private List<DispHattyuDTO> GetTableData()
+        {
+            List<DispHattyuDTO> hattyu = new List<DispHattyuDTO>();
+
+            HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
+
+            hattyu=hattyuDataAccess.GetHattyuData();
+
+            return hattyu;
+        }
+
+        private List<DispHattyuDTO> SortHattyuData(List<DispHattyuDTO> dispHattyus)
+        {
+            dispHattyus.OrderBy(x => x.HaID);
+            return dispHattyus;
+        }
     }
+
 }

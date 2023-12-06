@@ -157,5 +157,40 @@ namespace SalesManagement_SysDev
             //SetCtrlFormat();
         }
 
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplaySale();
+        }
+
+        private void ListDisplaySale()
+        {
+            List<DispSaleDTO> sale = new List<DispSaleDTO>();
+            List<DispSaleDTO> sortedsale = new List<DispSaleDTO>();
+
+            sale = GetTableData();
+
+            sortedsale = SortSaleData(sale);
+
+            SetDataGridView(sortedsale);
+        }
+
+        private List<DispSaleDTO> GetTableData()
+        {
+            List<DispSaleDTO> sale = new List<DispSaleDTO>();
+
+            SaleDataAccess saleacsess= new SaleDataAccess();
+
+            sale = saleacsess.GetSaleData();
+
+            return sale;
+        }
+
+        private List<DispSaleDTO> SortSaleData (List<DispSaleDTO> dispSales)
+
+        {
+            dispSales.OrderBy(x => x.SaID);
+            return dispSales;
+
+        }
     }
 }
