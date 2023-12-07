@@ -246,6 +246,7 @@
             this.button_Kuria.TabIndex = 43;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
+            this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
             // 
             // button_Sakuzyo
             // 
@@ -285,6 +286,7 @@
             this.button_Itirannhyouzi.TabIndex = 40;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
+            this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
             // 
             // Uriage
             // 
