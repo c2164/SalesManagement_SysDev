@@ -1,5 +1,6 @@
 ﻿using SalesManagement_SysDev.Entity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,11 +65,11 @@ namespace SalesManagement_SysDev.Common
                          on Product.MaID equals Maker.MaID
 
                          where
-                         Stock.StID.ToString().Contains(dispStockDTO.StID) && //在庫ID
+                         (dispStockDTO.StID.Equals("") ? true :
+                         Stock.StID.ToString().Equals(dispStockDTO.StID)) && //在庫ID
                          Maker.MaName.Contains(dispStockDTO.MaName) && //メーカー名
-                         Product.PrName.Contains(dispStockDTO.PrName) && //商品名
-                         ((dispStockDTO.StQuantity == "") ? true :
-                         Stock.StQuantity == int.Parse(dispStockDTO.PrID)) //在庫数
+                         Product.PrName.Contains(dispStockDTO.PrName) &&//商品名
+                         Stock.StFlag == 0 //在庫管理フラグ
                          select new DispStockDTO
                          {
                              StID = Stock.StID.ToString(),

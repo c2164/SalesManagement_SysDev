@@ -70,16 +70,18 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[2].Width = 80;
+            //メーカーID(非表示)
+            dataGridView1.Columns[3].Visible = false;
             //メーカー名
-            dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[3].Width = 80;
-            //在庫数
             dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 50;
+            dataGridView1.Columns[4].Width = 80;
+            //在庫数
+            dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[5].Width = 50;
             //在庫管理フラグ(非表示)
-            dataGridView1.Columns[5].Visible = false;
+            dataGridView1.Columns[6].Visible = false;
         }
 
         private void SetCtrlFormat()
@@ -155,5 +157,57 @@ namespace SalesManagement_SysDev
             return dispStocks;
 
         }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectStock();
+        }
+
+        private void SelectStock()
+        {
+            //変数の宣言
+            DispStockDTO stockDTO = new DispStockDTO();
+            List<DispStockDTO> DisplayStock = new List<DispStockDTO>();
+
+            //データの読み取り
+            stockDTO = GetStockInf();
+            //データの検索
+            DisplayStock = SelectStockInf(stockDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayStock);
+        }
+
+        private DispStockDTO GetStockInf()
+        {
+            //変数の宣言
+            DispStockDTO retStockDTO = new DispStockDTO();
+
+            //各コントロールから在庫情報を読み取る
+            retStockDTO.StID = textBox_Zaiko_ID.Text.Trim();
+            if(!(comboBox_Meka_Namae.SelectedIndex == -1))
+                retStockDTO.MaID= comboBox_Meka_Namae.SelectedValue.ToString();
+            retStockDTO.MaName = comboBox_Meka_Namae.Text.Trim();
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retStockDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+                retStockDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
+            retStockDTO.StQuantity = domainUpDown_Zaikosuu.Value.ToString();
+
+            return retStockDTO;
+        }
+
+        private List<DispStockDTO> SelectStockInf(DispStockDTO stockDTO)
+        {
+            //変数の宣言
+            List<DispStockDTO> retDispStock = new List<DispStockDTO>();
+            //インスタンス化
+            StockDataAccess access = new StockDataAccess();
+
+            //在庫情報検索
+            retDispStock = access.GetStockData(stockDTO);
+            return retDispStock;
+
+        }
+
+
     }
 }

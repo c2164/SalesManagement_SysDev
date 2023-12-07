@@ -69,6 +69,7 @@
             this.button_Kensaku.TabIndex = 1;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
+            this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
             // 
             // button_Itirannhyouzi
             // 
@@ -113,7 +114,7 @@
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
             this.label1.Location = new System.Drawing.Point(49, 231);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 41);
+            this.label1.Size = new System.Drawing.Size(136, 41);
             this.label1.TabIndex = 5;
             this.label1.Text = "在庫ID";
             // 
