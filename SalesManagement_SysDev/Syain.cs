@@ -202,6 +202,7 @@ namespace SalesManagement_SysDev
             retEmployeeDTO.EmID = textBox_Syain_ID.Text.Trim();
             if(!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retEmployeeDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
+            　　retEmployeeDTO.SoName = comboBox_Eigyousyo.Text.Trim();
             retEmployeeDTO.PoName = textBox_Yakusyoku.Text.Trim();
             retEmployeeDTO.EmHiredate = dateTimePicker1.Value;
             retEmployeeDTO.EmPhone = textBox_Dennwa.Text.Trim();
