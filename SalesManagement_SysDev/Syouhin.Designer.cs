@@ -113,6 +113,7 @@
             this.button_Itiran.TabIndex = 3;
             this.button_Itiran.Text = "📖一覧表示";
             this.button_Itiran.UseVisualStyleBackColor = false;
+            this.button_Itiran.Click += new System.EventHandler(this.button_Itiran_Click);
             // 
             // button_Sakujyo
             // 
