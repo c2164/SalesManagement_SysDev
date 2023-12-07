@@ -127,7 +127,7 @@ namespace SalesManagement_SysDev.Common
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             return null;
-        
+
         }
 
         public List<DispArrivalDTO> GetArrivalData()
