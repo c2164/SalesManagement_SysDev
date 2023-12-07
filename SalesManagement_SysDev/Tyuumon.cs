@@ -201,7 +201,7 @@ namespace SalesManagement_SysDev
         private List<DispChumonDTO> GetTableDate()
         {
             //変数の宣言
-            List<DispChumonDTO> chumon= new List<DispChumonDTO>();
+            List<DispChumonDTO> chumon = new List<DispChumonDTO>();
 
             //インスタンス化
             ChumonDataAccess chAccess = new ChumonDataAccess();
@@ -217,6 +217,77 @@ namespace SalesManagement_SysDev
             //並び変え(昇順)
             dispchumons.OrderBy(x => x.ChID);
             return dispchumons;
+        }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectChumon();
+        }
+
+        private void SelectChumon()
+        {
+            //変数の宣言
+            DispChumonDTO chumonDTO = new DispChumonDTO();
+            List<DispChumonDTO> DisplayChumon = new List<DispChumonDTO>();
+
+            //データの読み取り
+            chumonDTO = GetChumonInf();
+
+            //データの検索
+            DisplayChumon = SelectChumonInf(chumonDTO);
+
+            //データグリッドビューに表示
+            SetDataGridView(DisplayChumon);
+        }
+
+        private DispChumonDTO GetChumonInf()
+        {
+            //変数の宣言
+            DispChumonDTO retChumonDTO = new DispChumonDTO();
+
+            //各コントロールから情報を読み取る
+            retChumonDTO.ChID = textbox_Tyuumon_ID.Text.Trim();//注文ID
+
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retChumonDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();//商品ID
+
+            retChumonDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
+
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1))
+                retChumonDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID
+
+            retChumonDTO.SoName = comboBox_Eigyousyo.Text;//営業所名
+
+            retChumonDTO.ChDetailID = textbox_Tyuumonsyousai_ID.Text.Trim();//注文詳細ID
+
+            retChumonDTO.OrID = textbox_Tyuumonsyousai_ID.Text.Trim();//受注ID
+
+            retChumonDTO.ClName = textbox_Kokyaku_Namae.Text.Trim();//顧客名
+
+            if (!(comboBox_Syain_Namae.SelectedIndex == -1))
+                retChumonDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();//社員ID
+
+            retChumonDTO.EmName = comboBox_Syain_Namae.Text.Trim();//社員名
+
+            //retChumonDTO.ChDate = dateTimePicker_Tyuumon_Nenngetu.Value;//注文年月日
+
+            retChumonDTO.ChQuantity = numericUPDown_Syouhin_Namae.Value.ToString();//数量
+
+            return retChumonDTO;
+        }
+
+        private List<DispChumonDTO> SelectChumonInf(DispChumonDTO ChumonDTO)
+        {
+            //変数の宣言
+            List<DispChumonDTO> retDispChumon = new List<DispChumonDTO>();
+
+            //インスタンス化
+            ChumonDataAccess access = new ChumonDataAccess();
+
+            //注文情報検索
+            retDispChumon = access.GetChumonData(ChumonDTO);
+
+            return retDispChumon;
         }
     }
 }
