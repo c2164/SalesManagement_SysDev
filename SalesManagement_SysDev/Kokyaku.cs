@@ -155,14 +155,19 @@ namespace SalesManagement_SysDev
 
         private DispClientDTO GetClientInf()
         {
+            //変数の宣言
             DispClientDTO retDispClient = new DispClientDTO();
-            retDispClient.ClID = textBox_Kokyaku_ID.Text;
-            retDispClient.ClName = textBox_Kokyaku_Namae.Text;
-            retDispClient.ClPostal = textBox_Yuubin.Text;
-            retDispClient.ClPhone = textBox_Dennwa.Text;
-            retDispClient.ClFAX = textBox_FAX.Text;
-            retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
-            retDispClient.SoName = comboBox_Eigyousyo.Text;
+
+            //各コントロールから顧客情報を読み取る
+            retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();
+            retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();
+            retDispClient.ClPostal = textBox_Yuubin.Text.Trim();
+            retDispClient.ClPhone = textBox_Dennwa.Text.Trim();
+            retDispClient.ClFAX = textBox_FAX.Text.Trim();
+            retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1))
+                retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
+            retDispClient.SoName = comboBox_Eigyousyo.Text.Trim();
 
             return retDispClient;
         }
@@ -298,7 +303,7 @@ namespace SalesManagement_SysDev
             //データベースからデータを取得
             client = ClAccess.GetClientData();
 
-
+            
             return client;
         }
 
@@ -307,7 +312,39 @@ namespace SalesManagement_SysDev
             //並び替え(昇順)
             dispClients.OrderBy(x => x.ClID);
             return dispClients;
-
         }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectClient();
+        }
+
+        private void SelectClient()
+        {
+            //変数の宣言
+            DispClientDTO clientDTO = new DispClientDTO();
+            List<DispClientDTO>　DisplayClient = new List<DispClientDTO>();
+
+            //データの読み取り
+            clientDTO = GetClientInf();
+            //データの検索
+            DisplayClient = SelectClientInf(clientDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayClient);
+        }
+
+        private List<DispClientDTO> SelectClientInf(DispClientDTO clientDTO)
+        {
+            //変数の宣言
+            List<DispClientDTO> retDispClient = new List<DispClientDTO>();
+            //インスタンス化
+            ClientDataAccess access = new ClientDataAccess();
+            
+            //顧客情報検索
+            retDispClient = access.GetClientData(clientDTO);
+            return retDispClient;
+        }
+
+
     }
 }

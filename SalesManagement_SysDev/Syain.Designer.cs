@@ -45,12 +45,12 @@
             this.textBox_Syain_Namae = new System.Windows.Forms.TextBox();
             this.textBox_Syain_ID = new System.Windows.Forms.TextBox();
             this.textBox_Yakusyoku = new System.Windows.Forms.TextBox();
-            this.textBox_Syain_Nenngetu = new System.Windows.Forms.TextBox();
             this.textBox_Dennwa = new System.Windows.Forms.TextBox();
             this.textBox_FAX = new System.Windows.Forms.TextBox();
             this.textBox_Pass = new System.Windows.Forms.TextBox();
             this.comboBox_Eigyousyo = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,6 +89,7 @@
             this.button_Kensaku.TabIndex = 2;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
+            this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
             // 
             // button_Itirannhyouzi
             // 
@@ -229,13 +230,6 @@
             this.textBox_Yakusyoku.Size = new System.Drawing.Size(251, 31);
             this.textBox_Yakusyoku.TabIndex = 16;
             // 
-            // textBox_Syain_Nenngetu
-            // 
-            this.textBox_Syain_Nenngetu.Location = new System.Drawing.Point(749, 296);
-            this.textBox_Syain_Nenngetu.Name = "textBox_Syain_Nenngetu";
-            this.textBox_Syain_Nenngetu.Size = new System.Drawing.Size(766, 31);
-            this.textBox_Syain_Nenngetu.TabIndex = 17;
-            // 
             // textBox_Dennwa
             // 
             this.textBox_Dennwa.Location = new System.Drawing.Point(240, 416);
@@ -275,17 +269,24 @@
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
             this.dataGridView1.TabIndex = 22;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(749, 298);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 31);
+            this.dateTimePicker1.TabIndex = 23;
+            // 
             // Syain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(235)))), ((int)(((byte)(196)))));
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox_Eigyousyo);
             this.Controls.Add(this.textBox_Pass);
             this.Controls.Add(this.textBox_FAX);
             this.Controls.Add(this.textBox_Dennwa);
-            this.Controls.Add(this.textBox_Syain_Nenngetu);
             this.Controls.Add(this.textBox_Yakusyoku);
             this.Controls.Add(this.textBox_Syain_ID);
             this.Controls.Add(this.textBox_Syain_Namae);
@@ -331,11 +332,11 @@
         private System.Windows.Forms.TextBox textBox_Syain_Namae;
         private System.Windows.Forms.TextBox textBox_Syain_ID;
         private System.Windows.Forms.TextBox textBox_Yakusyoku;
-        private System.Windows.Forms.TextBox textBox_Syain_Nenngetu;
         private System.Windows.Forms.TextBox textBox_Dennwa;
         private System.Windows.Forms.TextBox textBox_FAX;
         private System.Windows.Forms.TextBox textBox_Pass;
         private System.Windows.Forms.ComboBox comboBox_Eigyousyo;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

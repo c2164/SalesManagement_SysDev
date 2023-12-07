@@ -108,7 +108,6 @@ namespace SalesManagement_SysDev
             textBox_Syain_Namae.Text = "";
             textBox_Syain_ID.Text = "";
             textBox_Yakusyoku.Text = "";
-            textBox_Syain_Nenngetu.Text = "";
             textBox_Dennwa.Text = "";
             textBox_FAX.Text = "";
             textBox_Pass.Text = "";
@@ -119,6 +118,9 @@ namespace SalesManagement_SysDev
             comboBox_Eigyousyo.DataSource = salesofficeDateAccess.GetSalesOfficeData();
             comboBox_Eigyousyo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Eigyousyo.SelectedIndex = -1;
+
+            //日付を現在の日付にする
+            dateTimePicker1.Value = DateTime.Now;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
@@ -170,5 +172,57 @@ namespace SalesManagement_SysDev
             return dispEmployees;
 
         }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectEmployee();
+        }
+
+        private void SelectEmployee()
+        {
+            //変数の宣言
+            DispEmplyeeDTO employeeDTO = new DispEmplyeeDTO();
+            List<DispEmplyeeDTO> DisplayEmployee = new List<DispEmplyeeDTO>();
+
+            //データの読み取り
+            employeeDTO = GetEmployeeInf();
+            //データの検索
+            DisplayEmployee = SelectEmployeeInf(employeeDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayEmployee);
+        }
+
+        private DispEmplyeeDTO GetEmployeeInf()
+        {
+            //変数の宣言
+            DispEmplyeeDTO retEmployeeDTO = new DispEmplyeeDTO();
+
+            //各コントロールから社員情報を読み取る
+            retEmployeeDTO.EmName = textBox_Syain_Namae.Text.Trim();
+            retEmployeeDTO.EmID = textBox_Syain_ID.Text.Trim();
+            if(!(comboBox_Eigyousyo.SelectedIndex == -1))
+                retEmployeeDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
+            retEmployeeDTO.PoName = textBox_Yakusyoku.Text.Trim();
+            retEmployeeDTO.EmHiredate = dateTimePicker1.Value;
+            retEmployeeDTO.EmPhone = textBox_Dennwa.Text.Trim();
+            //Fax削除予定
+            retEmployeeDTO.EmPassword = textBox_Pass.Text.Trim();
+
+            return retEmployeeDTO;
+        }
+
+        private List<DispEmplyeeDTO> SelectEmployeeInf(DispEmplyeeDTO employeeDTO)
+        {
+            //変数の宣言
+            List<DispEmplyeeDTO> retDispEmployee = new List<DispEmplyeeDTO>();
+            //インスタンス化
+            EmployeeDataAccess access = new EmployeeDataAccess();
+
+            //社員情報検索
+            retDispEmployee = access.GetEmployeeData(employeeDTO);
+            return retDispEmployee;
+
+        }
+
     }
 }
