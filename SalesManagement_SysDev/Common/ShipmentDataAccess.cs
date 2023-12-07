@@ -83,19 +83,17 @@ namespace SalesManagement_SysDev.Common
                          on Product.MaID equals Maker.MaID
                          where
                          Client.ClName.Contains(dispShipmentDTO.ClName) && //顧客名
-                         ((dispShipmentDTO.ShID == "")? true:
-                         Shipment.ShID == int.Parse(dispShipmentDTO.ShID)) && //出荷ID
+                         Shipment.ShID.ToString().Contains(dispShipmentDTO.ShID) && //出荷ID
                          SalesOffice.SoName.Contains(dispShipmentDTO.SoName) && //営業所名
                          ArrivalEmployee.EmName.Contains(dispShipmentDTO.ArrivalEmName) && //入荷社員名
-                         ((dispShipmentDTO.OrID == "") ? true :
-                         Shipment.OrID == int.Parse(dispShipmentDTO.OrID)) && //受注ID
+                         Shipment.OrID.ToString().Contains(dispShipmentDTO.OrID) && //受注ID
                          Product.PrName.Contains(dispShipmentDTO.PrName) && //商品名
                          Employee.EmID.ToString().Contains(dispShipmentDTO.ConfEmName) && //確定社員名
-                         ((dispShipmentDTO.ShDetailID == "") ? true : 
-                         ShipmentDetail.ShDetailID == int.Parse(dispShipmentDTO.ShDetailID)) && //出荷詳細ID
+                         ShipmentDetail.ShDetailID.ToString().Contains(dispShipmentDTO.ShDetailID) && //出荷詳細ID
                          Maker.MaName.Contains(dispShipmentDTO.MaName) && //メーカー名
-                         ShipmentDetail.ShDetailID.ToString().Contains(dispShipmentDTO.ArQuantity) && //数量
-                         Shipment.ShStateFlag == int.Parse(dispShipmentDTO.ShStateFlag) &&//出荷状態フラグ
+                         ShipmentDetail.ShQuantity.ToString().Contains(dispShipmentDTO.ArQuantity)  &&//数量
+                         dispShipmentDTO.ShStateFlag.Contains("2") ? true:
+                         Shipment.ShStateFlag.ToString() == dispShipmentDTO.ShStateFlag &&//出荷状態フラグ
                          Shipment.ShFlag == 0 //非表示フラグ
 
 
