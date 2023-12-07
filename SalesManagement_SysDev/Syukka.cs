@@ -217,7 +217,65 @@ namespace SalesManagement_SysDev
 
         private void button_Kensaku_Click(object sender, EventArgs e)
         {
-
+            SelectShipment();
         }
+
+        private void SelectShipment()
+        {
+            //変数の宣言
+            DispShipmentDTO shipmentDTO = new DispShipmentDTO();
+            List<DispShipmentDTO> DisplayShipment = new List<DispShipmentDTO>();
+
+            //データの読み取り
+            shipmentDTO = GetShipmentInf();
+            //データの検索
+            DisplayShipment = SelectShipmentInf(shipmentDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayShipment);
+        }
+
+        private DispShipmentDTO GetShipmentInf()
+        {
+            //変数の宣言
+            DispShipmentDTO retShipmentDTO = new DispShipmentDTO();
+
+            //各コントロールから商品情報を読み取る
+            retShipmentDTO.ShID = textBox_Syukka_ID.Text.Trim(); //出荷ID
+            retShipmentDTO.ClName = textBox_Kokyaku_Namae.Text.Trim(); //顧客名
+            retShipmentDTO.ArrivalEmName = textBox_Nyuuka_Syain_Namae.Text.Trim(); //入荷社員名
+            retShipmentDTO.ConfEmName = textBox_Kakutei_Syain_Namae.Text.Trim(); //確定社員名
+            retShipmentDTO.ShDetailID = textBox_Syukkasyousai_ID.Text.Trim(); //出荷詳細ID
+            retShipmentDTO.OrID = textBox_Zyutyuu_ID.Text.Trim(); //受注ID
+            retShipmentDTO.ArQuantity = numericUpDown_Suuryou.Value.ToString(); //数量
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1)) //営業所
+                retShipmentDTO.OrID = comboBox_Eigyousyo.SelectedValue.ToString();
+            retShipmentDTO.SoName = comboBox_Eigyousyo.Text.Trim();
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1)) //メーカー
+                retShipmentDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+            retShipmentDTO.MaName = comboBox_Meka_Namae.Text.Trim();
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1)) //商品
+                retShipmentDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+            retShipmentDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
+            if (radioButton_Mikakutei.Checked) //出荷状態フラグ
+                retShipmentDTO.ShStateFlag = "0";
+            else if (radioButton_Kakutei.Checked)
+                retShipmentDTO.ShStateFlag = "1";
+            else
+                retShipmentDTO.ShStateFlag = "2";
+            return retShipmentDTO;
+        }
+
+        private List<DispShipmentDTO> SelectShipmentInf(DispShipmentDTO shipomentDTO)
+        {
+            //変数の宣言
+            List<DispShipmentDTO> retDispShipment = new List<DispShipmentDTO>();
+            //インスタンス化
+            ShipmentDataAccess access = new ShipmentDataAccess();
+
+            //顧客情報検索
+            retDispShipment = access.GetShipmentData(shipomentDTO);
+            return retDispShipment;
+        }
+
     }
 }
