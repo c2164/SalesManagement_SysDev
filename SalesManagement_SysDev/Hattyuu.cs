@@ -137,8 +137,8 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
-            //SetCtrlFormat();
+            GetSelectData();
+            SetCtrlFormat();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
