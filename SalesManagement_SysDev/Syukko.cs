@@ -175,7 +175,7 @@ namespace SalesManagement_SysDev
             //非表示理由(非表示)
             dataGridView1.Columns[21].Visible = false;
 
-        } 
+        }
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
@@ -227,5 +227,66 @@ namespace SalesManagement_SysDev
             dispSyukkos.OrderBy(x => x.SyID);
             return dispSyukkos;
         }
+
+        private void button_Kennsaku_Click(object sender, EventArgs e)
+        {
+            SelectSyukko();
+        }
+
+        private void SelectSyukko()
+        {
+
+            //変数の宣言
+            DispSyukkoDTO syukkoDTO = new DispSyukkoDTO();
+            List<DispSyukkoDTO> DisplaySyukko = new List<DispSyukkoDTO>();
+
+            //データ読み取り
+            syukkoDTO = GetSyukkoInf();
+            //データの検索
+            DisplaySyukko = SelectSyukkoInf(syukkoDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplaySyukko);
+        }
+
+
+        private DispSyukkoDTO GetSyukkoInf()
+        {
+            //変数の宣言
+            DispSyukkoDTO retSyukkoDTO = new DispSyukkoDTO();
+
+            //各コントロールから出庫情報を読み取る
+            retSyukkoDTO.SyID = numericUpDown_Syukko_ID.Value.ToString();
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1))
+                retSyukkoDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
+            retSyukkoDTO.ChumonEmID = textBox_Syain.Text.Trim();
+            if (!(comboBox_Kokyaku.SelectedIndex == -1))
+                retSyukkoDTO.ClName = comboBox_Kokyaku.SelectedValue.ToString();
+            retSyukkoDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();
+            retSyukkoDTO.ConfEmID = textBox_Kakutei_Syain_Namae.Text.Trim();
+            retSyukkoDTO.SyDetailID = textBox_Syukkosyousai_ID.Text.Trim();
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1))
+                retSyukkoDTO.MaName = comboBox_Meka_Namae.SelectedValue.ToString();
+            if (!(comboBoxSyouhin_Namae.SelectedIndex == -1))
+                retSyukkoDTO.PrName = comboBoxSyouhin_Namae.SelectedValue.ToString();
+            retSyukkoDTO.SyQuantity = domainUpDown_Suuryou.Value.ToString();
+           
+            
+            return retSyukkoDTO;
+        }
+
+        private List<DispSyukkoDTO> SelectSyukkoInf (DispSyukkoDTO syukkoDTO)
+        {
+            //変数の宣言
+            List<DispSyukkoDTO> retDispSyukko = new List<DispSyukkoDTO>();
+            //インスタンス化
+            SyukkoDataAccess access = new SyukkoDataAccess();
+            //出庫情報検索
+            retDispSyukko = access.GetSyukkoData(syukkoDTO);
+            return retDispSyukko;
+
+
+
+        }
+        
     }
 }
