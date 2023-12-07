@@ -1,7 +1,9 @@
 ﻿using SalesManagement_SysDev.Entity;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,7 +20,14 @@ namespace SalesManagement_SysDev.Common
             {
                 try
                 {
-                    context.T_Orders.Add(RegOrder);
+                    int OrID = RegOrder.OrID;
+                    if (!context.T_Orders.Any(x => x.OrID == OrID))
+                    {
+                        context.T_Orders.Add(RegOrder);
+                        context.SaveChanges();
+                        OrID = context.T_Orders.Max(x => x.OrID);
+                    }
+                    RegOrderDetail.OrID = OrID;
                     context.T_OrderDetails.Add(RegOrderDetail);
                     context.SaveChanges();
                     return true;
@@ -80,12 +89,13 @@ namespace SalesManagement_SysDev.Common
 
                          Order.ClCharge.Contains(dispOrderDTO.ClCharge) &&//顧客担当社員名
                          Employee.EmName.Contains(dispOrderDTO.EmName) &&//社員名
-                         Order.OrID.ToString().Contains(dispOrderDTO.OrID) &&//受注ID                                   
-                         OrderDetail.OrDetailID.ToString().Contains(dispOrderDTO.OrDetailID) &&//受注詳細ID
+                         (dispOrderDTO.OrID.Equals("") ? true:
+                         Order.OrID.ToString().Contains(dispOrderDTO.OrID)) &&//受注ID
+                         (dispOrderDTO.OrDetailID.Equals("") ? true:
+                         OrderDetail.OrDetailID.ToString().Equals(dispOrderDTO.OrDetailID)) &&//受注詳細ID
                          Maker.MaName.Contains(dispOrderDTO.MaName) && //メーカー名
                          Maker.MaName.Contains(dispOrderDTO.MaName) && // 営業所
                          Product.PrName.Contains(dispOrderDTO.PrName) && //商品名
-                         OrderDetail.OrQuantity.ToString().Contains(dispOrderDTO.OrQuantity) &&//数量
 
 
 
@@ -100,11 +110,20 @@ namespace SalesManagement_SysDev.Common
                              OrDetailID = OrderDetail.OrDetailID.ToString(),
                              SoName = SalesOffice.SoName,
                              PrName = Product.PrName,
+                             OrTotalPrice = (Order.OrStateFlag == 0 ? context.M_Products.FirstOrDefault(x => x.PrID == OrderDetail.PrID).Price * OrderDetail.OrQuantity :
+                             OrderDetail.OrTotalPrice).ToString().Replace("0.00", ""),
                              OrQuantity = OrderDetail.OrQuantity.ToString(),
                              MaName = Maker.MaName.ToString(),
                              Price = Product.Price.ToString(),
                          };
 
+       
+                
+                
+                
+                
+                
+                
                 return tb.ToList();
             }
             catch (Exception ex)
@@ -121,6 +140,7 @@ namespace SalesManagement_SysDev.Common
             var context = new SalesManagement_DevContext();
             try
             {
+
                 //「T_Order」テーブルから「M_SalesOffice」「M_Client」「Employee」を参照
                 var tb = from Order in context.T_Orders
                          join SalesOffice in context.M_SalesOffices
@@ -149,7 +169,8 @@ namespace SalesManagement_SysDev.Common
                              SoName = SalesOffice.SoName,
                              PrName = Product.PrName,
                              OrQuantity = OrderDetail.OrQuantity.ToString(),
-                             OrTotalPrice = OrderDetail.OrTotalPrice.ToString(),
+                             OrTotalPrice = (Order.OrStateFlag == 0 ? context.M_Products.FirstOrDefault(x => x.PrID == OrderDetail.PrID).Price * OrderDetail.OrQuantity :
+                             OrderDetail.OrTotalPrice).ToString().Replace("0.00", ""),
                              OrDate = Order.OrDate,
                              OrStateFlag = Order.OrStateFlag.ToString(),
                              MaName = Maker.MaName.ToString(),
