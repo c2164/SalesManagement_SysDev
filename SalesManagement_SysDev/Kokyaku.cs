@@ -364,5 +364,10 @@ namespace SalesManagement_SysDev
             ClID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return ClID;
         }
+        private void button_Kousin_Click(object sender, EventArgs e)
+        {
+            ListDisplayClient();
+        }
+
     }
 }

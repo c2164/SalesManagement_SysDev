@@ -312,8 +312,8 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(946, 256);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Location = new System.Drawing.Point(1596, 443);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(215, 25);
             this.dateTimePicker1.TabIndex = 25;
@@ -400,7 +400,7 @@
             this.Controls.Add(this.button_Touroku);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Syouhin";
-            this.Size = new System.Drawing.Size(1238, 656);
+            this.Size = new System.Drawing.Size(1580, 861);
             this.Load += new System.EventHandler(this.Syouhin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
