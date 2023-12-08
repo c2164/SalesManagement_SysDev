@@ -505,7 +505,7 @@ namespace SalesManagement_SysDev
         private void RemoveOrder()
         {
             //変数の宣言
-            string OrID,Ordetail;
+            string OrID;
             T_Order Order = new T_Order();
             T_OrderDetail OrderDetail = new T_OrderDetail();
 
@@ -518,14 +518,14 @@ namespace SalesManagement_SysDev
 
 
             //取得した受注IDでデータベースを検索する
-            Order = SelectRemoveOrder(OrID);
+            Order = SelectRemoveOrder(OrID, out OrderDetail);
             if (Order == null)
             {
                 return;
             }
 
             //受注フラグを0から2へ変更する
-            UpdateOrFlag(Order,OrderDetail);
+            UpdateOrFlag(Order, OrderDetail);
         }
 
         private string GetOrderRecord()
@@ -543,12 +543,13 @@ namespace SalesManagement_SysDev
             return retOrID;
         }
 
-        private T_Order SelectRemoveOrder(string OrID)
+        private T_Order SelectRemoveOrder(string OrID, out T_OrderDetail orderDetail)
         {
             //変数の宣言
             T_Order retorder = new T_Order();
             DispOrderDTO dispOrderDTO = new DispOrderDTO();
             List<DispOrderDTO> dispOrders = new List<DispOrderDTO>();
+            orderDetail = null;
 
             //データベースからデータを取得する
             dispOrders = GetTableData();
@@ -559,10 +560,11 @@ namespace SalesManagement_SysDev
             }
 
             //Listの中を受けとった受注IDで検索
-            dispOrderDTO = dispOrders.Single(x => x.OrID == OrID);
+            dispOrderDTO = dispOrders.First(x => x.OrID == OrID);
 
             //検索結果を返却用にする
             retorder = FormalizationOrderInputRecord(dispOrderDTO);
+            orderDetail = FormalizationOrderDetailRecord(dispOrderDTO);
 
             return retorder;
         }
@@ -584,7 +586,20 @@ namespace SalesManagement_SysDev
             return retorder;
         }
 
-        private void UpdateOrFlag(T_Order order,T_OrderDetail orderDetail)
+        private T_OrderDetail FormalizationOrderDetailRecord(DispOrderDTO dispOrderDTO)
+        {
+            T_OrderDetail retorderDetail = new T_OrderDetail();
+
+            retorderDetail.OrDetailID = int.Parse(dispOrderDTO.OrDetailID);
+            retorderDetail.OrID = int.Parse(dispOrderDTO.OrID);
+            retorderDetail.PrID = int.Parse(dispOrderDTO.PrID);
+            retorderDetail.OrQuantity = int.Parse(dispOrderDTO.OrQuantity);
+            retorderDetail.OrTotalPrice = int.Parse(dispOrderDTO.OrTotalPrice);
+
+            return retorderDetail;
+        }
+
+        private void UpdateOrFlag(T_Order order, T_OrderDetail orderDetail)
         {
             //変数の宣言
             DialogResult result;
@@ -597,7 +612,7 @@ namespace SalesManagement_SysDev
             }
 
             //受注管理フラグの変更
-            order = ChangeOrFlag(order,orderDetail);
+            order = ChangeOrFlag(order);
             if (order == null)
             {
                 return;
@@ -607,7 +622,7 @@ namespace SalesManagement_SysDev
             UpdateOrderRecord(order, orderDetail);
         }
 
-        private T_Order ChangeOrFlag(T_Order order, T_OrderDetail orderDetail)
+        private T_Order ChangeOrFlag(T_Order order)
         {
             string Hidden;
             Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
@@ -621,16 +636,16 @@ namespace SalesManagement_SysDev
             return order;
         }
 
-        private void UpdateOrderRecord(T_Order order, T_OrderDetail orderDetail )
+        private void UpdateOrderRecord(T_Order order, T_OrderDetail orderDetail)
         {
             //変数の宣言
             bool flg;
 
             //データベース接続のインスタンス化
             OrderDataAccess access = new OrderDataAccess();
-            flg = access.UpdateOrderData(order,orderDetail);
+            flg = access.UpdateOrderData(order, orderDetail);
 
-            if (!flg) 
+            if (!flg)
             {
                 messageDsp.MessageBoxDsp_OK("非表示に失敗しました", "エラー", MessageBoxIcon.Error);
             }

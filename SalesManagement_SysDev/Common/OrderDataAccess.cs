@@ -48,23 +48,23 @@ namespace SalesManagement_SysDev.Common
                 try
                 {
                     var UpdateTarget = context.T_Orders.Single(x => x.OrID == UpOrder.OrID);
-                    var UpdateTargetDetail = context.T_OrderDetails.Single(x => x.OrDetailID == UpOrderDetail.OrID);
+                    var UpdateTargetDetail = context.T_OrderDetails.Single(x => x.OrDetailID == UpOrderDetail.OrDetailID);
 
-                    UpdateTarget.OrID= UpOrder.OrID;
-                    UpdateTarget.SoID = UpdateTarget.SoID;
-                    UpdateTarget.EmID=UpdateTarget.EmID;
-                    UpdateTarget.ClID=UpdateTarget.ClID;
-                    UpdateTarget.ClCharge=UpdateTarget.ClCharge;
-                    UpdateTarget.OrDate=UpdateTarget.OrDate;
-                    UpdateTarget.OrStateFlag=UpdateTarget.OrStateFlag;
-                    UpdateTarget.OrFlag=UpdateTarget.OrFlag;
-                    UpdateTarget.OrHidden=UpdateTarget.OrHidden;
+                    UpdateTarget.OrID = UpOrder.OrID;
+                    UpdateTarget.SoID = UpOrder.SoID;
+                    UpdateTarget.EmID = UpOrder.EmID;
+                    UpdateTarget.ClID = UpOrder.ClID;
+                    UpdateTarget.ClCharge = UpOrder.ClCharge;
+                    UpdateTarget.OrDate = UpOrder.OrDate;
+                    UpdateTarget.OrStateFlag = UpOrder.OrStateFlag;
+                    UpdateTarget.OrFlag = UpOrder.OrFlag;
+                    UpdateTarget.OrHidden = UpOrder.OrHidden;
 
-                    UpdateTargetDetail.OrDetailID=UpdateTargetDetail.OrDetailID;
-                    UpdateTargetDetail.OrID=UpdateTargetDetail.OrID;
-                    UpdateTargetDetail.PrID=UpdateTargetDetail.PrID;
-                    UpdateTargetDetail.OrQuantity=UpdateTargetDetail.OrQuantity;
-                    UpdateTargetDetail.OrTotalPrice=UpdateTargetDetail.OrTotalPrice;
+                    UpdateTargetDetail.OrDetailID = UpOrderDetail.OrDetailID;
+                    UpdateTargetDetail.OrID = UpOrderDetail.OrID;
+                    UpdateTargetDetail.PrID = UpOrderDetail.PrID;
+                    UpdateTargetDetail.OrQuantity = UpOrderDetail.OrQuantity;
+                    UpdateTargetDetail.OrTotalPrice = UpOrderDetail.OrTotalPrice;
 
                     context.SaveChanges();
                     return true;
@@ -103,9 +103,9 @@ namespace SalesManagement_SysDev.Common
 
                          Order.ClCharge.Contains(dispOrderDTO.ClCharge) &&//顧客担当社員名
                          Employee.EmName.Contains(dispOrderDTO.EmName) &&//社員名
-                         (dispOrderDTO.OrID.Equals("") ? true:
+                         (dispOrderDTO.OrID.Equals("") ? true :
                          Order.OrID.ToString().Contains(dispOrderDTO.OrID)) &&//受注ID
-                         (dispOrderDTO.OrDetailID.Equals("") ? true:
+                         (dispOrderDTO.OrDetailID.Equals("") ? true :
                          OrderDetail.OrDetailID.ToString().Equals(dispOrderDTO.OrDetailID)) &&//受注詳細ID
                          Maker.MaName.Contains(dispOrderDTO.MaName) && //メーカー名
                          Maker.MaName.Contains(dispOrderDTO.MaName) && // 営業所
@@ -113,31 +113,39 @@ namespace SalesManagement_SysDev.Common
 
 
 
-                         Product.PrFlag == 0 //非表示フラグ
+                         Order.OrFlag == 0 //非表示フラグ
 
                          select new DispOrderDTO
                          {
+                             ClID = Client.ClID.ToString(),
                              ClName = Client.ClName,
                              ClCharge = Order.ClCharge,
+                             EmID = Employee.EmID.ToString(),
                              EmName = Employee.EmName,
                              OrID = Order.OrID.ToString(),
                              OrDetailID = OrderDetail.OrDetailID.ToString(),
-                             SoName = SalesOffice.SoName,
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName.ToString(),
+                             PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
+                             OrQuantity = OrderDetail.OrQuantity.ToString(),
                              OrTotalPrice = (Order.OrStateFlag == 0 ? context.M_Products.FirstOrDefault(x => x.PrID == OrderDetail.PrID).Price * OrderDetail.OrQuantity :
                              OrderDetail.OrTotalPrice).ToString().Replace("0.00", ""),
-                             OrQuantity = OrderDetail.OrQuantity.ToString(),
+                             OrDate = Order.OrDate,
+                             OrStateFlag = Order.OrStateFlag.ToString(),
                              MaName = Maker.MaName.ToString(),
                              Price = Product.Price.ToString(),
+                             OrFlag = Order.OrFlag.ToString(),
+                             OrHidden = Order.OrHidden.ToString(),
                          };
 
-       
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
                 return tb.ToList();
             }
             catch (Exception ex)
@@ -171,16 +179,20 @@ namespace SalesManagement_SysDev.Common
                          on Product.MaID equals Maker.MaID
 
                          where
-                         Product.PrFlag == 0 //非表示フラグ
+                         Order.OrFlag == 0 //非表示フラグ
 
                          select new DispOrderDTO
                          {
+                             ClID = Client.ClID.ToString(),
                              ClName = Client.ClName,
                              ClCharge = Order.ClCharge,
+                             EmID = Employee.EmID.ToString(),
                              EmName = Employee.EmName,
                              OrID = Order.OrID.ToString(),
                              OrDetailID = OrderDetail.OrDetailID.ToString(),
-                             SoName = SalesOffice.SoName,
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName.ToString(),
+                             PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
                              OrQuantity = OrderDetail.OrQuantity.ToString(),
                              OrTotalPrice = (Order.OrStateFlag == 0 ? context.M_Products.FirstOrDefault(x => x.PrID == OrderDetail.PrID).Price * OrderDetail.OrQuantity :
@@ -189,8 +201,8 @@ namespace SalesManagement_SysDev.Common
                              OrStateFlag = Order.OrStateFlag.ToString(),
                              MaName = Maker.MaName.ToString(),
                              Price = Product.Price.ToString(),
-                             OrFlag= Order.OrFlag.ToString(),
-                             OrHidden= Order.OrHidden.ToString(),
+                             OrFlag = Order.OrFlag.ToString(),
+                             OrHidden = Order.OrHidden.ToString(),
                          };
 
                 return tb.ToList();

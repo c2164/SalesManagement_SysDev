@@ -39,7 +39,7 @@ namespace SalesManagement_SysDev.Common
                 try
                 {
                     var UpdateTarget = context.T_Chumons.Single(x => x.ChID == UpChumon.ChID);
-                    var UpdateTargetDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == UpChumonDetail.ChID);
+                    var UpdateTargetDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == UpChumonDetail.ChDetailID);
 
                     UpdateTarget.ChID = UpChumon.ChID;
                     UpdateTarget.SoID = UpChumon.SoID;
