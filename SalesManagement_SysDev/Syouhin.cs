@@ -248,5 +248,10 @@ namespace SalesManagement_SysDev
             return retDispProduct;
 
         }
+
+        private void button_Sakujyo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

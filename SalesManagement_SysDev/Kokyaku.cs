@@ -345,6 +345,14 @@ namespace SalesManagement_SysDev
             return retDispClient;
         }
 
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void button_Kousin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

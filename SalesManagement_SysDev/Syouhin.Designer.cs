@@ -122,6 +122,7 @@
             this.button_Sakujyo.TabIndex = 4;
             this.button_Sakujyo.Text = "🚮削除";
             this.button_Sakujyo.UseVisualStyleBackColor = false;
+            this.button_Sakujyo.Click += new System.EventHandler(this.button_Sakujyo_Click);
             // 
             // button_Kuria
             // 
@@ -288,7 +289,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(1230, 341);
+            this.dateTimePicker1.Location = new System.Drawing.Point(1596, 443);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(278, 31);
@@ -369,7 +370,7 @@
             this.Controls.Add(this.button_Kousin);
             this.Controls.Add(this.button_Touroku);
             this.Name = "Syouhin";
-            this.Size = new System.Drawing.Size(1610, 875);
+            this.Size = new System.Drawing.Size(1580, 861);
             this.Load += new System.EventHandler(this.Syouhin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
