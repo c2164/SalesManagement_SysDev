@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -51,7 +52,7 @@ namespace SalesManagement_SysDev
         {
             SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
             MakerDateAccess makerDateAccess = new MakerDateAccess();
-            ProductDataAccess productDataAccess = new ProductDataAccess();
+            ArraivalDataAccess ArrivalDataAccess = new ArraivalDataAccess();
             //各テキストボックスに初期化(空白)
             textBox_Kokyaku_Namae.Text = "";
             textBox_Nyuuka_ID.Text = "";
@@ -69,7 +70,7 @@ namespace SalesManagement_SysDev
 
             comboBox_Syouhin_Namae.DisplayMember = "PrName";
             comboBox_Syouhin_Namae.ValueMember = "PrID";
-            comboBox_Syouhin_Namae.DataSource = productDataAccess.GetProductData();
+            comboBox_Syouhin_Namae.DataSource = ArrivalDataAccess.GetArrivalData();
             comboBox_Syouhin_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Syouhin_Namae.SelectedIndex = -1;
 
@@ -160,25 +161,121 @@ namespace SalesManagement_SysDev
 
         }
 
-            private void button_Kuria_Click(object sender, EventArgs e)
+        private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
-            //SetCtrlFormat();
+            GetSelectData();
+            SetCtrlFormat();
         }
 
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
         {
+            ListDisplayArrival();
+        }
 
+        private void ListDisplayArrival()
+        {
+            //変数の宣言
+            List<DispArrivalDTO> Arrival = new List<DispArrivalDTO>();
+            List<DispArrivalDTO> sortedArrival = new List<DispArrivalDTO>();
+
+            //テーブルデータ受け取り
+            Arrival = GetTableData();
+
+            //昇順に並び替える
+            sortedArrival = SortArrivalData(Arrival);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedArrival);
+
+        }
+
+        private List<DispArrivalDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispArrivalDTO> Arrival = new List<DispArrivalDTO>();
+
+            //インスタンス化
+            ArraivalDataAccess ArAccess = new ArraivalDataAccess();
+
+            //データベースからデータを取得
+            Arrival = ArAccess.GetArrivalData();
+
+
+            return Arrival;
+        }
+
+        private List<DispArrivalDTO> SortArrivalData(List<DispArrivalDTO> dispArrivals)
+        {
+            //並び替え(昇順)
+            dispArrivals.OrderBy(x => x.ArID);
+            return dispArrivals;
         }
 
         private void button_Kensaku_Click(object sender, EventArgs e)
         {
+            SelectArrival();
+        }
+        private void SelectArrival()
+        {
+            //変数の宣言
+            DispArrivalDTO ArrivalDTO = new DispArrivalDTO();
+            List<DispArrivalDTO> DisplayArrival = new List<DispArrivalDTO>();
+            //データの読み取り
+            ArrivalDTO = GetArrivalInf();
+            //データの検索
+            DisplayArrival = SelectArrivalInf(ArrivalDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayArrival);
+        }
+
+        private DispArrivalDTO GetArrivalInf()
+        {
+            //変数の宣言
+            DispArrivalDTO retArrivalDTO = new DispArrivalDTO();
+
+            //各コントロールから入荷情報を読み取る
+            retArrivalDTO.ClName = textBox_Kokyaku_Namae.Text.Trim();
+            retArrivalDTO.ArID = textBox_Nyuuka_ID.Text.Trim();
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1))
+                retArrivalDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
+            retArrivalDTO.SoName = comboBox_Eigyousyo.Text.Trim();
+            retArrivalDTO.ArrivalEmName = textBox_Nyuuka_Syain_Namae.Text.Trim();
+            retArrivalDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retArrivalDTO.PrName = comboBox_Syouhin_Namae.SelectedIndex.ToString();
+            retArrivalDTO.ConfEmName = textBox_Kakutei_Syain_Namae.Text.Trim();
+            retArrivalDTO.ArID = textBox_Nyuukasyousai_ID.Text.Trim();
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1))
+                retArrivalDTO.MaName = comboBox_Meka_Namae.Text.Trim();
+            retArrivalDTO. ArQuantity = numericUpDown_Suuryou.Text.Trim();
+
+            return retArrivalDTO;
+        }
+        private List<DispArrivalDTO> SelectArrivalInf(DispArrivalDTO ArrivalDTO)
+        {
+            //変数の宣言
+            List<DispArrivalDTO> retDispArrival = new List<DispArrivalDTO>();
+            //インスタンス化
+            ArraivalDataAccess access = new ArraivalDataAccess();
+
+            //商品情報検索
+            retDispArrival = access.GetArrivalData(ArrivalDTO);
+            return retDispArrival;
 
         }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveArrival();
+        }
+        private void RemoveArrival()
+        {
+            //変数の宣言
 
 
 
         }
     }
+}
 
