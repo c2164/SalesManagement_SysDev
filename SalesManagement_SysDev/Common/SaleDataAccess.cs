@@ -35,12 +35,24 @@ namespace SalesManagement_SysDev.Common
                 {
                     try
                     {
-                        var UpdateTarget = context.T_Sale.Single(x => x.SaID == UpSale.SaID);
-                        var UpdateTargetDetail = context.T_SaleDetails.Single(x => UpSale.SaID == UpSale.SaID);
-                        UpdateTarget = UpSale;
-                        UpdateTargetDetail = UpSaleDetail;
+                    var UpdateTarget = context.T_Sale.Single(x => x.SaID == UpSale.SaID);
+                    UpdateTarget.SaID = UpSale.SaID;
+                    UpdateTarget.ClID = UpSale.ClID;
+                    UpdateTarget.SoID = UpSale.SoID;
+                    UpdateTarget.EmID = UpSale.EmID;
+                    UpdateTarget.ChID = UpSale.ChID;
+                    UpdateTarget.SaDate= UpSale.SaDate;
+                    UpdateTarget.SaHidden = UpSale.SaHidden;
+                    UpdateTarget.SaFlag = UpSale.SaFlag;
 
-                        context.SaveChanges();
+                    var UpdateTarget2 = context.T_SaleDetails.Single(x => x.SaID == UpSale.SaID);
+                    UpdateTarget2.SaDetailID=UpSaleDetail.SaDetailID;
+                    UpdateTarget2.SaID = UpSaleDetail.SaID;
+                    UpdateTarget2.PrID = UpSaleDetail.PrID;
+                    UpdateTarget2.SaQuantity = UpSaleDetail.SaQuantity;
+                    UpdateTarget2.SaTotalPrice = UpSaleDetail.SaTotalPrice;
+
+                    context.SaveChanges();
                         return true;
                     }
                     catch (Exception ex)
@@ -117,6 +129,8 @@ namespace SalesManagement_SysDev.Common
                              SaDate=Sale.SaDate,
                              SaQuantity=SaleDetail.SaQuantity.ToString(),
                              SaTotalPrice=SaleDetail.SaTotalPrice.ToString(),
+                             SaFlag=Sale.SaFlag.ToString(),
+                             SaHidden=Sale.SaHidden
                           };
 
                     return tb.ToList();
@@ -176,6 +190,8 @@ namespace SalesManagement_SysDev.Common
                              SaDate = Sale.SaDate,
                              SaQuantity = SaleDetail.SaQuantity.ToString(),
                              SaTotalPrice = SaleDetail.SaTotalPrice.ToString(),
+                             SaFlag=Sale.SaFlag.ToString(),
+                             SaHidden=Sale.SaHidden
                          };
 
                 return tb.ToList();

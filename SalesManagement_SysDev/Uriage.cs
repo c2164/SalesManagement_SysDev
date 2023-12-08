@@ -274,7 +274,16 @@ namespace SalesManagement_SysDev
 
         private　T_Sale  ChangeSaFlg(T_Sale sale)
         {
-            
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
+            sale.SaFlag = 2;
+            sale.SaHidden = Hidden;
+            return sale;
         }
 
         private T_Sale SelectRemoveSale(string SaID, out T_SaleDetail saleDetail)
@@ -396,46 +405,5 @@ namespace SalesManagement_SysDev
             SetDataGridView(displaySale);
         }
 
-        private DispSaleDTO GetSaleInf()
-        {
-            DispSaleDTO retSaleDTO = new DispSaleDTO();
-
-            //各コントロールの情報
-            retSaleDTO.SaID=textBox_Uriage_ID.Text.Trim();
-
-            if(!(comboBox_Kokyaku_Namae.SelectedIndex == -1))
-                retSaleDTO.ClID=comboBox_Kokyaku_Namae.SelectedValue.ToString();
-                retSaleDTO.ClName=comboBox_Kokyaku_Namae.Text.Trim();
-
-            if(!(comboBox_Eigyousyo_Namae.SelectedIndex == -1))
-                retSaleDTO.SoID=comboBox_Eigyousyo_Namae.SelectedValue.ToString();
-            retSaleDTO.SoName = comboBox_Eigyousyo_Namae.Text.Trim();
-
-            retSaleDTO.SaDetailID=textBox_Uriagesyousai_ID.Text.Trim();
-
-            if(!(comboBox_Syain_Namae.SelectedIndex== -1))
-                retSaleDTO.EmID=comboBox_Syain_Namae.SelectedValue.ToString() ;
-            retSaleDTO.EmName = comboBox_Syain_Namae.Text.Trim();
-
-            retSaleDTO.OrID=textBox_Zyutyuu_ID.Text.Trim();
-
-            retSaleDTO.SaReleseFromDate = dateTimePicker_Nitizi_2.Value;
-
-            retSaleDTO.SaReleaseToDate=dateTimePicker_Nitizi_3.Value;
-
-            return retSaleDTO;
-
-        }
-
-        private List<DispSaleDTO> SelectSaleInf(DispSaleDTO SaleDTO)
-        {
-            List<DispSaleDTO> retDispSale = new List<DispSaleDTO>();
-
-            SaleDataAccess SaAcsess=new SaleDataAccess();
-
-            retDispSale=SaAcsess.GetSaleData(SaleDTO);
-            return retDispSale;
-
-        }
     }
 }
