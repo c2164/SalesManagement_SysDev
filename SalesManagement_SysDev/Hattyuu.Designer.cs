@@ -263,7 +263,7 @@
             // 
             // textBox_Suuryou
             // 
-            this.textBox_Suuryou.Location = new System.Drawing.Point(188, 274);
+            this.textBox_Suuryou.Location = new System.Drawing.Point(244, 365);
             this.textBox_Suuryou.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Suuryou.Name = "textBox_Suuryou";
             this.textBox_Suuryou.Size = new System.Drawing.Size(194, 25);
@@ -271,7 +271,7 @@
             // 
             // textBox_Hattyuusyousai
             // 
-            this.textBox_Hattyuusyousai.Location = new System.Drawing.Point(574, 276);
+            this.textBox_Hattyuusyousai.Location = new System.Drawing.Point(746, 368);
             this.textBox_Hattyuusyousai.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Hattyuusyousai.Name = "textBox_Hattyuusyousai";
             this.textBox_Hattyuusyousai.Size = new System.Drawing.Size(217, 25);
@@ -280,7 +280,7 @@
             // comboBox_Syain_Namae
             // 
             this.comboBox_Syain_Namae.FormattingEnabled = true;
-            this.comboBox_Syain_Namae.Location = new System.Drawing.Point(967, 140);
+            this.comboBox_Syain_Namae.Location = new System.Drawing.Point(1257, 187);
             this.comboBox_Syain_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Syain_Namae.Name = "comboBox_Syain_Namae";
             this.comboBox_Syain_Namae.Size = new System.Drawing.Size(187, 26);
@@ -289,7 +289,7 @@
             // comboBox_Meka_Namae
             // 
             this.comboBox_Meka_Namae.FormattingEnabled = true;
-            this.comboBox_Meka_Namae.Location = new System.Drawing.Point(193, 206);
+            this.comboBox_Meka_Namae.Location = new System.Drawing.Point(251, 275);
             this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
             this.comboBox_Meka_Namae.Size = new System.Drawing.Size(194, 26);
@@ -298,7 +298,7 @@
             // comboBox_Syouhin_Namae
             // 
             this.comboBox_Syouhin_Namae.FormattingEnabled = true;
-            this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(965, 206);
+            this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(1254, 275);
             this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
             this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(187, 26);
@@ -306,7 +306,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(188, 340);
+            this.dateTimePicker1.Location = new System.Drawing.Point(244, 453);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(300, 25);
@@ -316,7 +316,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Yu Gothic UI", 12F);
-            this.checkBox1.Location = new System.Drawing.Point(551, 340);
+            this.checkBox1.Location = new System.Drawing.Point(716, 453);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(185, 36);
@@ -327,7 +327,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 374);
+            this.dataGridView1.Location = new System.Drawing.Point(22, 499);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;

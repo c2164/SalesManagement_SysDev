@@ -30,7 +30,7 @@ namespace SalesManagement_SysDev
             //データの取得
             if (!GetSelectData())
             {
-                messageDsp.MessageBoxDsp("顧客情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("顧客情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
         }
@@ -148,7 +148,7 @@ namespace SalesManagement_SysDev
             if (!flg)
             {
                 MessageDsp message = new MessageDsp();
-                message.MessageBoxDsp(msg, title, icon);
+                message.MessageBoxDsp_OK(msg, title, icon);
             }
             return retDispClient;
         }
@@ -345,6 +345,24 @@ namespace SalesManagement_SysDev
             return retDispClient;
         }
 
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveClient();
+        }
 
+        private void RemoveClient()
+        {
+            //変数の宣言
+            string ClID;
+            ClID = GetClientRecord();
+            
+        }
+
+        private string GetClientRecord()
+        {
+            string ClID;
+            ClID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return ClID;
+        }
     }
 }
