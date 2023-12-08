@@ -67,11 +67,14 @@ namespace SalesManagement_SysDev.Common
 
                          where
                          Product.PrName.Contains(dispProductDTO.PrName) && //商品名
-                         Product.PrID.ToString().Contains(dispProductDTO.PrID)&&//商品ID
+                         dispProductDTO.PrID.Equals("") ? true:
+                         Product.PrID.ToString().Equals(dispProductDTO.PrID)&&//商品ID
                          Maker.MaName.Contains(dispProductDTO.MaName) && //メーカー名
                          SmallClassification.ScName.Contains(dispProductDTO.ScName) && //小分類名
-                         Product.Price.ToString().Contains(dispProductDTO.Price) &&//価格
-                         Product.PrSafetyStock.ToString().Contains(dispProductDTO.PrSafetyStock) &&//安全在庫数
+                         dispProductDTO.Price.Equals("") ? true:
+                         Product.Price.ToString().Equals(dispProductDTO.Price) &&//価格
+
+                         Product.PrSafetyStock.ToString().Equals(dispProductDTO.PrSafetyStock) &&//安全在庫数
                          Product.PrModelNumber.Contains(dispProductDTO.PrModelNumber) &&//型番
                          Product.PrColor.Contains(dispProductDTO.PrColor) &&
                          Product.PrFlag == 0 //非表示フラグ

@@ -30,7 +30,7 @@ namespace SalesManagement_SysDev
             //データの取得
             if (!GetSelectData())
             {
-                messageDsp.MessageBoxDsp("出庫情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("出庫情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
         }

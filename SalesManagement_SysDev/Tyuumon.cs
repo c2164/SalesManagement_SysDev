@@ -31,7 +31,7 @@ namespace SalesManagement_SysDev
             //データの取得
             if (!GetSelectData())
             {
-                messageDsp.MessageBoxDsp("出荷情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("出荷情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
 
@@ -175,6 +175,48 @@ namespace SalesManagement_SysDev
         {
             //GetSelectData();
             SetCtrlFormat();
+        }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayChumon();
+        }
+
+        private void ListDisplayChumon()
+        {
+            //変数の宣言
+            List<DispChumonDTO> chumon = new List<DispChumonDTO>();
+            List<DispChumonDTO> sortedchumon = new List<DispChumonDTO>();
+
+            //データの受け取り
+            chumon = GetTableDate();
+
+            //昇順に並び変え
+            sortedchumon = SortChumonDate(chumon);
+
+            //データグリッドビューに表示
+            SetDataGridView(sortedchumon);
+        }
+
+        private List<DispChumonDTO> GetTableDate()
+        {
+            //変数の宣言
+            List<DispChumonDTO> chumon= new List<DispChumonDTO>();
+
+            //インスタンス化
+            ChumonDataAccess chAccess = new ChumonDataAccess();
+
+            //データベースからデータを取得
+            chumon = chAccess.GetChumonData();
+
+            return chumon;
+        }
+
+        private List<DispChumonDTO> SortChumonDate(List<DispChumonDTO> dispchumons)
+        {
+            //並び変え(昇順)
+            dispchumons.OrderBy(x => x.ChID);
+            return dispchumons;
         }
     }
 }
