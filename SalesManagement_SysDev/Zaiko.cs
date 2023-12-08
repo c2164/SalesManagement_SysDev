@@ -29,7 +29,7 @@ namespace SalesManagement_SysDev
             //データの取得
             if (!GetSelectData())
             {
-                messageDsp.MessageBoxDsp("在庫情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("在庫情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
         }
@@ -112,6 +112,125 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+        }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveStock();
+        }
+
+        private void RemoveStock()
+        {
+            //変数の宣言
+            string StID;
+            T_Stock stock = new T_Stock();
+            //データグリッドビューで選択されているデータの在庫IDを受け取る
+            StID = GetStockRecord();
+
+            //取得した在庫IDでデータベースを検索する
+            stock = SelectRemoveStock(StID);
+            if (stock == null)
+            {
+                messageDsp.MessageBoxDsp_OK("在庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                return;
+            }
+
+            //在庫管理フラグを0から2にする
+            UpdateStFlag(stock);
+        }
+
+        private void UpdateStFlag(T_Stock stock)
+        {
+            //変数の宣言
+            DialogResult result;
+
+            //非表示実行確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の在庫を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //在庫管理フラグの変更
+            stock = ChangeStFlag(stock);
+            //在庫の更新
+            UpdateStockRecord(stock);
+        }
+
+        private void UpdateStockRecord(T_Stock stock)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            StockDataAccess access = new StockDataAccess();
+            flg = access.UpdateStockData(stock);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象在庫の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象在庫を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private T_Stock ChangeStFlag(T_Stock stock)
+        {
+            stock.StFlag = 2;
+            return stock;
+        }
+
+        private T_Stock SelectRemoveStock(string stID)
+        {
+            //変数の宣言
+            T_Stock retstock = new T_Stock();
+            DispStockDTO dispStockDTO = new DispStockDTO();
+            List<DispStockDTO> dispStocks = new List<DispStockDTO>();
+            //データベースからデータを取得する
+            //dispStocks = GetTableData();
+            if (dispStocks == null) //データの取得失敗
+            {
+                return null;
+            }
+
+            //Listの中を受け取った在庫IDで検索
+            dispStockDTO = dispStocks.Single(x => x.StID == stID);
+
+            //検索結果を返却用にする
+            retstock = FormalizationStockInputRecord(dispStockDTO);
+
+            return retstock;
+        }
+
+        private T_Stock FormalizationStockInputRecord(DispStockDTO dispStockDTO)
+        {
+            T_Stock retstock = new T_Stock();
+            retstock.StID = int.Parse(dispStockDTO.StID);
+
+            return retstock;
+        }
+
+        private string GetStockRecord()
+        {
+            //変数の宣言
+            string retStID;
+
+            retStID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retStID;
+        }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)

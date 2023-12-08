@@ -39,6 +39,7 @@ namespace SalesManagement_SysDev.Common
                 {
                     var UpdateTarget = context.T_Stocks.Single(x => x.StID == UpStock.StID);
                     UpdateTarget = UpStock;
+                    UpdateTarget.StFlag = UpStock.StFlag;
 
                     context.SaveChanges();
                     return true;
@@ -77,6 +78,7 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrName = Product.PrName,
                              StQuantity = Stock.StQuantity.ToString(),
+                             StFlag = Stock.StFlag.ToString(),
                          };
 
                 return tb.ToList();
@@ -112,6 +114,7 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrName = Product.PrName,
                              StQuantity = Stock.StQuantity.ToString(),
+                             StFlag = Stock.StFlag.ToString(),
                          };
 
                 return tb.ToList();

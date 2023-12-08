@@ -29,7 +29,7 @@ namespace SalesManagement_SysDev
             //データの取得
             if (!GetSelectData())
             {
-                messageDsp.MessageBoxDsp("商品情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("商品情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
         }
@@ -162,6 +162,10 @@ namespace SalesManagement_SysDev
 
             //テーブルデータ受け取り
             product = GetTableData();
+            if(product == null)
+            {
+                messageDsp.MessageBoxDsp_OK("商品情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+            }
 
             //昇順に並び替える
             sortedproduct = SortProductData(product);
@@ -248,5 +252,145 @@ namespace SalesManagement_SysDev
             return retDispProduct;
 
         }
+
+        private void button_Sakujyo_Click(object sender, EventArgs e)
+        {
+            RemoveProduct();
+        }
+
+        private void RemoveProduct()
+        {
+            //変数の宣言
+            string PrID;
+            M_Product product = new M_Product(); 
+            //データグリッドビューで選択されているデータの商品IDを受け取る
+            PrID = GetProductRecord();
+            if(PrID == null)
+            {
+                return;
+            }
+
+            //取得した商品IDでデータベースを検索する
+            product = SelectRemoveProduct(PrID);
+            if (product == null)
+            {
+                messageDsp.MessageBoxDsp_OK("商品情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                return;
+            }
+
+            //商品管理フラグを0から2にする
+            UpdatePrFlag(product);
+        }
+
+        private void UpdatePrFlag(M_Product product)
+        {
+            //変数の宣言
+            DialogResult result;
+
+            //非表示実行確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の商品を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            if(result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //商品管理フラグの変更
+            product = ChangePrFlag(product);
+            if(product == null)
+            {
+                return;
+            }
+            //商品の更新
+            UpdateProductRecord(product);
+        }
+
+        private void UpdateProductRecord(M_Product product)
+        {   
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            ProductDataAccess access = new ProductDataAccess();
+            flg = access.UpdateProductData(product);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象商品の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private M_Product ChangePrFlag(M_Product product)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+               messageDsp.MessageBoxDsp_OK("非表示を中断します","中断",MessageBoxIcon.Information);
+            }
+            product.PrFlag = 2;
+            product.PrHidden = Hidden;
+            return product;
+        }
+
+        private M_Product SelectRemoveProduct(string PrID)
+        {
+            //変数の宣言
+            M_Product retproduct = new M_Product();
+            DispProductDTO dispProductDTO = new DispProductDTO();
+            List<DispProductDTO> dispProducts = new List<DispProductDTO>();
+            //データベースからデータを取得する
+            dispProducts = GetTableData();
+            if(dispProducts == null) //データの取得失敗
+            {
+                return null;
+            }
+
+            //Listの中を受け取った商品IDで検索
+            dispProductDTO = dispProducts.Single(x => x.PrID == PrID);
+
+            //検索結果を返却用にする
+            retproduct = FormalizationProductInputRecord(dispProductDTO);
+
+            return retproduct;
+        }
+
+        private M_Product FormalizationProductInputRecord(DispProductDTO dispProductDTO)
+        {
+            M_Product retproduct = new M_Product();
+            retproduct.PrID = int.Parse(dispProductDTO.PrID);
+            retproduct.PrName = dispProductDTO.PrName;
+            retproduct.MaID = int.Parse(dispProductDTO.MaID);
+            retproduct.Price = decimal.Parse(dispProductDTO.Price);
+            retproduct.PrSafetyStock = int.Parse(dispProductDTO.PrSafetyStock);
+            retproduct.ScID = int.Parse(dispProductDTO.ScID);
+            retproduct.PrModelNumber = dispProductDTO.PrModelNumber;
+            retproduct.PrColor = dispProductDTO.PrColor;
+            retproduct.PrReleaseDate = dispProductDTO.PrReleaseDate;
+            retproduct.PrFlag = int.Parse(dispProductDTO.PrFlag);
+            retproduct.PrHidden = dispProductDTO.PrHidden;
+
+            return retproduct;
+        }
+
+        private string GetProductRecord()
+        {
+            //変数の宣言
+            string retPrID;
+
+            if(dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
+            retPrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retPrID;
+        }
+
     }
 }

@@ -43,7 +43,6 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -53,17 +52,15 @@
             this.splitContainer1.Panel1.Controls.Add(this.button_Syukko_Kannri);
             this.splitContainer1.Panel1.Controls.Add(this.button_Zaiko_Kannri);
             this.splitContainer1.Panel1.Controls.Add(this.button_Syouhin_Kannri);
-            this.splitContainer1.Size = new System.Drawing.Size(1215, 646);
-            this.splitContainer1.SplitterDistance = 272;
-            this.splitContainer1.SplitterWidth = 3;
+            this.splitContainer1.Size = new System.Drawing.Size(1610, 875);
+            this.splitContainer1.SplitterDistance = 360;
             this.splitContainer1.TabIndex = 0;
             // 
             // button_Nyuuko_Kannri
             // 
-            this.button_Nyuuko_Kannri.Location = new System.Drawing.Point(0, 565);
-            this.button_Nyuuko_Kannri.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Nyuuko_Kannri.Location = new System.Drawing.Point(0, 753);
             this.button_Nyuuko_Kannri.Name = "button_Nyuuko_Kannri";
-            this.button_Nyuuko_Kannri.Size = new System.Drawing.Size(259, 80);
+            this.button_Nyuuko_Kannri.Size = new System.Drawing.Size(337, 107);
             this.button_Nyuuko_Kannri.TabIndex = 4;
             this.button_Nyuuko_Kannri.Text = "入庫管理";
             this.button_Nyuuko_Kannri.UseVisualStyleBackColor = true;
@@ -71,10 +68,9 @@
             // 
             // button_Hattyuu_Kannri
             // 
-            this.button_Hattyuu_Kannri.Location = new System.Drawing.Point(0, 427);
-            this.button_Hattyuu_Kannri.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Hattyuu_Kannri.Location = new System.Drawing.Point(0, 569);
             this.button_Hattyuu_Kannri.Name = "button_Hattyuu_Kannri";
-            this.button_Hattyuu_Kannri.Size = new System.Drawing.Size(259, 80);
+            this.button_Hattyuu_Kannri.Size = new System.Drawing.Size(337, 107);
             this.button_Hattyuu_Kannri.TabIndex = 3;
             this.button_Hattyuu_Kannri.Text = "発注管理";
             this.button_Hattyuu_Kannri.UseVisualStyleBackColor = true;
@@ -82,10 +78,9 @@
             // 
             // button_Syukko_Kannri
             // 
-            this.button_Syukko_Kannri.Location = new System.Drawing.Point(0, 278);
-            this.button_Syukko_Kannri.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Syukko_Kannri.Location = new System.Drawing.Point(0, 371);
             this.button_Syukko_Kannri.Name = "button_Syukko_Kannri";
-            this.button_Syukko_Kannri.Size = new System.Drawing.Size(259, 80);
+            this.button_Syukko_Kannri.Size = new System.Drawing.Size(337, 107);
             this.button_Syukko_Kannri.TabIndex = 2;
             this.button_Syukko_Kannri.Text = "出庫管理";
             this.button_Syukko_Kannri.UseVisualStyleBackColor = true;
@@ -93,10 +88,9 @@
             // 
             // button_Zaiko_Kannri
             // 
-            this.button_Zaiko_Kannri.Location = new System.Drawing.Point(0, 143);
-            this.button_Zaiko_Kannri.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Zaiko_Kannri.Location = new System.Drawing.Point(0, 191);
             this.button_Zaiko_Kannri.Name = "button_Zaiko_Kannri";
-            this.button_Zaiko_Kannri.Size = new System.Drawing.Size(259, 80);
+            this.button_Zaiko_Kannri.Size = new System.Drawing.Size(337, 107);
             this.button_Zaiko_Kannri.TabIndex = 1;
             this.button_Zaiko_Kannri.Text = "在庫管理";
             this.button_Zaiko_Kannri.UseVisualStyleBackColor = true;
@@ -104,10 +98,9 @@
             // 
             // button_Syouhin_Kannri
             // 
-            this.button_Syouhin_Kannri.Location = new System.Drawing.Point(0, 2);
-            this.button_Syouhin_Kannri.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Syouhin_Kannri.Location = new System.Drawing.Point(0, 3);
             this.button_Syouhin_Kannri.Name = "button_Syouhin_Kannri";
-            this.button_Syouhin_Kannri.Size = new System.Drawing.Size(259, 80);
+            this.button_Syouhin_Kannri.Size = new System.Drawing.Size(337, 107);
             this.button_Syouhin_Kannri.TabIndex = 0;
             this.button_Syouhin_Kannri.Text = "商品管理";
             this.button_Syouhin_Kannri.UseVisualStyleBackColor = true;
@@ -115,12 +108,11 @@
             // 
             // Buturyuu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Buturyuu";
-            this.Size = new System.Drawing.Size(1215, 646);
+            this.Size = new System.Drawing.Size(1610, 875);
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);

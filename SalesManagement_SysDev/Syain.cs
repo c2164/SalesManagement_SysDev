@@ -31,7 +31,7 @@ namespace SalesManagement_SysDev
             //データの取得
             if (!GetSelectData())
             {
-                messageDsp.MessageBoxDsp("社員情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("社員情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
         }
@@ -225,5 +225,19 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void button_Itirannhyouzi_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveStock();
+        }
+
+        private void RemoveStock()
+        {
+
+        }
     }
 }

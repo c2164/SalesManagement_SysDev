@@ -127,6 +127,7 @@
             this.button_Sakujyo.TabIndex = 4;
             this.button_Sakujyo.Text = "🚮削除";
             this.button_Sakujyo.UseVisualStyleBackColor = false;
+            this.button_Sakujyo.Click += new System.EventHandler(this.button_Sakujyo_Click);
             // 
             // button_Kuria
             // 
@@ -399,7 +400,7 @@
             this.Controls.Add(this.button_Touroku);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Syouhin";
-            this.Size = new System.Drawing.Size(1215, 646);
+            this.Size = new System.Drawing.Size(1580, 861);
             this.Load += new System.EventHandler(this.Syouhin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
