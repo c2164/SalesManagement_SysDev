@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Migrations.Sql;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace SalesManagement_SysDev
             //データの取得
             if (!GetSelectData())
             {
-                messageDsp.MessageBoxDsp("出荷情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("出荷情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
         }
@@ -40,15 +41,16 @@ namespace SalesManagement_SysDev
         private void SetCtrlFormat()
         {
             SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
+            ClientDataAccess clientDataAccess = new ClientDataAccess();
+            ProductDataAccess productDataAccess = new ProductDataAccess();
+            MakerDateAccess makerDataAccess = new MakerDateAccess();
+            EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
+
 
             //各テキストボックスに初期化(空白)
-            textBox_Kokyaku_Namae.Text = "";
             textBox_Kokyaku_Tantou.Text = "";
-            textBox_Syain_Namae.Text = "";
             textBox_Zyutyuu_ID.Text = "";
             textBox_Zyutyuusyousai_ID.Text = "";
-            textBox_Meka_Namae.Text = "";
-            textBox_Syouhin_Namae.Text = "";
 
             //各コンボボックスを初期化
             comboBox_Eigyousyo.DisplayMember = "SoName";
@@ -56,6 +58,27 @@ namespace SalesManagement_SysDev
             comboBox_Eigyousyo.DataSource = salesOfficeDataAccess.GetSalesOfficeData();
             comboBox_Eigyousyo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Eigyousyo.SelectedIndex = -1;
+            comboBox_Kokyaku_Namae.DisplayMember = "ClName";
+            comboBox_Kokyaku_Namae.ValueMember = "ClID";
+            comboBox_Kokyaku_Namae.DataSource = clientDataAccess.GetClientData();
+            comboBox_Kokyaku_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Kokyaku_Namae.SelectedIndex = -1;
+            comboBox_Syouhin_Namae.DisplayMember = "PrName";
+            comboBox_Syouhin_Namae.ValueMember = "PrID";
+            comboBox_Syouhin_Namae.DataSource = productDataAccess.GetProductData();
+            comboBox_Syouhin_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Syouhin_Namae.SelectedIndex = -1;
+            comboBox_Meka_Namae.DisplayMember = "MaName";
+            comboBox_Meka_Namae.ValueMember = "MaID";
+            comboBox_Meka_Namae.DataSource = makerDataAccess.GetMakerData();
+            comboBox_Meka_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Meka_Namae.SelectedIndex = -1;
+            comboBox_Syain_Namae.DisplayMember = "EmName";
+            comboBox_Syain_Namae.ValueMember = "EmID";
+            comboBox_Syain_Namae.DataSource = employeeDataAccess.GetEmployeeData();
+            comboBox_Syain_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Syain_Namae.SelectedIndex = -1;
+
         }
 
         private bool GetSelectData()
@@ -165,6 +188,313 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+        }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayOrder();
+        }
+
+        private void ListDisplayOrder()
+        {
+            //変数の宣言
+            List<DispOrderDTO> order = new List<DispOrderDTO>();
+            List<DispOrderDTO> sortedorder = new List<DispOrderDTO>();
+
+            //テーブルデータの受け取り
+            order = GetTableData();
+
+            //昇順に並び変え
+            sortedorder = SortOrderDate(order);
+
+            //データグリッドビューに表示
+            SetDataGridView(sortedorder);
+        }
+
+        private List<DispOrderDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispOrderDTO> order = new List<DispOrderDTO>();
+
+            //インスタンス化
+            OrderDataAccess OrAccess = new OrderDataAccess();
+
+            //データベースからデータを取得
+            order = OrAccess.GetOrderData();
+
+            return order;
+        }
+
+        private List<DispOrderDTO> SortOrderDate(List<DispOrderDTO> disporders)
+        {
+            //並び変え(昇順)
+            disporders.OrderBy(x => x.OrID);
+            return disporders;
+        }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectOrder();
+        }
+
+        private void SelectOrder()
+        {
+            //変数の宣言
+            DispOrderDTO orderDTO = new DispOrderDTO();
+            List<DispOrderDTO> DisplayOrder = new List<DispOrderDTO>();
+
+            //データの読み取り
+            orderDTO = Getorderinf();
+
+            //データの検索
+            DisplayOrder = SelectOrderInf(orderDTO);
+
+            //データグリッドビューに表示
+            SetDataGridView(DisplayOrder);
+        }
+
+        private DispOrderDTO Getorderinf()
+        {
+            //変数の宣言
+            DispOrderDTO retOrderDTO = new DispOrderDTO();
+
+            //各コントロールから情報を読み取る
+            if (!(comboBox_Kokyaku_Namae.SelectedIndex == -1))
+                retOrderDTO.ClID = comboBox_Kokyaku_Namae.SelectedValue.ToString();//顧客ID
+            retOrderDTO.ClName = comboBox_Kokyaku_Namae.Text.Trim();//顧客名
+            retOrderDTO.ClCharge = textBox_Kokyaku_Tantou.Text.Trim();//顧客担当者
+            if (!(comboBox_Syain_Namae.SelectedIndex == -1))
+                retOrderDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();//社員ID
+            retOrderDTO.EmName = comboBox_Syain_Namae.Text.Trim();//社員名
+            retOrderDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();//受注ID 
+            retOrderDTO.OrDetailID = textBox_Zyutyuusyousai_ID.Text.Trim();//受注詳細ID
+            retOrderDTO.MaName = comboBox_Meka_Namae.Text.Trim();//メーカー名
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1)) retOrderDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所名
+            retOrderDTO.SoName = comboBox_Eigyousyo.Text.Trim();
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retOrderDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+            retOrderDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
+            retOrderDTO.OrQuantity = numericUpDown_Suuryou.Value.ToString();//数量
+            
+
+            return retOrderDTO;
+        }
+
+        private List<DispOrderDTO> SelectOrderInf(DispOrderDTO orderDTO)
+        {
+            //変数の宣言
+            List<DispOrderDTO> retDispOrder = new List<DispOrderDTO>();
+
+            //インスタンス化
+            OrderDataAccess OrAccess = new OrderDataAccess();
+
+            //商品検索
+            retDispOrder = OrAccess.GetOrderData(orderDTO);
+
+            return retDispOrder;
+        }
+
+        private void button_Touroku_Click(object sender, EventArgs e)
+        {
+            RegisterOrder();
+        }
+
+        private void RegisterOrder()
+        {
+            //変数の宣言
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            DialogResult result;
+            DispOrderDTO dispOrderDTO = new DispOrderDTO();
+
+            //入力チェック済のデータを受け取る
+            dispOrderDTO = GetCheckedOrderInf();
+            //NULLなら失敗
+            if(dispOrderDTO == null)
+            {
+                return;
+            }
+
+            //重複チェックを行う
+            if(!DuplicationCheckOrderInputRecord(dispOrderDTO,out msg,out title,out icon))
+            {
+                result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
+                if(result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            //登録確認
+            //須田オーダー
+            result = messageDsp.MessageBoxDsp_OKCancel("登録すりゅ～？", "かくにん(はーと)", MessageBoxIcon.Question);
+            if(result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //データを登録する
+            RegisrationOrderInf(dispOrderDTO);
+
+        }
+
+        private void RegisrationOrderInf(DispOrderDTO dispOrderDTO)
+        {
+            //変数の宣言
+            bool flg;
+            T_Order order;
+            T_OrderDetail orderDetail;
+            //インスタンス化
+            OrderDataAccess orderDataAccess = new OrderDataAccess();
+
+            //登録用データに変換
+            order = FormalizationOrderInputRecord(dispOrderDTO, out orderDetail);
+            //登録処理
+            flg = orderDataAccess.RegisterOrderData(order, orderDetail);
+            if (flg)
+            {
+                //須田オーダー
+                messageDsp.MessageBoxDsp_OK("登録したおっ！", "とろくかんりょう！", MessageBoxIcon.Information);
+            }
+            else
+            {
+                //須田オーダー
+                messageDsp.MessageBoxDsp_OK("はぁ(*´Д｀)", "とうろくしっぱい...", MessageBoxIcon.Error);
+            }
+
+        }
+
+        private T_Order FormalizationOrderInputRecord(DispOrderDTO dispOrderDTO, out T_OrderDetail orderDetail)
+        {
+            //変数の宣言
+            T_Order order = new T_Order();
+            orderDetail = new T_OrderDetail();
+
+            //登録用データに形式化
+            if (dispOrderDTO.OrID != "")
+            {
+                order.OrID = int.Parse(dispOrderDTO.OrID);//受注ID
+                orderDetail.OrID = order.OrID;//受注詳細ID
+            }
+            order.SoID = int.Parse(dispOrderDTO.SoID);//営業所ID
+            order.EmID = int.Parse(dispOrderDTO.EmID);//社員ID
+            order.ClID = int.Parse(dispOrderDTO.ClID);//顧客ID
+            order.ClCharge = dispOrderDTO.ClCharge;//顧客担当者名
+            order.OrDate = DateTime.Now;//日付
+            order.OrStateFlag = 0;//受注状態フラグ
+            order.OrFlag = 0;//受注管理フラグ
+            orderDetail.PrID = int.Parse(dispOrderDTO.PrID);//商品ID
+            orderDetail.OrQuantity = int.Parse(dispOrderDTO.OrQuantity);//数量
+            //合計金額はデータベース接続の登録処理側で行う
+
+            return order;
+        }
+
+        private bool DuplicationCheckOrderInputRecord(DispOrderDTO dispOrderDTO, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispOrderDTO> ordertabledata = new List<DispOrderDTO>();
+            bool flg;
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Question;
+
+            //テーブルのデータを取得
+            ordertabledata =  GetTableData();
+
+            //同じ受注IDに同じ商品がないかチェックする
+            flg = ordertabledata.Any(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
+            if (flg)
+            {
+                msg = "同じ商品が登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
+                title = "確認";
+                return false;
+            }
+
+
+
+            return true;
+        }
+
+        private DispOrderDTO GetCheckedOrderInf()
+        {
+            //変数の宣言
+            DispOrderDTO dispOrder = new DispOrderDTO();
+            bool flg;
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+
+            //各コントロールから登録する受注情報を取得
+            dispOrder = Getorderinf();
+
+            //取得した受注情報のデータ形式のチェック
+            flg = CheckOrderInf(dispOrder, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+           
+            return dispOrder;
+
+        }
+
+        private bool CheckOrderInf(DispOrderDTO checkdata, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //チェッククラスのインスタンス化
+            DataInputFormCheck inputFormCheck = new DataInputFormCheck();
+
+            //初期値代入(返却時エラー解消のため)
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+
+            if (String.IsNullOrEmpty(checkdata.ClName))
+            {
+                msg = "顧客名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (String.IsNullOrEmpty(checkdata.ClCharge))
+            {
+                msg = "顧客担当者名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (String.IsNullOrEmpty(checkdata.SoName))
+            {
+                msg = "営業所は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (!inputFormCheck.CheckNumeric(checkdata.OrID)) 
+            {
+                msg = "受注IDには半角数字を入力してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (String.IsNullOrEmpty(checkdata.PrName))
+            {
+                msg = "商品は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if(int.Parse(checkdata.OrQuantity) <= 0)
+            {
+                msg = "数量には1以上を入力してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            return true;
         }
     }
 }

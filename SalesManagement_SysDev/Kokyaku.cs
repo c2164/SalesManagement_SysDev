@@ -30,7 +30,7 @@ namespace SalesManagement_SysDev
             //データの取得
             if (!GetSelectData())
             {
-                messageDsp.MessageBoxDsp("顧客情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("顧客情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
         }
@@ -148,21 +148,26 @@ namespace SalesManagement_SysDev
             if (!flg)
             {
                 MessageDsp message = new MessageDsp();
-                message.MessageBoxDsp(msg, title, icon);
+                message.MessageBoxDsp_OK(msg, title, icon);
             }
             return retDispClient;
         }
 
         private DispClientDTO GetClientInf()
         {
+            //変数の宣言
             DispClientDTO retDispClient = new DispClientDTO();
-            retDispClient.ClID = textBox_Kokyaku_ID.Text;
-            retDispClient.ClName = textBox_Kokyaku_Namae.Text;
-            retDispClient.ClPostal = textBox_Yuubin.Text;
-            retDispClient.ClPhone = textBox_Dennwa.Text;
-            retDispClient.ClFAX = textBox_FAX.Text;
-            retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
-            retDispClient.SoName = comboBox_Eigyousyo.Text;
+
+            //各コントロールから顧客情報を読み取る
+            retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();
+            retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();
+            retDispClient.ClPostal = textBox_Yuubin.Text.Trim();
+            retDispClient.ClPhone = textBox_Dennwa.Text.Trim();
+            retDispClient.ClFAX = textBox_FAX.Text.Trim();
+            retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1))
+                retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
+            retDispClient.SoName = comboBox_Eigyousyo.Text.Trim();
 
             return retDispClient;
         }
@@ -307,6 +312,61 @@ namespace SalesManagement_SysDev
             //並び替え(昇順)
             dispClients.OrderBy(x => x.ClID);
             return dispClients;
+        }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectClient();
+        }
+
+        private void SelectClient()
+        {
+            //変数の宣言
+            DispClientDTO clientDTO = new DispClientDTO();
+            List<DispClientDTO>　DisplayClient = new List<DispClientDTO>();
+
+            //データの読み取り
+            clientDTO = GetClientInf();
+            //データの検索
+            DisplayClient = SelectClientInf(clientDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayClient);
+        }
+
+        private List<DispClientDTO> SelectClientInf(DispClientDTO clientDTO)
+        {
+            //変数の宣言
+            List<DispClientDTO> retDispClient = new List<DispClientDTO>();
+            //インスタンス化
+            ClientDataAccess access = new ClientDataAccess();
+            
+            //顧客情報検索
+            retDispClient = access.GetClientData(clientDTO);
+            return retDispClient;
+        }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveClient();
+        }
+
+        private void RemoveClient()
+        {
+            //変数の宣言
+            string ClID;
+            ClID = GetClientRecord();
+            
+        }
+
+        private string GetClientRecord()
+        {
+            string ClID;
+            ClID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return ClID;
+        }
+        private void button_Kousin_Click(object sender, EventArgs e)
+        {
+            ListDisplayClient();
         }
 
     }

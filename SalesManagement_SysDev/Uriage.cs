@@ -33,7 +33,7 @@ namespace SalesManagement_SysDev
             //データの取得
             if (!GetSelectData())
             {
-                messageDsp.MessageBoxDsp("顧客情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("顧客情報が獲得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
         }
@@ -339,5 +339,40 @@ namespace SalesManagement_SysDev
         }
 
 
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplaySale();
+        }
+
+        private void ListDisplaySale()
+        {
+            List<DispSaleDTO> sale = new List<DispSaleDTO>();
+            List<DispSaleDTO> sortedsale = new List<DispSaleDTO>();
+
+            sale = GetTableData();
+
+            sortedsale = SortSaleData(sale);
+
+            SetDataGridView(sortedsale);
+        }
+
+        private List<DispSaleDTO> GetTableData()
+        {
+            List<DispSaleDTO> sale = new List<DispSaleDTO>();
+
+            SaleDataAccess saleacsess= new SaleDataAccess();
+
+            sale = saleacsess.GetSaleData();
+
+            return sale;
+        }
+
+        private List<DispSaleDTO> SortSaleData (List<DispSaleDTO> dispSales)
+
+        {
+            dispSales.OrderBy(x => x.SaID);
+            return dispSales;
+
+        }
     }
 }
