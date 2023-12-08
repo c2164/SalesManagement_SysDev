@@ -102,6 +102,7 @@
             this.button_Itirannhyouzi.TabIndex = 3;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
+            this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click_1);
             // 
             // button_Sakuzyo
             // 
@@ -114,6 +115,7 @@
             this.button_Sakuzyo.TabIndex = 4;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // button_Kuria
             // 
