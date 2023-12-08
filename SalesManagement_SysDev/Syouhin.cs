@@ -372,9 +372,5 @@ namespace SalesManagement_SysDev
             return retPrID;
         }
 
-        private void button_Sakujyo_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
