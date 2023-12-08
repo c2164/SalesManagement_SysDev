@@ -511,13 +511,16 @@ namespace SalesManagement_SysDev
 
             //データグリッドビューに表示されているデータの受注IDを受け取る
             OrID = GetOrderRecord();
+            if (OrID == null)
+            {
+                return;
+            }
 
 
             //取得した受注IDでデータベースを検索する
             Order = SelectRemoveOrder(OrID);
             if (Order == null)
             {
-                messageDsp.MessageBoxDsp_OK("受注情報を取得できませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
 
@@ -529,6 +532,12 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             string retOrID;
+
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
 
             retOrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retOrID;
@@ -545,6 +554,7 @@ namespace SalesManagement_SysDev
             dispOrders = GetTableData();
             if (dispOrders == null)
             {
+                messageDsp.MessageBoxDsp_OK("受注情報を取得できませんでした", "エラー", MessageBoxIcon.Error);
                 return null;
             }
 
@@ -588,6 +598,10 @@ namespace SalesManagement_SysDev
 
             //受注管理フラグの変更
             order = ChangeOrFlag(order,orderDetail);
+            if (order == null)
+            {
+                return;
+            }
 
             //受注の更新
             UpdateOrderRecord(order, orderDetail);
@@ -595,8 +609,15 @@ namespace SalesManagement_SysDev
 
         private T_Order ChangeOrFlag(T_Order order, T_OrderDetail orderDetail)
         {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
             order.OrFlag = 2;
-
+            order.OrHidden = Hidden;
             return order;
         }
 
