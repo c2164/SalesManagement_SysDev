@@ -195,7 +195,7 @@ namespace SalesManagement_SysDev.Entity
         public string ClCharge { get; set; }
 
         [DisplayName("受注年月日")]
-        public DateTime? OrDate { get; set; }
+        public DateTime OrDate { get; set; }
 
         [DisplayName("受注状態フラグ")]
         public string OrStateFlag { get; set; }
@@ -253,7 +253,7 @@ namespace SalesManagement_SysDev.Entity
         public string OrID { get; set; }
 
         [DisplayName("注文年月日")]
-        public DateTime? ChDate { get; set; }
+        public DateTime ChDate { get; set; }
 
         [DisplayName("注文状態フラグ")]
         public string ChStateFlag { get; set; }

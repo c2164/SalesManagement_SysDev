@@ -40,8 +40,22 @@ namespace SalesManagement_SysDev.Common
                 {
                     var UpdateTarget = context.T_Chumons.Single(x => x.ChID == UpChumon.ChID);
                     var UpdateTargetDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == UpChumonDetail.ChID);
-                    UpdateTarget = UpChumon;
-                    UpdateTargetDetail = UpChumonDetail;
+
+                    UpdateTarget.ChID = UpChumon.ChID;
+                    UpdateTarget.SoID = UpChumon.SoID;
+                    UpdateTarget.EmID = UpChumon.EmID;
+                    UpdateTarget.ClID = UpChumon.ClID;
+                    UpdateTarget.OrID = UpChumon.OrID;
+                    UpdateTarget.ChDate = UpChumon.ChDate;
+                    UpdateTarget.ChStateFlag = UpChumon.ChStateFlag;
+                    UpdateTarget.ChFlag = UpChumon.ChFlag;
+                    UpdateTarget.ChHidden = UpChumon.ChHidden;
+
+                    UpdateTargetDetail.ChDetailID = UpChumonDetail.ChDetailID;
+                    UpdateTargetDetail.ChID = UpChumonDetail.ChID;
+                    UpdateTargetDetail.PrID = UpChumonDetail.PrID;
+                    UpdateTargetDetail.ChQuantity = UpChumonDetail.ChQuantity;
+
 
                     context.SaveChanges();
                     return true;
@@ -76,26 +90,26 @@ namespace SalesManagement_SysDev.Common
                          on ChumonDetail.PrID equals Product.PrID
 
                          where
-                         (dispChumonDTO.ChID.Equals("")?true:
-                         Chumon.ChID.ToString().Equals (dispChumonDTO.ChID)) && //注文ID
-                                                                         //
+                         (dispChumonDTO.ChID.Equals("") ? true :
+                         Chumon.ChID.ToString().Equals(dispChumonDTO.ChID)) && //注文ID
+                                                                               //
                          Product.PrName.Contains(dispChumonDTO.PrName) && //商品名
 
                          SalesOffice.SoName.Contains(dispChumonDTO.SoName) && //営業所名
 
-                         (dispChumonDTO.ChDetailID.Equals("")?true:
+                         (dispChumonDTO.ChDetailID.Equals("") ? true :
                          ChumonDetail.ChDetailID.ToString().Equals(dispChumonDTO.ChDetailID)) &&//注文詳細ID
 
-                         (dispChumonDTO.OrID.Equals("")?true:
+                         (dispChumonDTO.OrID.Equals("") ? true :
                          Order.OrID.ToString().Equals(dispChumonDTO.OrID)) &&//受注ID
-                                                                       
+
                          Client.ClName.Contains(dispChumonDTO.ClName) && //顧客名
 
                          Employee.EmName.Contains(dispChumonDTO.EmName) &&//社員名
 
                          //Chumon.ChDate.(dispChumonDTO.ChDate)&&//注文年月日
 
-                                                                                          
+
                          Chumon.ChFlag == 0 //非表示フラグ
 
                          select new DispChumonDTO

@@ -275,7 +275,7 @@ namespace SalesManagement_SysDev
                 retOrderDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
             retOrderDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
             retOrderDTO.OrQuantity = numericUpDown_Suuryou.Value.ToString();//数量
-            
+
 
             return retOrderDTO;
         }
@@ -311,16 +311,16 @@ namespace SalesManagement_SysDev
             //入力チェック済のデータを受け取る
             dispOrderDTO = GetCheckedOrderInf();
             //NULLなら失敗
-            if(dispOrderDTO == null)
+            if (dispOrderDTO == null)
             {
                 return;
             }
 
             //重複チェックを行う
-            if(!DuplicationCheckOrderInputRecord(dispOrderDTO,out msg,out title,out icon))
+            if (!DuplicationCheckOrderInputRecord(dispOrderDTO, out msg, out title, out icon))
             {
                 result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
-                if(result == DialogResult.Cancel)
+                if (result == DialogResult.Cancel)
                 {
                     return;
                 }
@@ -329,7 +329,7 @@ namespace SalesManagement_SysDev
             //登録確認
             //須田オーダー
             result = messageDsp.MessageBoxDsp_OKCancel("登録すりゅ～？", "かくにん(はーと)", MessageBoxIcon.Question);
-            if(result == DialogResult.Cancel)
+            if (result == DialogResult.Cancel)
             {
                 return;
             }
@@ -401,7 +401,7 @@ namespace SalesManagement_SysDev
             icon = MessageBoxIcon.Question;
 
             //テーブルのデータを取得
-            ordertabledata =  GetTableData();
+            ordertabledata = GetTableData();
 
             //同じ受注IDに同じ商品がないかチェックする
             flg = ordertabledata.Any(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
@@ -436,7 +436,7 @@ namespace SalesManagement_SysDev
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return null;
             }
-           
+
             return dispOrder;
 
         }
@@ -473,7 +473,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if (!inputFormCheck.CheckNumeric(checkdata.OrID)) 
+            if (!inputFormCheck.CheckNumeric(checkdata.OrID))
             {
                 msg = "受注IDには半角数字を入力してください";
                 title = "入力エラー";
@@ -487,7 +487,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if(int.Parse(checkdata.OrQuantity) <= 0)
+            if (int.Parse(checkdata.OrQuantity) <= 0)
             {
                 msg = "数量には1以上を入力してください";
                 title = "入力エラー";
@@ -495,6 +495,131 @@ namespace SalesManagement_SysDev
             }
 
             return true;
+        }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveOrder();
+        }
+
+        private void RemoveOrder()
+        {
+            //変数の宣言
+            string OrID,Ordetail;
+            T_Order Order = new T_Order();
+            T_OrderDetail OrderDetail = new T_OrderDetail();
+
+            //データグリッドビューに表示されているデータの受注IDを受け取る
+            OrID = GetOrderRecord();
+
+
+            //取得した受注IDでデータベースを検索する
+            Order = SelectRemoveOrder(OrID);
+            if (Order == null)
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報を取得できませんでした", "エラー", MessageBoxIcon.Error);
+                return;
+            }
+
+            //受注フラグを0から2へ変更する
+            UpdateOrFlag(Order,OrderDetail);
+        }
+
+        private string GetOrderRecord()
+        {
+            //変数の宣言
+            string retOrID;
+
+            retOrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retOrID;
+        }
+
+        private T_Order SelectRemoveOrder(string OrID)
+        {
+            //変数の宣言
+            T_Order retorder = new T_Order();
+            DispOrderDTO dispOrderDTO = new DispOrderDTO();
+            List<DispOrderDTO> dispOrders = new List<DispOrderDTO>();
+
+            //データベースからデータを取得する
+            dispOrders = GetTableData();
+            if (dispOrders == null)
+            {
+                return null;
+            }
+
+            //Listの中を受けとった受注IDで検索
+            dispOrderDTO = dispOrders.Single(x => x.OrID == OrID);
+
+            //検索結果を返却用にする
+            retorder = FormalizationOrderInputRecord(dispOrderDTO);
+
+            return retorder;
+        }
+
+        private T_Order FormalizationOrderInputRecord(DispOrderDTO dispOrderDTO)
+        {
+            T_Order retorder = new T_Order();
+
+            retorder.OrID = int.Parse(dispOrderDTO.OrID);
+            retorder.SoID = int.Parse(dispOrderDTO.SoID);
+            retorder.EmID = int.Parse(dispOrderDTO.EmID);
+            retorder.ClID = int.Parse(dispOrderDTO.ClID);
+            retorder.ClCharge = dispOrderDTO.ClCharge;
+            retorder.OrDate = dispOrderDTO.OrDate;
+            retorder.OrStateFlag = int.Parse(dispOrderDTO.OrStateFlag);
+            retorder.OrFlag = int.Parse(dispOrderDTO.OrFlag);
+            retorder.OrHidden = dispOrderDTO.OrHidden;
+
+            return retorder;
+        }
+
+        private void UpdateOrFlag(T_Order order,T_OrderDetail orderDetail)
+        {
+            //変数の宣言
+            DialogResult result;
+
+            //非表示の実行
+            result = messageDsp.MessageBoxDsp_OKCancel("非表示にしてよろしいですか", "エラー", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //受注管理フラグの変更
+            order = ChangeOrFlag(order,orderDetail);
+
+            //受注の更新
+            UpdateOrderRecord(order, orderDetail);
+        }
+
+        private T_Order ChangeOrFlag(T_Order order, T_OrderDetail orderDetail)
+        {
+            order.OrFlag = 2;
+
+            return order;
+        }
+
+        private void UpdateOrderRecord(T_Order order, T_OrderDetail orderDetail )
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            OrderDataAccess access = new OrderDataAccess();
+            flg = access.UpdateOrderData(order,orderDetail);
+
+            if (!flg) 
+            {
+                messageDsp.MessageBoxDsp_OK("非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
         }
     }
 }

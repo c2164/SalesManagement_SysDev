@@ -49,8 +49,22 @@ namespace SalesManagement_SysDev.Common
                 {
                     var UpdateTarget = context.T_Orders.Single(x => x.OrID == UpOrder.OrID);
                     var UpdateTargetDetail = context.T_OrderDetails.Single(x => x.OrDetailID == UpOrderDetail.OrID);
-                    UpdateTarget = UpOrder;
-                    UpdateTargetDetail = UpOrderDetail;
+
+                    UpdateTarget.OrID= UpOrder.OrID;
+                    UpdateTarget.SoID = UpdateTarget.SoID;
+                    UpdateTarget.EmID=UpdateTarget.EmID;
+                    UpdateTarget.ClID=UpdateTarget.ClID;
+                    UpdateTarget.ClCharge=UpdateTarget.ClCharge;
+                    UpdateTarget.OrDate=UpdateTarget.OrDate;
+                    UpdateTarget.OrStateFlag=UpdateTarget.OrStateFlag;
+                    UpdateTarget.OrFlag=UpdateTarget.OrFlag;
+                    UpdateTarget.OrHidden=UpdateTarget.OrHidden;
+
+                    UpdateTargetDetail.OrDetailID=UpdateTargetDetail.OrDetailID;
+                    UpdateTargetDetail.OrID=UpdateTargetDetail.OrID;
+                    UpdateTargetDetail.PrID=UpdateTargetDetail.PrID;
+                    UpdateTargetDetail.OrQuantity=UpdateTargetDetail.OrQuantity;
+                    UpdateTargetDetail.OrTotalPrice=UpdateTargetDetail.OrTotalPrice;
 
                     context.SaveChanges();
                     return true;
@@ -175,6 +189,8 @@ namespace SalesManagement_SysDev.Common
                              OrStateFlag = Order.OrStateFlag.ToString(),
                              MaName = Maker.MaName.ToString(),
                              Price = Product.Price.ToString(),
+                             OrFlag= Order.OrFlag.ToString(),
+                             OrHidden= Order.OrHidden.ToString(),
                          };
 
                 return tb.ToList();
