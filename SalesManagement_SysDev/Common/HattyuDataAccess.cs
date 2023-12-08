@@ -67,25 +67,22 @@ namespace SalesManagement_SysDev.Common
 
 
 
+                         //dispSaleDTO.SaID.Equals("") ? true :Sale.SaID.ToString().Equals(dispSaleDTO.SaID) && //売上ID
                          where
-                         ((dispHattyuDTO.HaID == "") ? true :
-                         Hattyu.HaID == int.Parse(dispHattyuDTO.HaID)) &&//発注ID
+                         (dispHattyuDTO.HaID.Equals("")? true:
+                         Hattyu.HaID.ToString().Equals(dispHattyuDTO.HaID)) &&//発注ID
 
-                         ((dispHattyuDTO.EmID == "") ? true :
-                         Employee.EmID == int.Parse(dispHattyuDTO.EmID)) && //社員ID
+                         (dispHattyuDTO.EmID.Equals("")? true:
+                         Employee.EmID.ToString().Equals(dispHattyuDTO.EmID))&& //社員ID
 
                          Employee.EmName.Contains(dispHattyuDTO.EmName) && //社員名
 
                          Maker.MaName.Contains(dispHattyuDTO.MaName) && //メーカ名
 
-                        ((dispHattyuDTO.PrID == "") ? true :
-                        Product.PrID == int.Parse(dispHattyuDTO.PrID)) && //商品ID
+                        (dispHattyuDTO.PrID.Equals("")? true:
+                        Product.PrID.ToString().Equals(dispHattyuDTO.PrID))&& //商品ID
 
                         Product.PrName.Contains(dispHattyuDTO.PrName) && //商品名
-
-                        
-
-                        HattyuDetail.HaQuantity.ToString().Contains(dispHattyuDTO.HaQuantity) && //数量
 
                         //発注年月日
 

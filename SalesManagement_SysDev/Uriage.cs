@@ -41,7 +41,7 @@ namespace SalesManagement_SysDev
         private bool GetSelectData()
         {
             SaleDataAccess access = new SaleDataAccess();
-            //顧客情報の全件取得
+            //売上情報の全件取得
             List<DispSaleDTO> tb = access.GetSaleData();
             if (tb == null)
                 return false;
@@ -147,6 +147,10 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[14].Visible = false;
             //非表示理由
             dataGridView1.Columns[15].Visible = false;
+            //検索用日時（前）
+            dataGridView1.Columns[16].Visible = false;
+            //検索用日時（後）
+            dataGridView1.Columns[17].Visible = false;
         }
 
 
@@ -156,6 +160,197 @@ namespace SalesManagement_SysDev
             //GetSelectData();
             //SetCtrlFormat();
         }
+
+        private DispSaleDTO GetSaleInf()
+        {
+            DispSaleDTO retSaleDTO = new DispSaleDTO();
+
+            //各コントロールの情報
+            retSaleDTO.SaID=textBox_Uriage_ID.Text.Trim();
+
+            if(!(comboBox_Kokyaku_Namae.SelectedIndex == -1))
+                retSaleDTO.ClID=comboBox_Kokyaku_Namae.SelectedValue.ToString();
+                retSaleDTO.ClName=comboBox_Kokyaku_Namae.Text.Trim();
+
+            if(!(comboBox_Eigyousyo_Namae.SelectedIndex == -1))
+                retSaleDTO.SoID=comboBox_Eigyousyo_Namae.SelectedValue.ToString();
+            retSaleDTO.SoName = comboBox_Eigyousyo_Namae.Text.Trim();
+
+            retSaleDTO.SaDetailID=textBox_Uriagesyousai_ID.Text.Trim();
+
+            if(!(comboBox_Syain_Namae.SelectedIndex== -1))
+                retSaleDTO.EmID=comboBox_Syain_Namae.SelectedValue.ToString() ;
+            retSaleDTO.EmName = comboBox_Syain_Namae.Text.Trim();
+
+            retSaleDTO.OrID=textBox_Zyutyuu_ID.Text.Trim();
+
+            retSaleDTO.SaReleseFromDate = dateTimePicker_Nitizi_2.Value;
+
+            retSaleDTO.SaReleaseToDate=dateTimePicker_Nitizi_3.Value;
+
+            return retSaleDTO;
+
+        }
+
+        private List<DispSaleDTO> SelectSaleInf(DispSaleDTO SaleDTO)
+        {
+            List<DispSaleDTO> retDispSale = new List<DispSaleDTO>();
+
+            SaleDataAccess SaAcsess=new SaleDataAccess();
+
+            retDispSale=SaAcsess.GetSaleData(SaleDTO);
+            return retDispSale;
+
+        }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveSale();
+        }
+
+        private void RemoveSale()
+        {
+            //変数の宣言
+            string SaID;
+            T_Sale sale = new T_Sale();
+            T_SaleDetail saleDetail = new T_SaleDetail();
+            //データグリッドビューで選択されているデータの商品IDを受け取る
+            SaID = GetSaleRecode();
+
+            //取得した商品IDでデータベースを検索する
+            sale = SelectRemoveSale(SaID,out saleDetail);
+            if (sale == null)
+            {
+                messageDsp.MessageBoxDsp_OK("商品情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                return;
+            }
+
+            //商品管理フラグを0から2にする
+            UpdateSaFlag(sale, saleDetail);
+        }
+
+        private void UpdateSaFlag(T_Sale sale, T_SaleDetail saleDetail)
+        {
+            //変数宣言
+            DialogResult result;
+
+            //非表示実行確認
+            result=messageDsp.MessageBoxDsp_OKCancel("対象のデータを非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //売上管理フラグ変更
+            sale = ChangeSaFlg(sale);
+            if(sale == null)
+            {
+                return;
+            }
+            //データの更新
+            UpdateSaleRecord(sale, saleDetail);
+        }
+
+        private void UpdateSaleRecord(T_Sale sale,T_SaleDetail saleDetail)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            SaleDataAccess access = new SaleDataAccess();
+            flg = access.UpdateSaleData(sale, saleDetail);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象のデータの非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象のデータを非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private　T_Sale  ChangeSaFlg(T_Sale sale)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
+            sale.SaFlag = 2;
+            sale.SaHidden = Hidden;
+            return sale;
+        }
+
+        private T_Sale SelectRemoveSale(string SaID, out T_SaleDetail saleDetail)
+        {
+            //変数の宣言
+            T_Sale retsale = new T_Sale();
+            DispSaleDTO dispSaleDTO = new DispSaleDTO();
+            List<DispSaleDTO> dispSales = new List<DispSaleDTO>();
+            saleDetail = null;
+            //データベースからデータを取得する
+            dispSales = GetTableData();
+            
+            if (dispSales == null) //データの取得失敗
+            {
+                return null;
+            }
+
+            //Listの中を受け取った商品IDで検索
+            dispSaleDTO = dispSales.Single(x => x.SaID == SaID);
+
+            //検索結果を返却用にする
+            retsale = FormalizationSaleInputRecord(dispSaleDTO);
+            saleDetail = FormalizationSaleDetailInputRecord(dispSaleDTO);
+
+            return retsale;
+        }
+
+        private T_Sale FormalizationSaleInputRecord(DispSaleDTO dispSaleDTO)
+        {
+            T_Sale retsale = new T_Sale();
+
+
+            retsale.SaID = int.Parse(dispSaleDTO.SaID);
+            retsale.ClID= int.Parse(dispSaleDTO.ClID);
+            retsale.SoID = int.Parse(dispSaleDTO.SoID);
+            retsale.EmID = int.Parse(dispSaleDTO.EmID);
+            retsale.ChID = int.Parse(dispSaleDTO.OrID);
+            retsale.SaDate = dispSaleDTO.SaDate.Value;
+            retsale.SaHidden = dispSaleDTO.SaHidden;
+            retsale.SaFlag=int.Parse(dispSaleDTO.SaFlag);
+
+            return retsale;
+        }
+
+        private T_SaleDetail FormalizationSaleDetailInputRecord(DispSaleDTO dispSaleDTO)
+        {
+            T_SaleDetail retsaleDetail = new T_SaleDetail();
+
+
+            retsaleDetail.SaDetailID = int.Parse(dispSaleDTO.SaDetailID);
+            retsaleDetail.SaID = int.Parse(dispSaleDTO.SaID);
+            retsaleDetail.PrID = int.Parse(dispSaleDTO.PrID);
+            retsaleDetail.SaQuantity = int.Parse(dispSaleDTO.SaQuantity);
+            retsaleDetail.SaTotalPrice = decimal.Parse(dispSaleDTO.SaTotalPrice);
+
+            return retsaleDetail;
+        }
+
+        private string GetSaleRecode()
+        {
+            //変数の宣言
+            string retSaID;
+
+            retSaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retSaID;
+        }
+
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
         {
@@ -192,5 +387,23 @@ namespace SalesManagement_SysDev
             return dispSales;
 
         }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectSale();
+        }
+
+        private void SelectSale()
+        {
+            DispSaleDTO saleDTO = new DispSaleDTO();
+            List<DispSaleDTO> displaySale = new List<DispSaleDTO>();
+
+            saleDTO = GetSaleInf();
+
+            displaySale = SelectSaleInf(saleDTO);
+
+            SetDataGridView(displaySale);
+        }
+
     }
 }

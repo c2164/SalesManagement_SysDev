@@ -615,6 +615,12 @@ namespace SalesManagement_SysDev.Entity
 
         [DisplayName("非表示理由")]
         public string SaHidden { get; set; }
+
+        [DisplayName("検索用売上日(開始期間)")]
+        public DateTime? SaReleseFromDate { get; set; }
+
+        [DisplayName("検索用売上日(終了期間)")]
+        public DateTime? SaReleaseToDate { get; set; }
     }
 
 }
