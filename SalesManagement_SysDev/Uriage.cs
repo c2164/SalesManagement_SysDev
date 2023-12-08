@@ -41,7 +41,7 @@ namespace SalesManagement_SysDev
         private bool GetSelectData()
         {
             SaleDataAccess access = new SaleDataAccess();
-            //顧客情報の全件取得
+            //売上情報の全件取得
             List<DispSaleDTO> tb = access.GetSaleData();
             if (tb == null)
                 return false;
@@ -147,6 +147,10 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[14].Visible = false;
             //非表示理由
             dataGridView1.Columns[15].Visible = false;
+            //検索用日時（前）
+            dataGridView1.Columns[16].Visible = false;
+            //検索用日時（後）
+            dataGridView1.Columns[17].Visible = false;
         }
 
 
@@ -190,6 +194,65 @@ namespace SalesManagement_SysDev
         {
             dispSales.OrderBy(x => x.SaID);
             return dispSales;
+
+        }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectSale();
+        }
+
+        private void SelectSale()
+        {
+            DispSaleDTO saleDTO = new DispSaleDTO();
+            List<DispSaleDTO> displaySale = new List<DispSaleDTO>();
+
+            saleDTO = GetSaleInf();
+
+            displaySale = SelectSaleInf(saleDTO);
+
+            SetDataGridView(displaySale);
+        }
+
+        private DispSaleDTO GetSaleInf()
+        {
+            DispSaleDTO retSaleDTO = new DispSaleDTO();
+
+            //各コントロールの情報
+            retSaleDTO.SaID=textBox_Uriage_ID.Text.Trim();
+
+            if(!(comboBox_Kokyaku_Namae.SelectedIndex == -1))
+                retSaleDTO.ClID=comboBox_Kokyaku_Namae.SelectedValue.ToString();
+                retSaleDTO.ClName=comboBox_Kokyaku_Namae.Text.Trim();
+
+            if(!(comboBox_Eigyousyo_Namae.SelectedIndex == -1))
+                retSaleDTO.SoID=comboBox_Eigyousyo_Namae.SelectedValue.ToString();
+            retSaleDTO.SoName = comboBox_Eigyousyo_Namae.Text.Trim();
+
+            retSaleDTO.SaDetailID=textBox_Uriagesyousai_ID.Text.Trim();
+
+            if(!(comboBox_Syain_Namae.SelectedIndex== -1))
+                retSaleDTO.EmID=comboBox_Syain_Namae.SelectedValue.ToString() ;
+            retSaleDTO.EmName = comboBox_Syain_Namae.Text.Trim();
+
+            retSaleDTO.OrID=textBox_Zyutyuu_ID.Text.Trim();
+
+            retSaleDTO.SaReleseFromDate = dateTimePicker_Nitizi_2.Value;
+
+            retSaleDTO.SaReleaseToDate=dateTimePicker_Nitizi_3.Value;
+
+            return retSaleDTO;
+
+        }
+
+        private List<DispSaleDTO> SelectSaleInf(DispSaleDTO SaleDTO)
+        {
+            List<DispSaleDTO> retDispSale = new List<DispSaleDTO>();
+
+            SaleDataAccess SaAcsess=new SaleDataAccess();
+
+            retDispSale=SaAcsess.GetSaleData(SaleDTO);
+            return retDispSale;
 
         }
     }

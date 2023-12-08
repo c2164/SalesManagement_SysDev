@@ -175,6 +175,66 @@ namespace SalesManagement_SysDev
             dispHattyus.OrderBy(x => x.HaID);
             return dispHattyus;
         }
+
+        private void button_Kennsaku_Click(object sender, EventArgs e)
+        {
+            SelectHattyu();
+        }
+
+        private void SelectHattyu()
+        {
+            DispHattyuDTO hattyuDTO = new DispHattyuDTO();
+            List<DispHattyuDTO> displayHattyu = new List<DispHattyuDTO>();
+
+            hattyuDTO = GetHattyuInf();
+
+            displayHattyu = SelectHattyuInf(hattyuDTO);
+
+            SetDataGridView(displayHattyu);
+        }
+
+        private DispHattyuDTO GetHattyuInf()
+        {
+            DispHattyuDTO retHattyuDTO = new DispHattyuDTO();
+
+            //各コントロールの情報
+
+            retHattyuDTO.HaID=textBox_Hattyuu_ID.Text.Trim();
+            retHattyuDTO.EmID=textBox_Syain_ID.Text.Trim();
+
+            if(!(comboBox_Syain_Namae.SelectedIndex==-1))
+                retHattyuDTO.EmID=comboBox_Syain_Namae.SelectedValue.ToString();
+                retHattyuDTO.EmName=comboBox_Syain_Namae.Text.Trim();
+
+
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1))
+            retHattyuDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+            retHattyuDTO.MaName = comboBox_Meka_Namae.Text.Trim();
+
+            retHattyuDTO.PrID=textBox_Syouhin_ID.Text.Trim();
+
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retHattyuDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+            retHattyuDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
+
+            retHattyuDTO.HaQuantity=textBox_Suuryou.Text.Trim();
+            retHattyuDTO.HaDetailID=textBox_Hattyuusyousai.Text.Trim();
+            retHattyuDTO.HaDate = dateTimePicker1.Value;
+
+            return retHattyuDTO;
+
+        }
+
+        private List<DispHattyuDTO> SelectHattyuInf(DispHattyuDTO HattyuDTO)
+        {
+            List<DispHattyuDTO> retDispHattyu = new List<DispHattyuDTO>();
+
+            HattyuDataAccess HaAcsess = new HattyuDataAccess();
+
+            retDispHattyu = HaAcsess.GetHattyuData(HattyuDTO);
+            return retDispHattyu;
+
+        }
     }
 
 }

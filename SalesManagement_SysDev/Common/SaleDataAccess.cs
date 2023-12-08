@@ -59,7 +59,7 @@ namespace SalesManagement_SysDev.Common
                 //「T_SaleDeteal」テーブルから　「T_Sale」「M_SalesOffice」「M_Employee] 「M_Client] [T_Order]　「M_Product」を参照
                 var tb = from SaleDetail in context.T_SaleDetails
                          join Sale in context.T_Sale
-                         on SaleDetail.SaDetailID equals Sale.SaID
+                         on SaleDetail.SaID equals Sale.SaID
 
                          join Client in context.M_Clients
                          on Sale.ClID equals Client.ClID
@@ -78,21 +78,22 @@ namespace SalesManagement_SysDev.Common
 
 
                          where
-                         ((dispSaleDTO.SaID == "") ? true :
-                         Sale.SaID == int.Parse(dispSaleDTO.SaID)) && //売上ID
+                         
+                         (dispSaleDTO.SaID.Equals("") ? true:
+                         Sale.SaID.ToString().Equals(dispSaleDTO.SaID))&& //売上ID
 
                          Client.ClName.Contains(dispSaleDTO.ClName) &&  //顧客名
                          SalesOffice.SoName.Contains(dispSaleDTO.SoName) && //営業所名
 
-                         ((dispSaleDTO.SaDetailID == "") ? true :
-                         SaleDetail.SaDetailID == int.Parse(dispSaleDTO.SaDetailID)) && //売上詳細ID
+                         (dispSaleDTO.SaDetailID.Equals("")?true:
+                         SaleDetail.SaDetailID.ToString().Equals(dispSaleDTO.SaDetailID))&& //売上詳細ID
 
                          Employee.EmName.Contains(dispSaleDTO.EmName) && //社員名
 
                          //商品ID
 
-                         ((dispSaleDTO.OrID == "") ? true :
-                         Order.OrID == int.Parse(dispSaleDTO.OrID)) && //受注ID
+                         dispSaleDTO.OrID.Equals("")?true:
+                         Order.OrID.ToString().Equals(dispSaleDTO.OrID)&& //受注ID
 
                          //検索用日時
 
@@ -136,8 +137,9 @@ namespace SalesManagement_SysDev.Common
             {
                 //「T_SaleDeteal」テーブルから　「T_Sale」「M_SalesOffice」「M_Employee] 「M_Client] [T_Order]　「M_Product」を参照
                 var tb = from SaleDetail in context.T_SaleDetails
+
                          join Sale in context.T_Sale
-                         on SaleDetail.SaDetailID equals Sale.SaID
+                         on SaleDetail.SaID equals Sale.SaID
 
                          join Client in context.M_Clients
                          on Sale.ClID equals Client.ClID
@@ -157,8 +159,6 @@ namespace SalesManagement_SysDev.Common
                          where
 
                          Sale.SaFlag == 0 //非表示フラグ
-
-
 
                          select new DispSaleDTO
                          {
