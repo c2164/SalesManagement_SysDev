@@ -382,5 +382,6 @@ namespace SalesManagement_SysDev
             retPrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retPrID;
         }
+
     }
 }
