@@ -238,6 +238,7 @@ namespace SalesManagement_SysDev
                 retWarehousingDTO.MaID = comboBox_Syouhin_Namae.SelectedValue.ToString();
             retWarehousingDTO.WaQuantity = numericUpDown_Suuryou.Value.ToString();
 
+
             return retWarehousingDTO;
         }
 
@@ -254,5 +255,131 @@ namespace SalesManagement_SysDev
 
 
         }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveWarehousing();
+        }
+
+        private void RemoveWarehousing()
+        {
+            //変数の宣言
+            string WaID;
+            T_Warehousing warehousing = new T_Warehousing();
+            //データグリッドビューで選択されているデータの入庫IDを受け取る
+            WaID = GetWarehousingRecord();
+
+            //取得した入庫IDでデータベースを検索する
+            warehousing = SelectRemoveWarehousing(WaID);
+            if (warehousing == null)
+            {
+                messageDsp.MessageBoxDsp_OK("入庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                return;
+            }
+
+            //入庫管理フラグを0から2にする
+            UpdateWaFlag(warehousing);
+        }
+
+        private void UpdateWaFlag(T_Warehousing warehousing)
+        {
+            //変数の宣言
+            DialogResult result;
+
+            //非表示実行確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の商品を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //入庫管理フラグの変更
+            warehousing = ChangeWaFlag(warehousing);
+            //入庫の更新
+            UpdateWarehousingRecord(warehousing);
+        }
+
+        private void UpdateWarehousingRecord(T_Warehousing warehousing)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            WarehousingDataAccess access = new WarehousingDataAccess();
+            flg = access.UpdateWarehousingData(warehousing);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象商品の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private T_Warehousing ChangeWaFlag(T_Warehousing warehousing)
+        {
+            warehousing.WaFlag = 2;
+            return warehousing;
+        }
+
+        private T_Warehousing SelectRemoveWarehousing(string WaID)
+        {
+            //変数の宣言
+            T_Warehousing retwarehousing = new T_Warehousing();
+            DispWarehousingDTO dispWarehousingDTO = new DispWarehousingDTO();
+            List<DispWarehousingDTO> dispWarehousings = new List<DispWarehousingDTO>();
+            //データベースからデータを取得する
+            dispWarehousings = GetTableData();
+            if (dispWarehousings == null) //データの取得失敗
+            {
+                return null;
+            }
+
+            //Listの中を受け取った商品IDで検索
+            dispWarehousingDTO = dispWarehousings.Single(x => x.WaID == WaID);
+
+            //検索結果を返却用にする
+            retwarehousing = FormalizationWarehousingInputRecord(dispWarehousingDTO);
+
+            return retwarehousing;
+        }
+
+        private T_Warehousing FormalizationWarehousingInputRecord(DispWarehousingDTO dispWarehousingDTO)
+        {
+            T_Warehousing retwarehousing = new T_Warehousing();
+            retwarehousing.WaID = int.Parse(dispWarehousingDTO.WaID);
+            retwarehousing.HaID = int.Parse(dispWarehousingDTO.HaID);
+            retwarehousing.EmID = int.Parse(dispWarehousingDTO.ConfEmID);
+            retwarehousing.WaFlag = int.Parse(dispWarehousingDTO.WaFlag);
+            retwarehousing.WaHidden = dispWarehousingDTO.WaHidden;
+
+
+            return retwarehousing;
+        }
+
+
+        private T_WarehousingDetail FormalizationWarehousingDetailInputRecord(DispWarehousingDTO dispWarehousingDetailDTO)
+        { 
+            T_WarehousingDetail retwarehousingdetail = new T_WarehousingDetail();
+            retwarehousingdetail.WaDetailID = int.Parse(dispWarehousingDetailDTO.WaDetailID);
+            retwarehousingdetail.WaQuantity = dispWarehousingDetailDTO.WaQuantit
+
+
+                return retwarehousingdetail;
+                }
+
+            private string GetWarehousingRecord()
+        {
+            //変数の宣言
+            string retWaID;
+
+            retWaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retWaID;
+        }
     }
+
 }

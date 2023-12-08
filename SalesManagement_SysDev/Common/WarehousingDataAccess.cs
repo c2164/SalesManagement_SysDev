@@ -30,7 +30,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫情報アップデート(アップデート情報)
-        public bool UpdateWerehousingData(T_Warehousing UpWarehousing)
+        public bool UpdateWarehousingData(T_Warehousing UpWarehousing)
         {
             using (var context = new SalesManagement_DevContext())
             {
