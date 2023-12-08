@@ -287,7 +287,7 @@ namespace SalesManagement_SysDev
             DialogResult result;
 
             //非表示実行確認
-            result = messageDsp.MessageBoxDsp_OKCancel("対象の商品を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の入庫情報を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
             if (result == DialogResult.Cancel)
             {
                 return;
@@ -295,6 +295,10 @@ namespace SalesManagement_SysDev
 
             //入庫管理フラグの変更
             warehousing = ChangeWaFlag(warehousing);
+            if (warehousing == null)
+            {
+                return;
+            }
             //入庫の更新
             UpdateWarehousingRecord(warehousing);
         }
@@ -309,11 +313,11 @@ namespace SalesManagement_SysDev
             flg = access.UpdateWarehousingData(warehousing);
             if (!flg)
             {
-                messageDsp.MessageBoxDsp_OK("対象商品の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("対象入庫情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
             }
             else
             {
-                messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("対象入庫情報を非表示にしました", "非表示完了", MessageBoxIcon.Information);
             }
 
             SetCtrlFormat();
@@ -322,7 +326,16 @@ namespace SalesManagement_SysDev
 
         private T_Warehousing ChangeWaFlag(T_Warehousing warehousing)
         {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
+
             warehousing.WaFlag = 2;
+            warehousing.WaHidden = Hidden;
             return warehousing;
         }
 
@@ -339,7 +352,7 @@ namespace SalesManagement_SysDev
                 return null;
             }
 
-            //Listの中を受け取った商品IDで検索
+            //Listの中を受け取った入庫IDで検索
             dispWarehousingDTO = dispWarehousings.Single(x => x.WaID == WaID);
 
             //検索結果を返却用にする
@@ -353,9 +366,11 @@ namespace SalesManagement_SysDev
             T_Warehousing retwarehousing = new T_Warehousing();
             retwarehousing.WaID = int.Parse(dispWarehousingDTO.WaID);
             retwarehousing.HaID = int.Parse(dispWarehousingDTO.HaID);
-            retwarehousing.EmID = int.Parse(dispWarehousingDTO.ConfEmID);
+            retwarehousing.WaDate = dispWarehousingDTO.WaDate;
+            retwarehousing.WaShelfFlag = int.Parse(dispWarehousingDTO.WaShelfFlag);
             retwarehousing.WaFlag = int.Parse(dispWarehousingDTO.WaFlag);
             retwarehousing.WaHidden = dispWarehousingDTO.WaHidden;
+           
 
 
             return retwarehousing;
@@ -366,17 +381,20 @@ namespace SalesManagement_SysDev
         { 
             T_WarehousingDetail retwarehousingdetail = new T_WarehousingDetail();
             retwarehousingdetail.WaDetailID = int.Parse(dispWarehousingDetailDTO.WaDetailID);
-            retwarehousingdetail.WaQuantity = dispWarehousingDetailDTO.WaQuantit
-
+            retwarehousingdetail.WaQuantity = int.Parse(dispWarehousingDetailDTO.WaQuantity);
+            retwarehousingdetail.PrID = int.Parse(dispWarehousingDetailDTO.PrID);
+            retwarehousingdetail.WaID = int.Parse(dispWarehousingDetailDTO.WaID);
+            
 
                 return retwarehousingdetail;
                 }
 
-            private string GetWarehousingRecord()
+        private string GetWarehousingRecord()
         {
+
+
             //変数の宣言
             string retWaID;
-
             retWaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retWaID;
         }

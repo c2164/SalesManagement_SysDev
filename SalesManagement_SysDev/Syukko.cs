@@ -287,6 +287,146 @@ namespace SalesManagement_SysDev
 
 
         }
-        
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveSyukko();
+        }
+
+        private void RemoveSyukko()
+        {
+            //変数の宣言
+            string SyID;
+            T_Syukko syukko = new T_Syukko();
+            //データグリッドビューで選択されているデータの出庫IDを受け取る
+            SyID = GetSyukkoRecord();
+
+            //取得した出庫IDでデータベースを検索する
+            syukko = SelectRemoveSyukko(SyID);
+            if (syukko == null)
+            {
+                messageDsp.MessageBoxDsp_OK("出庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                return;
+            }
+
+            //出庫管理フラグを0から2にする
+            UpdateSyFlag(syukko);
+        }
+
+        private void UpdateSyFlag(T_Syukko syukko)
+        {
+            //変数の宣言
+            DialogResult result;
+
+            //非表示実行確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の出庫情報を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //出庫管理フラグの変更
+            syukko = ChangeSyFlag(syukko);
+            if (syukko == null)
+            {
+                return;
+            }
+            //出庫の更新
+            UpdateSyukkoRecord(syukko);
+        }
+
+        private void UpdateSyukkoRecord(T_Syukko syukko)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            SyukkoDataAccess access = new SyukkoDataAccess();
+            flg = access.UpdateSyukkoData(syukko);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象出庫情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象出庫情報を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private T_Syukko ChangeSyFlag(T_Syukko syukko)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+            }
+            syukko.SyFlag = 2;
+            syukko.SyHidden = Hidden;
+            return syukko;
+        }
+
+        private T_Syukko SelectRemoveSyukko(string SyID)
+        {
+            //変数の宣言
+            T_Syukko retsyukko = new T_Syukko();
+            DispSyukkoDTO dispSyukkoDTO = new DispSyukkoDTO();
+            List<DispSyukkoDTO> dispSyukkos = new List<DispSyukkoDTO>();
+            //データベースからデータを取得する
+            dispSyukkos = GetTableData();
+            if (dispSyukkos == null) //データの取得失敗
+            {
+                return null;
+            }
+
+            //Listの中を受け取った出庫IDで検索
+            dispSyukkoDTO = dispSyukkos.Single(x => x.SyID == SyID);
+
+            //検索結果を返却用にする
+            retsyukko = FormalizationSyukkoInputRecord(dispSyukkoDTO);
+
+            return retsyukko;
+        }
+
+        private T_Syukko FormalizationSyukkoInputRecord(DispSyukkoDTO dispSyukkoDTO)
+        {
+            T_Syukko retsyukko = new T_Syukko();
+            retsyukko.SyID = int.Parse(dispSyukkoDTO.SyID);
+            retsyukko.EmID = int.Parse(dispSyukkoDTO.EmID);
+            retsyukko.ClID = int.Parse(dispSyukkoDTO .ClID);    
+            retsyukko.SoID = int.Parse (dispSyukkoDTO .SoID);
+            retsyukko.OrID = int.Parse(dispSyukkoDTO.OrID);
+            retsyukko.SyDate = dispSyukkoDTO.SyDate;
+            retsyukko.SyStateFlag = int.Parse(dispSyukkoDTO.SyStateFlag);
+            retsyukko.SyFlag = int.Parse(dispSyukkoDTO.SyFlag);
+            retsyukko.SyHidden = dispSyukkoDTO.SyHidden;
+            return retsyukko;
+        }
+
+        private T_SyukkoDetail FormalizationSyukkoDetailInputRecord(DispSyukkoDetailDTO dispSyukkoDetailDTO)
+        {
+            T_SyukkoDetail retsyukkodetail = new T_SyukkoDetail();
+            retsyukkodetail.SyDetailID = int.Parse(dispSyukkoDetailDTO.SyDetailID);
+            retsyukkodetail.SyID = int.Parse(dispSyukkoDetailDTO .SyID);
+            retsyukkodetail.PrID = int.Parse(dispSyukkoDetailDTO.PrID);
+            retsyukkodetail.SyQuantity = dispSyukkoDetailDTO.SyQuantity;
+
+
+            return retsyukkodetail;
+
+        }
+
+            private string GetSyukkoRecord()
+        {
+            //変数の宣言
+            string retSyID;
+
+            retSyID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retSyID;
+        }
+
     }
 }
