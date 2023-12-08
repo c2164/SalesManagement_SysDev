@@ -38,6 +38,7 @@ namespace SalesManagement_SysDev.Common
                 {
                     var UpdateTarget = context.T_Stocks.Single(x => x.StID == UpStock.StID);
                     UpdateTarget = UpStock;
+                    UpdateTarget.StFlag = UpStock.StFlag;
 
                     context.SaveChanges();
                     return true;
@@ -68,7 +69,9 @@ namespace SalesManagement_SysDev.Common
                          Maker.MaName.Contains(dispStockDTO.MaName) && //メーカー名
                          Product.PrName.Contains(dispStockDTO.PrName) && //商品名
                          ((dispStockDTO.StQuantity == "") ? true :
-                         Stock.StQuantity == int.Parse(dispStockDTO.PrID)) //在庫数
+                         Stock.StQuantity == int.Parse(dispStockDTO.PrID)) &&//在庫数
+                         Stock.StFlag == 0 //非表示フラグ
+
                          select new DispStockDTO
                          {
                              StID = Stock.StID.ToString(),
@@ -76,6 +79,7 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrName = Product.PrName,
                              StQuantity = Stock.StQuantity.ToString(),
+                             StFlag = Stock.StFlag.ToString(),
                          };
 
                 return tb.ToList();
@@ -111,6 +115,7 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrName = Product.PrName,
                              StQuantity = Stock.StQuantity.ToString(),
+                             StFlag = Stock.StFlag.ToString(),
                          };
 
                 return tb.ToList();

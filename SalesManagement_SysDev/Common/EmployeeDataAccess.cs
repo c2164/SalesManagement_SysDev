@@ -38,6 +38,8 @@ namespace SalesManagement_SysDev.Common
                 {
                     var UpdateTarget = context.M_Employees.Single(x => x.EmID == UpEmployee.EmID);
                     UpdateTarget = UpEmployee;
+                    UpdateTarget.EmFlag = UpEmployee.EmFlag;
+                    UpdateTarget.EmHidden = UpEmployee.EmHidden;
 
                     context.SaveChanges();
                     return true;
@@ -83,6 +85,8 @@ namespace SalesManagement_SysDev.Common
                              EmHiredate = Employee.EmHiredate,
                              EmPhone = Employee.EmPhone,
                              EmPassword = Employee.EmPassword,
+                             EmFlag = Employee.EmFlag.ToString(),
+                             EmHidden = Employee.EmHidden,
                          };
 
                 return tb.ToList();
@@ -119,6 +123,8 @@ namespace SalesManagement_SysDev.Common
                              EmHiredate = Employee.EmHiredate,
                              EmPhone = Employee.EmPhone,
                              EmPassword = Employee.EmPassword,
+                             EmFlag = Employee.EmFlag.ToString(),
+                             EmHidden = Employee.EmHidden,
                          };
 
                 return tb.ToList();

@@ -265,6 +265,10 @@ namespace SalesManagement_SysDev
             M_Product product = new M_Product(); 
             //データグリッドビューで選択されているデータの商品IDを受け取る
             PrID = GetProductRecord();
+            if(PrID == null)
+            {
+                return;
+            }
 
             //取得した商品IDでデータベースを検索する
             product = SelectRemoveProduct(PrID);
@@ -292,6 +296,10 @@ namespace SalesManagement_SysDev
 
             //商品管理フラグの変更
             product = ChangePrFlag(product);
+            if(product == null)
+            {
+                return;
+            }
             //商品の更新
             UpdateProductRecord(product);
         }
@@ -319,7 +327,14 @@ namespace SalesManagement_SysDev
 
         private M_Product ChangePrFlag(M_Product product)
         {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+               messageDsp.MessageBoxDsp_OK("非表示を中断します","中断",MessageBoxIcon.Information);
+            }
             product.PrFlag = 2;
+            product.PrHidden = Hidden;
             return product;
         }
 
@@ -368,8 +383,14 @@ namespace SalesManagement_SysDev
             //変数の宣言
             string retPrID;
 
+            if(dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
             retPrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retPrID;
         }
+
     }
 }
