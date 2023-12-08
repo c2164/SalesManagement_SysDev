@@ -345,6 +345,24 @@ namespace SalesManagement_SysDev
             return retDispClient;
         }
 
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveClient();
+        }
 
+        private void RemoveClient()
+        {
+            //変数の宣言
+            string ClID;
+            ClID = GetClientRecord();
+            
+        }
+
+        private string GetClientRecord()
+        {
+            string ClID;
+            ClID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return ClID;
+        }
     }
 }

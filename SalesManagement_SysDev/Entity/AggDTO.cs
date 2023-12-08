@@ -114,7 +114,7 @@ namespace SalesManagement_SysDev.Entity
         public string PrColor { get; set; }
 
         [DisplayName("発売日")]
-        public DateTime? PrReleaseDate { get; set; }
+        public DateTime PrReleaseDate { get; set; }
 
         [DisplayName("検索用発売日(開始期間)")]
         public DateTime? PrReleseFromDate { get; set; }
