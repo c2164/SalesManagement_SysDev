@@ -189,7 +189,7 @@ namespace SalesManagement_SysDev
             DispStockDTO dispStockDTO = new DispStockDTO();
             List<DispStockDTO> dispStocks = new List<DispStockDTO>();
             //データベースからデータを取得する
-            dispStocks = GetTableData();
+            //dispStocks = GetTableData();
             if (dispStocks == null) //データの取得失敗
             {
                 return null;
@@ -208,7 +208,6 @@ namespace SalesManagement_SysDev
         {
             T_Stock retstock = new T_Stock();
             retstock.StID = int.Parse(dispStockDTO.StID);
-            retstock.MaName = dispStockDTO.MaName;
 
             return retstock;
         }
@@ -227,5 +226,9 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
