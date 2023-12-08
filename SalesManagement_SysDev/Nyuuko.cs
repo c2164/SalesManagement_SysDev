@@ -268,12 +268,15 @@ namespace SalesManagement_SysDev
             T_Warehousing warehousing = new T_Warehousing();
             //データグリッドビューで選択されているデータの入庫IDを受け取る
             WaID = GetWarehousingRecord();
+            if(WaID == null)
+            {
+                return;
+            }
 
             //取得した入庫IDでデータベースを検索する
             warehousing = SelectRemoveWarehousing(WaID);
             if (warehousing == null)
             {
-                messageDsp.MessageBoxDsp_OK("入庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
 
@@ -349,6 +352,7 @@ namespace SalesManagement_SysDev
             dispWarehousings = GetTableData();
             if (dispWarehousings == null) //データの取得失敗
             {
+                messageDsp.MessageBoxDsp_OK("入庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return null;
             }
 
@@ -395,6 +399,11 @@ namespace SalesManagement_SysDev
 
             //変数の宣言
             string retWaID;
+            if(dataGridView1.SelectedRows.Count<=0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください","エラー",MessageBoxIcon.Error);
+                return null;
+            }
             retWaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retWaID;
         }

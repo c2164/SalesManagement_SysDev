@@ -300,12 +300,15 @@ namespace SalesManagement_SysDev
             T_Syukko syukko = new T_Syukko();
             //データグリッドビューで選択されているデータの出庫IDを受け取る
             SyID = GetSyukkoRecord();
+            if(SyID==null)
+            {
+                return;
+            }
 
             //取得した出庫IDでデータベースを検索する
             syukko = SelectRemoveSyukko(SyID);
             if (syukko == null)
             {
-                messageDsp.MessageBoxDsp_OK("出庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
 
@@ -379,6 +382,7 @@ namespace SalesManagement_SysDev
             dispSyukkos = GetTableData();
             if (dispSyukkos == null) //データの取得失敗
             {
+                messageDsp.MessageBoxDsp_OK("出庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return null;
             }
 
@@ -406,13 +410,13 @@ namespace SalesManagement_SysDev
             return retsyukko;
         }
 
-        private T_SyukkoDetail FormalizationSyukkoDetailInputRecord(DispSyukkoDetailDTO dispSyukkoDetailDTO)
+        private T_SyukkoDetail FormalizationSyukkoDetailInputRecord(DispSyukkoDTO dispSyukkoDetailDTO)
         {
             T_SyukkoDetail retsyukkodetail = new T_SyukkoDetail();
             retsyukkodetail.SyDetailID = int.Parse(dispSyukkoDetailDTO.SyDetailID);
             retsyukkodetail.SyID = int.Parse(dispSyukkoDetailDTO .SyID);
             retsyukkodetail.PrID = int.Parse(dispSyukkoDetailDTO.PrID);
-            retsyukkodetail.SyQuantity = dispSyukkoDetailDTO.SyQuantity;
+            retsyukkodetail.SyQuantity = int.Parse(dispSyukkoDetailDTO.SyQuantity);
 
 
             return retsyukkodetail;
@@ -423,7 +427,11 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             string retSyID;
-
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
             retSyID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retSyID;
         }
