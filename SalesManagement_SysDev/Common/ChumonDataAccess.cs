@@ -115,13 +115,23 @@ namespace SalesManagement_SysDev.Common
                          select new DispChumonDTO
                          {
                              ChID = Chumon.ChID.ToString(),
-                             PrName = Product.PrName,
-                             SoName = SalesOffice.SoName,
                              ChDetailID = ChumonDetail.ChDetailID.ToString(),
-                             OrID = Order.OrID.ToString(),
-                             ClName = Client.ClName,
-                             EmName = Employee.EmName,
+                             PrID = Product.PrID.ToString(),
+                             PrName = Product.PrName,
                              ChQuantity = ChumonDetail.ChQuantity.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName,
+                             EmID = Employee.EmID.ToString(),
+                             EmName = Employee.EmName,
+                             ClID = Client.ClID.ToString(),
+                             ClName = Client.ClName,
+                             OrID = Order.OrID.ToString(),
+                             ChDate = Chumon.ChDate,
+                             ChStateFlag = Chumon.ChStateFlag.ToString(),
+                             ChFlag = Chumon.ChFlag.ToString(),
+                             ChHidden = Chumon.ChHidden.ToString(),
+
+
 
 
                          };
@@ -163,13 +173,21 @@ namespace SalesManagement_SysDev.Common
                          select new DispChumonDTO
                          {
                              ChID = Chumon.ChID.ToString(),
-                             PrName = Product.PrName,
-                             SoName = SalesOffice.SoName,
                              ChDetailID = ChumonDetail.ChDetailID.ToString(),
-                             OrID = Order.OrID.ToString(),
-                             ClName = Client.ClName,
-                             EmName = Employee.EmName,
+                             PrID = Product.PrID.ToString(),
+                             PrName = Product.PrName,
                              ChQuantity = ChumonDetail.ChQuantity.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName,
+                             EmID = Employee.EmID.ToString(),
+                             EmName = Employee.EmName,
+                             ClID = Client.ClID.ToString(),
+                             ClName = Client.ClName,
+                             OrID = Order.OrID.ToString(),
+                             ChDate = Chumon.ChDate,
+                             ChStateFlag = Chumon.ChStateFlag.ToString(),
+                             ChFlag = Chumon.ChFlag.ToString(),
+                             ChHidden = Chumon.ChHidden.ToString(),
 
 
                          };

@@ -289,5 +289,171 @@ namespace SalesManagement_SysDev
 
             return retDispChumon;
         }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveChumon();
+        }
+
+        private void RemoveChumon()
+        {
+            //変数宣言
+            string ChID;
+            T_Chumon Chumon = new T_Chumon();
+            T_ChumonDetail ChumonDetail = new T_ChumonDetail();
+
+            //データグリッドビューに表示されているデータの注文IDを受け取る
+            ChID = GetChumonRecode();
+            if (ChID == null)
+            {
+                return;
+            }
+
+
+            //取得した注文IDでデータベースを検索する
+            Chumon = SelectRemoveChumon(ChID, out ChumonDetail);
+            if (Chumon == null)
+            {
+                return;
+            }
+
+            //注文フラグを0から2へ変更する
+            UpdateChFlag(Chumon, ChumonDetail);
+        }
+
+        private string GetChumonRecode()
+        {
+            //変数の宣言
+            string retChumonID;
+
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+
+                return null;
+            }
+
+            retChumonID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+
+            return retChumonID;
+        }
+
+        private T_Chumon SelectRemoveChumon(string ChID, out T_ChumonDetail ChumonDetail)
+        {
+            //変数の宣言
+            T_Chumon retchumon = new T_Chumon();
+            DispChumonDTO dispChumonDTO = new DispChumonDTO();
+            List<DispChumonDTO> dispChumons = new List<DispChumonDTO>();
+            ChumonDetail = null;
+
+            //データベースからデータを取得する
+            dispChumons = GetTableDate();
+            if (dispChumons == null)
+            {
+                messageDsp.MessageBoxDsp_OK("注文情報を取得できませんでした", "エラー", MessageBoxIcon.Error);
+
+                return null;
+            }
+
+            //LIstの中を受け取った注文IDで検索
+            dispChumonDTO = dispChumons.First(x => x.ChID == ChID);
+
+            //検索結果を返却用にする
+            retchumon = FormalizationChumonInputRecord(dispChumonDTO);
+            ChumonDetail = FormalizationChumonDetailRecord(dispChumonDTO);
+
+            return retchumon;
+        }
+
+        private T_Chumon FormalizationChumonInputRecord(DispChumonDTO dispChumonDTO)
+        {
+            T_Chumon retchumon = new T_Chumon();
+
+            retchumon.ChID = int.Parse(dispChumonDTO.ChID);
+            retchumon.SoID = int.Parse(dispChumonDTO.SoID);
+            retchumon.EmID = int.Parse(dispChumonDTO.EmID);
+            retchumon.ClID = int.Parse(dispChumonDTO.ClID);
+            retchumon.OrID = int.Parse(dispChumonDTO.OrID);
+            retchumon.ChDate = dispChumonDTO.ChDate;
+            retchumon.ChStateFlag = int.Parse(dispChumonDTO.ChStateFlag);
+            retchumon.ChFlag = int.Parse(dispChumonDTO.ChFlag);
+            retchumon.ChHidden = dispChumonDTO.ChHidden;
+
+            return retchumon;
+        }
+
+        private T_ChumonDetail FormalizationChumonDetailRecord(DispChumonDTO dispChumonDTO)
+        {
+            T_ChumonDetail retchumonDetail = new T_ChumonDetail();
+
+            retchumonDetail.ChDetailID = int.Parse(dispChumonDTO.ChDetailID);
+            retchumonDetail.ChID = int.Parse(dispChumonDTO.ChID);
+            retchumonDetail.PrID = int.Parse(dispChumonDTO.PrID);
+            retchumonDetail.ChQuantity = int.Parse(dispChumonDTO.ChQuantity);
+
+            return retchumonDetail;
+        }
+
+        private void UpdateChFlag(T_Chumon chumon, T_ChumonDetail chumondetail)
+        {
+            //変数の宣言
+            DialogResult result;
+
+            //非表示の実行
+            result = messageDsp.MessageBoxDsp_OKCancel("非表示にしてよろしいですか", "エラー", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //注文管理フラグの変更
+            chumon = ChangeChFlag(chumon);
+            if (chumon == null)
+            {
+                return;
+            }
+
+            //注文の更新
+            UpdateChumonRecord(chumon, chumondetail);
+        }
+
+        private T_Chumon ChangeChFlag(T_Chumon chumon)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
+
+            chumon.ChFlag = 2;
+            chumon.ChHidden = Hidden;
+
+            return chumon;
+        }
+
+        private void UpdateChumonRecord(T_Chumon chumon, T_ChumonDetail chumonDetail)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            ChumonDataAccess access = new ChumonDataAccess();
+
+            flg = access.UpdateChumonData(chumon, chumonDetail);
+
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
     }
 }
