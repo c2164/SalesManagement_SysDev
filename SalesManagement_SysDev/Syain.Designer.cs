@@ -272,7 +272,7 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(749, 298);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(251, 31);
             this.dateTimePicker1.TabIndex = 23;
             // 
             // Syain
