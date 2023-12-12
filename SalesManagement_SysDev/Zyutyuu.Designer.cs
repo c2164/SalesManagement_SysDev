@@ -269,12 +269,13 @@
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
             this.dataGridView1.TabIndex = 24;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // comboBox_Kokyaku_Namae
             // 
             this.comboBox_Kokyaku_Namae.FormattingEnabled = true;
             this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(246, 180);
-            this.comboBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Kokyaku_Namae.Name = "comboBox_Kokyaku_Namae";
             this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(254, 32);
             this.comboBox_Kokyaku_Namae.TabIndex = 25;
@@ -283,7 +284,7 @@
             // 
             this.comboBox_Syain_Namae.FormattingEnabled = true;
             this.comboBox_Syain_Namae.Location = new System.Drawing.Point(1254, 188);
-            this.comboBox_Syain_Namae.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Syain_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Syain_Namae.Name = "comboBox_Syain_Namae";
             this.comboBox_Syain_Namae.Size = new System.Drawing.Size(239, 32);
             this.comboBox_Syain_Namae.TabIndex = 26;
@@ -292,7 +293,7 @@
             // 
             this.comboBox_Syouhin_Namae.FormattingEnabled = true;
             this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(785, 399);
-            this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
             this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(244, 32);
             this.comboBox_Syouhin_Namae.TabIndex = 27;
@@ -301,7 +302,7 @@
             // 
             this.comboBox_Meka_Namae.FormattingEnabled = true;
             this.comboBox_Meka_Namae.Location = new System.Drawing.Point(1254, 297);
-            this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
             this.comboBox_Meka_Namae.Size = new System.Drawing.Size(241, 32);
             this.comboBox_Meka_Namae.TabIndex = 28;
