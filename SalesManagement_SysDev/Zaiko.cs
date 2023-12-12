@@ -191,7 +191,7 @@ namespace SalesManagement_SysDev
             DispStockDTO dispStockDTO = new DispStockDTO();
             List<DispStockDTO> dispStocks = new List<DispStockDTO>();
             //データベースからデータを取得する
-            //dispStocks = GetTableData();
+            dispStocks = GetTableData();
             if (dispStocks == null) //データの取得失敗
             {
                 return null;
@@ -210,7 +210,9 @@ namespace SalesManagement_SysDev
         {
             T_Stock retstock = new T_Stock();
             retstock.StID = int.Parse(dispStockDTO.StID);
-
+            retstock.PrID = int.Parse(dispStockDTO.PrID);
+            retstock.PrID = int.Parse(dispStockDTO.PrID);
+            retstock.StQuantity = int.Parse(dispStockDTO.StQuantity);
             return retstock;
         }
 
@@ -219,19 +221,15 @@ namespace SalesManagement_SysDev
             //変数の宣言
             string retStID;
 
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
             retStID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retStID;
         }
 
-        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_Kensaku_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
         {

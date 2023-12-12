@@ -232,12 +232,42 @@ namespace SalesManagement_SysDev
 
         private void button_Sakuzyo_Click(object sender, EventArgs e)
         {
-            RemoveStock();
+            RemoveEmployee();
         }
 
-        private void RemoveStock()
+        private void RemoveEmployee()
         {
+            //変数の宣言
+            string EmID;
+            M_Employee Employee = new M_Employee();
+            //データグリッドビューで選択されているデータの在庫IDを受け取る
+            EmID = GetEmployeeRecord();
 
+            //取得した在庫IDでデータベースを検索する
+            Employee = SelectRemoveEmployee(EmID);
+            if (Employee == null)
+            {
+                messageDsp.MessageBoxDsp_OK("在庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                return;
+            }
+
+            //在庫管理フラグを0から2にする
+            UpdateEmFlag(Employee);
+        }
+
+        private void UpdateEmFlag(M_Employee employee)
+        {
+          
+        }
+
+        private M_Employee SelectRemoveEmployee(string emID)
+        {
+            throw new NotImplementedException();
+        }
+
+        private string GetEmployeeRecord()
+        {
+            throw new NotImplementedException();
         }
     }
 }
