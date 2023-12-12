@@ -49,7 +49,7 @@
             this.textbox_Kataban = new System.Windows.Forms.TextBox();
             this.textbox_Kakaku = new System.Windows.Forms.TextBox();
             this.textbox_Anzen = new System.Windows.Forms.TextBox();
-            this.combobox_Syoubunnrui_ID = new System.Windows.Forms.ComboBox();
+            this.combobox_Syoubunnrui_Namae = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -57,6 +57,7 @@
             this.dateTimePicker_Nitizi_3 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_Nitizi_2 = new System.Windows.Forms.DateTimePicker();
             this.combobox_Meka_ID = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +68,7 @@
             this.button_Touroku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Touroku.ForeColor = System.Drawing.Color.White;
             this.button_Touroku.Location = new System.Drawing.Point(36, 22);
-            this.button_Touroku.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Touroku.Margin = new System.Windows.Forms.Padding(2);
             this.button_Touroku.Name = "button_Touroku";
             this.button_Touroku.Size = new System.Drawing.Size(118, 56);
             this.button_Touroku.TabIndex = 0;
@@ -80,12 +81,13 @@
             this.button_Kousin.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kousin.ForeColor = System.Drawing.Color.White;
             this.button_Kousin.Location = new System.Drawing.Point(235, 22);
-            this.button_Kousin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Kousin.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kousin.Name = "button_Kousin";
             this.button_Kousin.Size = new System.Drawing.Size(118, 56);
             this.button_Kousin.TabIndex = 1;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
+            this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
             // 
             // button_Kennsaku
             // 
@@ -93,7 +95,7 @@
             this.button_Kennsaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kennsaku.ForeColor = System.Drawing.Color.White;
             this.button_Kennsaku.Location = new System.Drawing.Point(435, 22);
-            this.button_Kennsaku.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Kennsaku.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kennsaku.Name = "button_Kennsaku";
             this.button_Kennsaku.Size = new System.Drawing.Size(118, 56);
             this.button_Kennsaku.TabIndex = 2;
@@ -107,7 +109,7 @@
             this.button_Itiran.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Itiran.ForeColor = System.Drawing.Color.White;
             this.button_Itiran.Location = new System.Drawing.Point(632, 22);
-            this.button_Itiran.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Itiran.Margin = new System.Windows.Forms.Padding(2);
             this.button_Itiran.Name = "button_Itiran";
             this.button_Itiran.Size = new System.Drawing.Size(159, 56);
             this.button_Itiran.TabIndex = 3;
@@ -121,7 +123,7 @@
             this.button_Sakujyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakujyo.ForeColor = System.Drawing.Color.White;
             this.button_Sakujyo.Location = new System.Drawing.Point(849, 22);
-            this.button_Sakujyo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Sakujyo.Margin = new System.Windows.Forms.Padding(2);
             this.button_Sakujyo.Name = "button_Sakujyo";
             this.button_Sakujyo.Size = new System.Drawing.Size(118, 56);
             this.button_Sakujyo.TabIndex = 4;
@@ -135,7 +137,7 @@
             this.button_Kuria.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
             this.button_Kuria.Location = new System.Drawing.Point(1042, 22);
-            this.button_Kuria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Kuria.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(118, 56);
             this.button_Kuria.TabIndex = 5;
@@ -245,7 +247,7 @@
             // textbox_Syouhin_ID
             // 
             this.textbox_Syouhin_ID.Location = new System.Drawing.Point(155, 136);
-            this.textbox_Syouhin_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textbox_Syouhin_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textbox_Syouhin_ID.Name = "textbox_Syouhin_ID";
             this.textbox_Syouhin_ID.Size = new System.Drawing.Size(216, 25);
             this.textbox_Syouhin_ID.TabIndex = 15;
@@ -253,7 +255,7 @@
             // textbox_Syouhin_Namae
             // 
             this.textbox_Syouhin_Namae.Location = new System.Drawing.Point(544, 136);
-            this.textbox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textbox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.textbox_Syouhin_Namae.Name = "textbox_Syouhin_Namae";
             this.textbox_Syouhin_Namae.Size = new System.Drawing.Size(216, 25);
             this.textbox_Syouhin_Namae.TabIndex = 16;
@@ -261,7 +263,7 @@
             // textbox_Iro
             // 
             this.textbox_Iro.Location = new System.Drawing.Point(545, 251);
-            this.textbox_Iro.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textbox_Iro.Margin = new System.Windows.Forms.Padding(2);
             this.textbox_Iro.Name = "textbox_Iro";
             this.textbox_Iro.Size = new System.Drawing.Size(216, 25);
             this.textbox_Iro.TabIndex = 17;
@@ -269,7 +271,7 @@
             // textbox_Kataban
             // 
             this.textbox_Kataban.Location = new System.Drawing.Point(155, 251);
-            this.textbox_Kataban.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textbox_Kataban.Margin = new System.Windows.Forms.Padding(2);
             this.textbox_Kataban.Name = "textbox_Kataban";
             this.textbox_Kataban.Size = new System.Drawing.Size(216, 25);
             this.textbox_Kataban.TabIndex = 18;
@@ -277,7 +279,7 @@
             // textbox_Kakaku
             // 
             this.textbox_Kakaku.Location = new System.Drawing.Point(545, 198);
-            this.textbox_Kakaku.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textbox_Kakaku.Margin = new System.Windows.Forms.Padding(2);
             this.textbox_Kakaku.Name = "textbox_Kakaku";
             this.textbox_Kakaku.Size = new System.Drawing.Size(216, 25);
             this.textbox_Kakaku.TabIndex = 19;
@@ -285,35 +287,36 @@
             // textbox_Anzen
             // 
             this.textbox_Anzen.Location = new System.Drawing.Point(946, 204);
-            this.textbox_Anzen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textbox_Anzen.Margin = new System.Windows.Forms.Padding(2);
             this.textbox_Anzen.Name = "textbox_Anzen";
             this.textbox_Anzen.Size = new System.Drawing.Size(216, 25);
             this.textbox_Anzen.TabIndex = 20;
             // 
-            // combobox_Syoubunnrui_ID
+            // combobox_Syoubunnrui_Namae
             // 
-            this.combobox_Syoubunnrui_ID.FormattingEnabled = true;
-            this.combobox_Syoubunnrui_ID.Location = new System.Drawing.Point(155, 196);
-            this.combobox_Syoubunnrui_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.combobox_Syoubunnrui_ID.Name = "combobox_Syoubunnrui_ID";
-            this.combobox_Syoubunnrui_ID.Size = new System.Drawing.Size(216, 26);
-            this.combobox_Syoubunnrui_ID.TabIndex = 21;
+            this.combobox_Syoubunnrui_Namae.FormattingEnabled = true;
+            this.combobox_Syoubunnrui_Namae.Location = new System.Drawing.Point(155, 196);
+            this.combobox_Syoubunnrui_Namae.Margin = new System.Windows.Forms.Padding(2);
+            this.combobox_Syoubunnrui_Namae.Name = "combobox_Syoubunnrui_Namae";
+            this.combobox_Syoubunnrui_Namae.Size = new System.Drawing.Size(216, 26);
+            this.combobox_Syoubunnrui_Namae.TabIndex = 21;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(14, 370);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1179, 263);
             this.dataGridView1.TabIndex = 24;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(1596, 443);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(215, 25);
             this.dateTimePicker1.TabIndex = 25;
@@ -324,9 +327,9 @@
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_3);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_2);
             this.groupBox1.Location = new System.Drawing.Point(36, 300);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(640, 66);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
@@ -345,7 +348,7 @@
             // dateTimePicker_Nitizi_3
             // 
             this.dateTimePicker_Nitizi_3.Location = new System.Drawing.Point(333, 32);
-            this.dateTimePicker_Nitizi_3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker_Nitizi_3.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi_3.Name = "dateTimePicker_Nitizi_3";
             this.dateTimePicker_Nitizi_3.Size = new System.Drawing.Size(281, 25);
             this.dateTimePicker_Nitizi_3.TabIndex = 20;
@@ -353,7 +356,7 @@
             // dateTimePicker_Nitizi_2
             // 
             this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(15, 32);
-            this.dateTimePicker_Nitizi_2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker_Nitizi_2.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi_2.Name = "dateTimePicker_Nitizi_2";
             this.dateTimePicker_Nitizi_2.Size = new System.Drawing.Size(270, 25);
             this.dateTimePicker_Nitizi_2.TabIndex = 19;
@@ -362,21 +365,30 @@
             // 
             this.combobox_Meka_ID.FormattingEnabled = true;
             this.combobox_Meka_ID.Location = new System.Drawing.Point(946, 142);
-            this.combobox_Meka_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.combobox_Meka_ID.Margin = new System.Windows.Forms.Padding(2);
             this.combobox_Meka_ID.Name = "combobox_Meka_ID";
             this.combobox_Meka_ID.Size = new System.Drawing.Size(216, 26);
             this.combobox_Meka_ID.TabIndex = 22;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(946, 253);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(270, 25);
+            this.dateTimePicker2.TabIndex = 22;
             // 
             // Syouhin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.combobox_Meka_ID);
-            this.Controls.Add(this.combobox_Syoubunnrui_ID);
+            this.Controls.Add(this.combobox_Syoubunnrui_Namae);
             this.Controls.Add(this.textbox_Anzen);
             this.Controls.Add(this.textbox_Kakaku);
             this.Controls.Add(this.textbox_Kataban);
@@ -398,7 +410,7 @@
             this.Controls.Add(this.button_Kennsaku);
             this.Controls.Add(this.button_Kousin);
             this.Controls.Add(this.button_Touroku);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Syouhin";
             this.Size = new System.Drawing.Size(1580, 861);
             this.Load += new System.EventHandler(this.Syouhin_Load);
@@ -433,7 +445,7 @@
         private System.Windows.Forms.TextBox textbox_Kataban;
         private System.Windows.Forms.TextBox textbox_Kakaku;
         private System.Windows.Forms.TextBox textbox_Anzen;
-        private System.Windows.Forms.ComboBox combobox_Syoubunnrui_ID;
+        private System.Windows.Forms.ComboBox combobox_Syoubunnrui_Namae;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -441,5 +453,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_Nitizi_3;
         private System.Windows.Forms.DateTimePicker dateTimePicker_Nitizi_2;
         private System.Windows.Forms.ComboBox combobox_Meka_ID;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }
