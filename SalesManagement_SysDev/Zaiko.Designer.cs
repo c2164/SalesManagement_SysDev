@@ -172,6 +172,11 @@
             // domainUpDown_Zaikosuu
             // 
             this.domainUpDown_Zaikosuu.Location = new System.Drawing.Point(242, 387);
+            this.domainUpDown_Zaikosuu.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.domainUpDown_Zaikosuu.Name = "domainUpDown_Zaikosuu";
             this.domainUpDown_Zaikosuu.Size = new System.Drawing.Size(250, 31);
             this.domainUpDown_Zaikosuu.TabIndex = 12;
@@ -185,6 +190,7 @@
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Zaiko
             // 
