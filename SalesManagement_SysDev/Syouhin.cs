@@ -392,5 +392,10 @@ namespace SalesManagement_SysDev
             return retPrID;
         }
 
+        private void button_Kousin_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

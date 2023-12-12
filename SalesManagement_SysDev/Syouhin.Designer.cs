@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.combobox_Meka_ID = new System.Windows.Forms.ComboBox();
-            //this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dateTimePicker_Nitizi_3 = new System.Windows.Forms.DateTimePicker();
-            //this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker_Nitizi_2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -58,7 +57,7 @@
             this.button_Kennsaku = new System.Windows.Forms.Button();
             this.button_Kousin = new System.Windows.Forms.Button();
             this.button_Touroku = new System.Windows.Forms.Button();
-            //this.groupBox1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +71,7 @@
             // 
             // groupBox1
             // 
-            /*this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_3);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_2);
             this.groupBox1.Location = new System.Drawing.Point(67, 401);
@@ -80,7 +79,7 @@
             this.groupBox1.Size = new System.Drawing.Size(832, 88);
             this.groupBox1.TabIndex = 78;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "検索用日時";*/
+            this.groupBox1.Text = "検索用日時";
             // 
             // label10
             // 
@@ -326,7 +325,6 @@
             this.button_Kousin.TabIndex = 54;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
-            //this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
             // 
             // button_Touroku
             // 
@@ -388,7 +386,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dateTimePicker_Nitizi_3;
-        //private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker_Nitizi_2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridView dataGridView1;
