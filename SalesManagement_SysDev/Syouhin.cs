@@ -587,5 +587,10 @@ namespace SalesManagement_SysDev
 
             return true;
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

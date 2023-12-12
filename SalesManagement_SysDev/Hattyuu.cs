@@ -379,6 +379,19 @@ namespace SalesManagement_SysDev
             retHaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retHaID;
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBox_Hattyuu_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            textBox_Syain_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
+            textBox_Syouhin_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+            textBox_Hattyuusyousai.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            textBox_Suuryou.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+            comboBox_Meka_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+            comboBox_Syain_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+            comboBox_Syouhin_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString());
+        }
     }
 
 
