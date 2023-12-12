@@ -131,11 +131,11 @@ namespace SalesManagement_SysDev
             combobox_Meka_ID.DropDownStyle = ComboBoxStyle.DropDownList;
             combobox_Meka_ID.SelectedIndex = -1;
 
-            combobox_Syoubunnrui_ID.DisplayMember = "ScName";
-            combobox_Syoubunnrui_ID.ValueMember = "ScID";
-            combobox_Syoubunnrui_ID.DataSource = SCDataAccess.GetSCData();
-            combobox_Syoubunnrui_ID.DropDownStyle = ComboBoxStyle.DropDownList;
-            combobox_Syoubunnrui_ID.SelectedIndex = -1;
+            combobox_Syoubunnrui_Namae.DisplayMember = "ScName";
+            combobox_Syoubunnrui_Namae.ValueMember = "ScID";
+            combobox_Syoubunnrui_Namae.DataSource = SCDataAccess.GetSCData();
+            combobox_Syoubunnrui_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            combobox_Syoubunnrui_Namae.SelectedIndex = -1;
 
             //日付を現在の日付にする
             dateTimePicker1.Value = DateTime.Now;
@@ -226,10 +226,10 @@ namespace SalesManagement_SysDev
             retProductDTO.PrName = textbox_Syouhin_Namae.Text.Trim();
             if (!(combobox_Meka_ID.SelectedIndex == -1))
                 retProductDTO.MaID = combobox_Meka_ID.SelectedValue.ToString();
-            retProductDTO.MaName = combobox_Syoubunnrui_ID.Text.Trim();
-            if (!(combobox_Syoubunnrui_ID.SelectedIndex == -1))
-                retProductDTO.ScID = combobox_Syoubunnrui_ID.SelectedIndex.ToString();
-            retProductDTO.ScName = combobox_Syoubunnrui_ID.Text.Trim();
+            retProductDTO.MaName = combobox_Syoubunnrui_Namae.Text.Trim();
+            if (!(combobox_Syoubunnrui_Namae.SelectedIndex == -1))
+                retProductDTO.ScID = combobox_Syoubunnrui_Namae.SelectedIndex.ToString();
+            retProductDTO.ScName = combobox_Syoubunnrui_Namae.Text.Trim();
             retProductDTO.Price = textbox_Kakaku.Text.Trim();
             retProductDTO.PrSafetyStock = textbox_Anzen.Text.Trim();
             retProductDTO.PrModelNumber = textbox_Kataban.Text.Trim();
