@@ -201,7 +201,7 @@ namespace SalesManagement_SysDev
         private List<DispChumonDTO> GetTableDate()
         {
             //変数の宣言
-            List<DispChumonDTO> chumon= new List<DispChumonDTO>();
+            List<DispChumonDTO> chumon = new List<DispChumonDTO>();
 
             //インスタンス化
             ChumonDataAccess chAccess = new ChumonDataAccess();
@@ -217,6 +217,243 @@ namespace SalesManagement_SysDev
             //並び変え(昇順)
             dispchumons.OrderBy(x => x.ChID);
             return dispchumons;
+        }
+
+        private void button_Kensaku_Click(object sender, EventArgs e)
+        {
+            SelectChumon();
+        }
+
+        private void SelectChumon()
+        {
+            //変数の宣言
+            DispChumonDTO chumonDTO = new DispChumonDTO();
+            List<DispChumonDTO> DisplayChumon = new List<DispChumonDTO>();
+
+            //データの読み取り
+            chumonDTO = GetChumonInf();
+
+            //データの検索
+            DisplayChumon = SelectChumonInf(chumonDTO);
+
+            //データグリッドビューに表示
+            SetDataGridView(DisplayChumon);
+        }
+
+        private DispChumonDTO GetChumonInf()
+        {
+            //変数の宣言
+            DispChumonDTO retChumonDTO = new DispChumonDTO();
+
+            //各コントロールから情報を読み取る
+            retChumonDTO.ChID = textbox_Tyuumon_ID.Text.Trim();//注文ID
+
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retChumonDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();//商品ID
+
+            retChumonDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
+
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1))
+                retChumonDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID
+
+            retChumonDTO.SoName = comboBox_Eigyousyo.Text;//営業所名
+
+            retChumonDTO.ChDetailID = textbox_Tyuumonsyousai_ID.Text.Trim();//注文詳細ID
+
+            retChumonDTO.OrID = textbox_Tyuumonsyousai_ID.Text.Trim();//受注ID
+
+            retChumonDTO.ClName = textbox_Kokyaku_Namae.Text.Trim();//顧客名
+
+            if (!(comboBox_Syain_Namae.SelectedIndex == -1))
+                retChumonDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();//社員ID
+
+            retChumonDTO.EmName = comboBox_Syain_Namae.Text.Trim();//社員名
+
+            //retChumonDTO.ChDate = dateTimePicker_Tyuumon_Nenngetu.Value;//注文年月日
+
+            retChumonDTO.ChQuantity = numericUPDown_Syouhin_Namae.Value.ToString();//数量
+
+            return retChumonDTO;
+        }
+
+        private List<DispChumonDTO> SelectChumonInf(DispChumonDTO ChumonDTO)
+        {
+            //変数の宣言
+            List<DispChumonDTO> retDispChumon = new List<DispChumonDTO>();
+
+            //インスタンス化
+            ChumonDataAccess access = new ChumonDataAccess();
+
+            //注文情報検索
+            retDispChumon = access.GetChumonData(ChumonDTO);
+
+            return retDispChumon;
+        }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveChumon();
+        }
+
+        private void RemoveChumon()
+        {
+            //変数宣言
+            string ChID;
+            T_Chumon Chumon = new T_Chumon();
+            T_ChumonDetail ChumonDetail = new T_ChumonDetail();
+
+            //データグリッドビューに表示されているデータの注文IDを受け取る
+            ChID = GetChumonRecode();
+            if (ChID == null)
+            {
+                return;
+            }
+
+
+            //取得した注文IDでデータベースを検索する
+            Chumon = SelectRemoveChumon(ChID, out ChumonDetail);
+            if (Chumon == null)
+            {
+                return;
+            }
+
+            //注文フラグを0から2へ変更する
+            UpdateChFlag(Chumon, ChumonDetail);
+        }
+
+        private string GetChumonRecode()
+        {
+            //変数の宣言
+            string retChumonID;
+
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+
+                return null;
+            }
+
+            retChumonID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+
+            return retChumonID;
+        }
+
+        private T_Chumon SelectRemoveChumon(string ChID, out T_ChumonDetail ChumonDetail)
+        {
+            //変数の宣言
+            T_Chumon retchumon = new T_Chumon();
+            DispChumonDTO dispChumonDTO = new DispChumonDTO();
+            List<DispChumonDTO> dispChumons = new List<DispChumonDTO>();
+            ChumonDetail = null;
+
+            //データベースからデータを取得する
+            dispChumons = GetTableDate();
+            if (dispChumons == null)
+            {
+                messageDsp.MessageBoxDsp_OK("注文情報を取得できませんでした", "エラー", MessageBoxIcon.Error);
+
+                return null;
+            }
+
+            //LIstの中を受け取った注文IDで検索
+            dispChumonDTO = dispChumons.First(x => x.ChID == ChID);
+
+            //検索結果を返却用にする
+            retchumon = FormalizationChumonInputRecord(dispChumonDTO);
+            ChumonDetail = FormalizationChumonDetailRecord(dispChumonDTO);
+
+            return retchumon;
+        }
+
+        private T_Chumon FormalizationChumonInputRecord(DispChumonDTO dispChumonDTO)
+        {
+            T_Chumon retchumon = new T_Chumon();
+
+            retchumon.ChID = int.Parse(dispChumonDTO.ChID);
+            retchumon.SoID = int.Parse(dispChumonDTO.SoID);
+            retchumon.EmID = int.Parse(dispChumonDTO.EmID);
+            retchumon.ClID = int.Parse(dispChumonDTO.ClID);
+            retchumon.OrID = int.Parse(dispChumonDTO.OrID);
+            retchumon.ChDate = dispChumonDTO.ChDate;
+            retchumon.ChStateFlag = int.Parse(dispChumonDTO.ChStateFlag);
+            retchumon.ChFlag = int.Parse(dispChumonDTO.ChFlag);
+            retchumon.ChHidden = dispChumonDTO.ChHidden;
+
+            return retchumon;
+        }
+
+        private T_ChumonDetail FormalizationChumonDetailRecord(DispChumonDTO dispChumonDTO)
+        {
+            T_ChumonDetail retchumonDetail = new T_ChumonDetail();
+
+            retchumonDetail.ChDetailID = int.Parse(dispChumonDTO.ChDetailID);
+            retchumonDetail.ChID = int.Parse(dispChumonDTO.ChID);
+            retchumonDetail.PrID = int.Parse(dispChumonDTO.PrID);
+            retchumonDetail.ChQuantity = int.Parse(dispChumonDTO.ChQuantity);
+
+            return retchumonDetail;
+        }
+
+        private void UpdateChFlag(T_Chumon chumon, T_ChumonDetail chumondetail)
+        {
+            //変数の宣言
+            DialogResult result;
+
+            //非表示の実行
+            result = messageDsp.MessageBoxDsp_OKCancel("非表示にしてよろしいですか", "エラー", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //注文管理フラグの変更
+            chumon = ChangeChFlag(chumon);
+            if (chumon == null)
+            {
+                return;
+            }
+
+            //注文の更新
+            UpdateChumonRecord(chumon, chumondetail);
+        }
+
+        private T_Chumon ChangeChFlag(T_Chumon chumon)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
+
+            chumon.ChFlag = 2;
+            chumon.ChHidden = Hidden;
+
+            return chumon;
+        }
+
+        private void UpdateChumonRecord(T_Chumon chumon, T_ChumonDetail chumonDetail)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            ChumonDataAccess access = new ChumonDataAccess();
+
+            flg = access.UpdateChumonData(chumon, chumonDetail);
+
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
         }
     }
 }
