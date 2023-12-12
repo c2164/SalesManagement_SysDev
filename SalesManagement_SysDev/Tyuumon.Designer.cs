@@ -67,6 +67,7 @@
             this.button_Itirannhyouzi.TabIndex = 0;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
+            this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
             // 
             // button_Kensaku
             // 
@@ -313,7 +314,7 @@
             this.Controls.Add(this.button_Kensaku);
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Name = "Tyuumon";
-            this.Size = new System.Drawing.Size(1579, 862);
+            this.Size = new System.Drawing.Size(1610, 875);
             this.Load += new System.EventHandler(this.Tyuumon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUPDown_Syouhin_Namae)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
