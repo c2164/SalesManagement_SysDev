@@ -368,6 +368,10 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("営業所名")]
         public string SoName { get; set; }
 
+
+        [DisplayName("社員ID")]
+        public string EmID { get; set; }
+
         [DisplayName("入荷社員ID")]
         public string ArrivalEmID { get; set; }
 

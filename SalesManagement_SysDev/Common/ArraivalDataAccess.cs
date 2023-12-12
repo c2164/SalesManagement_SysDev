@@ -81,18 +81,18 @@ namespace SalesManagement_SysDev.Common
                          on Product.MaID equals Maker.MaID
                          where
                          Client.ClName.Contains(dispArrivalDTO.ClName) && //顧客名
-
-                         ArrivalDetail.ArID.ToString().Contains(dispArrivalDTO.ArID) && //入荷ID
-
+                         (dispArrivalDTO.ArID.Equals("") ? true:
+                         ArrivalDetail.ArID.ToString().Equals(dispArrivalDTO.ArID)) && //入荷ID
                          SalesOffice.SoName.Contains(dispArrivalDTO.SoName) && //営業所名
                          ChumonEm.EmName.Contains(dispArrivalDTO.ArrivalEmName) && //入荷社員名
-                         Arrival.OrID.ToString().Contains(dispArrivalDTO.OrID) && //受注ID
+                         (dispArrivalDTO.OrID.Equals("")? true:
+                         Arrival.OrID.ToString().Contains(dispArrivalDTO.OrID)) && //受注ID
                          Product.PrName.Contains(dispArrivalDTO.PrName) && //商品名
                          Employee.EmID.ToString().Contains(dispArrivalDTO.ConfEmName) && //確定社員名
-                         ArrivalDetail.ArDetailID.ToString().Contains(dispArrivalDTO.ArDetailID) && //入荷詳細ID
+                         (dispArrivalDTO.ArDetailID.Equals("")? true:
+                         ArrivalDetail.ArDetailID.ToString().Contains(dispArrivalDTO.ArDetailID)) && //入荷詳細ID
                          Maker.MaName.Contains(dispArrivalDTO.MaName) && //メーカー名
-                         ArrivalDetail.ArQuantity.ToString().Contains(dispArrivalDTO.ArQuantity) && //数量
-                         Arrival.ArStateFlag == int.Parse(dispArrivalDTO.ArStateFlag) &&//入荷状態フラグ
+                         Arrival.ArStateFlag.ToString() == dispArrivalDTO.ArStateFlag &&//入荷状態フラグ
                          Arrival.ArFlag == 0 //非表示フラグ
 
 
@@ -190,5 +190,7 @@ namespace SalesManagement_SysDev.Common
             return null;
 
         }
+
+
     }
 }

@@ -262,7 +262,7 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             string PrID;
-            M_Product product = new M_Product(); 
+            M_Product product = new M_Product();
             //データグリッドビューで選択されているデータの商品IDを受け取る
             PrID = GetProductRecord();
             if(PrID == null)
@@ -305,7 +305,7 @@ namespace SalesManagement_SysDev
         }
 
         private void UpdateProductRecord(M_Product product)
-        {   
+        {
             //変数の宣言
             bool flg;
 
