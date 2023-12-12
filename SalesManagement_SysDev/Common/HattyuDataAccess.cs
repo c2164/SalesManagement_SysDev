@@ -28,14 +28,26 @@ namespace SalesManagement_SysDev.Common
             }
         }
 
-        public bool UpdateHattyuData(T_Hattyu UpHattyu)
+        public bool UpdateHattyuData(T_Hattyu UpHattyu,T_HattyuDetail UpHattyuDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
+
                     var UpdateTarget = context.T_Hattyus.Single(x => x.HaID == UpHattyu.HaID);
-                    UpdateTarget = UpHattyu;
+                    UpdateTarget.HaID = UpHattyu.HaID;
+                    UpdateTarget.MaID=UpHattyu.MaID;
+                    UpdateTarget.EmID=UpHattyu.EmID;
+                    UpdateTarget.WaWarehouseFlag=UpHattyu.WaWarehouseFlag;
+                    UpdateTarget.HaFlag=UpHattyu.HaFlag;
+                    UpdateTarget.HaHidden=UpHattyu.HaHidden;
+
+                    var UpdateTarget2 = context.T_HattyuDetails.Single(x => x.HaID == UpHattyu.HaID);
+                    UpdateTarget2.HaDetailID = UpHattyuDetail.HaDetailID;
+                    UpdateTarget2.HaID=UpHattyuDetail.HaID;
+                    UpdateTarget2.PrID=UpHattyuDetail.PrID;
+                    UpdateTarget2.HaQuantity=UpHattyuDetail.HaQuantity;
 
                     context.SaveChanges();
                     return true;
@@ -94,11 +106,14 @@ namespace SalesManagement_SysDev.Common
                              HaDetailID=HattyuDetail.HaDetailID.ToString(),
                              EmID= Hattyu.EmID.ToString(),
                              EmName=Employee.EmName,
+                             MaID=Maker.MaID.ToString(),
                              MaName = Maker.MaName,
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
                              HaDate= Hattyu.HaDate,
-                             HaQuantity=HattyuDetail.HaQuantity.ToString()
+                             HaQuantity=HattyuDetail.HaQuantity.ToString(),
+                             HaFlag=Hattyu.HaFlag.ToString(),
+                             HaHidden=Hattyu.HaHidden.ToString(),
                          };
 
                 return tb.ToList();
@@ -139,11 +154,15 @@ namespace SalesManagement_SysDev.Common
                              HaDetailID = HattyuDetail.HaDetailID.ToString(),
                              EmID = Hattyu.EmID.ToString(),
                              EmName = Employee.EmName,
+                             MaID=Maker.MaID.ToString(),
                              MaName = Maker.MaName,
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
                              HaDate = Hattyu.HaDate,
-                             HaQuantity = HattyuDetail.HaQuantity.ToString()
+                             HaQuantity = HattyuDetail.HaQuantity.ToString(),
+                             HaFlag=Hattyu.HaFlag.ToString(),
+                             HaHidden = Hattyu.HaHidden.ToString(),
+                             
                          };
 
                 return tb.ToList();
