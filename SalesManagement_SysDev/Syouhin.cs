@@ -336,7 +336,7 @@ namespace SalesManagement_SysDev
             product.PrFlag = 2;
             product.PrHidden = Hidden;
             return product;
-        }
+        }virtual 
 
         private M_Product SelectRemoveProduct(string PrID)
         {
