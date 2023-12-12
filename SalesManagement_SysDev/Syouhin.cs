@@ -131,11 +131,11 @@ namespace SalesManagement_SysDev
             combobox_Meka_ID.DropDownStyle = ComboBoxStyle.DropDownList;
             combobox_Meka_ID.SelectedIndex = -1;
 
-            combobox_Syoubunnrui_ID.DisplayMember = "ScName";
-            combobox_Syoubunnrui_ID.ValueMember = "ScID";
-            combobox_Syoubunnrui_ID.DataSource = SCDataAccess.GetSCData();
-            combobox_Syoubunnrui_ID.DropDownStyle = ComboBoxStyle.DropDownList;
-            combobox_Syoubunnrui_ID.SelectedIndex = -1;
+            combobox_Syoubunnrui_Namae.DisplayMember = "ScName";
+            combobox_Syoubunnrui_Namae.ValueMember = "ScID";
+            combobox_Syoubunnrui_Namae.DataSource = SCDataAccess.GetSCData();
+            combobox_Syoubunnrui_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            combobox_Syoubunnrui_Namae.SelectedIndex = -1;
 
             //日付を現在の日付にする
             dateTimePicker1.Value = DateTime.Now;
@@ -226,10 +226,10 @@ namespace SalesManagement_SysDev
             retProductDTO.PrName = textbox_Syouhin_Namae.Text.Trim();
             if (!(combobox_Meka_ID.SelectedIndex == -1))
                 retProductDTO.MaID = combobox_Meka_ID.SelectedValue.ToString();
-            retProductDTO.MaName = combobox_Syoubunnrui_ID.Text.Trim();
-            if (!(combobox_Syoubunnrui_ID.SelectedIndex == -1))
-                retProductDTO.ScID = combobox_Syoubunnrui_ID.SelectedIndex.ToString();
-            retProductDTO.ScName = combobox_Syoubunnrui_ID.Text.Trim();
+            retProductDTO.MaName = combobox_Syoubunnrui_Namae.Text.Trim();
+            if (!(combobox_Syoubunnrui_Namae.SelectedIndex == -1))
+                retProductDTO.ScID = combobox_Syoubunnrui_Namae.SelectedIndex.ToString();
+            retProductDTO.ScName = combobox_Syoubunnrui_Namae.Text.Trim();
             retProductDTO.Price = textbox_Kakaku.Text.Trim();
             retProductDTO.PrSafetyStock = textbox_Anzen.Text.Trim();
             retProductDTO.PrModelNumber = textbox_Kataban.Text.Trim();
@@ -274,7 +274,6 @@ namespace SalesManagement_SysDev
             product = SelectRemoveProduct(PrID);
             if (product == null)
             {
-                messageDsp.MessageBoxDsp_OK("商品情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
 
@@ -348,6 +347,7 @@ namespace SalesManagement_SysDev
             dispProducts = GetTableData();
             if(dispProducts == null) //データの取得失敗
             {
+                messageDsp.MessageBoxDsp_OK("商品情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return null;
             }
 
@@ -362,7 +362,10 @@ namespace SalesManagement_SysDev
 
         private M_Product FormalizationProductInputRecord(DispProductDTO dispProductDTO)
         {
+            //変数の宣言
             M_Product retproduct = new M_Product();
+
+            //表示用からテーブル用にする
             retproduct.PrID = int.Parse(dispProductDTO.PrID);
             retproduct.PrName = dispProductDTO.PrName;
             retproduct.MaID = int.Parse(dispProductDTO.MaID);
@@ -392,5 +395,197 @@ namespace SalesManagement_SysDev
             return retPrID;
         }
 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textbox_Syouhin_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            textbox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            textbox_Kakaku.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString();
+            textbox_Anzen.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+            textbox_Kataban.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+            textbox_Iro.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString();
+            combobox_Meka_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            combobox_Syoubunnrui_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+            dateTimePicker2.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString());
+        }
+
+        private void button_Kousin_Click(object sender, EventArgs e)
+        {
+            UpdateProduct();
+        }
+
+        private void UpdateProduct()
+        {
+            //変数の宣言
+            DispProductDTO dispProductDTO = new DispProductDTO();
+            bool flg;
+            //チェック済みの入力情報を得る
+            dispProductDTO = GetCheckedProductInf();
+            //存在チェック
+            flg = ExistsCheck(dispProductDTO);
+            if (!flg)
+            {
+                return;
+            }
+            //入力情報で商品情報を更新する
+            UpdateProductInf();
+        }
+
+        private void UpdateProductInf()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool ExistsCheck(DispProductDTO checkDispProduct)
+        {
+            //変数の宣言
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            DialogResult Result = DialogResult.OK;
+            bool flg;
+
+            //存在チェック
+            flg = ExistsCheckProductInputRecord(checkDispProduct, out msg, out title, out icon);
+            if (!flg)
+            {
+                Result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
+                if(Result == DialogResult.Cancel)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool ExistsCheckProductInputRecord(DispProductDTO checkDispProduct, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //初期値代入
+            bool flg;
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+            List<DispProductDTO> dispProduct = new List<DispProductDTO>();
+            ProductDataAccess access = new ProductDataAccess();
+
+            //テーブルのデータを取得
+            dispProduct = access.GetProductData();
+
+            //ID以外が同じ内容か確認
+            flg = dispProduct.Any(x => x.PrName == checkDispProduct.PrName && x.MaName == checkDispProduct.MaName && x.ScID == checkDispProduct.ScID);
+
+            return true;
+        }
+
+        private DispProductDTO GetCheckedProductInf()
+        {
+            //変数の宣言
+            DispProductDTO retDispProduct = new DispProductDTO();
+            bool flg;
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+
+            //入力情報を取得
+            retDispProduct = GetProductInf();
+            //入力チェック
+            flg = CheckProductInf(retDispProduct, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+
+            return retDispProduct;
+
+        }
+
+        private bool CheckProductInf(DispProductDTO checklDispProduct, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //インスタンス化
+            DataInputFormCheck formCheck = new DataInputFormCheck();
+
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //商品名のチェック
+            if (String.IsNullOrEmpty(checklDispProduct.PrName))
+            {
+                msg = "商品名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            //価格のチェック
+            if (!String.IsNullOrEmpty(checklDispProduct.Price))
+            {
+                if (!formCheck.CheckNumeric(checklDispProduct.Price))
+                {
+                    msg = "価格には数字を入力してください";
+                    title = "入力エラー";
+                    return false;
+                }    
+            }
+            else
+            {
+                msg = "価格は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            //安全在庫数のチェック
+            if (!String.IsNullOrEmpty(checklDispProduct.PrSafetyStock))
+            {
+                if (!formCheck.CheckNumeric(checklDispProduct.PrSafetyStock))
+                {
+                    msg = "安全在庫数には数字を入力してください";
+                    title = "入力エラー";
+                    return false;
+                }
+
+            }
+            else
+            {
+                msg = "安全在庫数は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            //型番のチェック
+            if (String.IsNullOrEmpty(checklDispProduct.PrModelNumber))
+            {
+                msg = "型番は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            //色のチェック
+            if (String.IsNullOrEmpty(checklDispProduct.PrColor))
+            {
+                msg = "色は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            //メーカー名のチェック
+            if(combobox_Meka_ID.SelectedIndex == -1)
+            {
+                msg = "メーカーを選択してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            //小分類名のチェック
+            if (combobox_Meka_ID.SelectedIndex == -1)
+            {
+                msg = "小分類名を選択してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            return true;
+        }
     }
 }

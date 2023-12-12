@@ -110,7 +110,7 @@ namespace SalesManagement_SysDev.Common
                              OrDetailID = OrderDetail.OrDetailID.ToString(),
                              SoName = SalesOffice.SoName,
                              PrName = Product.PrName,
-                             OrTotalPrice = (Order.OrStateFlag == 0 ? context.M_Products.FirstOrDefault(x => x.PrID == OrderDetail.PrID).Price * OrderDetail.OrQuantity :
+                             OrTotalPrice = (Order.OrStateFlag == 0 ? Product.Price * OrderDetail.OrQuantity :
                              OrderDetail.OrTotalPrice).ToString().Replace("0.00", ""),
                              OrQuantity = OrderDetail.OrQuantity.ToString(),
                              MaName = Maker.MaName.ToString(),
@@ -169,7 +169,7 @@ namespace SalesManagement_SysDev.Common
                              SoName = SalesOffice.SoName,
                              PrName = Product.PrName,
                              OrQuantity = OrderDetail.OrQuantity.ToString(),
-                             OrTotalPrice = (Order.OrStateFlag == 0 ? context.M_Products.FirstOrDefault(x => x.PrID == OrderDetail.PrID).Price * OrderDetail.OrQuantity :
+                             OrTotalPrice = (Order.OrStateFlag == 0 ? Product.Price * OrderDetail.OrQuantity :
                              OrderDetail.OrTotalPrice).ToString().Replace("0.00", ""),
                              OrDate = Order.OrDate,
                              OrStateFlag = Order.OrStateFlag.ToString(),

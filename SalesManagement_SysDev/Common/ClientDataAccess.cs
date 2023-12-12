@@ -30,14 +30,22 @@ namespace SalesManagement_SysDev.Common
         }
 
         //顧客情報アップデート(アップデート情報)
-        public bool UpdateClinetData(M_Client UpClient)
+        public bool UpdateClientData(M_Client UpClient)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.M_Clients.Single(x => x.ClID == UpClient.ClID);
-                    UpdateTarget = UpClient;
+                    UpdateTarget.ClID = UpClient.ClID;
+                    UpdateTarget.SoID = UpClient.SoID;
+                    UpdateTarget.ClName = UpClient.ClName;
+                    UpdateTarget.ClAddress = UpClient.ClAddress;
+                    UpdateTarget.ClPhone = UpClient.ClPhone;
+                    UpdateTarget.ClPostal = UpClient.ClPostal;
+                    UpdateTarget.ClFAX = UpClient.ClFAX;
+                    UpdateTarget.ClFlag = UpClient.ClFlag;
+                    UpdateTarget.ClHidden = UpClient.ClHidden;
 
                     context.SaveChanges();
                     return true;
@@ -79,7 +87,8 @@ namespace SalesManagement_SysDev.Common
                              ClAddress = Client.ClAddress,
                              ClPhone = Client.ClPhone,
                              ClFAX = Client.ClFAX,
-
+                             ClFlag = Client.ClFlag.ToString(),
+                             ClHidden = Client.ClHidden,
                          };
 
                 return tb.ToList();
@@ -114,7 +123,8 @@ namespace SalesManagement_SysDev.Common
                              ClAddress = Client.ClAddress,
                              ClPhone = Client.ClPhone,
                              ClFAX = Client.ClFAX,
-
+                             ClFlag = Client.ClFlag.ToString(),
+                             ClHidden = Client.ClHidden,
                          };
 
                 return tb.ToList();
