@@ -225,11 +225,6 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void button_Itirannhyouzi_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_Sakuzyo_Click(object sender, EventArgs e)
         {
             RemoveEmployee();
