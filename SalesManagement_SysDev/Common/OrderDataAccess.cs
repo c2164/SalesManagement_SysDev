@@ -129,7 +129,7 @@ namespace SalesManagement_SysDev.Common
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
                              OrQuantity = OrderDetail.OrQuantity.ToString(),
-                             OrTotalPrice = (Order.OrStateFlag == 0 ? context.M_Products.FirstOrDefault(x => x.PrID == OrderDetail.PrID).Price * OrderDetail.OrQuantity :
+                             OrTotalPrice = (Order.OrStateFlag == 0 ? Product.Price * OrderDetail.OrQuantity :
                              OrderDetail.OrTotalPrice).ToString().Replace("0.00", ""),
                              OrDate = Order.OrDate,
                              OrStateFlag = Order.OrStateFlag.ToString(),
@@ -195,7 +195,7 @@ namespace SalesManagement_SysDev.Common
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
                              OrQuantity = OrderDetail.OrQuantity.ToString(),
-                             OrTotalPrice = (Order.OrStateFlag == 0 ? context.M_Products.FirstOrDefault(x => x.PrID == OrderDetail.PrID).Price * OrderDetail.OrQuantity :
+                             OrTotalPrice = (Order.OrStateFlag == 0 ? Product.Price * OrderDetail.OrQuantity :
                              OrderDetail.OrTotalPrice).ToString().Replace("0.00", ""),
                              OrDate = Order.OrDate,
                              OrStateFlag = Order.OrStateFlag.ToString(),
