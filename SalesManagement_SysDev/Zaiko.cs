@@ -322,7 +322,6 @@ namespace SalesManagement_SysDev
             //在庫情報検索
             retDispStock = access.GetStockData(stockDTO);
             return retDispStock;
-
         }
 
 

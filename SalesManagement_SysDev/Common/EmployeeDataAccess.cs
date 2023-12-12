@@ -37,7 +37,13 @@ namespace SalesManagement_SysDev.Common
                 try
                 {
                     var UpdateTarget = context.M_Employees.Single(x => x.EmID == UpEmployee.EmID);
-                    UpdateTarget = UpEmployee;
+                    UpdateTarget.EmID = UpEmployee.EmID;
+                    UpdateTarget.EmName = UpEmployee.EmName;
+                    UpdateTarget.SoID = UpEmployee.SoID;
+                    UpdateTarget.PoID = UpEmployee.PoID;
+                    UpdateTarget.EmHiredate = UpEmployee.EmHiredate;
+                    UpdateTarget.EmPhone = UpEmployee.EmPhone;
+                    UpdateTarget.EmPassword = UpEmployee.EmPassword;
                     UpdateTarget.EmFlag = UpEmployee.EmFlag;
                     UpdateTarget.EmHidden = UpEmployee.EmHidden;
 
@@ -80,7 +86,9 @@ namespace SalesManagement_SysDev.Common
                          {
                              EmName = Employee.EmName,
                              EmID = Employee.EmID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName,
+                             PoID = Position.PoID.ToString(),
                              PoName = Position.PoName,
                              EmHiredate = Employee.EmHiredate,
                              EmPhone = Employee.EmPhone,
@@ -118,7 +126,9 @@ namespace SalesManagement_SysDev.Common
                          {
                              EmName = Employee.EmName,
                              EmID = Employee.EmID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName,
+                             PoID = Position.PoID.ToString(),
                              PoName = Position.PoName,
                              EmHiredate = Employee.EmHiredate,
                              EmPhone = Employee.EmPhone,

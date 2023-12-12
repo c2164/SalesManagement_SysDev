@@ -240,34 +240,127 @@ namespace SalesManagement_SysDev
             //変数の宣言
             string EmID;
             M_Employee Employee = new M_Employee();
-            //データグリッドビューで選択されているデータの在庫IDを受け取る
+            //データグリッドビューで選択されているデータの社員IDを受け取る
             EmID = GetEmployeeRecord();
 
-            //取得した在庫IDでデータベースを検索する
+            //取得した社員IDでデータベースを検索する
             Employee = SelectRemoveEmployee(EmID);
             if (Employee == null)
             {
-                messageDsp.MessageBoxDsp_OK("在庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("社員情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
 
-            //在庫管理フラグを0から2にする
+            //社員管理フラグを0から2にする
             UpdateEmFlag(Employee);
         }
 
         private void UpdateEmFlag(M_Employee employee)
         {
-          
+            //変数の宣言
+            DialogResult result;
+
+            //非表示実行確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の社員を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //社員管理フラグの変更
+            employee = ChangeEmFlag(employee);
+            if (employee == null)
+            {
+                return;
+            }
+            //社員の更新
+            UpdateEmployeeRecord(employee);
         }
 
-        private M_Employee SelectRemoveEmployee(string emID)
+        private void UpdateEmployeeRecord(M_Employee employee)
         {
-            throw new NotImplementedException();
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            EmployeeDataAccess access = new EmployeeDataAccess();
+            flg = access.UpdateEmployeeData(employee);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象社員の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象社員を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private M_Employee ChangeEmFlag(M_Employee employee)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+            }
+            employee.EmFlag = 2;
+            employee.EmHidden = Hidden;
+            return employee;
+        }
+
+        private M_Employee SelectRemoveEmployee(string EmID)
+        {
+            //変数の宣言
+            M_Employee retemployee = new M_Employee();
+            DispEmplyeeDTO dispEmployeeDTO = new DispEmplyeeDTO();
+            List<DispEmplyeeDTO> dispEmployees = new List<DispEmplyeeDTO>();
+            //データベースからデータを取得する
+            dispEmployees = GetTableData();
+            if (dispEmployees == null) //データの取得失敗
+            {
+                return null;
+            }
+
+            //Listの中を受け取った社員IDで検索
+            dispEmployeeDTO = dispEmployees.Single(x => x.EmID == EmID);
+
+            //検索結果を返却用にする
+            retemployee = FormalizationEmployeeInputRecord(dispEmployeeDTO);
+
+            return retemployee;
+        }
+
+        private M_Employee FormalizationEmployeeInputRecord(DispEmplyeeDTO dispEmployeeDTO)
+        {
+            M_Employee retemployee = new M_Employee();
+            retemployee.EmID = int.Parse(dispEmployeeDTO.EmID);
+            retemployee.EmName = dispEmployeeDTO.EmName;
+            retemployee.SoID = int.Parse(dispEmployeeDTO.SoID);
+            retemployee.PoID = int.Parse(dispEmployeeDTO.PoID);
+            retemployee.EmHiredate = dispEmployeeDTO.EmHiredate;
+            retemployee.EmPhone = dispEmployeeDTO.EmPhone;
+            retemployee.EmPassword = dispEmployeeDTO.EmPassword;
+            retemployee.EmFlag = int.Parse(dispEmployeeDTO.EmFlag);
+            retemployee.EmHidden = dispEmployeeDTO.EmHidden;
+
+            return retemployee;
         }
 
         private string GetEmployeeRecord()
         {
-            throw new NotImplementedException();
+            //変数の宣言
+            string retEmID;
+
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
+            retEmID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retEmID;
         }
     }
 }
