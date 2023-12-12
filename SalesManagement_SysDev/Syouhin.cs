@@ -228,15 +228,17 @@ namespace SalesManagement_SysDev
                 retProductDTO.MaID = combobox_Meka_ID.SelectedValue.ToString();
             retProductDTO.MaName = combobox_Syoubunnrui_Namae.Text.Trim();
             if (!(combobox_Syoubunnrui_Namae.SelectedIndex == -1))
-                retProductDTO.ScID = combobox_Syoubunnrui_Namae.SelectedIndex.ToString();
+                retProductDTO.ScID = combobox_Syoubunnrui_Namae.SelectedValue.ToString();
             retProductDTO.ScName = combobox_Syoubunnrui_Namae.Text.Trim();
             retProductDTO.Price = textbox_Kakaku.Text.Trim();
             retProductDTO.PrSafetyStock = textbox_Anzen.Text.Trim();
             retProductDTO.PrModelNumber = textbox_Kataban.Text.Trim();
             retProductDTO.PrColor = textbox_Iro.Text.Trim();
+            retProductDTO.PrReleaseDate = dateTimePicker2.Value;
             retProductDTO.PrReleseFromDate = dateTimePicker_Nitizi_2.Value;
             retProductDTO.PrReleaseToDate = dateTimePicker_Nitizi_3.Value;
-
+            retProductDTO.PrFlag = "0";
+            retProductDTO.PrHidden = null;
             return retProductDTO;
         }
 
@@ -313,11 +315,11 @@ namespace SalesManagement_SysDev
             flg = access.UpdateProductData(product);
             if (!flg)
             {
-                messageDsp.MessageBoxDsp_OK("対象商品の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
             }
             else
             {
-                messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
             }
 
             SetCtrlFormat();
@@ -420,6 +422,10 @@ namespace SalesManagement_SysDev
             bool flg;
             //チェック済みの入力情報を得る
             dispProductDTO = GetCheckedProductInf();
+            if(dispProductDTO == null)
+            {
+                return;
+            }
             //存在チェック
             flg = ExistsCheck(dispProductDTO);
             if (!flg)
@@ -427,12 +433,18 @@ namespace SalesManagement_SysDev
                 return;
             }
             //入力情報で商品情報を更新する
-            UpdateProductInf();
+            UpdateProductInf(dispProductDTO);
         }
 
-        private void UpdateProductInf()
+        private void UpdateProductInf(DispProductDTO dispProductDTO)
         {
-            throw new NotImplementedException();
+            //変数の宣言
+            M_Product UpProduct = new M_Product();
+
+            //表示用データからテーブル用データに変換
+            UpProduct = FormalizationProductInputRecord(dispProductDTO);
+            UpdateProductRecord(UpProduct);
+
         }
 
         private bool ExistsCheck(DispProductDTO checkDispProduct)
@@ -442,23 +454,20 @@ namespace SalesManagement_SysDev
             string title;
             MessageBoxIcon icon;
             DialogResult Result = DialogResult.OK;
-            bool flg;
 
             //存在チェック
-            flg = ExistsCheckProductInputRecord(checkDispProduct, out msg, out title, out icon);
-            if (!flg)
+            ExistsCheckProductInputRecord(checkDispProduct, out msg, out title, out icon);
+
+            Result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
+            if (Result == DialogResult.Cancel)
             {
-                Result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
-                if(Result == DialogResult.Cancel)
-                {
-                    return false;
-                }
+                return false;
             }
 
             return true;
         }
 
-        private bool ExistsCheckProductInputRecord(DispProductDTO checkDispProduct, out string msg, out string title, out MessageBoxIcon icon)
+        private void ExistsCheckProductInputRecord(DispProductDTO checkDispProduct, out string msg, out string title, out MessageBoxIcon icon)
         {
             //初期値代入
             bool flg;
@@ -472,9 +481,20 @@ namespace SalesManagement_SysDev
             dispProduct = access.GetProductData();
 
             //ID以外が同じ内容か確認
-            flg = dispProduct.Any(x => x.PrName == checkDispProduct.PrName && x.MaName == checkDispProduct.MaName && x.ScID == checkDispProduct.ScID);
+            flg = dispProduct.Any(x => x.PrName == checkDispProduct.PrName && x.MaID == checkDispProduct.MaID && x.ScID == checkDispProduct.ScID && x.Price == checkDispProduct.Price && x.PrSafetyStock == checkDispProduct.PrSafetyStock && x.PrModelNumber == checkDispProduct.PrModelNumber && x.PrColor == checkDispProduct.PrColor && x.PrReleaseDate == checkDispProduct.PrReleaseDate);
+            if (flg)
+            {
+                msg = "既に同じ内容のデータが存在します\n本当に更新してもよろしいですか？";
+                title = "警告";
+                icon = MessageBoxIcon.Warning;
+            }
+            else
+            {
+                msg = "データを更新してもよろしいですか";
+                title = "更新確認";
+                icon = MessageBoxIcon.Information;
+            }
 
-            return true;
         }
 
         private DispProductDTO GetCheckedProductInf()
@@ -521,7 +541,7 @@ namespace SalesManagement_SysDev
             //価格のチェック
             if (!String.IsNullOrEmpty(checklDispProduct.Price))
             {
-                if (!formCheck.CheckNumeric(checklDispProduct.Price))
+                if (!formCheck.CheckPrice(checklDispProduct.Price))
                 {
                     msg = "価格には数字を入力してください";
                     title = "入力エラー";
