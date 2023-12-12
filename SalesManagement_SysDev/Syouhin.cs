@@ -234,7 +234,7 @@ namespace SalesManagement_SysDev
             retProductDTO.PrSafetyStock = textbox_Anzen.Text.Trim();
             retProductDTO.PrModelNumber = textbox_Kataban.Text.Trim();
             retProductDTO.PrColor = textbox_Iro.Text.Trim();
-            retProductDTO.PrReleaseDate = dateTimePicker2.Value;
+            retProductDTO.PrReleaseDate = dateTimePicker1.Value;
             retProductDTO.PrReleseFromDate = dateTimePicker_Nitizi_2.Value;
             retProductDTO.PrReleaseToDate = dateTimePicker_Nitizi_3.Value;
             retProductDTO.PrFlag = "0";
@@ -315,7 +315,7 @@ namespace SalesManagement_SysDev
             flg = access.UpdateProductData(product);
             if (!flg)
             {
-                messageDsp.MessageBoxDsp_OK("情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("商品情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
             }
             else
             {

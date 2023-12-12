@@ -12,16 +12,22 @@ namespace SalesManagement_SysDev.Common
     internal class ChumonDataAccess
     {
         //注文情報登録(登録情報)
-        public bool RegisterChumonData(T_Chumon RegChumon, T_ChumonDetail RegChumonDetail)
+        public bool RegisterChumonData(T_Chumon RegChumon, List<T_ChumonDetail> ListRegChumonDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     context.T_Chumons.Add(RegChumon);
-                    context.T_ChumonDetails.Add(RegChumonDetail);
                     context.SaveChanges();
-                    return true;
+                    int ChID = context.T_Chumons.Max(x => x.ChID);
+                    foreach (var RegChumonDetail in ListRegChumonDetail)
+                    {
+                        RegChumonDetail.ChID = ChID;
+                        context.T_ChumonDetails.Add(RegChumonDetail);
+                        context.SaveChanges();
+                    }
+                        return true;
                 }
                 catch (Exception ex)
                 {
@@ -77,7 +83,8 @@ namespace SalesManagement_SysDev.Common
                 //「T_Chumon」テーブルから「M_SalesOffice」「M_Employee」「M_Client」「T_Order」を参照
                 var tb = from Chumon in context.T_Chumons
                          join Employee in context.M_Employees
-                         on Chumon.EmID equals Employee.EmID
+                         on Chumon.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join SalesOffice in context.M_SalesOffices
                          on Chumon.SoID equals SalesOffice.SoID
                          join Client in context.M_Clients
@@ -146,7 +153,7 @@ namespace SalesManagement_SysDev.Common
 
         }
 
-        //顧客全表示：オーバーロード
+        //注文全表示：オーバーロード
         public List<DispChumonDTO> GetChumonData()
         {
             var context = new SalesManagement_DevContext();
@@ -155,7 +162,8 @@ namespace SalesManagement_SysDev.Common
                 //「T_Chumon」テーブルから「M_SalesOffice」「M_Employee」「M_Client」「T_Order」を参照
                 var tb = from Chumon in context.T_Chumons
                          join Employee in context.M_Employees
-                         on Chumon.EmID equals Employee.EmID
+                         on Chumon.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join SalesOffice in context.M_SalesOffices
                          on Chumon.SoID equals SalesOffice.SoID
                          join Client in context.M_Clients
