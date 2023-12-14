@@ -44,13 +44,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox_Syain_Namae = new System.Windows.Forms.TextBox();
             this.textBox_Syain_ID = new System.Windows.Forms.TextBox();
-            this.textBox_Yakusyoku = new System.Windows.Forms.TextBox();
             this.textBox_Dennwa = new System.Windows.Forms.TextBox();
             this.textBox_FAX = new System.Windows.Forms.TextBox();
             this.textBox_Pass = new System.Windows.Forms.TextBox();
             this.comboBox_Eigyousyo = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.comboBox_Yakusyoku_Namae = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +65,7 @@
             this.button_Touroku.TabIndex = 0;
             this.button_Touroku.Text = "🖊登録";
             this.button_Touroku.UseVisualStyleBackColor = false;
+            this.button_Touroku.Click += new System.EventHandler(this.button_Touroku_Click);
             // 
             // button_Kousin
             // 
@@ -220,16 +221,10 @@
             // textBox_Syain_ID
             // 
             this.textBox_Syain_ID.Location = new System.Drawing.Point(749, 180);
+            this.textBox_Syain_ID.MaxLength = 6;
             this.textBox_Syain_ID.Name = "textBox_Syain_ID";
             this.textBox_Syain_ID.Size = new System.Drawing.Size(251, 31);
             this.textBox_Syain_ID.TabIndex = 15;
-            // 
-            // textBox_Yakusyoku
-            // 
-            this.textBox_Yakusyoku.Location = new System.Drawing.Point(239, 296);
-            this.textBox_Yakusyoku.Name = "textBox_Yakusyoku";
-            this.textBox_Yakusyoku.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Yakusyoku.TabIndex = 16;
             // 
             // textBox_Dennwa
             // 
@@ -248,6 +243,7 @@
             // textBox_Pass
             // 
             this.textBox_Pass.Location = new System.Drawing.Point(1264, 412);
+            this.textBox_Pass.MaxLength = 10;
             this.textBox_Pass.Name = "textBox_Pass";
             this.textBox_Pass.Size = new System.Drawing.Size(251, 31);
             this.textBox_Pass.TabIndex = 20;
@@ -275,21 +271,29 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(749, 299);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(250, 31);
             this.dateTimePicker1.TabIndex = 23;
+            // 
+            // comboBox_Yakusyoku_Namae
+            // 
+            this.comboBox_Yakusyoku_Namae.FormattingEnabled = true;
+            this.comboBox_Yakusyoku_Namae.Location = new System.Drawing.Point(253, 301);
+            this.comboBox_Yakusyoku_Namae.Name = "comboBox_Yakusyoku_Namae";
+            this.comboBox_Yakusyoku_Namae.Size = new System.Drawing.Size(238, 32);
+            this.comboBox_Yakusyoku_Namae.TabIndex = 24;
             // 
             // Syain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(235)))), ((int)(((byte)(196)))));
+            this.Controls.Add(this.comboBox_Yakusyoku_Namae);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox_Eigyousyo);
             this.Controls.Add(this.textBox_Pass);
             this.Controls.Add(this.textBox_FAX);
             this.Controls.Add(this.textBox_Dennwa);
-            this.Controls.Add(this.textBox_Yakusyoku);
             this.Controls.Add(this.textBox_Syain_ID);
             this.Controls.Add(this.textBox_Syain_Namae);
             this.Controls.Add(this.label8);
@@ -333,12 +337,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox_Syain_Namae;
         private System.Windows.Forms.TextBox textBox_Syain_ID;
-        private System.Windows.Forms.TextBox textBox_Yakusyoku;
         private System.Windows.Forms.TextBox textBox_Dennwa;
         private System.Windows.Forms.TextBox textBox_FAX;
         private System.Windows.Forms.TextBox textBox_Pass;
         private System.Windows.Forms.ComboBox comboBox_Eigyousyo;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox comboBox_Yakusyoku_Namae;
     }
 }
