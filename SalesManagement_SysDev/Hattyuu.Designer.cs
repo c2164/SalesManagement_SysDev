@@ -90,12 +90,17 @@
             // 
             // comboBox_Syouhin_Namae
             // 
-            this.comboBox_Syouhin_Namae.FormattingEnabled = true;
-            this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(1256, 263);
-            this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
-            this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(242, 32);
-            this.comboBox_Syouhin_Namae.TabIndex = 48;
+            this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
+            this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
+            this.button_Sakuzyo.Location = new System.Drawing.Point(638, 26);
+            this.button_Sakuzyo.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Sakuzyo.Name = "button_Sakuzyo";
+            this.button_Sakuzyo.Size = new System.Drawing.Size(118, 56);
+            this.button_Sakuzyo.TabIndex = 3;
+            this.button_Sakuzyo.Text = "🚮削除";
+            this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // comboBox_Meka_Namae
             // 
@@ -315,16 +320,15 @@
             // 
             // button_Touroku
             // 
-            this.button_Touroku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
-            this.button_Touroku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.button_Touroku.ForeColor = System.Drawing.Color.White;
-            this.button_Touroku.Location = new System.Drawing.Point(44, 23);
-            this.button_Touroku.Margin = new System.Windows.Forms.Padding(2);
-            this.button_Touroku.Name = "button_Touroku";
-            this.button_Touroku.Size = new System.Drawing.Size(153, 75);
-            this.button_Touroku.TabIndex = 26;
-            this.button_Touroku.Text = "🖊登録";
-            this.button_Touroku.UseVisualStyleBackColor = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(22, 499);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 82;
+            this.dataGridView1.RowTemplate.Height = 33;
+            this.dataGridView1.Size = new System.Drawing.Size(1179, 263);
+            this.dataGridView1.TabIndex = 25;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Hattyuu
             // 
