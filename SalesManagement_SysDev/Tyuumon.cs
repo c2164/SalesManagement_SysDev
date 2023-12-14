@@ -1,4 +1,5 @@
-﻿using SalesManagement_SysDev.Common;
+﻿using Microsoft.VisualBasic;
+using SalesManagement_SysDev.Common;
 using SalesManagement_SysDev.CommonMethod;
 using SalesManagement_SysDev.Entity;
 using System;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -173,7 +175,7 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            GetSelectData();
+            //GetSelectData();
             SetCtrlFormat();
         }
 
@@ -189,7 +191,7 @@ namespace SalesManagement_SysDev
             List<DispChumonDTO> sortedchumon = new List<DispChumonDTO>();
 
             //データの受け取り
-            chumon = GetTableDate();
+            chumon = GetTableData();
 
             //昇順に並び変え
             sortedchumon = SortChumonDate(chumon);
@@ -198,7 +200,7 @@ namespace SalesManagement_SysDev
             SetDataGridView(sortedchumon);
         }
 
-        private List<DispChumonDTO> GetTableDate()
+        private List<DispChumonDTO> GetTableData()
         {
             //変数の宣言
             List<DispChumonDTO> chumon = new List<DispChumonDTO>();
@@ -347,7 +349,7 @@ namespace SalesManagement_SysDev
             ChumonDetail = null;
 
             //データベースからデータを取得する
-            dispChumons = GetTableDate();
+            dispChumons = GetTableData();
             if (dispChumons == null)
             {
                 messageDsp.MessageBoxDsp_OK("注文情報を取得できませんでした", "エラー", MessageBoxIcon.Error);
@@ -454,6 +456,171 @@ namespace SalesManagement_SysDev
 
             SetCtrlFormat();
             GetSelectData();
+        }
+
+        private void button_Kakutei_Click(object sender, EventArgs e)
+        {
+            DecisionChumon();
+        }
+
+        private void DecisionChumon()
+        {
+            //変数の宣言
+            string ChID;
+            bool flg;
+            T_Chumon chumon = new T_Chumon();
+            List<T_ChumonDetail> ListChumonDetail = new List<T_ChumonDetail>();
+            T_Syukko syukko = new T_Syukko();
+            List<T_SyukkoDetail> ListSyukkoDetail = new List<T_SyukkoDetail>();
+
+            //確定対象の注文IDを取得
+            ChID = GetChumonRecode();
+
+            //注文IDから注文情報を取得
+            chumon = GetChumonAndChDetailRecord(ChID, out ListChumonDetail);
+            if (chumon == null)
+            {
+                return;
+            }
+
+            //在庫の数量変更
+            flg = SubStQuantity(ListChumonDetail);
+            if (flg)
+            {
+                return;
+            }
+
+            //注文レコードの登録
+            //flg = RegisrationChumonInf(chumon, ListChumonDetail);
+            if (!flg)
+            {
+                return;
+            }
+
+            //受注状態フラグの変更
+            //UpdateOrStateFlag(chumon, ListChumonDetail[0]);
+        }
+
+        private bool SubStQuantity(List<T_ChumonDetail> ListChumonDetail)
+        {
+            //変数の宣言
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            List<T_Stock> ListStock = new List<T_Stock>();
+
+            //注文詳細に存在する商品の在庫情報を受け取る
+            ListStock = GetStockRecord(ListChumonDetail, out msg, out title, out icon);
+            if(ListStock == null)
+            {
+                return false;
+            }
+            //在庫数を注文数分減らす
+            ListStock = SubStockRecord(ListStock, ListChumonDetail);
+            if(ListStock == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private List<T_Stock> SubStockRecord(List<T_Stock> listStock, List<T_ChumonDetail> listChumonDetail)
+        {
+            List<T_Stock> retStock = new List<T_Stock>();
+            return retStock;
+        }
+
+        private List<T_Stock> GetStockRecord(List<T_ChumonDetail> ListChumonDetail, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispStockDTO> ListDispStockDTO = new List<DispStockDTO>();
+            List<T_Stock> retListStock = new List<T_Stock>();
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //インスタンス化
+            StockDataAccess access = new StockDataAccess();
+
+            //データベースから在庫テーブルのデータを取得
+            ListDispStockDTO = access.GetStockData().Where(x => ListChumonDetail.Any(y => y.PrID.ToString() == x.PrID)).ToList();
+            if(ListDispStockDTO == null)
+            {
+                msg = "在庫情報を取得できませんでした";
+                title = "エラー";
+                return null;
+            }
+
+            //表示用からテーブル形式に変換
+            foreach(var stock in ListDispStockDTO)
+            {
+                T_Stock inputStockData = new T_Stock();
+                inputStockData.StID = int.Parse(stock.StID);
+                inputStockData.PrID = int.Parse(stock.PrID);
+                inputStockData.StQuantity = int.Parse(stock.StQuantity);
+                inputStockData.StFlag = int.Parse(stock.StFlag);
+
+                retListStock.Add(inputStockData);
+            }
+
+            return retListStock;
+
+        }
+
+        private T_Chumon GetChumonAndChDetailRecord(string chID, out List<T_ChumonDetail> ListChumonDetail)
+        {
+            //変数の宣言
+            List<DispChumonDTO> chumonDTO = new List<DispChumonDTO>();
+            T_Chumon retchumon = new T_Chumon();
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            //初期値代入
+            ListChumonDetail = new List<T_ChumonDetail>();
+
+            //受注情報取得
+            chumonDTO = CreateChumonRecord(chID, out msg, out title, out icon);
+            if (chumonDTO == null)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+            //受注情報をテーブルデータに形式化
+            retchumon = FormalizationChumonInputRecord(chumonDTO[0]);
+            foreach (var OrderDTO in chumonDTO)
+            {
+                ListChumonDetail.Add(FormalizationChumonDetailRecord(OrderDTO));
+            }
+
+            return retchumon;
+        }
+
+        private List<DispChumonDTO> CreateChumonRecord(string chID, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispChumonDTO> ListDispChumon = new List<DispChumonDTO>();
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //受注IDの一致する受注情報を取得
+            ListDispChumon = GetTableData().Where(x => x.ChID == chID).ToList();
+            if (ListDispChumon == null)
+            {
+                msg = "受注情報を取得できませんでした";
+                title = "エラー";
+                return null;
+            }
+            if (ListDispChumon[0].ChStateFlag == "1")
+            {
+                msg = "既に確定済みです";
+                title = "エラー";
+                return null;
+            }
+
+            return ListDispChumon;
         }
     }
 }
