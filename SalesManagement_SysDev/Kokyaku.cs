@@ -1,4 +1,5 @@
-﻿using SalesManagement_SysDev.Common;
+﻿using Microsoft.VisualBasic;
+using SalesManagement_SysDev.Common;
 using SalesManagement_SysDev.CommonMethod;
 using SalesManagement_SysDev.Entity;
 using System;
@@ -127,17 +128,38 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             DispClientDTO dispClientDTO = new DispClientDTO();
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            DialogResult result;
 
             //チェック済データの取得
             dispClientDTO = GetCheckedClientInf();
-            if(dispClientDTO == null) 
+            if (dispClientDTO == null)
+            {
+                return;
+            }
+            dispClientDTO.ClID = "0";
+
+            //
+            if (!DuplicationCheckCliantInputRecord(dispClientDTO, out msg, out title, out icon))
+            {
+                result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            //登録確認
+            result = messageDsp.MessageBoxDsp_OKCancel("登録しますか?", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
             {
                 return;
             }
 
-            //
-            DuplicationCheckCliantInputRecord();
-            RegisrationClientInf();
+            //データを登録する
+            RegisrationClientInf(dispClientDTO);
         }
 
         private DispClientDTO GetCheckedClientInf()
@@ -154,6 +176,7 @@ namespace SalesManagement_SysDev
             {
                 MessageDsp message = new MessageDsp();
                 message.MessageBoxDsp_OK(msg, title, icon);
+                return null;
             }
             return retDispClient;
         }
@@ -167,8 +190,8 @@ namespace SalesManagement_SysDev
             retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();
             retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();
             retDispClient.ClPostal = textBox_Yuubin.Text.Trim();
-            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() +  "-" + textBox_Dennwa2.Text.Trim() + "-" + textBox_Dennwa3.Text.Trim();
-            retDispClient.ClFAX = textBox_FAX1.Text.Trim();
+            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() + "-" + textBox_Dennwa2.Text.Trim() + "-" + textBox_Dennwa3.Text.Trim();
+            retDispClient.ClFAX = textBox_FAX1.Text.Trim() + "-" + textBox_FAX2.Text.Trim() + "-" + textBox_FAX3.Text.Trim();
             retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
@@ -192,7 +215,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if(String.IsNullOrEmpty(checkClientDTO.ClAddress))
+            if (String.IsNullOrEmpty(checkClientDTO.ClAddress))
             {
                 msg = "住所は必須入力です";
                 title = "入力エラー";
@@ -222,9 +245,9 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if(!String.IsNullOrEmpty(checkClientDTO.ClPostal))
+            if (!String.IsNullOrEmpty(checkClientDTO.ClPostal))
             {
-                if (formCheck.CheckPostal(checkClientDTO.ClPostal))
+                if (!formCheck.CheckPostal(checkClientDTO.ClPostal))
                 {
                     msg = "郵便番号の値が不正です";
                     title = "入力エラー";
@@ -238,7 +261,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if (String.IsNullOrEmpty(checkClientDTO.ClPhone))
+            if (!String.IsNullOrEmpty(checkClientDTO.ClPhone))
             {
                 if (!formCheck.CheckPhoneAndFAX(checkClientDTO.ClPhone))
                 {
@@ -258,15 +281,55 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void RegisrationClientInf()
+        private void RegisrationClientInf(DispClientDTO dispClientDTO)
         {
+            //変数の宣言
+            bool flg;
+            M_Client client;
 
+            //インスタンス化
+            ClientDataAccess clientDataAccess = new ClientDataAccess();
+
+            //登録用にデータに変換
+            client = FormalizationClientInputRecord(dispClientDTO);
+
+            //登録処理
+            flg = clientDataAccess.RegisterClientData(client);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("登録しました", "登録完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("失敗しました", "登録失敗", MessageBoxIcon.Error);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
         }
 
-        private bool DuplicationCheckCliantInputRecord()
+        private bool DuplicationCheckCliantInputRecord(DispClientDTO clientDTO, out string msg, out string title, out MessageBoxIcon icon)
         {
-            bool ret = false;
-            return ret;
+            //変数の宣言
+            List<DispClientDTO> clienttabledata = new List<DispClientDTO>();
+            bool flg;
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Question;
+
+            //テーブルのデータを取得
+            clienttabledata = GetTableData();
+
+            //顧客IDに同じ商品がないかチェックする
+            flg = clienttabledata.Any(x => x.SoID == clientDTO.SoID && x.ClName == clientDTO.ClName && x.ClPostal == clientDTO.ClPostal && x.ClAddress == clientDTO.ClAddress && x.ClPhone == clientDTO.ClPhone && x.ClFAX == clientDTO.ClFAX);
+            if (flg)
+            {
+                msg = "同じ顧客が登録されていますがよろしいですか?";
+                title = "確認";
+                return false;
+            }
+
+            return true;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
@@ -308,7 +371,7 @@ namespace SalesManagement_SysDev
             //データベースからデータを取得
             client = ClAccess.GetClientData();
 
-            
+
             return client;
         }
 
@@ -328,7 +391,7 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             DispClientDTO clientDTO = new DispClientDTO();
-            List<DispClientDTO>　DisplayClient = new List<DispClientDTO>();
+            List<DispClientDTO> DisplayClient = new List<DispClientDTO>();
 
             //データの読み取り
             clientDTO = GetClientInf();
@@ -344,7 +407,7 @@ namespace SalesManagement_SysDev
             List<DispClientDTO> retDispClient = new List<DispClientDTO>();
             //インスタンス化
             ClientDataAccess access = new ClientDataAccess();
-            
+
             //顧客情報検索
             retDispClient = access.GetClientData(clientDTO);
             return retDispClient;
@@ -363,14 +426,14 @@ namespace SalesManagement_SysDev
 
             //データグリッドビューで選択しているデータの顧客ID
             ClID = GetClientRecord();
-            if(ClID == null)
+            if (ClID == null)
             {
                 return;
             }
 
             //取得した顧客IDでデータベースを検索する
             client = SelectReoveClient(ClID);
-            if(client == null)
+            if (client == null)
             {
                 return;
             }
@@ -479,7 +542,7 @@ namespace SalesManagement_SysDev
         private string GetClientRecord()
         {
             string ClID;
-            if(dataGridView1.SelectedRows.Count <= 0)
+            if (dataGridView1.SelectedRows.Count <= 0)
             {
                 messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
                 return null;
@@ -499,8 +562,8 @@ namespace SalesManagement_SysDev
             bool flg;
 
             //入力チェック済みのデータを取得
-            dispClientDTO =  GetCheckedClientInf();
-            if(dispClientDTO == null)
+            dispClientDTO = GetCheckedClientInf();
+            if (dispClientDTO == null)
             {
                 return;
             }
@@ -526,7 +589,20 @@ namespace SalesManagement_SysDev
         {
             textBox_Kokyaku_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             textBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-            
+            comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            textBox_Yuubin.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+            textBox_Zyuusyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString();
+
+            textBox_Dennwa1.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString().Split('-')[0];
+            textBox_Dennwa2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString().Split('-')[1];
+            textBox_Dennwa3.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString().Split('-')[2];
+
+            textBox_FAX1.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString().Split('-')[0];
+            textBox_FAX2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString().Split('-')[1];
+            textBox_FAX3.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString().Split('-')[2];
+
+
+
         }
     }
 }
