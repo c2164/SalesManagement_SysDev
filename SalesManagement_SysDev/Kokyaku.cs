@@ -55,8 +55,8 @@ namespace SalesManagement_SysDev
             textBox_Kokyaku_ID.Text = "";
             textBox_Yuubin.Text = "";
             textBox_Zyuusyo.Text = "";
-            textBox_Dennwa.Text = "";
-            textBox_FAX.Text = "";
+            textBox_Dennwa1.Text = "";
+            textBox_FAX1.Text = "";
 
             //各コンボボックスを初期化
             comboBox_Eigyousyo.DisplayMember = "SoName";
@@ -125,12 +125,17 @@ namespace SalesManagement_SysDev
 
         private void RegisterClient()
         {
+            //変数の宣言
             DispClientDTO dispClientDTO = new DispClientDTO();
+
+            //チェック済データの取得
             dispClientDTO = GetCheckedClientInf();
             if(dispClientDTO == null) 
             {
                 return;
             }
+
+            //
             DuplicationCheckCliantInputRecord();
             RegisrationClientInf();
         }
@@ -162,8 +167,8 @@ namespace SalesManagement_SysDev
             retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();
             retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();
             retDispClient.ClPostal = textBox_Yuubin.Text.Trim();
-            retDispClient.ClPhone = textBox_Dennwa.Text.Trim();
-            retDispClient.ClFAX = textBox_FAX.Text.Trim();
+            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() +  "-" + textBox_Dennwa2.Text.Trim() + "-" + textBox_Dennwa3.Text.Trim();
+            retDispClient.ClFAX = textBox_FAX1.Text.Trim();
             retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
@@ -354,20 +359,174 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             string ClID;
+            M_Client client = new M_Client();
+
+            //データグリッドビューで選択しているデータの顧客ID
             ClID = GetClientRecord();
-            
+            if(ClID == null)
+            {
+                return;
+            }
+
+            //取得した顧客IDでデータベースを検索する
+            client = SelectReoveClient(ClID);
+            if(client == null)
+            {
+                return;
+            }
+
+            //顧客管理フラグを0から2にする
+            UpdateClFlag(client);
+        }
+
+        private void UpdateClFlag(M_Client client)
+        {
+            //変数の宣言
+            DialogResult result;
+
+            //非表示実行確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の顧客を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //商品管理フラグの変更
+            client = ChangeClFlag(client);
+            if (client == null)
+            {
+                return;
+            }
+            //商品の更新
+            UpdateProductRecord(client);
+        }
+
+        private void UpdateProductRecord(M_Client client)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            ClientDataAccess access = new ClientDataAccess();
+            flg = access.UpdateClientData(client);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象顧客の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象顧客を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private M_Client ChangeClFlag(M_Client client)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+            }
+            client.ClFlag = 2;
+            client.ClHidden = Hidden;
+            return client;
+        }
+
+        private M_Client SelectReoveClient(string ClID)
+        {
+            //変数の宣言
+            M_Client retclient = new M_Client();
+            DispClientDTO dispClientDTO = new DispClientDTO();
+            List<DispClientDTO> dispClients = new List<DispClientDTO>();
+            //データベースからデータを取得する
+            dispClients = GetTableData();
+            if (dispClients == null) //データの取得失敗
+            {
+                messageDsp.MessageBoxDsp_OK("顧客情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
+
+            //Listの中を受け取った商品IDで検索
+            dispClientDTO = dispClients.Single(x => x.ClID == ClID);
+
+            //検索結果を返却用にする
+            retclient = FormalizationClientInputRecord(dispClientDTO);
+
+            return retclient;
+        }
+
+        private M_Client FormalizationClientInputRecord(DispClientDTO dispClientDTO)
+        {
+            //変数の宣言
+            M_Client retclient = new M_Client();
+
+            //表示用からテーブル用にする
+            retclient.ClID = int.Parse(dispClientDTO.ClID);
+            retclient.SoID = int.Parse(dispClientDTO.SoID);
+            retclient.ClName = dispClientDTO.ClName;
+            retclient.ClAddress = dispClientDTO.ClAddress;
+            retclient.ClPostal = dispClientDTO.ClPostal;
+            retclient.ClPhone = dispClientDTO.ClPhone;
+            retclient.ClFAX = dispClientDTO.ClFAX;
+            retclient.ClFlag = 0;
+
+            return retclient;
         }
 
         private string GetClientRecord()
         {
             string ClID;
+            if(dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
             ClID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return ClID;
         }
         private void button_Kousin_Click(object sender, EventArgs e)
         {
-            ListDisplayClient();
+            UpdateClient();
         }
 
+        private void UpdateClient()
+        {
+            //変数の宣言
+            DispClientDTO dispClientDTO = new DispClientDTO();
+            bool flg;
+
+            //入力チェック済みのデータを取得
+            dispClientDTO =  GetCheckedClientInf();
+            if(dispClientDTO == null)
+            {
+                return;
+            }
+            //存在チェック
+            flg = ExistsCheck(dispClientDTO);
+            if (!flg)
+            {
+                return;
+            }
+
+            //入力情報で顧客情報を更新する
+            //UpdateClientInf(dispClientDTO);
+
+
+        }
+
+        private bool ExistsCheck(DispClientDTO dispClientDTO)
+        {
+            return false;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBox_Kokyaku_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            textBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            
+        }
     }
 }
