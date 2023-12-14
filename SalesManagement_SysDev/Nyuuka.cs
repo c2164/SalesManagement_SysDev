@@ -114,7 +114,7 @@ namespace SalesManagement_SysDev
         private void SetCtrlFormat()
         {
             SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
-            ProductDataAccess productDataAccess =new ProductDataAccess();
+            ProductDataAccess productDataAccess = new ProductDataAccess();
             MakerDateAccess makerDateAccess = new MakerDateAccess();
 
             //各テキストボックスに初期化(空白)
@@ -164,7 +164,7 @@ namespace SalesManagement_SysDev
 
             //テーブルデータ受け取り
             arrival = GetTableData();
-            if(arrival == null)
+            if (arrival == null)
             {
                 messageDsp.MessageBoxDsp_OK("入荷情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
             }
@@ -306,10 +306,17 @@ namespace SalesManagement_SysDev
                 return;
             }
             //入荷の更新
-            UpdateArrivalRecord(arrival, arrivalDetail);
+            if(UpdateArrivalRecord(arrival, arrivalDetail))
+            {
+                messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象商品の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
         }
 
-        private void UpdateArrivalRecord(T_Arrival arrival, T_ArrivalDetail arrivalDetail)
+        private bool UpdateArrivalRecord(T_Arrival arrival, T_ArrivalDetail arrivalDetail)
         {
             //変数の宣言
             bool flg;
@@ -317,17 +324,11 @@ namespace SalesManagement_SysDev
             //データベース接続のインスタンス化
             ArraivalDataAccess access = new ArraivalDataAccess();
             flg = access.UpdateArrivalData(arrival, arrivalDetail);
-            if (!flg)
-            {
-                messageDsp.MessageBoxDsp_OK("対象商品の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
-            }
-            else
-            {
-                messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
-            }
 
             SetCtrlFormat();
             GetSelectData();
+
+            return flg;
         }
 
         private T_Arrival ChangeArFlag(T_Arrival arrival)
@@ -378,7 +379,7 @@ namespace SalesManagement_SysDev
             retarrival.ClID = int.Parse(dispArrivalDTO.ClID);
             retarrival.ArDate = dispArrivalDTO.ArDate;
             retarrival.ArStateFlag = int.Parse(dispArrivalDTO.ArStateFlag);
-            retarrival.ArFlag = int.Parse(dispArrivalDTO .ArFlag);
+            retarrival.ArFlag = int.Parse(dispArrivalDTO.ArFlag);
             retarrival.ArHidden = dispArrivalDTO.ArHidden;
 
             return retarrival;
@@ -411,7 +412,196 @@ namespace SalesManagement_SysDev
 
         private void button_Syukka_Kakutei_Click(object sender, EventArgs e)
         {
+            DecisionArrival();
+        }
 
+        private void DecisionArrival()
+        {
+            //変数の宣言
+            string ArID;
+            bool flg;
+            T_Arrival arrival = new T_Arrival();
+            List<T_ArrivalDetail> arrivalDetail = new List<T_ArrivalDetail>();
+            T_Chumon chumon = new T_Chumon();
+            List<T_ChumonDetail> ListChumonDetail = new List<T_ChumonDetail>();
+
+            //確定対象の入荷IDを取得
+            ArID = GetArrivalRecord();
+
+            //入荷IDから入荷情報を取得
+            arrival = GetArrivalAndArDetailRecord(ArID, out arrivalDetail);
+            if (arrival == null)
+            {
+                return;
+            }
+
+            //注文レコードの登録
+            flg = RegisrationChumonInf(arrival, arrivalDetail);
+            if (!flg)
+            {
+                return;
+            }
+
+            //入荷状態フラグの変更
+            UpdateArStateFlag(arrival, arrivalDetail[0]);
+
+        }
+
+        private void UpdateArStateFlag(T_Arrival arrival,T_ArrivalDetail arrivalDetail)
+        {
+            //変数の宣言
+            bool flg;
+
+            //入荷状態フラグを0から1にする
+            arrival = ChangeArStateFlag(arrival);
+            //入荷情報を更新する
+            flg = UpdateArrivalRecord(arrival,arrivalDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("入荷情報を確定しました", "確定完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("入荷情報の確定に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+        }
+
+        private T_Arrival ChangeArStateFlag(T_Arrival arrival)
+        {
+            arrival.ArStateFlag = 1;
+            return arrival;
+        }
+
+        private bool RegisrationChumonInf(T_Arrival arrival, List<T_ArrivalDetail> arrivalDetails)
+        {
+            //変数の宣言
+            bool flg;
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            T_Chumon chumon;
+            List<T_ChumonDetail> ListChumonDetail;
+
+            //注文と注文詳細のレコードを作成
+            chumon = CreateChumonInputRecord(arrival, arrivalDetails, out ListChumonDetail);
+
+            //注文と注文詳細の情報を登録
+            flg = RegisrationChumonRecord(chumon, ListChumonDetail, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return false;
+            }
+
+            return true;
+
+        }
+
+        private bool RegisrationChumonRecord(T_Chumon chumon, List<T_ChumonDetail> ListChumonDetail, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            bool flg = false;
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+            //インスタンス化
+            ChumonDataAccess access = new ChumonDataAccess();
+            flg = access.RegisterChumonData(chumon, ListChumonDetail);
+
+            if (!flg)
+            {
+                msg = "注文情報の登録中にエラーが発生しました";
+                title = "エラー";
+                return false;
+            }
+
+            return true;
+        }
+
+        private T_Arrival GetArrivalAndArDetailRecord(string arID, out List<T_ArrivalDetail> ListArrivalDetail)
+        {
+            //変数の宣言
+            List<DispArrivalDTO> arrivalDTO = new List<DispArrivalDTO>();
+            T_Arrival arrival = new T_Arrival();
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            //初期値代入
+            ListArrivalDetail = new List<T_ArrivalDetail>();
+
+            //受注情報取得
+            arrivalDTO = CreateArrivalRecord(arID, out msg, out title, out icon);
+            if (arrivalDTO == null)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+            //入荷情報をテーブルデータに形式化
+            arrival = FormalizationArrivalInputRecord(arrivalDTO[0]);
+            foreach (var ArrivalDTO in arrivalDTO)
+            {
+                ListArrivalDetail.Add(FormalizationArrivalDetaillRecord(ArrivalDTO));
+            }
+
+            return arrival;
+
+        }
+
+        private T_Chumon CreateChumonInputRecord(T_Arrival arrival, List<T_ArrivalDetail> ListArrivalDetail, out List<T_ChumonDetail> ListchumonDetail)
+        {
+            //変数の宣言
+            T_Chumon retChumon = new T_Chumon();
+            ListchumonDetail = new List<T_ChumonDetail>();
+
+            //注文レコードの作成
+            retChumon.OrID = arrival.OrID;
+            retChumon.EmID = null;
+            retChumon.SoID = arrival.SoID;
+            retChumon.ClID = arrival.ClID;
+            retChumon.ChDate = DateTime.Now;
+            retChumon.ChStateFlag = 0;
+            retChumon.ChFlag = 0;
+            retChumon.ChHidden = null;
+
+            //注文詳細レコードの作成
+            foreach (var arrivaldetail in ListArrivalDetail)
+            {
+                T_ChumonDetail chumonDetail = new T_ChumonDetail();
+                chumonDetail.PrID = arrivaldetail.PrID;
+                chumonDetail.ChQuantity = arrivaldetail.ArQuantity;
+                ListchumonDetail.Add(chumonDetail);
+            }
+
+            return retChumon;
+
+        }
+
+        private List<DispArrivalDTO> CreateArrivalRecord(string arID, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispArrivalDTO> DispArrivals = new List<DispArrivalDTO>();
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //入荷IDの一致する入荷情報を取得
+            DispArrivals = GetTableData().Where(x => x.ArID == arID).ToList();
+            if (DispArrivals == null)
+            {
+                msg = "入荷情報を取得できませんでした";
+                title = "エラー";
+                return null;
+            }
+            if (DispArrivals[0].ArStateFlag == "1")
+            {
+                msg = "既に確定済みです";
+                title = "エラー";
+                return null;
+            }
+
+            return DispArrivals;
         }
     }
 }
