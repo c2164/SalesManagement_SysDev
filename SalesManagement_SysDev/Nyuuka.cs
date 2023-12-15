@@ -422,8 +422,8 @@ namespace SalesManagement_SysDev
             bool flg;
             T_Arrival arrival = new T_Arrival();
             List<T_ArrivalDetail> arrivalDetail = new List<T_ArrivalDetail>();
-            T_Chumon chumon = new T_Chumon();
-            List<T_ChumonDetail> ListChumonDetail = new List<T_ChumonDetail>();
+            T_Shipment shipment = new T_Shipment();
+            List<T_ShipmentDetail> ListShipmentDetail = new List<T_ShipmentDetail>();
 
             //確定対象の入荷IDを取得
             ArID = GetArrivalRecord();
@@ -435,8 +435,8 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            //注文レコードの登録
-            flg = RegisrationChumonInf(arrival, arrivalDetail);
+            //出荷レコードの登録
+            flg = RegisrationShipmentInf(arrival, arrivalDetail);
             if (!flg)
             {
                 return;
@@ -472,21 +472,21 @@ namespace SalesManagement_SysDev
             return arrival;
         }
 
-        private bool RegisrationChumonInf(T_Arrival arrival, List<T_ArrivalDetail> arrivalDetails)
+        private bool RegisrationShipmentInf(T_Arrival arrival, List<T_ArrivalDetail> arrivalDetails)
         {
             //変数の宣言
             bool flg;
             string msg;
             string title;
             MessageBoxIcon icon;
-            T_Chumon chumon;
-            List<T_ChumonDetail> ListChumonDetail;
+            T_Shipment shipment;
+            List<T_ShipmentDetail> ListShipmentDetail;
 
-            //注文と注文詳細のレコードを作成
-            chumon = CreateChumonInputRecord(arrival, arrivalDetails, out ListChumonDetail);
+            //出荷と出荷詳細のレコードを作成
+            shipment = CreateShipmentInputRecord(arrival, arrivalDetails, out ListShipmentDetail);
 
-            //注文と注文詳細の情報を登録
-            flg = RegisrationChumonRecord(chumon, ListChumonDetail, out msg, out title, out icon);
+            //出荷と出荷詳細の情報を登録
+            flg = RegisrationShipmentRecord(shipment, ListShipmentDetail, out msg, out title, out icon);
             if (!flg)
             {
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
@@ -497,7 +497,7 @@ namespace SalesManagement_SysDev
 
         }
 
-        private bool RegisrationChumonRecord(T_Chumon chumon, List<T_ChumonDetail> ListChumonDetail, out string msg, out string title, out MessageBoxIcon icon)
+        private bool RegisrationShipmentRecord(T_Shipment shipment, List<T_ShipmentDetail> ListShipmentDetail, out string msg, out string title, out MessageBoxIcon icon)
         {
             //変数の宣言
             bool flg = false;
@@ -506,12 +506,12 @@ namespace SalesManagement_SysDev
             title = "";
             icon = MessageBoxIcon.Error;
             //インスタンス化
-            ChumonDataAccess access = new ChumonDataAccess();
-            flg = access.RegisterChumonData(chumon, ListChumonDetail);
+            ShipmentDataAccess access = new ShipmentDataAccess();
+            flg = access.RegisterShipmentData(shipment,ListShipmentDetail);
 
             if (!flg)
             {
-                msg = "注文情報の登録中にエラーが発生しました";
+                msg = "出荷情報の登録中にエラーが発生しました";
                 title = "エラー";
                 return false;
             }
@@ -530,7 +530,7 @@ namespace SalesManagement_SysDev
             //初期値代入
             ListArrivalDetail = new List<T_ArrivalDetail>();
 
-            //受注情報取得
+            //入荷情報取得
             arrivalDTO = CreateArrivalRecord(arID, out msg, out title, out icon);
             if (arrivalDTO == null)
             {
@@ -548,32 +548,32 @@ namespace SalesManagement_SysDev
 
         }
 
-        private T_Chumon CreateChumonInputRecord(T_Arrival arrival, List<T_ArrivalDetail> ListArrivalDetail, out List<T_ChumonDetail> ListchumonDetail)
+        private T_Shipment CreateShipmentInputRecord(T_Arrival arrival, List<T_ArrivalDetail> ListArrivalDetail, out List<T_ShipmentDetail> ListshipmentDetail)
         {
             //変数の宣言
-            T_Chumon retChumon = new T_Chumon();
-            ListchumonDetail = new List<T_ChumonDetail>();
+            T_Shipment retShipment = new T_Shipment();
+            ListshipmentDetail = new List<T_ShipmentDetail>();
 
-            //注文レコードの作成
-            retChumon.OrID = arrival.OrID;
-            retChumon.EmID = null;
-            retChumon.SoID = arrival.SoID;
-            retChumon.ClID = arrival.ClID;
-            retChumon.ChDate = DateTime.Now;
-            retChumon.ChStateFlag = 0;
-            retChumon.ChFlag = 0;
-            retChumon.ChHidden = null;
+            //出荷レコードの作成
+            retShipment.ClID = arrival.ClID;
+            retShipment.EmID = null;
+            retShipment.SoID = arrival.SoID;
+            retShipment.OrID = arrival.OrID;
+            retShipment.ShFinishDate = null;
+            retShipment.ShStateFlag = 0;
+            retShipment.ShFlag = 0;
+            retShipment.ShHidden = arrival.ArHidden;
 
-            //注文詳細レコードの作成
+            //出荷詳細レコードの作成
             foreach (var arrivaldetail in ListArrivalDetail)
             {
-                T_ChumonDetail chumonDetail = new T_ChumonDetail();
-                chumonDetail.PrID = arrivaldetail.PrID;
-                chumonDetail.ChQuantity = arrivaldetail.ArQuantity;
-                ListchumonDetail.Add(chumonDetail);
+                T_ShipmentDetail shipmentDetail = new T_ShipmentDetail();
+                shipmentDetail.PrID = arrivaldetail.PrID;
+                shipmentDetail.ShQuantity = arrivaldetail.ArQuantity;
+                ListshipmentDetail.Add(shipmentDetail);
             }
 
-            return retChumon;
+            return retShipment;
 
         }
 

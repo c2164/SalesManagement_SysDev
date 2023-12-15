@@ -10,22 +10,21 @@ namespace SalesManagement_SysDev.Common
 {
     internal class ShipmentDataAccess
     {
-        public bool RegisterShipmentData(T_Shipment RegShipment, T_ShipmentDetail RegShipmentDetail)
+        public bool RegisterShipmentData(T_Shipment RegShipment, List<T_ShipmentDetail> ListRegShipmentDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
-                    int ShID = RegShipment.ShID;
-                    if(!context.T_Shipments.Any(x => x.ShID == RegShipment.ShID))
-                    {
-                        context.T_Shipments.Add(RegShipment);
-                        context.SaveChanges();
-                        ShID = context.T_Shipments.Max(x => x.ShID);
-                    }
-                    RegShipmentDetail.ShID = ShID;
-                    context.T_ShipmentDetails.Add(RegShipmentDetail);
+                    context.T_Shipments.Add(RegShipment);
                     context.SaveChanges();
+                    int ShID = context.T_Shipments.Max(x => x.ShID);
+                    foreach (var RegShipmentDetail in ListRegShipmentDetail)
+                    {
+                        RegShipmentDetail.ShID = ShID;
+                        context.T_ShipmentDetails.Add(RegShipmentDetail);
+                        context.SaveChanges();
+                    }
                     return true;
                 }
                 catch (Exception ex)
