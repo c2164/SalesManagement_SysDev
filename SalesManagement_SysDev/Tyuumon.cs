@@ -491,14 +491,19 @@ namespace SalesManagement_SysDev
             }
 
             //注文レコードの登録
-            //flg = RegisrationChumonInf(chumon, ListChumonDetail);
+            flg = RegisrationChumonInf(chumon, ListChumonDetail);
             if (!flg)
             {
                 return;
             }
 
             //受注状態フラグの変更
-            //UpdateOrStateFlag(chumon, ListChumonDetail[0]);
+            UpdateOrStateFlag(chumon, ListChumonDetail[0]);
+        }
+
+        private bool RegisrationChumonInf(T_Chumon chumon, List<T_ChumonDetail> listChumonDetail)
+        {
+
         }
 
         private bool SubStQuantity(List<T_ChumonDetail> ListChumonDetail)
@@ -516,7 +521,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
             //在庫数を注文数分減らす
-            ListStock = SubStockRecord(ListStock, ListChumonDetail);
+            ListStock = SubStockRecord(ListStock, ListChumonDetail, out msg, out title, out icon);
             if(ListStock == null)
             {
                 return false;
@@ -525,9 +530,27 @@ namespace SalesManagement_SysDev
             return true;
         }
 
-        private List<T_Stock> SubStockRecord(List<T_Stock> listStock, List<T_ChumonDetail> listChumonDetail)
+        private List<T_Stock> SubStockRecord(List<T_Stock> listStock, List<T_ChumonDetail> listChumonDetail, out string msg, out string title, out MessageBoxIcon icon )
         {
+            //変数の宣言
             List<T_Stock> retStock = new List<T_Stock>();
+            int Quantity;
+            //初期値の代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+            foreach(var Stock in listStock)
+            {
+                foreach(var ChumonDetail in listChumonDetail)
+                {
+                    Quantity = Stock.StQuantity - ChumonDetail.ChQuantity;
+                    if (Quantity < 0)
+                    {
+                        msg = "";
+                        title = "";
+                    }
+                }
+            }
             return retStock;
         }
 

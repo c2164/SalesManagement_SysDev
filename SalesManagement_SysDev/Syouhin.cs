@@ -608,7 +608,8 @@ namespace SalesManagement_SysDev
             return true;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void button_Touroku_Click(object sender, EventArgs e)
         {
 
         }
