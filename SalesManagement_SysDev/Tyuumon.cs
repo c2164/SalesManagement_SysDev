@@ -49,7 +49,8 @@ namespace SalesManagement_SysDev
             textbox_Tyuumonsyousai_ID.Text = "";
             textbox_Zyutyuusyousai.Text = "";
             textbox_Kokyaku_Namae.Text = "";
-
+            numericUPDown_Syouhin_Namae.Value = 0;
+            dateTimePicker_Tyuumon_Nenngetu.Value = DateTime.Now;
 
             //各コンボボックスを初期化
             comboBox_Eigyousyo.DisplayMember = "SoName";
@@ -458,7 +459,7 @@ namespace SalesManagement_SysDev
             GetSelectData();
         }
 
-<<<<<<<<< Temporary merge branch 1
+
         private void button_Kakutei_Click(object sender, EventArgs e)
         {
             DecisionChumon();
@@ -516,7 +517,7 @@ namespace SalesManagement_SysDev
             syukko.SyDate = null;
 
             return syukko;
-            
+
         }
 
         private bool SubStQuantity(List<T_ChumonDetail> ListChumonDetail)
@@ -530,14 +531,14 @@ namespace SalesManagement_SysDev
 
             //注文詳細に存在する商品の在庫情報を受け取る
             ListStock = GetStockRecord(ListChumonDetail, out msg, out title, out icon);
-            if(ListStock == null)
+            if (ListStock == null)
             {
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return false;
             }
             //在庫数を注文数分減らす
             ListStock = SubStockRecord(ListStock, ListChumonDetail, out msg, out title, out icon);
-            if(ListStock == null)
+            if (ListStock == null)
             {
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return false;
@@ -579,7 +580,7 @@ namespace SalesManagement_SysDev
             return true;
         }
 
-        private List<T_Stock> SubStockRecord(List<T_Stock> listStock, List<T_ChumonDetail> listChumonDetail, out string msg, out string title, out MessageBoxIcon icon )
+        private List<T_Stock> SubStockRecord(List<T_Stock> listStock, List<T_ChumonDetail> listChumonDetail, out string msg, out string title, out MessageBoxIcon icon)
         {
             //変数の宣言
             List<T_Stock> retStock = new List<T_Stock>();
@@ -590,7 +591,7 @@ namespace SalesManagement_SysDev
             icon = MessageBoxIcon.Error;
 
             //在庫数を減らす
-            foreach(var Stock in listStock)
+            foreach (var Stock in listStock)
             {
                 foreach (var ChumonDetail in listChumonDetail)
                 {
@@ -621,7 +622,7 @@ namespace SalesManagement_SysDev
 
             //データベースから在庫テーブルのデータを取得
             ListDispStockDTO = access.GetStockData().Where(x => ListChumonDetail.Any(y => y.PrID.ToString() == x.PrID)).ToList();
-            if(ListDispStockDTO == null)
+            if (ListDispStockDTO == null)
             {
                 msg = "在庫情報を取得できませんでした";
                 title = "エラー";
@@ -629,7 +630,7 @@ namespace SalesManagement_SysDev
             }
 
             //表示用からテーブル形式に変換
-            foreach(var stock in ListDispStockDTO)
+            foreach (var stock in ListDispStockDTO)
             {
                 T_Stock inputStockData = new T_Stock();
                 inputStockData.StID = int.Parse(stock.StID);
