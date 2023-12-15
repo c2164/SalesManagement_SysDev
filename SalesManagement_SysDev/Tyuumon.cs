@@ -690,18 +690,15 @@ namespace SalesManagement_SysDev
             //在庫数を減らす
             foreach (var Stock in listStock)
             {
-                foreach (var ChumonDetail in listChumonDetail)
+                Quantity = Stock.StQuantity - listChumonDetail.Single(x => x.PrID == Stock.PrID).ChQuantity;
+                if (Quantity < 0)
                 {
-                    Quantity = Stock.StQuantity - listChumonDetail.Single(x => x.PrID == Stock.PrID).ChQuantity;
-                    if (Quantity < 0)
-                    {
-                        msg = "在庫数が足りない商品が存在します";
-                        title = "在庫不足";
-                        return null;
-                    }
-                    Stock.StQuantity = Quantity;
-                    retStock.Add(Stock);
+                    msg = "在庫数が足りない商品が存在します";
+                    title = "在庫不足";
+                    return null;
                 }
+                Stock.StQuantity = Quantity;
+                retStock.Add(Stock);
             }
 
             return retStock;
