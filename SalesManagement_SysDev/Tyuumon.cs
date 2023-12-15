@@ -373,7 +373,10 @@ namespace SalesManagement_SysDev
 
             retchumon.ChID = int.Parse(dispChumonDTO.ChID);
             retchumon.SoID = int.Parse(dispChumonDTO.SoID);
-            retchumon.EmID = int.Parse(dispChumonDTO.EmID);
+            if (dispChumonDTO.EmID != "")
+            {
+                retchumon.EmID = int.Parse(dispChumonDTO.EmID);
+            }
             retchumon.ClID = int.Parse(dispChumonDTO.ClID);
             retchumon.OrID = int.Parse(dispChumonDTO.OrID);
             retchumon.ChDate = dispChumonDTO.ChDate;
@@ -400,6 +403,7 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             DialogResult result;
+            bool flg;
 
             //非表示の実行
             result = messageDsp.MessageBoxDsp_OKCancel("非表示にしてよろしいですか", "エラー", MessageBoxIcon.Question);
@@ -416,7 +420,15 @@ namespace SalesManagement_SysDev
             }
 
             //注文の更新
-            UpdateChumonRecord(chumon, chumondetail);
+            flg = UpdateChumonRecord(chumon, chumondetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
         }
 
         private T_Chumon ChangeChFlag(T_Chumon chumon)
@@ -435,27 +447,19 @@ namespace SalesManagement_SysDev
             return chumon;
         }
 
-        private void UpdateChumonRecord(T_Chumon chumon, T_ChumonDetail chumonDetail)
+        private bool UpdateChumonRecord(T_Chumon chumon, T_ChumonDetail chumonDetail)
         {
             //変数の宣言
             bool flg;
 
             //データベース接続のインスタンス化
             ChumonDataAccess access = new ChumonDataAccess();
-
             flg = access.UpdateChumonData(chumon, chumonDetail);
-
-            if (!flg)
-            {
-                messageDsp.MessageBoxDsp_OK("非表示に失敗しました", "エラー", MessageBoxIcon.Error);
-            }
-            else
-            {
-                messageDsp.MessageBoxDsp_OK("非表示にしました", "非表示完了", MessageBoxIcon.Information);
-            }
 
             SetCtrlFormat();
             GetSelectData();
+
+            return flg;
         }
 
         private void button_Kakutei_Click(object sender, EventArgs e)
@@ -472,6 +476,7 @@ namespace SalesManagement_SysDev
             List<T_ChumonDetail> ListChumonDetail = new List<T_ChumonDetail>();
             T_Syukko syukko = new T_Syukko();
             List<T_SyukkoDetail> ListSyukkoDetail = new List<T_SyukkoDetail>();
+            DialogResult result;
 
             //確定対象の注文IDを取得
             ChID = GetChumonRecode();
@@ -483,22 +488,101 @@ namespace SalesManagement_SysDev
                 return;
             }
 
-            //在庫の数量変更
-            flg = SubStQuantity(ListChumonDetail);
-            if (flg)
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の注文を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
             {
                 return;
             }
 
-            //注文レコードの登録
-            syukko = CreateSyukkoRecord(chumon, ListChumonDetail, out ListSyukkoDetail);
+            //出庫レコードの作成
+            flg = RegisrationSyukkoInf(chumon, ListChumonDetail);
+            if (!flg)
+            {
+                return;
+            }
+
+            //在庫の数量変更
+            flg = SubStQuantity(ListChumonDetail);
             if (!flg)
             {
                 return;
             }
 
             //注文状態フラグの変更
-            //UpdateChStateFlag(chumon, ListChumonDetail[0]);
+            UpdateChStateFlag(chumon, ListChumonDetail[0]);
+        }
+
+        private void UpdateChStateFlag(T_Chumon chumon, T_ChumonDetail chumonDetail)
+        {
+            //変数の宣言
+            bool flg;
+
+            //注文状態フラグを0から1にする
+            chumon = ChangeChStateFlag(chumon);
+
+            //注文情報を更新する
+            flg = UpdateChumonRecord(chumon, chumonDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("注文情報を確定しました", "確定完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("注文情報の確定に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+        }
+
+        private T_Chumon ChangeChStateFlag(T_Chumon chumon)
+        {
+            chumon.ChStateFlag = 1;
+            return chumon;
+        }
+
+        private bool RegisrationSyukkoInf(T_Chumon chumon, List<T_ChumonDetail> listChumonDetail)
+        {
+            //変数の宣言
+            bool flg;
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            T_Syukko syukko;
+            List<T_SyukkoDetail> ListSyukkoDetail;
+
+            //出庫と出庫詳細のレコードを作成
+            syukko = CreateSyukkoRecord(chumon, listChumonDetail, out ListSyukkoDetail);
+
+            //出庫と出庫詳細の情報を登録
+            flg = RegisrationSyukkoRecord(syukko, ListSyukkoDetail, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool RegisrationSyukkoRecord(T_Syukko syukko, List<T_SyukkoDetail> listSyukkoDetail, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            bool flg = false;
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+            //インスタンス化
+            SyukkoDataAccess access = new SyukkoDataAccess();
+            flg = access.RegisterSyukkoData(syukko, listSyukkoDetail);
+
+            if (!flg)
+            {
+                msg = "出庫情報の登録中にエラーが発生しました";
+                title = "エラー";
+                return false;
+            }
+
+            return true;
         }
 
         private T_Syukko CreateSyukkoRecord(T_Chumon chumon, List<T_ChumonDetail> listChumonDetail, out List<T_SyukkoDetail> listSyukkoDetail)
@@ -506,13 +590,26 @@ namespace SalesManagement_SysDev
             //変数の宣言
             T_Syukko syukko = new T_Syukko();
             //初期値代入
-            listSyukkoDetail = null;
+            listSyukkoDetail = new List<T_SyukkoDetail>();
 
+            //出庫レコードの作成
             syukko.SoID = chumon.SoID;
-            syukko.EmID = chumon.EmID;
+            syukko.EmID = null;
             syukko.ClID = chumon.ClID;
             syukko.OrID = chumon.OrID;
             syukko.SyDate = null;
+            syukko.SyFlag = 0;
+            syukko.SyStateFlag = 0;
+            syukko.SyHidden = null;
+
+            //出庫詳細レコードの作成
+            foreach(var chumondetail in listChumonDetail)
+            {
+                T_SyukkoDetail syukkodetail = new T_SyukkoDetail();
+                syukkodetail.PrID = chumondetail.PrID;
+                syukkodetail.SyQuantity = chumondetail.ChQuantity;
+                listSyukkoDetail.Add(syukkodetail);
+            }
 
             return syukko;
             
@@ -567,7 +664,7 @@ namespace SalesManagement_SysDev
             foreach (var upStock in listStock)
             {
                 flg = access.UpdateStockData(upStock);
-                if (flg)
+                if (!flg)
                 {
                     msg = "在庫の更新に失敗しました";
                     title = "エラー";
@@ -598,6 +695,8 @@ namespace SalesManagement_SysDev
                         title = "在庫不足";
                         return null;
                     }
+                Stock.StQuantity = Quantity;
+                retStock.Add(Stock);
             }
 
             return retStock;
