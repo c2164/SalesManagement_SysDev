@@ -419,6 +419,8 @@ namespace SalesManagement_SysDev
             numericUpDown_Suuryou.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
          
         }
+
+      
     }
 
 } 
