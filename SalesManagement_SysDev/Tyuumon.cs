@@ -541,15 +541,15 @@ namespace SalesManagement_SysDev
             icon = MessageBoxIcon.Error;
             foreach(var Stock in listStock)
             {
-                foreach(var ChumonDetail in listChumonDetail)
+                Quantity = Stock.StQuantity - listChumonDetail.Single(x => x.PrID == Stock.PrID).ChQuantity;
+                if (Quantity < 0)
                 {
-                    Quantity = Stock.StQuantity - ChumonDetail.ChQuantity;
-                    if (Quantity < 0)
-                    {
-                        msg = "";
-                        title = "";
-                    }
+                    msg = "在庫数が足りない商品が存在します";
+                    title = "在庫不足";
+                    return null;
                 }
+                Stock.StQuantity = Quantity;
+                retStock.Add(Stock);
             }
             return retStock;
         }
