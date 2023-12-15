@@ -306,11 +306,11 @@ namespace SalesManagement_SysDev
             flg = UpdateProductRecord(product);
             if (!flg)
             {
-                messageDsp.MessageBoxDsp_OK("商品情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
             }
             else
             {
-                messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("商品情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
             }
         }
 
@@ -394,7 +394,7 @@ namespace SalesManagement_SysDev
 
             if (dataGridView1.SelectedRows.Count <= 0)
             {
-                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("表から対象を選択してください", "エラー", MessageBoxIcon.Error);
                 return null;
             }
             retPrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
@@ -422,11 +422,13 @@ namespace SalesManagement_SysDev
         private void UpdateProduct()
         {
             //変数の宣言
+            string PrID;
             DispProductDTO dispProductDTO = new DispProductDTO();
             bool flg;
             //チェック済みの入力情報を得る
             dispProductDTO = GetCheckedProductInf();
-            if (dispProductDTO == null)
+            PrID = GetProductRecord();
+            if(dispProductDTO == null)
             {
                 return;
             }
@@ -457,6 +459,7 @@ namespace SalesManagement_SysDev
             {
                 messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
             }
+
 
         }
 
