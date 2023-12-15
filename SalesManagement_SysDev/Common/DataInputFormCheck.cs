@@ -48,5 +48,14 @@ namespace SalesManagement_SysDev.Common
             else
                 return true;
         }
+
+        public bool CheckPrice(string chkData)
+        {
+            Regex regex = new Regex(@"^\d{1,}|\d{1,}\.\d{,2}");
+            if (!regex.IsMatch(chkData)) 
+                return false;
+            else
+                return true;
+        }
     }
 }

@@ -57,6 +57,7 @@
             this.button_Kousin.TabIndex = 0;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
+            this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
             // 
             // button_Kensaku
             // 

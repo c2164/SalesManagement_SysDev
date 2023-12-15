@@ -15,7 +15,6 @@ namespace SalesManagement_SysDev
         public T_Chumon()
         {
             T_ChumonDetail = new HashSet<T_ChumonDetail>();
-            T_Sale = new HashSet<T_Sale>();
         }
 
         [Key]
@@ -37,6 +36,5 @@ namespace SalesManagement_SysDev
         public virtual M_SalesOffice M_SalesOffice { get; set; }
         public virtual T_Order T_Order { get; set; }
         public virtual ICollection<T_ChumonDetail> T_ChumonDetail { get; set; }
-        public virtual ICollection<T_Sale> T_Sale { get; set; }
     }
 }

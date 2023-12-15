@@ -120,6 +120,7 @@ namespace SalesManagement_SysDev
 
         private void button_Touroku_Click(object sender, EventArgs e)
         {
+            
             RegisterClient();
         }
 
