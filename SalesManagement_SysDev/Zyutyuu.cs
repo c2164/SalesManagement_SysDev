@@ -275,6 +275,8 @@ namespace SalesManagement_SysDev
                 retOrderDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
             retOrderDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
             retOrderDTO.OrQuantity = numericUpDown_Suuryou.Value.ToString();//数量
+            retOrderDTO.OrFlag = "0";
+            retOrderDTO.OrStateFlag = "0";
 
 
             return retOrderDTO;
@@ -382,8 +384,8 @@ namespace SalesManagement_SysDev
             order.ClID = int.Parse(dispOrderDTO.ClID);//顧客ID
             order.ClCharge = dispOrderDTO.ClCharge;//顧客担当者名
             order.OrDate = DateTime.Now;//日付
-            order.OrStateFlag = 0;//受注状態フラグ
-            order.OrFlag = 0;//受注管理フラグ
+            order.OrStateFlag = int.Parse(dispOrderDTO.OrStateFlag);//受注状態フラグ
+            order.OrFlag = int.Parse(dispOrderDTO.OrFlag);//受注管理フラグ
             orderDetail.PrID = int.Parse(dispOrderDTO.PrID);//商品ID
             orderDetail.OrQuantity = int.Parse(dispOrderDTO.OrQuantity);//数量
             //合計金額はデータベース接続の登録処理側で行う
