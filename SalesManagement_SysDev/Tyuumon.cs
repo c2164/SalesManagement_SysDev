@@ -501,9 +501,14 @@ namespace SalesManagement_SysDev
             UpdateOrStateFlag(chumon, ListChumonDetail[0]);
         }
 
+        private void UpdateOrStateFlag(T_Chumon chumon, T_ChumonDetail t_ChumonDetail)
+        {
+            throw new NotImplementedException();
+        }
+
         private bool RegisrationChumonInf(T_Chumon chumon, List<T_ChumonDetail> listChumonDetail)
         {
-
+            return false;
         }
 
         private bool SubStQuantity(List<T_ChumonDetail> ListChumonDetail)
