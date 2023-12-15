@@ -92,7 +92,7 @@
             // comboBox_Syouhin_Namae
             // 
             this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(968, 189);
-            this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
             this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(94, 26);
             this.comboBox_Syouhin_Namae.TabIndex = 51;
@@ -280,6 +280,7 @@
             this.button_Kakutei.TabIndex = 30;
             this.button_Kakutei.Text = "確定";
             this.button_Kakutei.UseVisualStyleBackColor = false;
+            this.button_Kakutei.Click += new System.EventHandler(this.button_Kakutei_Click);
             // 
             // button_Sakuzyo
             // 
@@ -326,7 +327,7 @@
             // button_Touroku
             // 
             this.button_Touroku.Location = new System.Drawing.Point(71, 17);
-            this.button_Touroku.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Touroku.Margin = new System.Windows.Forms.Padding(2);
             this.button_Touroku.Name = "button_Touroku";
             this.button_Touroku.Size = new System.Drawing.Size(101, 50);
             this.button_Touroku.TabIndex = 52;
@@ -363,7 +364,7 @@
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Controls.Add(this.button_Kennsaku);
             this.Controls.Add(this.button_Touroku);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Hattyuu";
             this.Size = new System.Drawing.Size(1215, 646);
             this.Load += new System.EventHandler(this.Hattyuu_Load);
