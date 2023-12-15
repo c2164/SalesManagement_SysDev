@@ -257,6 +257,7 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             DialogResult result;
+            bool flg;
 
             //非表示実行確認
             result = messageDsp.MessageBoxDsp_OKCancel("対象の社員を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
@@ -272,10 +273,18 @@ namespace SalesManagement_SysDev
                 return;
             }
             //社員の更新
-            UpdateEmployeeRecord(employee);
+            flg　= UpdateEmployeeRecord(employee);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象在庫を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象在庫の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
         }
 
-        private void UpdateEmployeeRecord(M_Employee employee)
+        private bool UpdateEmployeeRecord(M_Employee employee)
         {
             //変数の宣言
             bool flg;
@@ -283,17 +292,11 @@ namespace SalesManagement_SysDev
             //データベース接続のインスタンス化
             EmployeeDataAccess access = new EmployeeDataAccess();
             flg = access.UpdateEmployeeData(employee);
-            if (!flg)
-            {
-                messageDsp.MessageBoxDsp_OK("対象社員の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
-            }
-            else
-            {
-                messageDsp.MessageBoxDsp_OK("対象社員を非表示にしました", "非表示完了", MessageBoxIcon.Information);
-            }
 
             SetCtrlFormat();
             GetSelectData();
+
+            return flg;
         }
 
         private M_Employee ChangeEmFlag(M_Employee employee)
@@ -563,6 +566,122 @@ namespace SalesManagement_SysDev
                 msg = "パスワードは必須入力です";
                 title = "入力エラー";
                 return false;
+            }
+
+            return true;
+        }
+
+        private void button_Kousin_Click(object sender, EventArgs e)
+        {
+            UpdateEmployee();
+        }
+
+        private void UpdateEmployee()
+        {
+            //変数の宣言
+            DispEmplyeeDTO dispEmployeeDTO = new DispEmplyeeDTO();
+            string EmID;
+            bool flg;
+            //チェック済みの入力情報を得る
+            dispEmployeeDTO = GetCheckedEmployeeInf();
+            if (dispEmployeeDTO == null)
+            {
+                return;
+            }
+            EmID = GetEmployeeRecord();
+            if (EmID == null)
+            {
+                return;
+            }
+            dispEmployeeDTO.EmID = EmID;
+
+            //存在チェック
+            flg = ExistsCheck(dispEmployeeDTO);
+            if (!flg)
+            {
+                return;
+            }
+            //入力情報で社員情報を更新する
+            UpdateEmployeeInf(dispEmployeeDTO);
+        }
+
+        private void UpdateEmployeeInf(DispEmplyeeDTO dispEmployeeDTO)
+        {
+            //変数の宣言
+            M_Employee UpEmployee = new M_Employee();
+            bool flg;
+            DialogResult result;
+            //表示用データからテーブル用データに変換
+            UpEmployee = FormalizationEmployeeInputRecord(dispEmployeeDTO);
+
+            // 更新確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の社員を更新してもよろしいですか", "更新確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //更新実行
+            flg = UpdateEmployeeRecord(UpEmployee);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象社員を更新しました", "更新完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象社員の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+
+        }
+
+        private bool ExistsCheck(DispEmplyeeDTO checkDispEmployee)
+        {
+            //変数の宣言
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            //DialogResult result = DialogResult.OK;
+            bool flg;
+
+            //存在チェック
+            flg = ExistsCheckEmployeeInputRecord(checkDispEmployee, out msg, out title, out icon);
+
+
+            return flg;
+        }
+
+        private bool ExistsCheckEmployeeInputRecord(DispEmplyeeDTO checkDispEmployee, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //初期値代入
+            bool flg;
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+            List<DispEmplyeeDTO> dispEmoloyee = new List<DispEmplyeeDTO>();
+            EmployeeDataAccess access = new EmployeeDataAccess();
+
+            //テーブルのデータを取得
+            dispEmoloyee = access.GetEmployeeData();
+            if (dispEmoloyee == null)
+            {
+                msg = "社員情報が取得できんせんでした";
+                title = "エラー";
+                return false;
+            }
+
+            //ID以外が同じ内容か確認
+            flg = dispEmoloyee.Any(x => x.EmName == checkDispEmployee.EmName && x.SoID == checkDispEmployee.SoID && x.PoID == checkDispEmployee.PoID && x.EmHiredate == checkDispEmployee.EmHiredate && x.EmPhone == checkDispEmployee.EmPhone && x.EmPassword == checkDispEmployee.EmPassword);
+            if (flg)
+            {
+                msg = "既に同じ内容のデータが存在します\n本当に更新してもよろしいですか？";
+                title = "警告";
+                icon = MessageBoxIcon.Warning;
+            }
+            else
+            {
+                msg = "データを更新してもよろしいですか";
+                title = "更新確認";
+                icon = MessageBoxIcon.Information;
             }
 
             return true;

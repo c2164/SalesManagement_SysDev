@@ -143,6 +143,7 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             DialogResult result;
+            bool flg;
 
             //非表示実行確認
             result = messageDsp.MessageBoxDsp_OKCancel("対象の在庫を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
@@ -154,10 +155,18 @@ namespace SalesManagement_SysDev
             //在庫管理フラグの変更
             stock = ChangeStFlag(stock);
             //在庫の更新
-            UpdateStockRecord(stock);
+            flg = UpdateStockRecord(stock);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象在庫を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象在庫の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
         }
 
-        private void UpdateStockRecord(T_Stock stock)
+        private bool UpdateStockRecord(T_Stock stock)
         {
             //変数の宣言
             bool flg;
@@ -165,17 +174,12 @@ namespace SalesManagement_SysDev
             //データベース接続のインスタンス化
             StockDataAccess access = new StockDataAccess();
             flg = access.UpdateStockData(stock);
-            if (!flg)
-            {
-                messageDsp.MessageBoxDsp_OK("対象在庫の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
-            }
-            else
-            {
-                messageDsp.MessageBoxDsp_OK("対象在庫を非表示にしました", "非表示完了", MessageBoxIcon.Information);
-            }
 
             SetCtrlFormat();
             GetSelectData();
+
+            return flg;
+
         }
 
         private T_Stock ChangeStFlag(T_Stock stock)
@@ -223,7 +227,7 @@ namespace SalesManagement_SysDev
 
             if (dataGridView1.SelectedRows.Count <= 0)
             {
-                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("表から対象を選択してください", "エラー", MessageBoxIcon.Error);
                 return null;
             }
             retStID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
@@ -330,6 +334,173 @@ namespace SalesManagement_SysDev
             comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString();
             comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
             domainUpDown_Zaikosuu.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString());
+        }
+
+        private void button_Kousin_Click(object sender, EventArgs e)
+        {
+            UpdateStock();
+        }
+
+        private void UpdateStock()
+        {
+            // 変数の宣言
+            DispStockDTO dispStockDTO = new DispStockDTO();
+            string StID;
+            bool flg;
+            //チェック済みの入力情報を得る
+            dispStockDTO = GetCheckedStockInf();
+            if(dispStockDTO == null)
+            {
+                return;
+            }
+            StID = GetStockRecord();
+            if (StID == null)
+            {
+                return;
+            }
+            dispStockDTO.StID = StID;
+
+            //存在チェック
+            flg = ExistsCheck(dispStockDTO);
+            if (!flg)
+            {
+                return;
+            }
+            //入力情報で在庫情報を更新する
+            UpdateStockInf(dispStockDTO);
+        }
+
+        private void UpdateStockInf(DispStockDTO dispStockDTO)
+        {
+            //変数の宣言
+            T_Stock UpStock = new T_Stock();
+            bool flg;
+            DialogResult result;
+
+            //表示用データからテーブル用データに変換
+            UpStock = FormalizationStockInputRecord(dispStockDTO);
+
+            //更新確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の在庫を更新してもよろしいですか", "更新確認", MessageBoxIcon.Question);
+            if(result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //更新実行
+            flg = UpdateStockRecord(UpStock);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象在庫を更新しました", "更新完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象在庫の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ExistsCheck(DispStockDTO checkDispStock)
+        {
+            //変数の宣言
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            bool flg;
+
+            //存在チェック
+            flg = ExistsCheckStockInputRecord(checkDispStock, out msg, out title, out icon);
+
+            return flg;
+        }
+
+        private bool ExistsCheckStockInputRecord(DispStockDTO checkDispStock, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+            List<DispStockDTO> dispStock = new List<DispStockDTO>();
+            StockDataAccess access = new StockDataAccess();
+
+            //テーブルのデータを取得
+            dispStock = access.GetStockData();
+            if(dispStock == null)
+            {
+                msg = "在庫情報が取得できんせんでした";
+                title = "エラー";
+                return false;
+            }
+
+            return true;
+        }
+
+        private DispStockDTO GetCheckedStockInf()
+        {
+           //変数の宣言
+            DispStockDTO retDispStock = new DispStockDTO();
+            bool flg;
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+
+            //入力情報を取得
+            retDispStock = GetStockInf();
+            //入力チェック
+            flg = CheckStockInf(retDispStock, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+
+            return retDispStock;
+        }
+
+        private bool CheckStockInf(DispStockDTO checkDispStock, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //インスタンス化
+            DataInputFormCheck formCheck = new DataInputFormCheck();
+
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //メーカー名のチェック
+            if (comboBox_Meka_Namae.SelectedIndex == -1)
+            {
+                msg = "メーカーを選択してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            //商品名のチェック
+            if (String.IsNullOrEmpty(checkDispStock.PrName))
+            {
+                msg = "商品名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            //在庫数のチェック
+            if (!String.IsNullOrEmpty(checkDispStock.StQuantity))
+            {
+                if (!formCheck.CheckNumeric(checkDispStock.StQuantity))
+                {
+                    msg = "安全在庫数には数字を入力してください";
+                    title = "入力エラー";
+                    return false;
+                }
+
+            }
+            else
+            {
+                msg = "安全在庫数は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            return true;
         }
     }
 }
