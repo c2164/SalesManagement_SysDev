@@ -611,7 +611,7 @@ namespace SalesManagement_SysDev
             }
 
             //小分類名のチェック
-            if (combobox_Meka_ID.SelectedIndex == -1)
+            if (combobox_Syoubunnrui_Namae.SelectedIndex == -1)
             {
                 msg = "小分類名を選択してください";
                 title = "入力エラー";
@@ -624,7 +624,97 @@ namespace SalesManagement_SysDev
 
         private void button_Touroku_Click(object sender, EventArgs e)
         {
-
+            RegisterProduct();
         }
+
+        private void RegisterProduct()
+        {
+            //変数の宣言
+            DispProductDTO dispProductDTO = new DispProductDTO();
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            DialogResult result;
+
+            //チェック済みデータの取得
+            dispProductDTO = GetCheckedProductInf();
+            if (dispProductDTO == null)
+            {
+                return;
+            }
+            dispProductDTO.PrID = "0";
+
+            if (!DuplicationCheckProductInputRecord(dispProductDTO, out msg, out title, out icon))
+            {
+                result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            //登録確認
+            result = messageDsp.MessageBoxDsp_OKCancel("登録しますか?", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //データを登録する
+            RegisrationProductInf(dispProductDTO);
+        }
+
+        private bool DuplicationCheckProductInputRecord(DispProductDTO productDTO, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispProductDTO> productTabledeta = new List<DispProductDTO>();
+            bool flg;
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Question;
+
+            //テーブルのデータを取得
+            productTabledeta = GetTableData();
+
+            //商品IDに同じ商品がないかチェックする
+            flg = productTabledeta.Any(x => x.PrName == productDTO.PrName && x.MaID == productDTO.MaID && x.ScID == productDTO.ScID && x.Price == productDTO.Price && x.PrSafetyStock == productDTO.PrSafetyStock && x.PrModelNumber == productDTO.PrModelNumber && x.PrColor == productDTO.PrColor && x.PrReleaseDate == productDTO.PrReleaseDate);
+            if (flg)
+            {
+                msg = "同じ商品が登録されていますがよろしいですか?";
+                title = "確認";
+                return false;
+            }
+
+            return true;
+        }
+
+        private void RegisrationProductInf(DispProductDTO dispProductDTO)
+        {
+            //変数の宣言
+            bool flg;
+            M_Product product;
+
+            //インスタンス化
+            ProductDataAccess productDataAccess = new ProductDataAccess();
+
+            //登録用にデータに変換
+            product = FormalizationProductInputRecord(dispProductDTO);
+
+            //登録処理
+            flg = productDataAccess.RegisterProductData(product);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("登録しました", "登録完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("失敗しました", "登録失敗", MessageBoxIcon.Error);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+
     }
 }
