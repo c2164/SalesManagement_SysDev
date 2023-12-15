@@ -175,6 +175,225 @@ namespace SalesManagement_SysDev
             dispHattyus.OrderBy(x => x.HaID);
             return dispHattyus;
         }
+
+        private void button_Kennsaku_Click(object sender, EventArgs e)
+        {
+            SelectHattyu();
+        }
+
+        private void SelectHattyu()
+        {
+            DispHattyuDTO hattyuDTO = new DispHattyuDTO();
+            List<DispHattyuDTO> displayHattyu = new List<DispHattyuDTO>();
+
+            hattyuDTO = GetHattyuInf();
+
+            displayHattyu = SelectHattyuInf(hattyuDTO);
+
+            SetDataGridView(displayHattyu);
+        }
+
+        private DispHattyuDTO GetHattyuInf()
+        {
+            DispHattyuDTO retHattyuDTO = new DispHattyuDTO();
+
+            //各コントロールの情報
+
+            retHattyuDTO.HaID=textBox_Hattyuu_ID.Text.Trim();
+            retHattyuDTO.EmID=textBox_Syain_ID.Text.Trim();
+
+            if(!(comboBox_Syain_Namae.SelectedIndex==-1))
+                retHattyuDTO.EmID=comboBox_Syain_Namae.SelectedValue.ToString();
+                retHattyuDTO.EmName=comboBox_Syain_Namae.Text.Trim();
+
+
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1))
+            retHattyuDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+            retHattyuDTO.MaName = comboBox_Meka_Namae.Text.Trim();
+
+            retHattyuDTO.PrID=textBox_Syouhin_ID.Text.Trim();
+
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retHattyuDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+            retHattyuDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
+
+            retHattyuDTO.HaQuantity=textBox_Suuryou.Text.Trim();
+            retHattyuDTO.HaDetailID=textBox_Hattyuusyousai.Text.Trim();
+            retHattyuDTO.HaDate = dateTimePicker1.Value;
+
+            return retHattyuDTO;
+
+        }
+
+        private List<DispHattyuDTO> SelectHattyuInf(DispHattyuDTO HattyuDTO)
+        {
+            List<DispHattyuDTO> retDispHattyu = new List<DispHattyuDTO>();
+
+            HattyuDataAccess HaAcsess = new HattyuDataAccess();
+
+            retDispHattyu = HaAcsess.GetHattyuData(HattyuDTO);
+            return retDispHattyu;
+
+        }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveHattyu();
+        }
+
+        private void RemoveHattyu()
+        {
+            //変数の宣言
+            string HaID;
+            T_Hattyu hattyu = new T_Hattyu();
+            T_HattyuDetail hattyuDetail = new T_HattyuDetail();
+            //データグリッドビューで選択されているデータの商品IDを受け取る
+            HaID = GetHattyuRecode();
+
+            //取得した商品IDでデータベースを検索する
+            hattyu = SelectRemoveHattyu(HaID, out hattyuDetail);
+            if (hattyu == null)
+            {
+                messageDsp.MessageBoxDsp_OK("商品情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                return;
+            }
+
+            //商品管理フラグを0から2にする
+            UpdateHaFlag(hattyu, hattyuDetail);
+        }
+
+        private void UpdateHaFlag(T_Hattyu hattyu, T_HattyuDetail hattyuDetail)
+        {
+            //変数宣言
+            DialogResult result;
+
+            //非表示実行確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象のデータを非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //売上管理フラグ変更
+            hattyu = ChangeHaFlg(hattyu);
+            if (hattyu == null)
+            {
+                return;
+            }
+            //データの更新
+            UpdateHattyuRecord(hattyu, hattyuDetail);
+        }
+
+        private void UpdateHattyuRecord(T_Hattyu hattyu, T_HattyuDetail hattyuDetail)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            HattyuDataAccess access = new HattyuDataAccess();
+            flg = access.UpdateHattyuData(hattyu, hattyuDetail);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象のデータの非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象のデータを非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private T_Hattyu ChangeHaFlg(T_Hattyu hattyu)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
+            hattyu.HaFlag = 2;
+            hattyu.HaHidden = Hidden;
+            return hattyu;
+        }
+
+        private T_Hattyu SelectRemoveHattyu(string HaID, out T_HattyuDetail hattyuDetail)
+        {
+            //変数の宣言
+            T_Hattyu rethattyu = new T_Hattyu();
+            DispHattyuDTO dispHattyuDTO = new DispHattyuDTO();
+            List<DispHattyuDTO> dispHattyus = new List<DispHattyuDTO>();
+            hattyuDetail = null;
+            //データベースからデータを取得する
+            dispHattyus = GetTableData();
+
+            if (dispHattyus == null) //データの取得失敗
+            {
+                return null;
+            }
+
+            //Listの中を受け取った商品IDで検索
+            dispHattyuDTO = dispHattyus.Single(x => x.HaID == HaID);
+
+            //検索結果を返却用にする
+            rethattyu = FormalizationHattyuInputRecord(dispHattyuDTO);
+            hattyuDetail = FormalizationHattyuDetailInputRecord(dispHattyuDTO);
+
+            return rethattyu;
+        }
+
+        private T_Hattyu FormalizationHattyuInputRecord(DispHattyuDTO dispHattyuDTO)
+        {
+            T_Hattyu rethattyu = new T_Hattyu();
+
+            rethattyu.HaID = int.Parse(dispHattyuDTO.HaID);
+            rethattyu.MaID = int.Parse(dispHattyuDTO.MaID);
+            rethattyu.EmID = int.Parse(dispHattyuDTO.EmID);
+            rethattyu.HaDate = dispHattyuDTO.HaDate.Value;
+            rethattyu.HaFlag = int.Parse(dispHattyuDTO .HaFlag);
+            rethattyu.HaHidden = dispHattyuDTO.HaHidden;
+
+            
+            return rethattyu;
+        }
+
+        private T_HattyuDetail FormalizationHattyuDetailInputRecord(DispHattyuDTO dispHattyuDTO)
+        {
+            T_HattyuDetail rethattyuDetail = new T_HattyuDetail();
+
+            rethattyuDetail.HaDetailID = int.Parse( dispHattyuDTO.HaDetailID);
+            rethattyuDetail.HaID = int.Parse(dispHattyuDTO.HaID);
+            rethattyuDetail.PrID=int.Parse(dispHattyuDTO.PrID);
+            rethattyuDetail.HaQuantity = int.Parse(dispHattyuDTO.HaQuantity);
+
+            return rethattyuDetail;
+        }
+
+        private string GetHattyuRecode()
+        {
+            //変数の宣言
+            string retHaID;
+
+            retHaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retHaID;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBox_Hattyuu_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            textBox_Syain_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
+            textBox_Syouhin_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+            textBox_Hattyuusyousai.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            textBox_Suuryou.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+            comboBox_Meka_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+            comboBox_Syain_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+            comboBox_Syouhin_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString());
+        }
     }
+
+
 
 }

@@ -12,16 +12,22 @@ namespace SalesManagement_SysDev.Common
     internal class ChumonDataAccess
     {
         //注文情報登録(登録情報)
-        public bool RegisterChumonData(T_Chumon RegChumon, T_ChumonDetail RegChumonDetail)
+        public bool RegisterChumonData(T_Chumon RegChumon, List<T_ChumonDetail> ListRegChumonDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     context.T_Chumons.Add(RegChumon);
-                    context.T_ChumonDetails.Add(RegChumonDetail);
                     context.SaveChanges();
-                    return true;
+                    int ChID = context.T_Chumons.Max(x => x.ChID);
+                    foreach (var RegChumonDetail in ListRegChumonDetail)
+                    {
+                        RegChumonDetail.ChID = ChID;
+                        context.T_ChumonDetails.Add(RegChumonDetail);
+                        context.SaveChanges();
+                    }
+                        return true;
                 }
                 catch (Exception ex)
                 {
@@ -39,9 +45,23 @@ namespace SalesManagement_SysDev.Common
                 try
                 {
                     var UpdateTarget = context.T_Chumons.Single(x => x.ChID == UpChumon.ChID);
-                    var UpdateTargetDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == UpChumonDetail.ChID);
-                    UpdateTarget = UpChumon;
-                    UpdateTargetDetail = UpChumonDetail;
+                    var UpdateTargetDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == UpChumonDetail.ChDetailID);
+
+                    UpdateTarget.ChID = UpChumon.ChID;
+                    UpdateTarget.SoID = UpChumon.SoID;
+                    UpdateTarget.EmID = UpChumon.EmID;
+                    UpdateTarget.ClID = UpChumon.ClID;
+                    UpdateTarget.OrID = UpChumon.OrID;
+                    UpdateTarget.ChDate = UpChumon.ChDate;
+                    UpdateTarget.ChStateFlag = UpChumon.ChStateFlag;
+                    UpdateTarget.ChFlag = UpChumon.ChFlag;
+                    UpdateTarget.ChHidden = UpChumon.ChHidden;
+
+                    UpdateTargetDetail.ChDetailID = UpChumonDetail.ChDetailID;
+                    UpdateTargetDetail.ChID = UpChumonDetail.ChID;
+                    UpdateTargetDetail.PrID = UpChumonDetail.PrID;
+                    UpdateTargetDetail.ChQuantity = UpChumonDetail.ChQuantity;
+
 
                     context.SaveChanges();
                     return true;
@@ -63,7 +83,8 @@ namespace SalesManagement_SysDev.Common
                 //「T_Chumon」テーブルから「M_SalesOffice」「M_Employee」「M_Client」「T_Order」を参照
                 var tb = from Chumon in context.T_Chumons
                          join Employee in context.M_Employees
-                         on Chumon.EmID equals Employee.EmID
+                         on Chumon.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join SalesOffice in context.M_SalesOffices
                          on Chumon.SoID equals SalesOffice.SoID
                          join Client in context.M_Clients
@@ -76,30 +97,48 @@ namespace SalesManagement_SysDev.Common
                          on ChumonDetail.PrID equals Product.PrID
 
                          where
-                         ((dispChumonDTO.ChID == "") ? true :
-                         Chumon.ChID == int.Parse(dispChumonDTO.ChID)) && //注文ID
+                         (dispChumonDTO.ChID.Equals("") ? true :
+                         Chumon.ChID.ToString().Equals(dispChumonDTO.ChID)) && //注文ID
+                                                                               //
                          Product.PrName.Contains(dispChumonDTO.PrName) && //商品名
+
                          SalesOffice.SoName.Contains(dispChumonDTO.SoName) && //営業所名
-                         ((dispChumonDTO.ChDetailID == "") ? true :
-                         ChumonDetail.ChDetailID == int.Parse(dispChumonDTO.ChDetailID)) && //注文詳細ID
-                         ((dispChumonDTO.OrID == "") ? true :
-                         Order.OrID == int.Parse(dispChumonDTO.OrID)) && //受注ID
+
+                         (dispChumonDTO.ChDetailID.Equals("") ? true :
+                         ChumonDetail.ChDetailID.ToString().Equals(dispChumonDTO.ChDetailID)) &&//注文詳細ID
+
+                         (dispChumonDTO.OrID.Equals("") ? true :
+                         Order.OrID.ToString().Equals(dispChumonDTO.OrID)) &&//受注ID
+
                          Client.ClName.Contains(dispChumonDTO.ClName) && //顧客名
+
                          Employee.EmName.Contains(dispChumonDTO.EmName) &&//社員名
+
                          //Chumon.ChDate.(dispChumonDTO.ChDate)&&//注文年月日
-                         ((dispChumonDTO.ChQuantity == "") ? true :
-                         ChumonDetail.ChQuantity == int.Parse(dispChumonDTO.ChQuantity)) &&//数量
+
+
                          Chumon.ChFlag == 0 //非表示フラグ
 
                          select new DispChumonDTO
                          {
                              ChID = Chumon.ChID.ToString(),
-                             PrName = Product.PrName,
-                             SoName = SalesOffice.SoName,
                              ChDetailID = ChumonDetail.ChDetailID.ToString(),
-                             OrID = Order.OrID.ToString(),
-                             ClName = Client.ClName,
+                             PrID = Product.PrID.ToString(),
+                             PrName = Product.PrName,
+                             ChQuantity = ChumonDetail.ChQuantity.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName,
+                             EmID = Employee.EmID.ToString(),
                              EmName = Employee.EmName,
+                             ClID = Client.ClID.ToString(),
+                             ClName = Client.ClName,
+                             OrID = Order.OrID.ToString(),
+                             ChDate = Chumon.ChDate,
+                             ChStateFlag = Chumon.ChStateFlag.ToString(),
+                             ChFlag = Chumon.ChFlag.ToString(),
+                             ChHidden = Chumon.ChHidden.ToString(),
+
+
 
 
                          };
@@ -114,7 +153,7 @@ namespace SalesManagement_SysDev.Common
 
         }
 
-        //顧客全表示：オーバーロード
+        //注文全表示：オーバーロード
         public List<DispChumonDTO> GetChumonData()
         {
             var context = new SalesManagement_DevContext();
@@ -123,7 +162,8 @@ namespace SalesManagement_SysDev.Common
                 //「T_Chumon」テーブルから「M_SalesOffice」「M_Employee」「M_Client」「T_Order」を参照
                 var tb = from Chumon in context.T_Chumons
                          join Employee in context.M_Employees
-                         on Chumon.EmID equals Employee.EmID
+                         on Chumon.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join SalesOffice in context.M_SalesOffices
                          on Chumon.SoID equals SalesOffice.SoID
                          join Client in context.M_Clients
@@ -141,15 +181,21 @@ namespace SalesManagement_SysDev.Common
                          select new DispChumonDTO
                          {
                              ChID = Chumon.ChID.ToString(),
-                             PrName = Product.PrName,
-                             SoName = SalesOffice.SoName,
                              ChDetailID = ChumonDetail.ChDetailID.ToString(),
-                             OrID = Order.OrID.ToString(),
-                             ClName = Client.ClName,
-                             EmName = Employee.EmName,
+                             PrID = Product.PrID.ToString(),
+                             PrName = Product.PrName,
                              ChQuantity = ChumonDetail.ChQuantity.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName,
+                             EmID = Employee.EmID.ToString(),
+                             EmName = Employee.EmName,
+                             ClID = Client.ClID.ToString(),
+                             ClName = Client.ClName,
+                             OrID = Order.OrID.ToString(),
                              ChDate = Chumon.ChDate,
                              ChStateFlag = Chumon.ChStateFlag.ToString(),
+                             ChFlag = Chumon.ChFlag.ToString(),
+                             ChHidden = Chumon.ChHidden.ToString(),
 
 
                          };
