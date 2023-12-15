@@ -85,6 +85,7 @@
             this.button_Kennsaku.TabIndex = 1;
             this.button_Kennsaku.Text = "🔍検索";
             this.button_Kennsaku.UseVisualStyleBackColor = false;
+            this.button_Kennsaku.Click += new System.EventHandler(this.button_Kennsaku_Click);
             // 
             // button_Itiranhyouzi
             // 
@@ -97,6 +98,7 @@
             this.button_Itiranhyouzi.TabIndex = 2;
             this.button_Itiranhyouzi.Text = "📖一覧表示";
             this.button_Itiranhyouzi.UseVisualStyleBackColor = false;
+            this.button_Itiranhyouzi.Click += new System.EventHandler(this.button_Itiranhyouzi_Click);
             // 
             // button_Sakuzyo
             // 
@@ -109,6 +111,7 @@
             this.button_Sakuzyo.TabIndex = 3;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // button_Kakutei
             // 
@@ -121,6 +124,7 @@
             this.button_Kakutei.TabIndex = 4;
             this.button_Kakutei.Text = "確定";
             this.button_Kakutei.UseVisualStyleBackColor = false;
+            this.button_Kakutei.Click += new System.EventHandler(this.button_Kakutei_Click);
             // 
             // button_Kuria
             // 
@@ -243,6 +247,7 @@
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
             this.dataGridView1.TabIndex = 16;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // textBox_Syain
             // 

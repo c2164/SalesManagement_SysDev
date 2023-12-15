@@ -13,15 +13,21 @@ namespace SalesManagement_SysDev.Common
 {
     class ArraivalDataAccess
     {
-        public bool RegisterArrivalsData(T_Arrival RegArrival, T_ArrivalDetail RegArrivalDetail)
+        public bool RegisterArrivalsData(T_Arrival RegArrival, List<T_ArrivalDetail> ListRegArrivalDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     context.T_Arrivals.Add(RegArrival);
-                    context.T_ArrivalDetails.Add(RegArrivalDetail);
                     context.SaveChanges();
+                    int ArID = context.T_Arrivals.Max(x => x.ArID);
+                    foreach (var RegArrivalDetail in ListRegArrivalDetail)
+                    {
+                        RegArrivalDetail.ArID = ArID;
+                        context.T_Arrivals.Add(RegArrival);
+                        context.SaveChanges();
+                    }
                     return true;
                 }
                 catch (Exception ex)

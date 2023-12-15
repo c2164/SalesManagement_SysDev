@@ -57,7 +57,7 @@ namespace SalesManagement_SysDev
             textBox_Hattyuu_Syain_Namae.Text = "";
             textBox_Nyuukosyousai_ID.Text = "";
             textBox_Nyuuko_ID.Text = "";
-            
+
 
             //各コンボボックスを初期化
             comboBox_Kakutei_Syain_Namae.DisplayMember = "SoName";
@@ -154,8 +154,273 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
-            //SetCtrlFormat();
+            GetSelectData();
+            SetCtrlFormat();
         }
+
+        private void button_Itirannhyouzi_Click(object sender, EventArgs e)
+        {
+            ListDisplayWarehousing();
+        }
+
+        private void ListDisplayWarehousing()
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> warehousing = new List<DispWarehousingDTO>();
+            List<DispWarehousingDTO> sortedwarehousing = new List<DispWarehousingDTO>();
+
+            //テーブルデータ受け取り
+            warehousing = GetTableData();
+
+            //昇順に並び替える
+            sortedwarehousing = SortWarehousingData(warehousing);
+
+            //データグリッドビュー表示
+            SetDataGridView(sortedwarehousing);
+        }
+
+        private List<DispWarehousingDTO> GetTableData()
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> warehousing = new List<DispWarehousingDTO>();
+
+            //インスタンス化
+            WarehousingDataAccess WaAccess = new WarehousingDataAccess();
+
+            //データベースからデータを取得
+            warehousing = WaAccess.GetWarehousingData();
+
+
+            return warehousing;
+        }
+
+        private List<DispWarehousingDTO> SortWarehousingData(List<DispWarehousingDTO> dispWarehousings)
+        {
+            //並び替え(昇順)
+            dispWarehousings.OrderBy(x => x.WaID);
+            return dispWarehousings;
+        }
+
+        private void button_Kennsaku_Click(object sender, EventArgs e)
+        {
+            SelectWarehousing();
+        }
+
+        private void SelectWarehousing()
+        {
+            //変数の宣言
+            　DispWarehousingDTO warehousingDTO = new DispWarehousingDTO();
+            List<DispWarehousingDTO> DisplayWarehousing = new List<DispWarehousingDTO>();
+
+            //データの読み取り
+            warehousingDTO = GetWarehousingInf();
+            //データの検索
+            DisplayWarehousing = SelectWarehousingInf(warehousingDTO);
+            //データグリッドビューに表示
+            SetDataGridView(DisplayWarehousing);
+        }
+
+        private DispWarehousingDTO GetWarehousingInf()
+        {
+            //変数の宣言
+            DispWarehousingDTO retWarehousingDTO = new DispWarehousingDTO();
+
+            //各コントロールから入庫情報を読み取る
+            retWarehousingDTO.WaID = textBox_Nyuuko_ID.Text.Trim();
+            retWarehousingDTO.HaID = textBox_Hattyuu_ID.Text.Trim();
+            retWarehousingDTO.WaDetailID = textBox_Nyuukosyousai_ID.Text.Trim();
+            retWarehousingDTO.HattyuEmID = textBox_Hattyuu_Syain_Namae.Text.Trim();
+            if (!(comboBox_Kakutei_Syain_Namae.SelectedIndex == -1))
+                retWarehousingDTO.ConfEmName = comboBox_Kakutei_Syain_Namae.SelectedValue.ToString();
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1))
+                retWarehousingDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
+                retWarehousingDTO.MaID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+            retWarehousingDTO.WaQuantity = numericUpDown_Suuryou.Value.ToString();
+
+
+            return retWarehousingDTO;
+        }
+
+        private List<DispWarehousingDTO> SelectWarehousingInf (DispWarehousingDTO warehousingDTO)
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> retDispWarehousing = new List<DispWarehousingDTO>();
+            //インスタンス化
+            WarehousingDataAccess access = new WarehousingDataAccess();
+
+            //入庫情報検索
+            retDispWarehousing = access.GetWarehousingData(warehousingDTO);
+            return retDispWarehousing;
+
+
+        }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveWarehousing();
+        }
+
+        private void RemoveWarehousing()
+        {
+            //変数の宣言
+            string WaID;
+            T_Warehousing warehousing = new T_Warehousing();
+            //データグリッドビューで選択されているデータの入庫IDを受け取る
+            WaID = GetWarehousingRecord();
+            if(WaID == null)
+            {
+                return;
+            }
+
+            //取得した入庫IDでデータベースを検索する
+            warehousing = SelectRemoveWarehousing(WaID);
+            if (warehousing == null)
+            {
+                return;
+            }
+
+            //入庫管理フラグを0から2にする
+            UpdateWaFlag(warehousing);
+        }
+
+        private void UpdateWaFlag(T_Warehousing warehousing)
+        {
+            //変数の宣言
+            DialogResult result;
+
+            //非表示実行確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の入庫情報を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //入庫管理フラグの変更
+            warehousing = ChangeWaFlag(warehousing);
+            if (warehousing == null)
+            {
+                return;
+            }
+            //入庫の更新
+            UpdateWarehousingRecord(warehousing);
+        }
+
+        private void UpdateWarehousingRecord(T_Warehousing warehousing)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            WarehousingDataAccess access = new WarehousingDataAccess();
+            flg = access.UpdateWarehousingData(warehousing);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象入庫情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象入庫情報を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private T_Warehousing ChangeWaFlag(T_Warehousing warehousing)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
+
+            warehousing.WaFlag = 2;
+            warehousing.WaHidden = Hidden;
+            return warehousing;
+        }
+
+        private T_Warehousing SelectRemoveWarehousing(string WaID)
+        {
+            //変数の宣言
+            T_Warehousing retwarehousing = new T_Warehousing();
+            DispWarehousingDTO dispWarehousingDTO = new DispWarehousingDTO();
+            List<DispWarehousingDTO> dispWarehousings = new List<DispWarehousingDTO>();
+            //データベースからデータを取得する
+            dispWarehousings = GetTableData();
+            if (dispWarehousings == null) //データの取得失敗
+            {
+                messageDsp.MessageBoxDsp_OK("入庫情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
+
+            //Listの中を受け取った入庫IDで検索
+            dispWarehousingDTO = dispWarehousings.Single(x => x.WaID == WaID);
+
+            //検索結果を返却用にする
+            retwarehousing = FormalizationWarehousingInputRecord(dispWarehousingDTO);
+
+            return retwarehousing;
+        }
+
+        private T_Warehousing FormalizationWarehousingInputRecord(DispWarehousingDTO dispWarehousingDTO)
+        {
+            T_Warehousing retwarehousing = new T_Warehousing();
+            retwarehousing.WaID = int.Parse(dispWarehousingDTO.WaID);
+            retwarehousing.HaID = int.Parse(dispWarehousingDTO.HaID);
+            retwarehousing.WaDate = dispWarehousingDTO.WaDate;
+            retwarehousing.WaShelfFlag = int.Parse(dispWarehousingDTO.WaShelfFlag);
+            retwarehousing.WaFlag = int.Parse(dispWarehousingDTO.WaFlag);
+            retwarehousing.WaHidden = dispWarehousingDTO.WaHidden;
+           
+
+
+            return retwarehousing;
+        }
+
+
+        private T_WarehousingDetail FormalizationWarehousingDetailInputRecord(DispWarehousingDTO dispWarehousingDetailDTO)
+        { 
+            T_WarehousingDetail retwarehousingdetail = new T_WarehousingDetail();
+            retwarehousingdetail.WaDetailID = int.Parse(dispWarehousingDetailDTO.WaDetailID);
+            retwarehousingdetail.WaQuantity = int.Parse(dispWarehousingDetailDTO.WaQuantity);
+            retwarehousingdetail.PrID = int.Parse(dispWarehousingDetailDTO.PrID);
+            retwarehousingdetail.WaID = int.Parse(dispWarehousingDetailDTO.WaID);
+            
+
+                return retwarehousingdetail;
+                }
+
+        private string GetWarehousingRecord()
+        {
+
+
+            //変数の宣言
+            string retWaID;
+            if(dataGridView1.SelectedRows.Count<=0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください","エラー",MessageBoxIcon.Error);
+                return null;
+            }
+            retWaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retWaID;
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBox_Nyuuko_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            textBox_Hattyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+            textBox_Nyuukosyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            textBox_Hattyuu_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString();
+            comboBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
+            comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+            comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            numericUpDown_Suuryou.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+         
+        }
+
+      
     }
-}
+
+} 

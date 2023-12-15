@@ -30,7 +30,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫情報アップデート(アップデート情報)
-        public bool UpdateWerehousingData(T_Warehousing UpWarehousing)
+        public bool UpdateWarehousingData(T_Warehousing UpWarehousing)
         {
             using (var context = new SalesManagement_DevContext())
             {
@@ -72,16 +72,15 @@ namespace SalesManagement_SysDev.Common
                          on Hattyu.EmID equals HattyuEmployee.EmID
                          where
                           ((dispWarehousingDTO.WaID == "") ? true :
-                         Warehousing.WaID == int.Parse(dispWarehousingDTO.WaID)) &&//入庫ID
-                          ((dispWarehousingDTO.WaID == "") ? true :
-                         Hattyu.HaID == int.Parse(dispWarehousingDTO.HaID)) && //発注ID
-                          ((dispWarehousingDTO.WaID == "") ? true :
-                         WarehousingDetail.WaDetailID == int.Parse(dispWarehousingDTO.WaDetailID)) && //入庫詳細ID
+                         Warehousing.WaID.ToString().Equals(dispWarehousingDTO.WaID)) &&//入庫ID
+                          ((dispWarehousingDTO.HaID == "") ? true :
+                         Hattyu.HaID.ToString().Equals(dispWarehousingDTO.HaID)) && //発注ID
+                          ((dispWarehousingDTO.WaDetailID == "") ? true :
+                         WarehousingDetail.WaDetailID.ToString().Equals(dispWarehousingDTO.WaDetailID)) && //入庫詳細ID
                          HattyuEmployee.EmName.Contains(dispWarehousingDTO.HattyuEmName) && //発注社員名
                          Employee.EmID.ToString().Contains(dispWarehousingDTO.ConfEmName) && //確定社員名
                          Maker.MaName.Contains(dispWarehousingDTO.MaName) && //メーカー名
-                         Product.PrName.Contains(dispWarehousingDTO.PrName) && //商品名
-                         WarehousingDetail.ToString().Contains(dispWarehousingDTO.WaQuantity)  //数量
+                         Product.PrName.Contains(dispWarehousingDTO.PrName)  //商品名
 
 
 
@@ -95,7 +94,7 @@ namespace SalesManagement_SysDev.Common
                              MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
                              PrName = Product.PrName.ToString(),
-                             WaQuantity = WarehousingDetail.ToString(),
+                             WaQuantity = WarehousingDetail.WaQuantity.ToString(),
                             
 
                          };
