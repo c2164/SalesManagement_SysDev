@@ -275,7 +275,7 @@ namespace SalesManagement_SysDev
                 retOrderDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
             retOrderDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
             retOrderDTO.OrQuantity = numericUpDown_Suuryou.Value.ToString();//数量
-            
+
 
             return retOrderDTO;
         }
@@ -311,16 +311,16 @@ namespace SalesManagement_SysDev
             //入力チェック済のデータを受け取る
             dispOrderDTO = GetCheckedOrderInf();
             //NULLなら失敗
-            if(dispOrderDTO == null)
+            if (dispOrderDTO == null)
             {
                 return;
             }
 
             //重複チェックを行う
-            if(!DuplicationCheckOrderInputRecord(dispOrderDTO,out msg,out title,out icon))
+            if (!DuplicationCheckOrderInputRecord(dispOrderDTO, out msg, out title, out icon))
             {
                 result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
-                if(result == DialogResult.Cancel)
+                if (result == DialogResult.Cancel)
                 {
                     return;
                 }
@@ -329,7 +329,7 @@ namespace SalesManagement_SysDev
             //登録確認
             //須田オーダー
             result = messageDsp.MessageBoxDsp_OKCancel("登録すりゅ～？", "かくにん(はーと)", MessageBoxIcon.Question);
-            if(result == DialogResult.Cancel)
+            if (result == DialogResult.Cancel)
             {
                 return;
             }
@@ -401,7 +401,7 @@ namespace SalesManagement_SysDev
             icon = MessageBoxIcon.Question;
 
             //テーブルのデータを取得
-            ordertabledata =  GetTableData();
+            ordertabledata = GetTableData();
 
             //同じ受注IDに同じ商品がないかチェックする
             flg = ordertabledata.Any(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
@@ -436,7 +436,7 @@ namespace SalesManagement_SysDev
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return null;
             }
-           
+
             return dispOrder;
 
         }
@@ -473,7 +473,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if (!inputFormCheck.CheckNumeric(checkdata.OrID)) 
+            if (!inputFormCheck.CheckNumeric(checkdata.OrID))
             {
                 msg = "受注IDには半角数字を入力してください";
                 title = "入力エラー";
@@ -487,7 +487,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if(int.Parse(checkdata.OrQuantity) <= 0)
+            if (int.Parse(checkdata.OrQuantity) <= 0)
             {
                 msg = "数量には1以上を入力してください";
                 title = "入力エラー";
@@ -495,6 +495,385 @@ namespace SalesManagement_SysDev
             }
 
             return true;
+        }
+
+        private void button_Sakuzyo_Click(object sender, EventArgs e)
+        {
+            RemoveOrder();
+        }
+
+        private void RemoveOrder()
+        {
+            //変数の宣言
+            string OrID;
+            T_Order Order = new T_Order();
+            T_OrderDetail OrderDetail = new T_OrderDetail();
+
+            //データグリッドビューに表示されているデータの受注IDを受け取る
+            OrID = GetOrderRecord();
+            if (OrID == null)
+            {
+                return;
+            }
+
+
+            //取得した受注IDでデータベースを検索する
+            Order = SelectRemoveOrder(OrID, out OrderDetail);
+            if (Order == null)
+            {
+                return;
+            }
+
+            //受注フラグを0から2へ変更する
+            UpdateOrFlag(Order, OrderDetail);
+        }
+
+        private string GetOrderRecord()
+        {
+            //変数の宣言
+            string retOrID;
+
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
+
+            retOrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            return retOrID;
+        }
+
+        private T_Order SelectRemoveOrder(string OrID, out T_OrderDetail orderDetail)
+        {
+            //変数の宣言
+            T_Order retorder = new T_Order();
+            DispOrderDTO dispOrderDTO = new DispOrderDTO();
+            List<DispOrderDTO> dispOrders = new List<DispOrderDTO>();
+            orderDetail = null;
+
+            //データベースからデータを取得する
+            dispOrders = GetTableData();
+            if (dispOrders == null)
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報を取得できませんでした", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
+
+            //Listの中を受けとった受注IDで検索
+            dispOrderDTO = dispOrders.First(x => x.OrID == OrID);
+
+            //検索結果を返却用にする
+            retorder = FormalizationOrderInputRecord(dispOrderDTO);
+            orderDetail = FormalizationOrderDetailRecord(dispOrderDTO);
+
+            return retorder;
+        }
+
+        private T_Order FormalizationOrderInputRecord(DispOrderDTO dispOrderDTO)
+        {
+            T_Order retorder = new T_Order();
+
+            retorder.OrID = int.Parse(dispOrderDTO.OrID);
+            retorder.SoID = int.Parse(dispOrderDTO.SoID);
+            retorder.EmID = int.Parse(dispOrderDTO.EmID);
+            retorder.ClID = int.Parse(dispOrderDTO.ClID);
+            retorder.ClCharge = dispOrderDTO.ClCharge;
+            retorder.OrDate = dispOrderDTO.OrDate;
+            retorder.OrStateFlag = int.Parse(dispOrderDTO.OrStateFlag);
+            retorder.OrFlag = int.Parse(dispOrderDTO.OrFlag);
+            retorder.OrHidden = dispOrderDTO.OrHidden;
+
+            return retorder;
+        }
+
+        private T_OrderDetail FormalizationOrderDetailRecord(DispOrderDTO dispOrderDTO)
+        {
+            T_OrderDetail retorderDetail = new T_OrderDetail();
+
+            retorderDetail.OrDetailID = int.Parse(dispOrderDTO.OrDetailID);
+            retorderDetail.OrID = int.Parse(dispOrderDTO.OrID);
+            retorderDetail.PrID = int.Parse(dispOrderDTO.PrID);
+            retorderDetail.OrQuantity = int.Parse(dispOrderDTO.OrQuantity);
+            retorderDetail.OrTotalPrice = int.Parse(dispOrderDTO.OrTotalPrice);
+
+            return retorderDetail;
+        }
+
+        private void UpdateOrFlag(T_Order order, T_OrderDetail orderDetail)
+        {
+            //変数の宣言
+            DialogResult result;
+            bool flg;
+
+            //非表示の実行
+            result = messageDsp.MessageBoxDsp_OKCancel("非表示にしてよろしいですか", "エラー", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //受注管理フラグの変更
+            order = ChangeOrFlag(order);
+            if (order == null)
+            {
+                return;
+            }
+
+            //受注の更新
+            flg = UpdateOrderRecord(order, orderDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+        }
+
+        private T_Order ChangeOrFlag(T_Order order)
+        {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
+            order.OrFlag = 2;
+            order.OrHidden = Hidden;
+            return order;
+        }
+
+        private bool UpdateOrderRecord(T_Order order, T_OrderDetail orderDetail)
+        {
+            //変数の宣言
+            bool flg;
+
+            //データベース接続のインスタンス化
+            OrderDataAccess access = new OrderDataAccess();
+            flg = access.UpdateOrderData(order, orderDetail);
+
+            SetCtrlFormat();
+            GetSelectData();
+
+            if (!flg)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
+            textBox_Kokyaku_Tantou.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
+            comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString();
+            textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            textBox_Zyutyuusyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[17].Value.ToString();
+            comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+            comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            numericUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString()); ;
+        }
+
+        private void button_Zyutyuu_Kakutei_Click(object sender, EventArgs e)
+        {
+            DecisionOrder();
+        }
+
+        private void DecisionOrder()
+        {
+            //変数の宣言
+            string OrID;
+            bool flg;
+            T_Order order = new T_Order();
+            List<T_OrderDetail> orderDetail = new List<T_OrderDetail>();
+            T_Chumon chumon = new T_Chumon();
+            List<T_ChumonDetail> ListChumonDetail = new List<T_ChumonDetail>();
+
+            //確定対象の受注IDを取得
+            OrID = GetOrderRecord();
+
+            //受注IDから受注情報を取得
+            order = GetOrderAndOrDetailRecord(OrID, out orderDetail);
+            if (order == null)
+            {
+                return;
+            }
+
+            //注文レコードの登録
+            flg = RegisrationChumonInf(order, orderDetail);
+            if (!flg)
+            {
+                return;
+            }
+
+            //受注状態フラグの変更
+            UpdateOrStateFlag(order, orderDetail[0]);
+
+        }
+
+        private void UpdateOrStateFlag(T_Order order,T_OrderDetail orderDetail)
+        {
+            //変数の宣言
+            bool flg;
+
+            //受注状態フラグを0から1にする
+            order = ChangeOrStateFlag(order);
+            //受注情報を更新する
+            flg = UpdateOrderRecord(order,orderDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報を確定しました", "確定完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報の確定に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+        }
+
+        private T_Order ChangeOrStateFlag(T_Order order)
+        {
+            order.OrStateFlag = 1;
+            return order;
+        }
+
+        private bool RegisrationChumonInf(T_Order order, List<T_OrderDetail> orderDetails)
+        {
+            //変数の宣言
+            bool flg;
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            T_Chumon chumon;
+            List<T_ChumonDetail> ListChumonDetail;
+            
+            //注文と注文詳細のレコードを作成
+            chumon = CreateChumonInputRecord(order, orderDetails, out ListChumonDetail);
+
+            //注文と注文詳細の情報を登録
+            flg = RegisrationChumonRecord(chumon, ListChumonDetail, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return false;
+            }
+
+            return true;
+
+        }
+
+        private bool RegisrationChumonRecord(T_Chumon chumon, List<T_ChumonDetail> ListChumonDetail, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            bool flg = false;
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+            //インスタンス化
+            ChumonDataAccess access = new ChumonDataAccess();
+            flg = access.RegisterChumonData(chumon, ListChumonDetail);
+
+            if (!flg)
+            {
+                msg = "注文情報の登録中にエラーが発生しました";
+                title = "エラー";
+                return false;
+            }
+
+            return true;
+        }
+
+        private T_Order GetOrderAndOrDetailRecord(string orID, out List<T_OrderDetail> ListOrderDetail)
+        {
+            //変数の宣言
+            List<DispOrderDTO> orderDTO = new List<DispOrderDTO>();
+            T_Order order = new T_Order();
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            //初期値代入
+            ListOrderDetail = new List<T_OrderDetail>();
+            
+            //受注情報取得
+            orderDTO = CreateOrderRecord(orID, out msg, out title, out icon);
+            if(orderDTO == null)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+            //受注情報をテーブルデータに形式化
+            order = FormalizationOrderInputRecord(orderDTO[0]);
+            foreach(var OrderDTO in orderDTO)
+            {
+                ListOrderDetail.Add(FormalizationOrderDetailRecord(OrderDTO));
+            }
+
+            return order;
+
+        }
+
+        private T_Chumon CreateChumonInputRecord(T_Order order, List<T_OrderDetail> ListOrderDetail, out List<T_ChumonDetail> ListchumonDetail)
+        {
+            //変数の宣言
+            T_Chumon retChumon = new T_Chumon();
+            ListchumonDetail = new List<T_ChumonDetail>();
+
+            //注文レコードの作成
+            retChumon.OrID = order.OrID;
+            retChumon.EmID = null;
+            retChumon.SoID = order.SoID;
+            retChumon.ClID = order.ClID;
+            retChumon.ChDate = DateTime.Now;
+            retChumon.ChStateFlag = 0;
+            retChumon.ChFlag = 0;
+            retChumon.ChHidden = null;
+
+            //注文詳細レコードの作成
+            foreach (var orderdetail in ListOrderDetail)
+            {
+                T_ChumonDetail chumonDetail = new T_ChumonDetail();
+                chumonDetail.PrID = orderdetail.PrID;
+                chumonDetail.ChQuantity = orderdetail.OrQuantity;
+                ListchumonDetail.Add(chumonDetail);
+            }
+
+            return retChumon;
+
+        }
+
+        private List<DispOrderDTO> CreateOrderRecord(string orID, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispOrderDTO> DispOrders = new List<DispOrderDTO>();
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //受注IDの一致する受注情報を取得
+            DispOrders = GetTableData().Where(x => x.OrID == orID).ToList();
+            if(DispOrders == null)
+            {
+                msg = "受注情報を取得できませんでした";
+                title = "エラー";
+                return null;
+            }
+            if (DispOrders[0].OrStateFlag == "1")
+            {
+                msg = "既に確定済みです";
+                title = "エラー";
+                return null;
+            }
+
+            return DispOrders;
+
         }
     }
 }

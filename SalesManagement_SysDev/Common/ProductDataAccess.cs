@@ -36,8 +36,7 @@ namespace SalesManagement_SysDev.Common
             {
                 try
                 {
-                    var UpdateTarget = context.M_Products.Single(x => x.PrID == UpProduct.PrID);
-                    UpdateTarget.PrID = UpProduct.PrID;
+                    var UpdateTarget = context.M_Products.FirstOrDefault(x => x.PrID == UpProduct.PrID);
                     UpdateTarget.PrName = UpProduct.PrName;
                     UpdateTarget.MaID = UpProduct.MaID;
                     UpdateTarget.Price = UpProduct.Price;

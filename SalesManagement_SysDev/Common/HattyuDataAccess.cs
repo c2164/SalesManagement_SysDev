@@ -28,14 +28,26 @@ namespace SalesManagement_SysDev.Common
             }
         }
 
-        public bool UpdateHattyuData(T_Hattyu UpHattyu)
+        public bool UpdateHattyuData(T_Hattyu UpHattyu,T_HattyuDetail UpHattyuDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
+
                     var UpdateTarget = context.T_Hattyus.Single(x => x.HaID == UpHattyu.HaID);
-                    UpdateTarget = UpHattyu;
+                    UpdateTarget.HaID = UpHattyu.HaID;
+                    UpdateTarget.MaID=UpHattyu.MaID;
+                    UpdateTarget.EmID=UpHattyu.EmID;
+                    UpdateTarget.WaWarehouseFlag=UpHattyu.WaWarehouseFlag;
+                    UpdateTarget.HaFlag=UpHattyu.HaFlag;
+                    UpdateTarget.HaHidden=UpHattyu.HaHidden;
+
+                    var UpdateTarget2 = context.T_HattyuDetails.Single(x => x.HaID == UpHattyu.HaID);
+                    UpdateTarget2.HaDetailID = UpHattyuDetail.HaDetailID;
+                    UpdateTarget2.HaID=UpHattyuDetail.HaID;
+                    UpdateTarget2.PrID=UpHattyuDetail.PrID;
+                    UpdateTarget2.HaQuantity=UpHattyuDetail.HaQuantity;
 
                     context.SaveChanges();
                     return true;
@@ -67,25 +79,22 @@ namespace SalesManagement_SysDev.Common
 
 
 
+                         //dispSaleDTO.SaID.Equals("") ? true :Sale.SaID.ToString().Equals(dispSaleDTO.SaID) && //売上ID
                          where
-                         ((dispHattyuDTO.HaID == "") ? true :
-                         Hattyu.HaID == int.Parse(dispHattyuDTO.HaID)) &&//発注ID
+                         (dispHattyuDTO.HaID.Equals("")? true:
+                         Hattyu.HaID.ToString().Equals(dispHattyuDTO.HaID)) &&//発注ID
 
-                         ((dispHattyuDTO.EmID == "") ? true :
-                         Employee.EmID == int.Parse(dispHattyuDTO.EmID)) && //社員ID
+                         (dispHattyuDTO.EmID.Equals("")? true:
+                         Employee.EmID.ToString().Equals(dispHattyuDTO.EmID))&& //社員ID
 
                          Employee.EmName.Contains(dispHattyuDTO.EmName) && //社員名
 
                          Maker.MaName.Contains(dispHattyuDTO.MaName) && //メーカ名
 
-                        ((dispHattyuDTO.PrID == "") ? true :
-                        Product.PrID == int.Parse(dispHattyuDTO.PrID)) && //商品ID
+                        (dispHattyuDTO.PrID.Equals("")? true:
+                        Product.PrID.ToString().Equals(dispHattyuDTO.PrID))&& //商品ID
 
                         Product.PrName.Contains(dispHattyuDTO.PrName) && //商品名
-
-                        
-
-                        HattyuDetail.HaQuantity.ToString().Contains(dispHattyuDTO.HaQuantity) && //数量
 
                         //発注年月日
 
@@ -97,11 +106,14 @@ namespace SalesManagement_SysDev.Common
                              HaDetailID=HattyuDetail.HaDetailID.ToString(),
                              EmID= Hattyu.EmID.ToString(),
                              EmName=Employee.EmName,
+                             MaID=Maker.MaID.ToString(),
                              MaName = Maker.MaName,
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
                              HaDate= Hattyu.HaDate,
-                             HaQuantity=HattyuDetail.HaQuantity.ToString()
+                             HaQuantity=HattyuDetail.HaQuantity.ToString(),
+                             HaFlag=Hattyu.HaFlag.ToString(),
+                             HaHidden=Hattyu.HaHidden.ToString(),
                          };
 
                 return tb.ToList();
@@ -142,11 +154,15 @@ namespace SalesManagement_SysDev.Common
                              HaDetailID = HattyuDetail.HaDetailID.ToString(),
                              EmID = Hattyu.EmID.ToString(),
                              EmName = Employee.EmName,
+                             MaID=Maker.MaID.ToString(),
                              MaName = Maker.MaName,
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
                              HaDate = Hattyu.HaDate,
-                             HaQuantity = HattyuDetail.HaQuantity.ToString()
+                             HaQuantity = HattyuDetail.HaQuantity.ToString(),
+                             HaFlag=Hattyu.HaFlag.ToString(),
+                             HaHidden = Hattyu.HaHidden.ToString(),
+                             
                          };
 
                 return tb.ToList();
