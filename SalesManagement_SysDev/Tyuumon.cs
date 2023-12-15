@@ -491,19 +491,31 @@ namespace SalesManagement_SysDev
             }
 
             //注文レコードの登録
-            flg = RegisrationChumonInf(chumon, ListChumonDetail);
+            syukko = CreateSyukkoRecord(chumon, ListChumonDetail, out ListSyukkoDetail);
             if (!flg)
             {
                 return;
             }
 
-            //受注状態フラグの変更
-            UpdateOrStateFlag(chumon, ListChumonDetail[0]);
+            //注文状態フラグの変更
+            //UpdateChStateFlag(chumon, ListChumonDetail[0]);
         }
 
-        private bool RegisrationChumonInf(T_Chumon chumon, List<T_ChumonDetail> listChumonDetail)
+        private T_Syukko CreateSyukkoRecord(T_Chumon chumon, List<T_ChumonDetail> listChumonDetail, out List<T_SyukkoDetail> listSyukkoDetail)
         {
+            //変数の宣言
+            T_Syukko syukko = new T_Syukko();
+            //初期値代入
+            listSyukkoDetail = null;
 
+            syukko.SoID = chumon.SoID;
+            syukko.EmID = chumon.EmID;
+            syukko.ClID = chumon.ClID;
+            syukko.OrID = chumon.OrID;
+            syukko.SyDate = null;
+
+            return syukko;
+            
         }
 
         private bool SubStQuantity(List<T_ChumonDetail> ListChumonDetail)
@@ -512,19 +524,55 @@ namespace SalesManagement_SysDev
             string msg;
             string title;
             MessageBoxIcon icon;
+            bool flg;
             List<T_Stock> ListStock = new List<T_Stock>();
 
             //注文詳細に存在する商品の在庫情報を受け取る
             ListStock = GetStockRecord(ListChumonDetail, out msg, out title, out icon);
             if(ListStock == null)
             {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return false;
             }
             //在庫数を注文数分減らす
             ListStock = SubStockRecord(ListStock, ListChumonDetail, out msg, out title, out icon);
             if(ListStock == null)
             {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return false;
+            }
+            //在庫登録
+            flg = UpdateStockRecord(ListStock, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool UpdateStockRecord(List<T_Stock> listStock, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            bool flg = false;
+            //インスタンス化
+            StockDataAccess access = new StockDataAccess();
+            //初期値
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //変更した在庫数で更新
+            foreach (var upStock in listStock)
+            {
+                flg = access.UpdateStockData(upStock);
+                if (flg)
+                {
+                    msg = "在庫の更新に失敗しました";
+                    title = "エラー";
+                    return false;
+                }
             }
 
             return true;
@@ -539,18 +587,19 @@ namespace SalesManagement_SysDev
             msg = "";
             title = "";
             icon = MessageBoxIcon.Error;
+
+            //在庫数を減らす
             foreach(var Stock in listStock)
             {
-                foreach(var ChumonDetail in listChumonDetail)
-                {
-                    Quantity = Stock.StQuantity - ChumonDetail.ChQuantity;
+                    Quantity = Stock.StQuantity - listChumonDetail.Single(x => x.PrID == Stock.PrID).ChQuantity;
                     if (Quantity < 0)
                     {
-                        msg = "";
-                        title = "";
+                        msg = "在庫数が足りない商品が存在します";
+                        title = "在庫不足";
+                        return null;
                     }
-                }
             }
+
             return retStock;
         }
 
@@ -609,8 +658,10 @@ namespace SalesManagement_SysDev
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return null;
             }
+
             //受注情報をテーブルデータに形式化
             retchumon = FormalizationChumonInputRecord(chumonDTO[0]);
+            //受注詳細情報をテーブルデータに形式化
             foreach (var OrderDTO in chumonDTO)
             {
                 ListChumonDetail.Add(FormalizationChumonDetailRecord(OrderDTO));

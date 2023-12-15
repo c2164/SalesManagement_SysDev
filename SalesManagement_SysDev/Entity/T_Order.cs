@@ -18,6 +18,7 @@ namespace SalesManagement_SysDev
             T_OrderDetail = new HashSet<T_OrderDetail>();
             T_Shipment = new HashSet<T_Shipment>();
             T_Syukko = new HashSet<T_Syukko>();
+            T_Sale = new HashSet<T_Sale>();
         }
 
         [Key]
@@ -40,6 +41,7 @@ namespace SalesManagement_SysDev
         public virtual M_Employee M_Employee { get; set; }
         public virtual M_SalesOffice M_SalesOffice { get; set; }
         public virtual ICollection<T_Arrival> T_Arrival { get; set; }
+        public virtual ICollection<T_Sale> T_Sale { get; set; }
         public virtual ICollection<T_Chumon> T_Chumon { get; set; }
         public virtual ICollection<T_OrderDetail> T_OrderDetail { get; set; }
         public virtual ICollection<T_Shipment> T_Shipment { get; set; }

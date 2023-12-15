@@ -623,11 +623,11 @@ namespace SalesManagement_SysDev
             flg = UpdateOrderRecord(order, orderDetail);
             if (flg)
             {
-                messageDsp.MessageBoxDsp_OK("受注情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("受注情報を非表示にしました", "非表示完了", MessageBoxIcon.Information);
             }
             else
             {
-                messageDsp.MessageBoxDsp_OK("受注情報を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("受注情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
             }
         }
 
@@ -657,15 +657,7 @@ namespace SalesManagement_SysDev
             SetCtrlFormat();
             GetSelectData();
 
-            if (!flg)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
+            return flg;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
