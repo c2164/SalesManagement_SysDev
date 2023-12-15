@@ -266,7 +266,7 @@ namespace SalesManagement_SysDev
             if (!(comboBox_Syain_Namae.SelectedIndex == -1))
                 retOrderDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();//社員ID
             retOrderDTO.EmName = comboBox_Syain_Namae.Text.Trim();//社員名
-            retOrderDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();//受注ID 
+            retOrderDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();//受注ID
             retOrderDTO.OrDetailID = textBox_Zyutyuusyousai_ID.Text.Trim();//受注詳細ID
             retOrderDTO.MaName = comboBox_Meka_Namae.Text.Trim();//メーカー名
             if (!(comboBox_Eigyousyo.SelectedIndex == -1)) retOrderDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所名

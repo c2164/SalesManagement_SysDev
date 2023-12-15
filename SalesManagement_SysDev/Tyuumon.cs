@@ -458,6 +458,7 @@ namespace SalesManagement_SysDev
             GetSelectData();
         }
 
+<<<<<<<<< Temporary merge branch 1
         private void button_Kakutei_Click(object sender, EventArgs e)
         {
             DecisionChumon();
