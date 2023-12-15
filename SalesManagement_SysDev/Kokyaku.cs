@@ -57,7 +57,11 @@ namespace SalesManagement_SysDev
             textBox_Yuubin.Text = "";
             textBox_Zyuusyo.Text = "";
             textBox_Dennwa1.Text = "";
+            textBox_Dennwa2.Text = "";
+            textBox_Dennwa3.Text = "";
             textBox_FAX1.Text = "";
+            textBox_FAX2.Text = "";
+            textBox_FAX3.Text = "";
 
             //各コンボボックスを初期化
             comboBox_Eigyousyo.DisplayMember = "SoName";
@@ -174,8 +178,8 @@ namespace SalesManagement_SysDev
             flg = CheckClientInf(retDispClient, out msg, out title, out icon);
             if (!flg)
             {
-                MessageDsp message = new MessageDsp();
-                message.MessageBoxDsp_OK(msg, title, icon);
+
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return null;
             }
             return retDispClient;
@@ -446,6 +450,7 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             DialogResult result;
+            bool flg;
 
             //非表示実行確認
             result = messageDsp.MessageBoxDsp_OKCancel("対象の顧客を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
@@ -461,10 +466,18 @@ namespace SalesManagement_SysDev
                 return;
             }
             //商品の更新
-            UpdateProductRecord(client);
+            flg = UpdateProductRecord(client);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象顧客の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象顧客を更新しました", "更新完了", MessageBoxIcon.Information);
+            }
         }
 
-        private void UpdateProductRecord(M_Client client)
+        private bool UpdateProductRecord(M_Client client)
         {
             //変数の宣言
             bool flg;
@@ -472,17 +485,11 @@ namespace SalesManagement_SysDev
             //データベース接続のインスタンス化
             ClientDataAccess access = new ClientDataAccess();
             flg = access.UpdateClientData(client);
-            if (!flg)
-            {
-                messageDsp.MessageBoxDsp_OK("対象顧客の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
-            }
-            else
-            {
-                messageDsp.MessageBoxDsp_OK("対象顧客を非表示にしました", "非表示完了", MessageBoxIcon.Information);
-            }
 
             SetCtrlFormat();
             GetSelectData();
+
+            return flg;
         }
 
         private M_Client ChangeClFlag(M_Client client)
@@ -575,14 +582,79 @@ namespace SalesManagement_SysDev
             }
 
             //入力情報で顧客情報を更新する
-            //UpdateClientInf(dispClientDTO);
+            UpdateClientInf(dispClientDTO);
 
 
         }
 
         private bool ExistsCheck(DispClientDTO dispClientDTO)
         {
-            return false;
+            //変数の宣言
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            DialogResult result = DialogResult.OK;
+
+            //存在チェック
+            ExistsCheckCliantInputRecord(dispClientDTO, out msg, out title, out icon);
+
+            result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
+            if (result == DialogResult.Cancel)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ExistsCheckCliantInputRecord(DispClientDTO checkDispClient, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //初期値代入
+            bool flg;
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+            List<DispClientDTO> dispClient = new List<DispClientDTO>();
+            ClientDataAccess access = new ClientDataAccess();
+
+            //テーブルのデータを取得
+            dispClient = access.GetClientData();
+
+            //ID以外が同じ内容か確認
+            flg = dispClient.Any(x => x.ClName == checkDispClient.ClName && x.SoID == checkDispClient.SoID && x.ClPostal == checkDispClient.ClPostal && x.ClAddress == checkDispClient.ClAddress && x.ClPhone == checkDispClient.ClPhone && x.ClFAX == checkDispClient.ClFAX);
+            if (flg)
+            {
+                msg = "既に同じ内容のデータが存在します\n本当に更新してもよろしいですか?";
+                title = "警告";
+                icon = MessageBoxIcon.Warning;
+            }
+            else
+            {
+                msg = "データを更新してもよろしいですか";
+                title = "更新確認";
+                icon = MessageBoxIcon.Information;
+            }
+        }
+
+        private void UpdateClientInf(DispClientDTO dispClientDTO)
+        {
+            //変数の宣言
+            M_Client UpClirnt = new M_Client();
+            bool flg;
+
+            //表示用データからテーブル用データに変換
+            UpClirnt = FormalizationClientInputRecord(dispClientDTO);
+            flg = UpdateProductRecord(UpClirnt);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象顧客の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象顧客を更新しました", "更新完了", MessageBoxIcon.Information);
+            }
+
+
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

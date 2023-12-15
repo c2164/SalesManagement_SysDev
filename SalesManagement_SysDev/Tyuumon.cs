@@ -498,12 +498,12 @@ namespace SalesManagement_SysDev
             }
 
             //受注状態フラグの変更
-            UpdateOrStateFlag(chumon, ListChumonDetail[0]);
+            //UpdateOrStateFlag(chumon, ListChumonDetail[0]);
         }
 
         private bool RegisrationChumonInf(T_Chumon chumon, List<T_ChumonDetail> listChumonDetail)
         {
-
+            return true;
         }
 
         private bool SubStQuantity(List<T_ChumonDetail> ListChumonDetail)
