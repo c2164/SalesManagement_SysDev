@@ -77,6 +77,7 @@
             this.button_Kennsaku.TabIndex = 1;
             this.button_Kennsaku.Text = "🔍検索";
             this.button_Kennsaku.UseVisualStyleBackColor = false;
+            this.button_Kennsaku.Click += new System.EventHandler(this.button_Kennsaku_Click);
             // 
             // button_Itirannhyouzi
             // 
@@ -89,6 +90,7 @@
             this.button_Itirannhyouzi.TabIndex = 2;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
+            this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
             // 
             // button_Sakuzyo
             // 
@@ -101,6 +103,7 @@
             this.button_Sakuzyo.TabIndex = 3;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // button_Kuria
             // 

@@ -88,18 +88,18 @@ namespace SalesManagement_SysDev.Common
                             
                              where
                               ((dispSyukkoDTO.SyID == "") ? true :
-                             Syukko.SyID == int.Parse(dispSyukkoDTO.SyID)) &&//出庫ID
+                             Syukko.SyID.ToString().Equals(dispSyukkoDTO.SyID)) &&//出庫ID
                              SalesOffice.SoName.Contains(dispSyukkoDTO.SoName) && //営業所名
                              ChumonEmployee.EmName.Contains(dispSyukkoDTO.ChumonEmName) && //注文社員名
                              Client.ClName.Contains(dispSyukkoDTO.ClName) && //顧客名
                               ((dispSyukkoDTO.SyID == "") ? true :
-                             Order.OrID == int.Parse(dispSyukkoDTO.OrID)) && //受注ID
+                             Order.OrID.ToString().Equals(dispSyukkoDTO.OrID)) && //受注ID
                              Employee.EmID.ToString().Contains(dispSyukkoDTO.ConfEmName) && //確定社員名
                               ((dispSyukkoDTO.SyID == "") ? true :
-                             SyukkoDetail.SyDetailID == int.Parse(dispSyukkoDTO.SyDetailID)) && //出庫詳細ID
+                             SyukkoDetail.SyDetailID.ToString().Equals(dispSyukkoDTO.SyDetailID)) && //出庫詳細ID
                              Maker.MaName.Contains(dispSyukkoDTO.MaName) && //メーカー名
-                             Product.PrName.Contains(dispSyukkoDTO.PrName) && //商品名
-                             SyukkoDetail.ToString().Contains(dispSyukkoDTO.SyQuantity)  //数量
+                             Product.PrName.Contains(dispSyukkoDTO.PrName)  //商品名
+                            
 
 
 
@@ -113,7 +113,7 @@ namespace SalesManagement_SysDev.Common
                                  SyDetailID = SyukkoDetail.SyDetailID.ToString(),
                                  MaName = Maker.MaName.ToString(),
                                  PrName = Product.PrName.ToString(),
-                                 SyQuantity = SyukkoDetail.ToString(),
+                                 SyQuantity = SyukkoDetail.SyQuantity.ToString(),
 
 
                              };
