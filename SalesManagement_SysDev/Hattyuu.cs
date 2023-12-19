@@ -375,7 +375,7 @@ namespace SalesManagement_SysDev
             T_HattyuDetail rethattyuDetail = new T_HattyuDetail();
             if (dispHattyuDTO.HaID != "")
             {
-                rethattyuDetail.HaID=int.Parse(dispHattyuDTO.HaID);
+                rethattyuDetail.HaID = int.Parse(dispHattyuDTO.HaID);
             }
 
             if (dispHattyuDTO.HaID != "")
@@ -393,7 +393,11 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             string retHaID;
-
+            if(dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
             retHaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retHaID;
         }
@@ -603,12 +607,16 @@ namespace SalesManagement_SysDev
             string HaID;
             bool flg;
             T_Hattyu hattyu = new T_Hattyu();
-            List<T_HattyuDetail> hattyuDetails= new List<T_HattyuDetail>();
+            List<T_HattyuDetail> hattyuDetails = new List<T_HattyuDetail>();
             T_Warehousing warehousing = new T_Warehousing();
             List<T_WarehousingDetail> warehousingDetails = new List<T_WarehousingDetail>();
 
             //確定対象の発注IDを取得
-            HaID=GetHattyuRecode();
+            HaID = GetHattyuRecode();
+            if (HaID == null)
+            {
+                return;
+            }
 
             //発注IDから発注情報を取得
             hattyu = GetHattyuAndDetailRecord(HaID, out hattyuDetails);
@@ -619,7 +627,7 @@ namespace SalesManagement_SysDev
 
             //入庫レコードの登録
             flg = RegisrationWarehousingInf(hattyu, hattyuDetails);
-            if(!flg)
+            if (!flg)
             {
                 return;
             }
@@ -628,7 +636,7 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void UpdateHaFlagg(T_Hattyu hattyu,T_HattyuDetail hattyuDetail)
+        private void UpdateHaFlagg(T_Hattyu hattyu, T_HattyuDetail hattyuDetail)
         {
             //変数の宣言
             bool flg;
@@ -636,7 +644,7 @@ namespace SalesManagement_SysDev
             //入庫済みフラグを0から1にする
             hattyu = ChangeWaWarehousingFlag(hattyu);
             ///発注情報を更新
-            flg = UpdateHattyuRecord (hattyu, hattyuDetail);
+            flg = UpdateHattyuRecord(hattyu, hattyuDetail);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("発注情報を確定しました", "確定完了", MessageBoxIcon.Information);
@@ -654,7 +662,7 @@ namespace SalesManagement_SysDev
             return hattyu;
         }
 
-        private bool RegisrationWarehousingInf(T_Hattyu hattyu,List<T_HattyuDetail> hattyuDetails)
+        private bool RegisrationWarehousingInf(T_Hattyu hattyu, List<T_HattyuDetail> hattyuDetails)
         {
             //変数の宣言
             bool flg;
@@ -671,7 +679,7 @@ namespace SalesManagement_SysDev
             flg = RegistrationWarehousingRecord(Warehousing, warehousingDetail, out msg, out title, out icon);
             if (!flg)
             {
-                messageDsp.MessageBoxDsp_OK(msg,title, icon);
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return false;
             }
 
@@ -679,7 +687,7 @@ namespace SalesManagement_SysDev
 
         }
 
-        private bool RegistrationWarehousingRecord(T_Warehousing warehousing, List<T_WarehousingDetail> warehousingDetail, out string msg,out string title, out MessageBoxIcon icon)
+        private bool RegistrationWarehousingRecord(T_Warehousing warehousing, List<T_WarehousingDetail> warehousingDetail, out string msg, out string title, out MessageBoxIcon icon)
         {
             //変数宣言
             bool flg = false;
@@ -688,10 +696,10 @@ namespace SalesManagement_SysDev
             title = "";
             icon = MessageBoxIcon.Error;
             //インスタンス化
-            WarehousingDataAccess access=new WarehousingDataAccess();
+            WarehousingDataAccess access = new WarehousingDataAccess();
             flg = access.RegisterWerehousingData(warehousing, warehousingDetail);
 
-            if(!flg)
+            if (!flg)
             {
                 msg = "注文情報の登録中にエラーが発生しました";
                 title = "エラー";
@@ -702,11 +710,11 @@ namespace SalesManagement_SysDev
 
         }
 
-        private T_Hattyu GetHattyuAndDetailRecord(string  HaID,out List<T_HattyuDetail> hattyuDetail)
+        private T_Hattyu GetHattyuAndDetailRecord(string HaID, out List<T_HattyuDetail> hattyuDetail)
         {
             //変数の宣言
             List<DispHattyuDTO> hattyuDTO = new List<DispHattyuDTO>();
-            T_Hattyu hattyu=new T_Hattyu();
+            T_Hattyu hattyu = new T_Hattyu();
             string msg;
             string title;
             MessageBoxIcon icon;
@@ -714,10 +722,10 @@ namespace SalesManagement_SysDev
             hattyuDetail = new List<T_HattyuDetail>();
 
             //発注情報取得
-            hattyuDTO = CreateHattyuRecord(HaID,out msg,out title,out icon);
+            hattyuDTO = CreateHattyuRecord(HaID, out msg, out title, out icon);
             if (hattyuDTO == null)
             {
-                messageDsp.MessageBoxDsp_OK(msg,title,icon);
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return null;
             }
 
@@ -732,10 +740,10 @@ namespace SalesManagement_SysDev
 
         }
 
-        private T_Warehousing CreateWarehousingInputRecord(T_Hattyu hattyu,List<T_HattyuDetail> hattyuDetails,out List<T_WarehousingDetail> warehousingDetail)
+        private T_Warehousing CreateWarehousingInputRecord(T_Hattyu hattyu, List<T_HattyuDetail> hattyuDetails, out List<T_WarehousingDetail> warehousingDetail)
         {
             //変数の宣言
-            T_Warehousing warehousing=new T_Warehousing();
+            T_Warehousing warehousing = new T_Warehousing();
             warehousingDetail = new List<T_WarehousingDetail>();
 
             //入庫レコードの作成
@@ -748,9 +756,9 @@ namespace SalesManagement_SysDev
             warehousing.WaHidden = null;
 
             //入庫詳細レコード  の作成
-            foreach(var hattyudetail in hattyuDetails)
+            foreach (var hattyudetail in hattyuDetails)
             {
-                T_WarehousingDetail warehousingDetails=new T_WarehousingDetail();
+                T_WarehousingDetail warehousingDetails = new T_WarehousingDetail();
                 warehousingDetails.PrID = hattyudetail.PrID;
                 warehousingDetails.WaQuantity = hattyudetail.HaQuantity;
                 warehousingDetail.Add(warehousingDetails);
@@ -762,14 +770,14 @@ namespace SalesManagement_SysDev
         private List<DispHattyuDTO> CreateHattyuRecord(string haID, out string msg, out string title, out MessageBoxIcon icon)
         {
             //変数の宣言
-            List<DispHattyuDTO> dispHattyu=new List<DispHattyuDTO>();
+            List<DispHattyuDTO> dispHattyu = new List<DispHattyuDTO>();
             //初期値代入
             msg = "";
             title = "";
             icon = MessageBoxIcon.Error;
 
             //発注IDの一致する発注情報を取得
-            dispHattyu=GetTableData().Where(x=>x.HaID==haID).ToList();
+            dispHattyu = GetTableData().Where(x => x.HaID == haID).ToList();
             if (dispHattyu == null)
             {
                 msg = "発注情報を取得できませんでした";

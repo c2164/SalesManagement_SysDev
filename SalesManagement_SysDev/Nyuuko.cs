@@ -439,6 +439,10 @@ namespace SalesManagement_SysDev
 
             //確定対象の入庫IDを取得
             WaID = GetWarehousingRecord();
+            if (WaID == null)
+            {
+                return;
+            }
 
             //入庫IDから入庫情報を取得
             warehousing = GetWarehousingAndWaDetailRecord(WaID, out ListWarehousingDetail);
