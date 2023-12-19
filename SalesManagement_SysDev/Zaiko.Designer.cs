@@ -151,6 +151,7 @@
             // 
             this.textBox_Zaiko_ID.Location = new System.Drawing.Point(242, 239);
             this.textBox_Zaiko_ID.Name = "textBox_Zaiko_ID";
+            this.textBox_Zaiko_ID.ReadOnly = true;
             this.textBox_Zaiko_ID.Size = new System.Drawing.Size(250, 31);
             this.textBox_Zaiko_ID.TabIndex = 9;
             // 

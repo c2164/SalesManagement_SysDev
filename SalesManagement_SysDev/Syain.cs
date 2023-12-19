@@ -103,9 +103,9 @@ namespace SalesManagement_SysDev
             //各テキストボックスに初期化(空白)
             textBox_Syain_Namae.Text = "";
             textBox_Syain_ID.Text = "";
-
             textBox_Dennwa.Text = "";
-            textBox_FAX.Text = "";
+            textBox_Dennwa2.Text = "";
+            textBox_Dennwa3.Text = "";
             textBox_Pass.Text = "";
 
             //各コンボボックスを初期化
@@ -208,7 +208,7 @@ namespace SalesManagement_SysDev
                 retEmployeeDTO.PoID = comboBox_Yakusyoku_Namae.SelectedValue.ToString();
             retEmployeeDTO.PoName = comboBox_Yakusyoku_Namae.Text.Trim();
             retEmployeeDTO.EmHiredate = dateTimePicker1.Value;
-            retEmployeeDTO.EmPhone = textBox_Dennwa.Text.Trim();
+            retEmployeeDTO.EmPhone = textBox_Dennwa.Text.Trim() + "-" + textBox_Dennwa2.Text.Trim() + "-" + textBox_Dennwa3.Text.Trim();
             //Fax削除予定
             retEmployeeDTO.EmPassword = textBox_Pass.Text.Trim();
 
@@ -273,7 +273,7 @@ namespace SalesManagement_SysDev
                 return;
             }
             //社員の更新
-            flg　= UpdateEmployeeRecord(employee);
+            flg = UpdateEmployeeRecord(employee);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("対象在庫を非表示にしました", "非表示完了", MessageBoxIcon.Information);
@@ -374,7 +374,9 @@ namespace SalesManagement_SysDev
             comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
             comboBox_Yakusyoku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
             dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
-            textBox_Dennwa.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+            textBox_Dennwa.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString().Split('-')[0];
+            textBox_Dennwa2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString().Split('-')[1];
+            textBox_Dennwa3.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString().Split('-')[2];
             textBox_Pass.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
         }
 

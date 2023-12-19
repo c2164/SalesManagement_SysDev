@@ -312,6 +312,7 @@ namespace SalesManagement_SysDev
                 retStockDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
                 retStockDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
             retStockDTO.StQuantity = domainUpDown_Zaikosuu.Value.ToString();
+            retStockDTO.StFlag = "0";
 
             return retStockDTO;
         }
