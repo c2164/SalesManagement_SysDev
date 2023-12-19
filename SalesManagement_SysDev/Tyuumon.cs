@@ -176,7 +176,7 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
+            GetSelectData();
             SetCtrlFormat();
         }
 
@@ -314,14 +314,14 @@ namespace SalesManagement_SysDev
 
 
             //取得した注文IDでデータベースを検索する
-            Chumon = SelectRemoveChumon(ChID, out ChumonDetail);
+            Chumon = SelectRemoveChumon(ChID);
             if (Chumon == null)
             {
                 return;
             }
 
             //注文フラグを0から2へ変更する
-            UpdateChFlag(Chumon, ChumonDetail);
+            UpdateChFlag(Chumon);
         }
 
         private string GetChumonRecode()
@@ -341,13 +341,12 @@ namespace SalesManagement_SysDev
             return retChumonID;
         }
 
-        private T_Chumon SelectRemoveChumon(string ChID, out T_ChumonDetail ChumonDetail)
+        private T_Chumon SelectRemoveChumon(string ChID)
         {
             //変数の宣言
             T_Chumon retchumon = new T_Chumon();
             DispChumonDTO dispChumonDTO = new DispChumonDTO();
             List<DispChumonDTO> dispChumons = new List<DispChumonDTO>();
-            ChumonDetail = null;
 
             //データベースからデータを取得する
             dispChumons = GetTableData();
@@ -363,7 +362,6 @@ namespace SalesManagement_SysDev
 
             //検索結果を返却用にする
             retchumon = FormalizationChumonInputRecord(dispChumonDTO);
-            ChumonDetail = FormalizationChumonDetailRecord(dispChumonDTO);
 
             return retchumon;
         }
@@ -400,7 +398,7 @@ namespace SalesManagement_SysDev
             return retchumonDetail;
         }
 
-        private void UpdateChFlag(T_Chumon chumon, T_ChumonDetail chumondetail)
+        private void UpdateChFlag(T_Chumon chumon)
         {
             //変数の宣言
             DialogResult result;
@@ -421,7 +419,7 @@ namespace SalesManagement_SysDev
             }
 
             //注文の更新
-            flg = UpdateChumonRecord(chumon, chumondetail);
+            flg = UpdateChumonRecord(chumon);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("非表示にしました", "非表示完了", MessageBoxIcon.Information);
@@ -448,14 +446,14 @@ namespace SalesManagement_SysDev
             return chumon;
         }
 
-        private bool UpdateChumonRecord(T_Chumon chumon, T_ChumonDetail chumonDetail)
+        private bool UpdateChumonRecord(T_Chumon chumon)
         {
             //変数の宣言
             bool flg;
 
             //データベース接続のインスタンス化
             ChumonDataAccess access = new ChumonDataAccess();
-            flg = access.UpdateChumonData(chumon, chumonDetail);
+            flg = access.UpdateChumonData(chumon);
 
             SetCtrlFormat();
             GetSelectData();
@@ -512,10 +510,10 @@ namespace SalesManagement_SysDev
             }
 
             //注文状態フラグの変更
-            UpdateChStateFlag(chumon, ListChumonDetail[0]);
+            UpdateChStateFlag(chumon);
         }
 
-        private void UpdateChStateFlag(T_Chumon chumon, T_ChumonDetail chumonDetail)
+        private void UpdateChStateFlag(T_Chumon chumon)
         {
             //変数の宣言
             bool flg;
@@ -524,7 +522,7 @@ namespace SalesManagement_SysDev
             chumon = ChangeChStateFlag(chumon);
 
             //注文情報を更新する
-            flg = UpdateChumonRecord(chumon, chumonDetail);
+            flg = UpdateChumonRecord(chumon);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("注文情報を確定しました", "確定完了", MessageBoxIcon.Information);
@@ -752,7 +750,7 @@ namespace SalesManagement_SysDev
             //初期値代入
             ListChumonDetail = new List<T_ChumonDetail>();
 
-            //受注情報取得
+            //注文情報取得
             chumonDTO = CreateChumonRecord(chID, out msg, out title, out icon);
             if (chumonDTO == null)
             {
@@ -760,12 +758,12 @@ namespace SalesManagement_SysDev
                 return null;
             }
 
-            //受注情報をテーブルデータに形式化
+            //注文情報をテーブルデータに形式化
             retchumon = FormalizationChumonInputRecord(chumonDTO[0]);
-            //受注詳細情報をテーブルデータに形式化
-            foreach (var OrderDTO in chumonDTO)
+            //注文詳細情報をテーブルデータに形式化
+            foreach (var AddChumonDTO in chumonDTO)
             {
-                ListChumonDetail.Add(FormalizationChumonDetailRecord(OrderDTO));
+                ListChumonDetail.Add(FormalizationChumonDetailRecord(AddChumonDTO));
             }
 
             return retchumon;
@@ -784,7 +782,7 @@ namespace SalesManagement_SysDev
             ListDispChumon = GetTableData().Where(x => x.ChID == chID).ToList();
             if (ListDispChumon == null)
             {
-                msg = "受注情報を取得できませんでした";
+                msg = "注文情報を取得できませんでした";
                 title = "エラー";
                 return null;
             }

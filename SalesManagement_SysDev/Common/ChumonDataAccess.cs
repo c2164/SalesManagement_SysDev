@@ -38,14 +38,13 @@ namespace SalesManagement_SysDev.Common
         }
 
         //注文情報アップデート(アップデート情報)
-        public bool UpdateChumonData(T_Chumon UpChumon, T_ChumonDetail UpChumonDetail)
+        public bool UpdateChumonData(T_Chumon UpChumon)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.T_Chumons.Single(x => x.ChID == UpChumon.ChID);
-                    var UpdateTargetDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == UpChumonDetail.ChDetailID);
 
                     UpdateTarget.ChID = UpChumon.ChID;
                     UpdateTarget.SoID = UpChumon.SoID;
@@ -56,12 +55,6 @@ namespace SalesManagement_SysDev.Common
                     UpdateTarget.ChStateFlag = UpChumon.ChStateFlag;
                     UpdateTarget.ChFlag = UpChumon.ChFlag;
                     UpdateTarget.ChHidden = UpChumon.ChHidden;
-
-                    UpdateTargetDetail.ChDetailID = UpChumonDetail.ChDetailID;
-                    UpdateTargetDetail.ChID = UpChumonDetail.ChID;
-                    UpdateTargetDetail.PrID = UpChumonDetail.PrID;
-                    UpdateTargetDetail.ChQuantity = UpChumonDetail.ChQuantity;
-
 
                     context.SaveChanges();
                     return true;
