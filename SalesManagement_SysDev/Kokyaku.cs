@@ -56,7 +56,7 @@ namespace SalesManagement_SysDev
             textBox_Yuubin.Text = "";
             textBox_Zyuusyo.Text = "";
             textBox_Dennwa1.Text = "";
-            textBox_FAX1.Text = "";
+            textBox_Dennwa2.Text = "";
 
             //各コンボボックスを初期化
             comboBox_Eigyousyo.DisplayMember = "SoName";
@@ -168,8 +168,8 @@ namespace SalesManagement_SysDev
             retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();
             retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();
             retDispClient.ClPostal = textBox_Yuubin.Text.Trim();
-            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() +  "-" + textBox_Dennwa2.Text.Trim() + "-" + textBox_Dennwa3.Text.Trim();
-            retDispClient.ClFAX = textBox_FAX1.Text.Trim();
+            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() +  "-" + textBox_Dennwa3.Text.Trim() + "-" + textBox_FAX11.Text.Trim();
+            retDispClient.ClFAX = textBox_Dennwa2.Text.Trim();
             retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
@@ -529,5 +529,7 @@ namespace SalesManagement_SysDev
             textBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
             
         }
+
+       
     }
 }

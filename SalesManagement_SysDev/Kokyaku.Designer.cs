@@ -47,16 +47,16 @@
             this.textBox_Yuubin = new System.Windows.Forms.TextBox();
             this.textBox_Zyuusyo = new System.Windows.Forms.TextBox();
             this.textBox_Dennwa1 = new System.Windows.Forms.TextBox();
-            this.textBox_FAX1 = new System.Windows.Forms.TextBox();
-            this.comboBox_Eigyousyo = new System.Windows.Forms.ComboBox();
+            this.textBox_Dennwa2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox_Dennwa2 = new System.Windows.Forms.TextBox();
             this.textBox_Dennwa3 = new System.Windows.Forms.TextBox();
+            this.textBox_FAX11 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox_FAX2 = new System.Windows.Forms.TextBox();
             this.textBox_FAX3 = new System.Windows.Forms.TextBox();
+            this.comboBox_Eigyousyo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -276,23 +276,14 @@
             this.textBox_Dennwa1.Size = new System.Drawing.Size(101, 25);
             this.textBox_Dennwa1.TabIndex = 18;
             // 
-            // textBox_FAX1
+            // textBox_Dennwa2
             // 
-            this.textBox_FAX1.Location = new System.Drawing.Point(732, 301);
-            this.textBox_FAX1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox_FAX1.MaxLength = 13;
-            this.textBox_FAX1.Name = "textBox_FAX1";
-            this.textBox_FAX1.Size = new System.Drawing.Size(95, 25);
-            this.textBox_FAX1.TabIndex = 19;
-            // 
-            // comboBox_Eigyousyo
-            // 
-            this.comboBox_Eigyousyo.FormattingEnabled = true;
-            this.comboBox_Eigyousyo.Location = new System.Drawing.Point(991, 137);
-            this.comboBox_Eigyousyo.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
-            this.comboBox_Eigyousyo.Size = new System.Drawing.Size(179, 26);
-            this.comboBox_Eigyousyo.TabIndex = 20;
+            this.textBox_Dennwa2.Location = new System.Drawing.Point(362, 302);
+            this.textBox_Dennwa2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Dennwa2.MaxLength = 13;
+            this.textBox_Dennwa2.Name = "textBox_Dennwa2";
+            this.textBox_Dennwa2.Size = new System.Drawing.Size(95, 25);
+            this.textBox_Dennwa2.TabIndex = 19;
             // 
             // label8
             // 
@@ -314,21 +305,21 @@
             this.label9.TabIndex = 23;
             this.label9.Text = "ー";
             // 
-            // textBox_Dennwa2
-            // 
-            this.textBox_Dennwa2.Location = new System.Drawing.Point(357, 304);
-            this.textBox_Dennwa2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox_Dennwa2.Name = "textBox_Dennwa2";
-            this.textBox_Dennwa2.Size = new System.Drawing.Size(101, 25);
-            this.textBox_Dennwa2.TabIndex = 22;
-            // 
             // textBox_Dennwa3
             // 
-            this.textBox_Dennwa3.Location = new System.Drawing.Point(505, 304);
+            this.textBox_Dennwa3.Location = new System.Drawing.Point(505, 302);
             this.textBox_Dennwa3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Dennwa3.Name = "textBox_Dennwa3";
             this.textBox_Dennwa3.Size = new System.Drawing.Size(101, 25);
-            this.textBox_Dennwa3.TabIndex = 24;
+            this.textBox_Dennwa3.TabIndex = 22;
+            // 
+            // textBox_FAX11
+            // 
+            this.textBox_FAX11.Location = new System.Drawing.Point(732, 300);
+            this.textBox_FAX11.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_FAX11.Name = "textBox_FAX11";
+            this.textBox_FAX11.Size = new System.Drawing.Size(101, 25);
+            this.textBox_FAX11.TabIndex = 24;
             // 
             // label10
             // 
@@ -368,21 +359,29 @@
             this.textBox_FAX3.Size = new System.Drawing.Size(95, 25);
             this.textBox_FAX3.TabIndex = 28;
             // 
+            // comboBox_Eigyousyo
+            // 
+            this.comboBox_Eigyousyo.FormattingEnabled = true;
+            this.comboBox_Eigyousyo.Location = new System.Drawing.Point(979, 138);
+            this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
+            this.comboBox_Eigyousyo.Size = new System.Drawing.Size(180, 26);
+            this.comboBox_Eigyousyo.TabIndex = 29;
+            // 
             // Kokyaku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.Controls.Add(this.comboBox_Eigyousyo);
             this.Controls.Add(this.textBox_FAX3);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBox_FAX2);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox_Dennwa3);
+            this.Controls.Add(this.textBox_FAX11);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox_Dennwa2);
+            this.Controls.Add(this.textBox_Dennwa3);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.comboBox_Eigyousyo);
-            this.Controls.Add(this.textBox_FAX1);
+            this.Controls.Add(this.textBox_Dennwa2);
             this.Controls.Add(this.textBox_Dennwa1);
             this.Controls.Add(this.textBox_Zyuusyo);
             this.Controls.Add(this.textBox_Yuubin);
@@ -433,15 +432,15 @@
         private System.Windows.Forms.TextBox textBox_Yuubin;
         private System.Windows.Forms.TextBox textBox_Zyuusyo;
         private System.Windows.Forms.TextBox textBox_Dennwa1;
-        private System.Windows.Forms.TextBox textBox_FAX1;
-        private System.Windows.Forms.ComboBox comboBox_Eigyousyo;
+        private System.Windows.Forms.TextBox textBox_Dennwa2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox_Dennwa2;
         private System.Windows.Forms.TextBox textBox_Dennwa3;
+        private System.Windows.Forms.TextBox textBox_FAX11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox_FAX2;
         private System.Windows.Forms.TextBox textBox_FAX3;
+        private System.Windows.Forms.ComboBox comboBox_Eigyousyo;
     }
 }
