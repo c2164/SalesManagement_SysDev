@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region コンポーネント デザイナーで生成されたコード
+        
 
         /// <summary> 
         /// デザイナー サポートに必要なメソッドです。このメソッドの内容を 
@@ -54,160 +54,167 @@
             this.button_Kuria = new System.Windows.Forms.Button();
             this.button_Syukka_Kakutei = new System.Windows.Forms.Button();
             this.button_Sakuzyo = new System.Windows.Forms.Button();
-            this.button_Kensaku = new System.Windows.Forms.Button();
-            this.button_Itirannhyouzi = new System.Windows.Forms.Button();
-            this.button_Nyuuka_Kakutei = new System.Windows.Forms.Button();
-            this.button_Kuria = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
+            // 
             // comboBox_Kokyaku_Namae
-            this.label4 = new System.Windows.Forms.Label();
+            // 
             this.comboBox_Kokyaku_Namae.FormattingEnabled = true;
             this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(263, 176);
             this.comboBox_Kokyaku_Namae.Name = "comboBox_Kokyaku_Namae";
             this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(265, 32);
             this.comboBox_Kokyaku_Namae.TabIndex = 84;
-            this.textBox_Nyuukasyousai_ID = new System.Windows.Forms.TextBox();
-            // dataGridView1
-            this.comboBox_Syouhin_Namae = new System.Windows.Forms.ComboBox();
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(38, 497);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 82;
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
-            this.dataGridView1.TabIndex = 83;
+            // 
+            // button_Kensaku
+            // 
+            this.button_Kensaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
+            this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.button_Kensaku.ForeColor = System.Drawing.Color.White;
+            this.button_Kensaku.Location = new System.Drawing.Point(389, 27);
+            this.button_Kensaku.Name = "button_Kensaku";
+            this.button_Kensaku.Size = new System.Drawing.Size(229, 75);
+            this.button_Kensaku.TabIndex = 58;
+            this.button_Kensaku.Text = "🔍検索";
+            this.button_Kensaku.UseVisualStyleBackColor = false;
+            this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
             // 
             // radioButton_Kakutei
-            this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            // 
             this.radioButton_Kakutei.AutoSize = true;
-            this.radioButton_Kakutei.Location = new System.Drawing.Point(782, 452);
+            this.radioButton_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.radioButton_Kakutei.Location = new System.Drawing.Point(457, 260);
+            this.radioButton_Kakutei.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton_Kakutei.Name = "radioButton_Kakutei";
-            this.radioButton_Kakutei.Size = new System.Drawing.Size(134, 28);
-            this.radioButton_Kakutei.TabIndex = 82;
+            this.radioButton_Kakutei.Size = new System.Drawing.Size(167, 34);
+            this.radioButton_Kakutei.TabIndex = 26;
             this.radioButton_Kakutei.TabStop = true;
             this.radioButton_Kakutei.Text = "確定済み";
             this.radioButton_Kakutei.UseVisualStyleBackColor = true;
             // 
             // radioButton_Mikakutei
-            this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            // 
             this.radioButton_Mikakutei.AutoSize = true;
+            this.radioButton_Mikakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.radioButton_Mikakutei.Location = new System.Drawing.Point(605, 452);
             this.radioButton_Mikakutei.Name = "radioButton_Mikakutei";
-            this.radioButton_Mikakutei.Size = new System.Drawing.Size(113, 28);
+            this.radioButton_Mikakutei.Size = new System.Drawing.Size(137, 34);
             this.radioButton_Mikakutei.TabIndex = 81;
             this.radioButton_Mikakutei.TabStop = true;
             this.radioButton_Mikakutei.Text = "未確定";
             this.radioButton_Mikakutei.UseVisualStyleBackColor = true;
             // 
             // numericUpDown_Suuryou
-            this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            // 
             this.numericUpDown_Suuryou.Location = new System.Drawing.Point(265, 449);
             this.numericUpDown_Suuryou.Name = "numericUpDown_Suuryou";
-            this.numericUpDown_Suuryou.Size = new System.Drawing.Size(265, 31);
+            this.numericUpDown_Suuryou.Size = new System.Drawing.Size(204, 31);
             this.numericUpDown_Suuryou.TabIndex = 80;
             // 
             // comboBox_Meka_Namae
-            this.button_Nyuuka_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            // 
+            this.comboBox_Meka_Namae.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.comboBox_Meka_Namae.FormattingEnabled = true;
             this.comboBox_Meka_Namae.Location = new System.Drawing.Point(1238, 369);
+            this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
-            this.comboBox_Meka_Namae.Size = new System.Drawing.Size(256, 32);
+            this.comboBox_Meka_Namae.Size = new System.Drawing.Size(256, 37);
             this.comboBox_Meka_Namae.TabIndex = 79;
-            this.button_Nyuuka_Kakutei.Click += new System.EventHandler(this.button_Syukka_Kakutei_Click);
+            this.comboBox_Meka_Namae.Click += new System.EventHandler(this.button_Syukka_Kakutei_Click);
+            // 
             // comboBox_Syouhin_Namae
-            // button_Kuria
+            // 
             this.comboBox_Syouhin_Namae.FormattingEnabled = true;
             this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(1238, 268);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
             this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(256, 32);
             this.comboBox_Syouhin_Namae.TabIndex = 78;
-            this.button_Kuria.TabIndex = 4;
+            // 
             // comboBox_Eigyousyo
-            this.button_Kuria.UseVisualStyleBackColor = false;
+            // 
             this.comboBox_Eigyousyo.FormattingEnabled = true;
             this.comboBox_Eigyousyo.Location = new System.Drawing.Point(1238, 173);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(256, 32);
             this.comboBox_Eigyousyo.TabIndex = 77;
-            this.label1.Name = "label1";
+            // 
             // textBox_Nyuukasyousai_ID
-            this.label1.TabIndex = 5;
+            // 
             this.textBox_Nyuukasyousai_ID.Location = new System.Drawing.Point(759, 361);
             this.textBox_Nyuukasyousai_ID.Name = "textBox_Nyuukasyousai_ID";
             this.textBox_Nyuukasyousai_ID.Size = new System.Drawing.Size(273, 31);
             this.textBox_Nyuukasyousai_ID.TabIndex = 76;
-            this.label2.Name = "label2";
+            // 
             // textBox_Kakutei_Syain_Namae
-            this.label2.TabIndex = 6;
+            // 
             this.textBox_Kakutei_Syain_Namae.Location = new System.Drawing.Point(263, 361);
             this.textBox_Kakutei_Syain_Namae.Name = "textBox_Kakutei_Syain_Namae";
             this.textBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(265, 31);
             this.textBox_Kakutei_Syain_Namae.TabIndex = 75;
-            this.label3.Name = "label3";
+            // 
             // textBox_Zyutyuu_ID
-            this.label3.TabIndex = 7;
+            // 
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(759, 268);
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(273, 31);
-            this.textBox_Zyutyuu_ID.TabIndex = 74;
-            this.label4.Name = "label4";
+            this.textBox_Zyutyuu_ID.TabIndex = 18;
+            // 
             // textBox_Nyuuka_Syain_Namae
-            this.label4.TabIndex = 8;
+            // 
             this.textBox_Nyuuka_Syain_Namae.Location = new System.Drawing.Point(263, 268);
             this.textBox_Nyuuka_Syain_Namae.Name = "textBox_Nyuuka_Syain_Namae";
-            this.textBox_Nyuuka_Syain_Namae.Size = new System.Drawing.Size(265, 31);
+            this.textBox_Nyuuka_Syain_Namae.Size = new System.Drawing.Size(205, 31);
             this.textBox_Nyuuka_Syain_Namae.TabIndex = 73;
-            this.label5.Name = "label5";
+            // 
             // textBox_Nyuuka_ID
-            this.label5.TabIndex = 9;
+            // 
             this.textBox_Nyuuka_ID.Location = new System.Drawing.Point(759, 176);
             this.textBox_Nyuuka_ID.Name = "textBox_Nyuuka_ID";
-            this.textBox_Nyuuka_ID.Size = new System.Drawing.Size(273, 31);
+            this.textBox_Nyuuka_ID.Size = new System.Drawing.Size(211, 31);
             this.textBox_Nyuuka_ID.TabIndex = 72;
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 30);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "商品名";
             // 
-            // label7
+            // label10
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label7.Location = new System.Drawing.Point(34, 273);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 30);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "確定社員名";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(0, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 24);
+            this.label10.TabIndex = 14;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
             this.label9.Location = new System.Drawing.Point(1085, 353);
-            // 
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(129, 41);
             this.label9.TabIndex = 70;
-            this.label8.Location = new System.Drawing.Point(425, 279);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            // 
             // label8
-            this.label10.TabIndex = 71;
+            // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
             this.label8.Location = new System.Drawing.Point(562, 361);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(167, 41);
             this.label8.TabIndex = 69;
             this.label8.Text = "入荷詳細ID";
-            this.label9.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            // 
             // label7
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
             this.label7.Location = new System.Drawing.Point(54, 353);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(168, 41);
             this.label7.TabIndex = 68;
             this.label7.Text = "確定社員名";
-            // label10
+            // 
             // label6
-            this.label10.AutoSize = true;
+            // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
             this.label6.Location = new System.Drawing.Point(1105, 260);
@@ -215,7 +222,7 @@
             this.label6.Size = new System.Drawing.Size(108, 41);
             this.label6.TabIndex = 67;
             this.label6.Text = "商品名";
-            this.label10.TabIndex = 14;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -225,7 +232,7 @@
             this.label5.Size = new System.Drawing.Size(107, 41);
             this.label5.TabIndex = 66;
             this.label5.Text = "受注ID";
-            this.textBox_Kokyaku_Namae.Size = new System.Drawing.Size(205, 25);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -235,7 +242,7 @@
             this.label4.Size = new System.Drawing.Size(168, 41);
             this.label4.TabIndex = 65;
             this.label4.Text = "入荷社員名";
-            this.textBox_Nyuuka_ID.Size = new System.Drawing.Size(211, 25);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -245,7 +252,7 @@
             this.label3.Size = new System.Drawing.Size(108, 41);
             this.label3.TabIndex = 64;
             this.label3.Text = "営業所";
-            this.textBox_Nyuuka_Syain_Namae.Size = new System.Drawing.Size(205, 25);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -255,9 +262,9 @@
             this.label2.Size = new System.Drawing.Size(107, 41);
             this.label2.TabIndex = 63;
             this.label2.Text = "入荷ID";
-            this.textBox_Zyutyuu_ID.TabIndex = 18;
+            // 
             // label1
-            // textBox_Kakutei_Syain_Namae
+            // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
             this.label1.Location = new System.Drawing.Point(113, 165);
@@ -278,9 +285,9 @@
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
             this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
-            // comboBox_Eigyousyo
+            // 
             // button_Syukka_Kakutei
-            this.comboBox_Eigyousyo.FormattingEnabled = true;
+            // 
             this.button_Syukka_Kakutei.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Syukka_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Syukka_Kakutei.ForeColor = System.Drawing.Color.White;
@@ -304,58 +311,16 @@
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
             this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
-            this.comboBox_Meka_Namae.FormattingEnabled = true;
-            // button_Kensaku
-            this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(2);
-            this.button_Kensaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
-            this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.button_Kensaku.ForeColor = System.Drawing.Color.White;
-            this.button_Kensaku.Location = new System.Drawing.Point(389, 27);
-            this.button_Kensaku.Name = "button_Kensaku";
-            this.button_Kensaku.Size = new System.Drawing.Size(229, 75);
-            this.button_Kensaku.TabIndex = 58;
-            this.button_Kensaku.Text = "🔍検索";
-            this.button_Kensaku.UseVisualStyleBackColor = false;
-            this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
-            this.numericUpDown_Suuryou.Size = new System.Drawing.Size(204, 25);
-            // button_Itirannhyouzi
-            // 
-            this.button_Itirannhyouzi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
-            this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
-            this.button_Itirannhyouzi.Location = new System.Drawing.Point(51, 27);
-            this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
-            this.button_Itirannhyouzi.Size = new System.Drawing.Size(229, 75);
-            this.button_Itirannhyouzi.TabIndex = 57;
-            this.button_Itirannhyouzi.Text = "📖一覧表示";
-            this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
-            this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
-            this.radioButton_Mikakutei.TabStop = true;
-            this.radioButton_Mikakutei.Text = "未確定";
-            this.radioButton_Mikakutei.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_Kakutei
-            // 
-            this.Controls.Add(this.comboBox_Kokyaku_Namae);
-            this.radioButton_Kakutei.Location = new System.Drawing.Point(457, 260);
-            this.radioButton_Kakutei.Margin = new System.Windows.Forms.Padding(2);
-            this.radioButton_Kakutei.Name = "radioButton_Kakutei";
-            this.radioButton_Kakutei.Size = new System.Drawing.Size(103, 22);
-            this.radioButton_Kakutei.TabIndex = 26;
-            this.radioButton_Kakutei.TabStop = true;
-            this.radioButton_Kakutei.Text = "確定済み";
-            this.radioButton_Kakutei.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 286);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(38, 497);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1179, 263);
-            this.dataGridView1.TabIndex = 27;
+            this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
+            this.dataGridView1.TabIndex = 83;
             // 
             // Nyuuka
             // 
@@ -376,6 +341,14 @@
             this.Controls.Add(this.textBox_Nyuuka_Syain_Namae);
             this.Controls.Add(this.textBox_Nyuuka_ID);
             this.Controls.Add(this.label10);
+            this.Name = "Nyuuka";
+            this.Size = new System.Drawing.Size(1920, 1096);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
         private System.Windows.Forms.ComboBox comboBox_Kokyaku_Namae;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.RadioButton radioButton_Kakutei;
@@ -403,32 +376,6 @@
         private System.Windows.Forms.Button button_Syukka_Kakutei;
         private System.Windows.Forms.Button button_Sakuzyo;
         private System.Windows.Forms.Button button_Kensaku;
-            this.Controls.Add(this.label9);
-        private System.Windows.Forms.Button button_Sakuzyo;
-        private System.Windows.Forms.Button button_Nyuuka_Kakutei;
-        private System.Windows.Forms.Button button_Kuria;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox_Kokyaku_Namae;
-        private System.Windows.Forms.TextBox textBox_Nyuuka_ID;
-        private System.Windows.Forms.TextBox textBox_Nyuuka_Syain_Namae;
-        private System.Windows.Forms.TextBox textBox_Zyutyuu_ID;
-        private System.Windows.Forms.TextBox textBox_Kakutei_Syain_Namae;
-        private System.Windows.Forms.TextBox textBox_Nyuukasyousai_ID;
-        private System.Windows.Forms.ComboBox comboBox_Eigyousyo;
-        private System.Windows.Forms.ComboBox comboBox_Syouhin_Namae;
-        private System.Windows.Forms.ComboBox comboBox_Meka_Namae;
-        private System.Windows.Forms.NumericUpDown numericUpDown_Suuryou;
-        private System.Windows.Forms.RadioButton radioButton_Mikakutei;
-        private System.Windows.Forms.RadioButton radioButton_Kakutei;
-        private System.Windows.Forms.DataGridView dataGridView1;
+
     }
 }
