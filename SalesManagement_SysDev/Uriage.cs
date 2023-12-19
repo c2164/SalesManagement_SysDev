@@ -157,8 +157,8 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
-            //SetCtrlFormat();
+            GetSelectData();
+            SetCtrlFormat();
         }
 
         private DispSaleDTO GetSaleInf()
