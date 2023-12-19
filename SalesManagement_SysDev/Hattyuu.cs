@@ -1,4 +1,5 @@
-﻿using SalesManagement_SysDev.Common;
+﻿using Microsoft.VisualBasic;
+using SalesManagement_SysDev.Common;
 using SalesManagement_SysDev.Entity;
 using System;
 using System.Collections.Generic;
@@ -148,7 +149,7 @@ namespace SalesManagement_SysDev
 
         private void ListDisplayHattyu()
         {
-            List<DispHattyuDTO> hattyu= new List<DispHattyuDTO>();
+            List<DispHattyuDTO> hattyu = new List<DispHattyuDTO>();
             List<DispHattyuDTO> sortedhattyu = new List<DispHattyuDTO>();
 
             hattyu = GetTableData();
@@ -165,7 +166,7 @@ namespace SalesManagement_SysDev
 
             HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
 
-            hattyu=hattyuDataAccess.GetHattyuData();
+            hattyu = hattyuDataAccess.GetHattyuData();
 
             return hattyu;
         }
@@ -199,27 +200,29 @@ namespace SalesManagement_SysDev
 
             //各コントロールの情報
 
-            retHattyuDTO.HaID=textBox_Hattyuu_ID.Text.Trim();
-            retHattyuDTO.EmID=textBox_Syain_ID.Text.Trim();
+            retHattyuDTO.HaID = textBox_Hattyuu_ID.Text.Trim();
+            retHattyuDTO.EmID = textBox_Syain_ID.Text.Trim();
 
-            if(!(comboBox_Syain_Namae.SelectedIndex==-1))
-                retHattyuDTO.EmID=comboBox_Syain_Namae.SelectedValue.ToString();
-                retHattyuDTO.EmName=comboBox_Syain_Namae.Text.Trim();
+            if (!(comboBox_Syain_Namae.SelectedIndex == -1))
+                retHattyuDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();
+            retHattyuDTO.EmName = comboBox_Syain_Namae.Text.Trim();
 
 
             if (!(comboBox_Meka_Namae.SelectedIndex == -1))
-            retHattyuDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+                retHattyuDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
             retHattyuDTO.MaName = comboBox_Meka_Namae.Text.Trim();
 
-            retHattyuDTO.PrID=textBox_Syouhin_ID.Text.Trim();
+            retHattyuDTO.PrID = textBox_Syouhin_ID.Text.Trim();
 
             if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
                 retHattyuDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
             retHattyuDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
 
-            retHattyuDTO.HaQuantity=textBox_Suuryou.Text.Trim();
-            retHattyuDTO.HaDetailID=textBox_Hattyuusyousai.Text.Trim();
+            retHattyuDTO.HaQuantity = textBox_Suuryou.Text.Trim();
+            retHattyuDTO.HaDetailID = textBox_Hattyuusyousai.Text.Trim();
             retHattyuDTO.HaDate = dateTimePicker1.Value;
+
+            retHattyuDTO.HaFlag = "0";
 
             return retHattyuDTO;
 
@@ -348,24 +351,34 @@ namespace SalesManagement_SysDev
         {
             T_Hattyu rethattyu = new T_Hattyu();
 
-            rethattyu.HaID = int.Parse(dispHattyuDTO.HaID);
+            if (dispHattyuDTO.HaID != "")
+            {
+                rethattyu.HaID = int.Parse(dispHattyuDTO.HaID);//受注ID
+            }
             rethattyu.MaID = int.Parse(dispHattyuDTO.MaID);
             rethattyu.EmID = int.Parse(dispHattyuDTO.EmID);
             rethattyu.HaDate = dispHattyuDTO.HaDate.Value;
-            rethattyu.HaFlag = int.Parse(dispHattyuDTO .HaFlag);
+            rethattyu.HaFlag = int.Parse(dispHattyuDTO.HaFlag);
             rethattyu.HaHidden = dispHattyuDTO.HaHidden;
 
-            
+
             return rethattyu;
         }
 
         private T_HattyuDetail FormalizationHattyuDetailInputRecord(DispHattyuDTO dispHattyuDTO)
         {
             T_HattyuDetail rethattyuDetail = new T_HattyuDetail();
+            if (dispHattyuDTO.HaID != "")
+            {
+                rethattyuDetail.HaID=int.Parse(dispHattyuDTO.HaID);
+            }
 
-            rethattyuDetail.HaDetailID = int.Parse( dispHattyuDTO.HaDetailID);
-            rethattyuDetail.HaID = int.Parse(dispHattyuDTO.HaID);
-            rethattyuDetail.PrID=int.Parse(dispHattyuDTO.PrID);
+            if (dispHattyuDTO.HaID != "")
+            {
+                rethattyuDetail.HaDetailID = int.Parse(dispHattyuDTO.HaDetailID);
+            }
+
+            rethattyuDetail.PrID = int.Parse(dispHattyuDTO.PrID);
             rethattyuDetail.HaQuantity = int.Parse(dispHattyuDTO.HaQuantity);
 
             return rethattyuDetail;
@@ -382,18 +395,197 @@ namespace SalesManagement_SysDev
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox_Hattyuu_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-            textBox_Syain_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
-            textBox_Syouhin_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
-            textBox_Hattyuusyousai.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-            textBox_Suuryou.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
-            comboBox_Meka_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
-            comboBox_Syain_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
-            comboBox_Syouhin_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            textBox_Hattyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            textBox_Syain_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
+            textBox_Syouhin_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+            textBox_Hattyuusyousai.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            textBox_Suuryou.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+            comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+            comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+            comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
             dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString());
         }
+
+        private void button_Touroku_Click(object sender, EventArgs e)
+        {
+            RegisterHattyu();
+        }
+
+        private void RegisterHattyu()
+        {
+            string msg;
+            string title;
+            DialogResult result;
+            MessageBoxIcon icon;
+            DispHattyuDTO dispHattyuDTO = new DispHattyuDTO();
+
+            //入力チェック済のデータを受け取る
+            dispHattyuDTO = GetCheckedHattyuInf();
+            //NULLなら失敗
+            if (dispHattyuDTO == null)
+            {
+                return;
+            }
+
+            //重複チェックを行う
+            if (!DuplicationCheckHattyuInputRecord(dispHattyuDTO, out msg, out title, out icon))
+            {
+                result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            //登録確認
+            //須田オーダー
+            result = messageDsp.MessageBoxDsp_OKCancel("登録すりゅ～？", "かくにん(はーと)", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //データ登録
+            RegisrationHattyuInf(dispHattyuDTO);
+        }
+
+        private void RegisrationHattyuInf(DispHattyuDTO dispHattyuDTO)
+        {
+            //変数の宣言
+            bool flg;
+            T_Hattyu hattyu;
+            T_HattyuDetail HattyuDetail;
+            //インスタンス化
+            HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
+
+            //登録用データに変換
+            hattyu = FormalizationHattyuInputRecord(dispHattyuDTO);
+            HattyuDetail = FormalizationHattyuDetailInputRecord(dispHattyuDTO);
+            //登録処理
+            flg = hattyuDataAccess.RegisterHattyuData(hattyu, HattyuDetail);
+
+            if (flg)
+            {
+                //須田オーダー
+                messageDsp.MessageBoxDsp_OK("登録したおっ！", "とろくかんりょう！", MessageBoxIcon.Information);
+            }
+            else
+            {
+                //須田オーダー
+                messageDsp.MessageBoxDsp_OK("はぁ(*´Д｀)", "とうろくしっぱい...", MessageBoxIcon.Error);
+            }
+
+        }
+
+        private T_Hattyu FormalizationHattyuInputRecord(DispHattyuDTO dispHattyu, T_HattyuDetail hattyuDetail)
+        {
+            //変数の宣言
+            T_Hattyu hattyu = new T_Hattyu();
+            T_HattyuDetail HattyuDetail = new T_HattyuDetail();
+
+            //登録用データに形式化
+            if (dispHattyu.HaID != "")
+            {
+                hattyu.HaID = int.Parse(dispHattyu.HaID);
+                hattyuDetail.HaID = hattyu.HaID;
+            }
+            hattyu.MaID = int.Parse(dispHattyu.MaID);
+            hattyu.EmID = int.Parse(dispHattyu.EmID);
+            hattyu.HaDate = DateTime.Now;
+            hattyu.HaFlag = 0;
+            hattyu.HaHidden = dispHattyu.HaHidden;
+            hattyuDetail.PrID = int.Parse(dispHattyu.PrID);
+            hattyuDetail.HaQuantity = int.Parse(dispHattyu.HaQuantity);
+
+            return hattyu;
+        }
+
+        private bool DuplicationCheckHattyuInputRecord(DispHattyuDTO dispHattyuDTO, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispHattyuDTO> hattyutabledata = new List<DispHattyuDTO>();
+            bool flg;
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Question;
+
+            //テーブルのデータを取得
+            hattyutabledata = GetTableData();
+
+            //同じ受注IDに同じ商品がないかチェックする
+            flg = hattyutabledata.Any(x => x.HaID == dispHattyuDTO.HaID && x.PrID == dispHattyuDTO.PrID);
+            if (flg)
+            {
+                msg = "同じデータが登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
+                title = "確認";
+                return false;
+            }
+
+            return true;
+        }
+
+        private DispHattyuDTO GetCheckedHattyuInf()
+        {
+            //変数の宣言
+            DispHattyuDTO dispHattyu = new DispHattyuDTO();
+            bool flg;
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+
+            //各コントロールから登録する受注情報を取得
+            dispHattyu = GetHattyuInf();
+
+            //取得した受注情報のデータ形式のチェック
+            flg = CheckHattyuInf(dispHattyu, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+
+            return dispHattyu;
+
+        }
+
+        private bool CheckHattyuInf(DispHattyuDTO checkdata, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //チェッククラスのインスタンス化
+            DataInputFormCheck inputFormCheck = new DataInputFormCheck();
+
+            //初期値代入(返却時エラー解消のため)
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            if (string.IsNullOrEmpty(checkdata.EmName))
+            {
+                msg = "社員名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+            if (string.IsNullOrEmpty(checkdata.MaName))
+            {
+                msg = "メーカ名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+            if (string.IsNullOrEmpty(checkdata.PrName))
+            {
+                msg = "商品名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (int.Parse(checkdata.HaQuantity) <= 0)
+            {
+                msg = "数量には1以上を入力してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            return true;
+        }
     }
-
-
 
 }
