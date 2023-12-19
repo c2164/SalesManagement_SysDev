@@ -45,13 +45,13 @@
             this.textbox_Tyuumon_ID = new System.Windows.Forms.TextBox();
             this.textbox_Tyuumonsyousai_ID = new System.Windows.Forms.TextBox();
             this.textbox_Zyutyuusyousai = new System.Windows.Forms.TextBox();
-            this.textbox_Kokyaku_Namae = new System.Windows.Forms.TextBox();
             this.comboBox_Eigyousyo = new System.Windows.Forms.ComboBox();
             this.numericUPDown_Syouhin_Namae = new System.Windows.Forms.NumericUpDown();
             this.dateTimePicker_Tyuumon_Nenngetu = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox_Syouhin_Namae = new System.Windows.Forms.ComboBox();
             this.comboBox_Syain_Namae = new System.Windows.Forms.ComboBox();
+            this.comboBox_Kokyaku_Namae = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUPDown_Syouhin_Namae)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -235,14 +235,6 @@
             this.textbox_Zyutyuusyousai.Size = new System.Drawing.Size(270, 31);
             this.textbox_Zyutyuusyousai.TabIndex = 17;
             // 
-            // textbox_Kokyaku_Namae
-            // 
-            this.textbox_Kokyaku_Namae.Location = new System.Drawing.Point(1239, 301);
-            this.textbox_Kokyaku_Namae.MaxLength = 50;
-            this.textbox_Kokyaku_Namae.Name = "textbox_Kokyaku_Namae";
-            this.textbox_Kokyaku_Namae.Size = new System.Drawing.Size(251, 31);
-            this.textbox_Kokyaku_Namae.TabIndex = 18;
-            // 
             // comboBox_Eigyousyo
             // 
             this.comboBox_Eigyousyo.FormattingEnabled = true;
@@ -292,18 +284,26 @@
             this.comboBox_Syain_Namae.Size = new System.Drawing.Size(251, 32);
             this.comboBox_Syain_Namae.TabIndex = 25;
             // 
+            // comboBox_Kokyaku_Namae
+            // 
+            this.comboBox_Kokyaku_Namae.FormattingEnabled = true;
+            this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(1239, 304);
+            this.comboBox_Kokyaku_Namae.Name = "comboBox_Kokyaku_Namae";
+            this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(251, 32);
+            this.comboBox_Kokyaku_Namae.TabIndex = 26;
+            // 
             // Tyuumon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.Controls.Add(this.comboBox_Kokyaku_Namae);
             this.Controls.Add(this.comboBox_Syain_Namae);
             this.Controls.Add(this.comboBox_Syouhin_Namae);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dateTimePicker_Tyuumon_Nenngetu);
             this.Controls.Add(this.numericUPDown_Syouhin_Namae);
             this.Controls.Add(this.comboBox_Eigyousyo);
-            this.Controls.Add(this.textbox_Kokyaku_Namae);
             this.Controls.Add(this.textbox_Zyutyuusyousai);
             this.Controls.Add(this.textbox_Tyuumonsyousai_ID);
             this.Controls.Add(this.textbox_Tyuumon_ID);
@@ -350,12 +350,12 @@
         private System.Windows.Forms.TextBox textbox_Tyuumon_ID;
         private System.Windows.Forms.TextBox textbox_Tyuumonsyousai_ID;
         private System.Windows.Forms.TextBox textbox_Zyutyuusyousai;
-        private System.Windows.Forms.TextBox textbox_Kokyaku_Namae;
         private System.Windows.Forms.ComboBox comboBox_Eigyousyo;
         private System.Windows.Forms.NumericUpDown numericUPDown_Syouhin_Namae;
         private System.Windows.Forms.DateTimePicker dateTimePicker_Tyuumon_Nenngetu;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox_Syouhin_Namae;
         private System.Windows.Forms.ComboBox comboBox_Syain_Namae;
+        private System.Windows.Forms.ComboBox comboBox_Kokyaku_Namae;
     }
 }
