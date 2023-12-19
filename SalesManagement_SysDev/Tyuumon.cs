@@ -49,7 +49,6 @@ namespace SalesManagement_SysDev
             textbox_Tyuumon_ID.Text = "";
             textbox_Tyuumonsyousai_ID.Text = "";
             textbox_Zyutyuusyousai.Text = "";
-            textbox_Kokyaku_Namae.Text = "";
             numericUPDown_Syouhin_Namae.Value = 0;
             dateTimePicker_Tyuumon_Nenngetu.Value = DateTime.Now;
 
