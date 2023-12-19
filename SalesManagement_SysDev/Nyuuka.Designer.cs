@@ -277,6 +277,7 @@
             this.button_Kuria.TabIndex = 61;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
+            this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
             // 
             // button_Syukka_Kakutei
             // 
@@ -289,6 +290,7 @@
             this.button_Syukka_Kakutei.TabIndex = 60;
             this.button_Syukka_Kakutei.Text = "出荷確定";
             this.button_Syukka_Kakutei.UseVisualStyleBackColor = false;
+            this.button_Syukka_Kakutei.Click += new System.EventHandler(this.button_Syukka_Kakutei_Click);
             // 
             // button_Sakuzyo
             // 
@@ -301,6 +303,7 @@
             this.button_Sakuzyo.TabIndex = 59;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // button_Kensaku
             // 
@@ -313,6 +316,7 @@
             this.button_Kensaku.TabIndex = 58;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
+            this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
             // 
             // button_Itirannhyouzi
             // 
@@ -325,6 +329,7 @@
             this.button_Itirannhyouzi.TabIndex = 57;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
+            this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
             // 
             // Nyuuka
             // 
