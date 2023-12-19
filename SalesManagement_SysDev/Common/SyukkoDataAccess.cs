@@ -12,16 +12,23 @@ namespace SalesManagement_SysDev.Common
     {
        
        
-            //入庫情報登録(登録情報)
-            public bool RegisterSyukkoData(T_Syukko RegSyukko)
+            //出庫情報登録(登録情報)
+            public bool RegisterSyukkoData(T_Syukko RegSyukko, List<T_SyukkoDetail> listRegSyukkoDetail)
             {
                 using (var context = new SalesManagement_DevContext())
                 {
                     try
                     {
-                        context.T_Syukkos.Add(RegSyukko);
+                    context.T_Syukkos.Add(RegSyukko);
+                    context.SaveChanges();
+                    int SyID = context.T_Syukkos.Max(x => x.SyID);
+                    foreach (var RegSyukkoDetail in listRegSyukkoDetail)
+                    {
+                        RegSyukkoDetail.SyID = SyID;
+                        context.T_SyukkoDetails.Add(RegSyukkoDetail);
                         context.SaveChanges();
-                        return true;
+                    }
+                    return true;
                     }
                     catch (Exception ex)
                     {

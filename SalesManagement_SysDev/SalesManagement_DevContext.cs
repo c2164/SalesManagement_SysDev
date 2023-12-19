@@ -308,7 +308,7 @@ namespace SalesManagement_SysDev
                     .HasForeignKey(x => x.EmID)
                     .WillCascadeOnDelete(false);
                 modelBuilder.Entity<T_Sale>()
-                    .HasRequired<T_Chumon>(x => x.T_Chumon)
+                    .HasRequired<T_Order>(x => x.T_Order)
                     .WithMany(x => x.T_Sale)
                     .HasForeignKey(x => x.ChID)
                     .WillCascadeOnDelete(false);
