@@ -269,7 +269,7 @@ namespace SalesManagement_SysDev
 
             retChumonDTO.OrID = textbox_Tyuumonsyousai_ID.Text.Trim();//受注ID
 
-            retChumonDTO.ClName = comboBox_Kokyaku_Namae.Text ;//顧客名
+            retChumonDTO.ClName = comboBox_Kokyaku_Namae.Text;//顧客名
 
             if (!(comboBox_Syain_Namae.SelectedIndex == -1))
                 retChumonDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();//社員ID
@@ -607,7 +607,7 @@ namespace SalesManagement_SysDev
             syukko.SyHidden = null;
 
             //出庫詳細レコードの作成
-            foreach(var chumondetail in listChumonDetail)
+            foreach (var chumondetail in listChumonDetail)
             {
                 T_SyukkoDetail syukkodetail = new T_SyukkoDetail();
                 syukkodetail.PrID = chumondetail.PrID;
@@ -616,7 +616,7 @@ namespace SalesManagement_SysDev
             }
 
             return syukko;
-            
+
         }
 
         private void UpdateOrStateFlag(T_Chumon chumon, T_ChumonDetail t_ChumonDetail)
@@ -794,7 +794,7 @@ namespace SalesManagement_SysDev
 
             //受注IDの一致する受注情報を取得
             ListDispChumon = GetTableData().Where(x => x.ChID == chID).ToList();
-            if (ListDispChumon == null)
+            if (ListDispChumon == null || ListDispChumon.Count == 0)
             {
                 msg = "注文情報を取得できませんでした";
                 title = "エラー";

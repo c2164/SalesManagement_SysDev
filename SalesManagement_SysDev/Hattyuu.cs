@@ -393,7 +393,7 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             string retHaID;
-            if(dataGridView1.SelectedRows.Count <= 0)
+            if (dataGridView1.SelectedRows.Count <= 0)
             {
                 messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
                 return null;
@@ -778,9 +778,15 @@ namespace SalesManagement_SysDev
 
             //発注IDの一致する発注情報を取得
             dispHattyu = GetTableData().Where(x => x.HaID == haID).ToList();
-            if (dispHattyu == null)
+            if (dispHattyu == null || dispHattyu.Count == 0)
             {
                 msg = "発注情報を取得できませんでした";
+                title = "エラー";
+                return null;
+            }
+            if (dispHattyu[0].H == "1")
+            {
+                msg = "既に確定済みです";
                 title = "エラー";
                 return null;
             }

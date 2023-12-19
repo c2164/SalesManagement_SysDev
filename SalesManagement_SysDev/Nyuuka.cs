@@ -312,7 +312,7 @@ namespace SalesManagement_SysDev
                 return;
             }
             //入荷の更新
-            if(UpdateArrivalRecord(arrival, arrivalDetail))
+            if (UpdateArrivalRecord(arrival, arrivalDetail))
             {
                 messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
             }
@@ -453,7 +453,7 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void UpdateArStateFlag(T_Arrival arrival,T_ArrivalDetail arrivalDetail)
+        private void UpdateArStateFlag(T_Arrival arrival, T_ArrivalDetail arrivalDetail)
         {
             //変数の宣言
             bool flg;
@@ -461,7 +461,7 @@ namespace SalesManagement_SysDev
             //入荷状態フラグを0から1にする
             arrival = ChangeArStateFlag(arrival);
             //入荷情報を更新する
-            flg = UpdateArrivalRecord(arrival,arrivalDetail);
+            flg = UpdateArrivalRecord(arrival, arrivalDetail);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("入荷情報を確定しました", "確定完了", MessageBoxIcon.Information);
@@ -513,7 +513,7 @@ namespace SalesManagement_SysDev
             icon = MessageBoxIcon.Error;
             //インスタンス化
             ShipmentDataAccess access = new ShipmentDataAccess();
-            flg = access.RegisterShipmentData(shipment,ListShipmentDetail);
+            flg = access.RegisterShipmentData(shipment, ListShipmentDetail);
 
             if (!flg)
             {
@@ -594,7 +594,7 @@ namespace SalesManagement_SysDev
 
             //入荷IDの一致する入荷情報を取得
             DispArrivals = GetTableData().Where(x => x.ArID == arID).ToList();
-            if (DispArrivals == null)
+            if (DispArrivals == null || DispArrivals.Count == 0)
             {
                 msg = "入荷情報を取得できませんでした";
                 title = "エラー";

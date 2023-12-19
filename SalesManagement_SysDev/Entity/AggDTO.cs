@@ -472,7 +472,14 @@ namespace SalesManagement_SysDev.Entity
 
         [DisplayName("非表示理由")]
         public string ShHidden { get; set; }
-    }
+
+        [DisplayName("社員ID")]
+        public string EmID { get; set; }
+
+        [DisplayName("出荷完了年月日")]
+        public DateTime? ShFinishDate { get; set; }
+
+        }
 
 
     //発注管理画面表示用

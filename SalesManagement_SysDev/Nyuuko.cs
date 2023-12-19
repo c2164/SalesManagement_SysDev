@@ -656,7 +656,7 @@ namespace SalesManagement_SysDev
 
             //受注IDの一致する受注情報を取得
             ListDispWarehousing = GetTableData().Where(x => x.WaID == WaID).ToList();
-            if (ListDispWarehousing == null)
+            if (ListDispWarehousing == null || ListDispWarehousing.Count == 0)
             {
                 msg = "入庫情報を取得できませんでした";
                 title = "エラー";

@@ -470,7 +470,7 @@ namespace SalesManagement_SysDev
 
             //確定対象の出庫IDを取得
             SyID = GetSyukkoRecord();
-            if(SyID == null)
+            if (SyID == null)
             {
                 return;
             }
@@ -633,7 +633,7 @@ namespace SalesManagement_SysDev
 
             //出庫IDの一致する受注情報を取得
             DispSyukkos = GetTableData().Where(x => x.SyID == syID).ToList();
-            if (DispSyukkos == null)
+            if (DispSyukkos == null || DispSyukkos.Count == 0)
             {
                 msg = "出庫情報を取得できませんでした";
                 title = "エラー";

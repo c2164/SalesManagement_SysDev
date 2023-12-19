@@ -853,7 +853,7 @@ namespace SalesManagement_SysDev
 
             //受注IDの一致する受注情報を取得
             DispOrders = GetTableData().Where(x => x.OrID == orID).ToList();
-            if (DispOrders == null)
+            if (DispOrders == null || DispOrders.Count == 0)
             {
                 msg = "受注情報を取得できませんでした";
                 title = "エラー";

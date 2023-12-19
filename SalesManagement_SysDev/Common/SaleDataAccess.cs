@@ -10,15 +10,22 @@ namespace SalesManagement_SysDev.Common
 {
         class SaleDataAccess
         {
-            public bool RegisterSaleData(T_Sale RegSale, T_SaleDetail RegSaleDetail)
+            public bool RegisterSaleData(T_Sale RegSale, List<T_SaleDetail> ListRegSaleDetail)
             {
                 using (var context = new SalesManagement_DevContext())
                 {
                     try
                     {
                         context.T_Sale.Add(RegSale);
+                    context.SaveChanges();
+                    int SaID = context.T_Sale.Max(x => x.SaID);
+                    foreach(var RegSaleDetail in ListRegSaleDetail) 
+                    {
+                        RegSaleDetail.SaID = SaID;
                         context.T_SaleDetails.Add(RegSaleDetail);
                         context.SaveChanges();
+                    }
+                        
                         return true;
                     }
                     catch (Exception ex)

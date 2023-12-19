@@ -290,6 +290,7 @@
             this.button_Syukka_Kakutei.TabIndex = 60;
             this.button_Syukka_Kakutei.Text = "確定";
             this.button_Syukka_Kakutei.UseVisualStyleBackColor = false;
+            this.button_Syukka_Kakutei.Click += new System.EventHandler(this.button_Syukka_Kakutei_Click);
             // 
             // button_Sakuzyo
             // 
@@ -302,6 +303,7 @@
             this.button_Sakuzyo.TabIndex = 59;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // button_Kensaku
             // 
