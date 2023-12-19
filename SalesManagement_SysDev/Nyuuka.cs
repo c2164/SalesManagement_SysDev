@@ -126,6 +126,12 @@ namespace SalesManagement_SysDev
             textBox_Nyuukasyousai_ID.Text = "";
 
             //各コンボボックスを初期化
+            comboBox_Kokyaku_Namae.DisplayMember = "ClName";
+            comboBox_Kokyaku_Namae.ValueMember = "ClID";
+            comboBox_Kokyaku_Namae.DataSource = clientDataAccess.GetClientData();
+            comboBox_Syouhin_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Kokyaku_Namae.SelectedIndex = -1;
+
             comboBox_Eigyousyo.DisplayMember = "SoName";
             comboBox_Eigyousyo.ValueMember = "SoID";
             comboBox_Eigyousyo.DataSource = salesOfficeDataAccess.GetSalesOfficeData();
@@ -143,12 +149,6 @@ namespace SalesManagement_SysDev
             comboBox_Meka_Namae.DataSource = makerDateAccess.GetMakerData();
             comboBox_Meka_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Meka_Namae.SelectedIndex = -1;
-
-            comboBox_Kokyaku_Namae.DisplayMember = "ClName";
-            comboBox_Kokyaku_Namae.ValueMember = "ClID";
-            comboBox_Kokyaku_Namae.DataSource = clientDataAccess.GetClientData();
-            comboBox_Kokyaku_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox_Kokyaku_Namae.SelectedIndex = -1;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)

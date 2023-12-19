@@ -331,7 +331,7 @@
             // 
             // Syukka
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
             this.Controls.Add(this.comboBox_Kokyaku_Namae);
@@ -364,7 +364,7 @@
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Syukka";
-            this.Size = new System.Drawing.Size(1610, 875);
+            this.Size = new System.Drawing.Size(1238, 656);
             this.Load += new System.EventHandler(this.Syukka_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).EndInit();

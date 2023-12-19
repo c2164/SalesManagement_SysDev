@@ -80,10 +80,10 @@ namespace SalesManagement_SysDev
             comboBox_Syouhin_Namae.SelectedIndex = -1;
 
             comboBox_Kokyaku_Namae.DisplayMember = "ClName";
-            comboBox_Syouhin_Namae.ValueMember = "ClID";
-            comboBox_Syouhin_Namae.DataSource = clientDataAccess.GetClientData();
-            comboBox_Syouhin_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox_Syouhin_Namae.SelectedIndex = -1;
+            comboBox_Kokyaku_Namae.ValueMember = "ClID";
+            comboBox_Kokyaku_Namae.DataSource = clientDataAccess.GetClientData();
+            comboBox_Kokyaku_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Kokyaku_Namae.SelectedIndex = -1;
         }
 
         private void SetDataGridView(List<DispShipmentDTO> tb)
