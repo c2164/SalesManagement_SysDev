@@ -107,7 +107,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(1251, 341);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(278, 31);
             this.dateTimePicker1.TabIndex = 77;
@@ -176,6 +176,7 @@
             this.textbox_Syouhin_ID.Location = new System.Drawing.Point(222, 181);
             this.textbox_Syouhin_ID.MaxLength = 6;
             this.textbox_Syouhin_ID.Name = "textbox_Syouhin_ID";
+            this.textbox_Syouhin_ID.ReadOnly = true;
             this.textbox_Syouhin_ID.Size = new System.Drawing.Size(280, 31);
             this.textbox_Syouhin_ID.TabIndex = 68;
             // 
