@@ -272,6 +272,7 @@
             this.button_Kakutei.TabIndex = 56;
             this.button_Kakutei.Text = "確定";
             this.button_Kakutei.UseVisualStyleBackColor = false;
+            this.button_Kakutei.Click += new System.EventHandler(this.button_Kakutei_Click);
             // 
             // button_Sakuzyo
             // 

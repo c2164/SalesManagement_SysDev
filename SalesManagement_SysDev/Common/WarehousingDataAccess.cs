@@ -11,7 +11,7 @@ namespace SalesManagement_SysDev.Common
     internal class WarehousingDataAccess
     {
         //入庫情報登録(登録情報)
-        public bool RegisterWerehousingData(T_Warehousing RegWerehousing)
+        public bool RegisterWerehousingData(T_Warehousing RegWerehousing,List<T_WarehousingDetail> warehousingDetails)
         {
             using (var context = new SalesManagement_DevContext())
             {
@@ -19,6 +19,13 @@ namespace SalesManagement_SysDev.Common
                 {
                     context.T_Warehousings.Add(RegWerehousing);
                     context.SaveChanges();
+                    int WaID = context.T_Warehousings.Max(x => x.WaID);
+                    foreach (var RegWaDetail in warehousingDetails)
+                    {
+                        RegWaDetail.WaID = WaID;
+                        context.T_WarehousingDetails.Add(RegWaDetail);
+                        context.SaveChanges();
+                    }
                     return true;
                 }
                 catch (Exception ex)
