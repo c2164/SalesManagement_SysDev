@@ -76,9 +76,9 @@ namespace SalesManagement_SysDev.Common
                          Employee.EmID.ToString().Contains(dispEmployeeDTO.EmID) && //社員ID
                          SalesOffice.SoName.Contains(dispEmployeeDTO.SoName) && //営業所名
                          Position.PoName.Contains(dispEmployeeDTO.PoName) && //役職名
-                                                                            //入社年月日
+                                                                             //入社年月日
                          Employee.EmPhone.Contains(dispEmployeeDTO.EmPhone) && //電話番号
-                         　　　　　　　　　　　　　　　　　　　　　　　　　　　//FAX
+                                                                               //FAX
                          Employee.EmPassword.Contains(dispEmployeeDTO.EmPassword) &&//パスワード
                          Employee.EmFlag == 0 //非表示フラグ
 
@@ -121,7 +121,9 @@ namespace SalesManagement_SysDev.Common
                          on Employee.PoID equals Position.PoID
 
                          where
-                         Employee.EmFlag == 0 //社員管理フラグ
+                         
+                         Employee.EmFlag == 0 //非表示フラグ
+
                          select new DispEmplyeeDTO
                          {
                              EmName = Employee.EmName,
