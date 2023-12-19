@@ -52,9 +52,9 @@ namespace SalesManagement_SysDev
             SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
             MakerDateAccess makerDateAccess = new MakerDateAccess();
             ProductDataAccess productDataAccess = new ProductDataAccess();
+            ClientDataAccess clientDataAccess = new ClientDataAccess();
             //各テキストボックスに初期化(空白)
             textBox_Kakutei_Syain_Namae.Text = "";
-            textBox_Kokyaku_Namae.Text = "";
             textBox_Nyuuka_Syain_Namae.Text = "";
             textBox_Syukkasyousai_ID.Text = "";
             textBox_Syukka_ID.Text = "";
@@ -78,6 +78,12 @@ namespace SalesManagement_SysDev
             comboBox_Syouhin_Namae.DataSource = productDataAccess.GetProductData();
             comboBox_Syouhin_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Syouhin_Namae.SelectedIndex = -1;
+
+            comboBox_Kokyaku_Namae.DisplayMember = "ClName";
+            comboBox_Kokyaku_Namae.ValueMember = "ClID";
+            comboBox_Kokyaku_Namae.DataSource = clientDataAccess.GetClientData();
+            comboBox_Syouhin_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Kokyaku_Namae.SelectedIndex = -1;
         }
 
         private void SetDataGridView(List<DispShipmentDTO> tb)
@@ -241,7 +247,8 @@ namespace SalesManagement_SysDev
 
             //各コントロールから商品情報を読み取る
             retShipmentDTO.ShID = textBox_Syukka_ID.Text.Trim(); //出荷ID
-            retShipmentDTO.ClName = textBox_Kokyaku_Namae.Text.Trim(); //顧客名
+            if (!(comboBox_Kokyaku_Namae.SelectedIndex == -1)) //顧客名
+                retShipmentDTO.ClName = comboBox_Kokyaku_Namae.SelectedValue.ToString();
             retShipmentDTO.ArrivalEmName = textBox_Nyuuka_Syain_Namae.Text.Trim(); //入荷社員名
             retShipmentDTO.ConfEmName = textBox_Kakutei_Syain_Namae.Text.Trim(); //確定社員名
             retShipmentDTO.ShDetailID = textBox_Syukkasyousai_ID.Text.Trim(); //出荷詳細ID

@@ -40,7 +40,6 @@
             this.textBox_Zyutyuu_ID = new System.Windows.Forms.TextBox();
             this.textBox_Nyuuka_Syain_Namae = new System.Windows.Forms.TextBox();
             this.textBox_Syukka_ID = new System.Windows.Forms.TextBox();
-            this.textBox_Kokyaku_Namae = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -56,6 +55,7 @@
             this.button_Sakuzyo = new System.Windows.Forms.Button();
             this.button_Kensaku = new System.Windows.Forms.Button();
             this.button_Itirannhyouzi = new System.Windows.Forms.Button();
+            this.comboBox_Kokyaku_Namae = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).BeginInit();
             this.SuspendLayout();
@@ -169,14 +169,6 @@
             this.textBox_Syukka_ID.Name = "textBox_Syukka_ID";
             this.textBox_Syukka_ID.Size = new System.Drawing.Size(221, 25);
             this.textBox_Syukka_ID.TabIndex = 44;
-            // 
-            // textBox_Kokyaku_Namae
-            // 
-            this.textBox_Kokyaku_Namae.Location = new System.Drawing.Point(208, 128);
-            this.textBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox_Kokyaku_Namae.Name = "textBox_Kokyaku_Namae";
-            this.textBox_Kokyaku_Namae.Size = new System.Drawing.Size(202, 25);
-            this.textBox_Kokyaku_Namae.TabIndex = 43;
             // 
             // label10
             // 
@@ -356,11 +348,21 @@
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
             this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
             // 
+            // comboBox_Kokyaku_Namae
+            // 
+            this.comboBox_Kokyaku_Namae.FormattingEnabled = true;
+            this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(205, 127);
+            this.comboBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox_Kokyaku_Namae.Name = "comboBox_Kokyaku_Namae";
+            this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(204, 26);
+            this.comboBox_Kokyaku_Namae.TabIndex = 56;
+            // 
             // Syukka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.Controls.Add(this.comboBox_Kokyaku_Namae);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox_Meka_Namae);
             this.Controls.Add(this.comboBox_Syouhin_Namae);
@@ -373,7 +375,6 @@
             this.Controls.Add(this.textBox_Zyutyuu_ID);
             this.Controls.Add(this.textBox_Nyuuka_Syain_Namae);
             this.Controls.Add(this.textBox_Syukka_ID);
-            this.Controls.Add(this.textBox_Kokyaku_Namae);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -414,7 +415,6 @@
         private System.Windows.Forms.TextBox textBox_Zyutyuu_ID;
         private System.Windows.Forms.TextBox textBox_Nyuuka_Syain_Namae;
         private System.Windows.Forms.TextBox textBox_Syukka_ID;
-        private System.Windows.Forms.TextBox textBox_Kokyaku_Namae;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -430,5 +430,6 @@
         private System.Windows.Forms.Button button_Sakuzyo;
         private System.Windows.Forms.Button button_Kensaku;
         private System.Windows.Forms.Button button_Itirannhyouzi;
+        private System.Windows.Forms.ComboBox comboBox_Kokyaku_Namae;
     }
 }
