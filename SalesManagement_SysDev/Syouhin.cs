@@ -287,6 +287,7 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             DialogResult result;
+            bool flg;
 
             //非表示実行確認
             result = messageDsp.MessageBoxDsp_OKCancel("対象の商品を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
@@ -302,10 +303,18 @@ namespace SalesManagement_SysDev
                 return;
             }
             //商品の更新
-            UpdateProductRecord(product);
+            flg = UpdateProductRecord(product);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("商品情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
         }
 
-        private void UpdateProductRecord(M_Product product)
+        private bool UpdateProductRecord(M_Product product)
         {   
             //変数の宣言
             bool flg;
@@ -313,17 +322,11 @@ namespace SalesManagement_SysDev
             //データベース接続のインスタンス化
             ProductDataAccess access = new ProductDataAccess();
             flg = access.UpdateProductData(product);
-            if (!flg)
-            {
-                messageDsp.MessageBoxDsp_OK("商品情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
-            }
-            else
-            {
-                messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
-            }
 
             SetCtrlFormat();
             GetSelectData();
+
+            return flg;
         }
 
         private M_Product ChangePrFlag(M_Product product)
@@ -332,7 +335,7 @@ namespace SalesManagement_SysDev
             Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
             if (string.IsNullOrEmpty(Hidden))
             {
-               messageDsp.MessageBoxDsp_OK("非表示を中断します","中断",MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
             }
             product.PrFlag = 2;
             product.PrHidden = Hidden;
@@ -390,7 +393,7 @@ namespace SalesManagement_SysDev
 
             if(dataGridView1.SelectedRows.Count <= 0)
             {
-                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("表から対象を選択してください", "エラー", MessageBoxIcon.Error);
                 return null;
             }
             retPrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
@@ -418,10 +421,12 @@ namespace SalesManagement_SysDev
         private void UpdateProduct()
         {
             //変数の宣言
+            string PrID;
             DispProductDTO dispProductDTO = new DispProductDTO();
             bool flg;
             //チェック済みの入力情報を得る
             dispProductDTO = GetCheckedProductInf();
+            PrID = GetProductRecord();
             if(dispProductDTO == null)
             {
                 return;
@@ -440,10 +445,19 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             M_Product UpProduct = new M_Product();
-
+            bool flg;
             //表示用データからテーブル用データに変換
             UpProduct = FormalizationProductInputRecord(dispProductDTO);
-            UpdateProductRecord(UpProduct);
+            flg = UpdateProductRecord(UpProduct);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK("商品情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
+            }
+
 
         }
 
