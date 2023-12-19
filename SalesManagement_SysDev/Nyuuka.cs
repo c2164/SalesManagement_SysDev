@@ -116,9 +116,9 @@ namespace SalesManagement_SysDev
             SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
             ProductDataAccess productDataAccess = new ProductDataAccess();
             MakerDateAccess makerDateAccess = new MakerDateAccess();
+            ClientDataAccess clientDataAccess = new ClientDataAccess();
 
             //各テキストボックスに初期化(空白)
-            textBox_Kokyaku_Namae.Text = "";
             textBox_Nyuuka_ID.Text = "";
             textBox_Nyuuka_Syain_Namae.Text = "";
             textBox_Zyutyuu_ID.Text = "";
@@ -143,6 +143,12 @@ namespace SalesManagement_SysDev
             comboBox_Meka_Namae.DataSource = makerDateAccess.GetMakerData();
             comboBox_Meka_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Meka_Namae.SelectedIndex = -1;
+
+            comboBox_Kokyaku_Namae.DisplayMember = "ClName";
+            comboBox_Kokyaku_Namae.ValueMember = "ClID";
+            comboBox_Kokyaku_Namae.DataSource = clientDataAccess.GetClientData();
+            comboBox_Kokyaku_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Kokyaku_Namae.SelectedIndex = -1;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
@@ -224,7 +230,7 @@ namespace SalesManagement_SysDev
             DispArrivalDTO retArrivalDTO = new DispArrivalDTO();
 
             //各コントロールから入荷情報を読み取る
-            retArrivalDTO.ClName = textBox_Kokyaku_Namae.Text.Trim();
+            retArrivalDTO.ClName = comboBox_Kokyaku_Namae.Text.Trim();
             retArrivalDTO.ArID = textBox_Nyuuka_ID.Text.Trim();
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retArrivalDTO.SoName = comboBox_Eigyousyo.SelectedIndex.ToString();

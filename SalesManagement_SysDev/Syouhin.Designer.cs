@@ -176,7 +176,6 @@
             this.textbox_Syouhin_ID.Location = new System.Drawing.Point(222, 181);
             this.textbox_Syouhin_ID.MaxLength = 6;
             this.textbox_Syouhin_ID.Name = "textbox_Syouhin_ID";
-            this.textbox_Syouhin_ID.ReadOnly = true;
             this.textbox_Syouhin_ID.Size = new System.Drawing.Size(280, 31);
             this.textbox_Syouhin_ID.TabIndex = 68;
             // 

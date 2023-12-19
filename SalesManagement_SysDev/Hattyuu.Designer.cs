@@ -153,7 +153,6 @@
             this.textBox_Hattyuu_ID.Location = new System.Drawing.Point(253, 173);
             this.textBox_Hattyuu_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Hattyuu_ID.Name = "textBox_Hattyuu_ID";
-            this.textBox_Hattyuu_ID.ReadOnly = true;
             this.textBox_Hattyuu_ID.Size = new System.Drawing.Size(251, 31);
             this.textBox_Hattyuu_ID.TabIndex = 67;
             // 

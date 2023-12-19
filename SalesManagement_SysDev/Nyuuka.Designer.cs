@@ -163,7 +163,6 @@
             // 
             this.textBox_Nyuuka_ID.Location = new System.Drawing.Point(759, 176);
             this.textBox_Nyuuka_ID.Name = "textBox_Nyuuka_ID";
-            this.textBox_Nyuuka_ID.ReadOnly = true;
             this.textBox_Nyuuka_ID.Size = new System.Drawing.Size(273, 31);
             this.textBox_Nyuuka_ID.TabIndex = 72;
             // 

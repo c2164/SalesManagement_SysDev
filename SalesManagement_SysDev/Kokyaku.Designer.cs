@@ -177,7 +177,6 @@
             this.textBox_Kokyaku_ID.Location = new System.Drawing.Point(788, 175);
             this.textBox_Kokyaku_ID.MaxLength = 6;
             this.textBox_Kokyaku_ID.Name = "textBox_Kokyaku_ID";
-            this.textBox_Kokyaku_ID.ReadOnly = true;
             this.textBox_Kokyaku_ID.Size = new System.Drawing.Size(251, 31);
             this.textBox_Kokyaku_ID.TabIndex = 44;
             // 
