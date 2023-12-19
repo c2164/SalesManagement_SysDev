@@ -288,6 +288,7 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             DialogResult result;
+            bool flg;
 
             //非表示実行確認
             result = messageDsp.MessageBoxDsp_OKCancel("対象の入庫情報を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
@@ -303,10 +304,18 @@ namespace SalesManagement_SysDev
                 return;
             }
             //入庫の更新
-            UpdateWarehousingRecord(warehousing);
+            flg = UpdateWarehousingRecord(warehousing);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
         }
 
-        private void UpdateWarehousingRecord(T_Warehousing warehousing)
+        private bool UpdateWarehousingRecord(T_Warehousing warehousing)
         {
             //変数の宣言
             bool flg;
@@ -314,17 +323,11 @@ namespace SalesManagement_SysDev
             //データベース接続のインスタンス化
             WarehousingDataAccess access = new WarehousingDataAccess();
             flg = access.UpdateWarehousingData(warehousing);
-            if (!flg)
-            {
-                messageDsp.MessageBoxDsp_OK("対象入庫情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
-            }
-            else
-            {
-                messageDsp.MessageBoxDsp_OK("対象入庫情報を非表示にしました", "非表示完了", MessageBoxIcon.Information);
-            }
 
             SetCtrlFormat();
             GetSelectData();
+
+            return flg;
         }
 
         private T_Warehousing ChangeWaFlag(T_Warehousing warehousing)
@@ -391,7 +394,7 @@ namespace SalesManagement_SysDev
             
 
                 return retwarehousingdetail;
-                }
+        }
 
         private string GetWarehousingRecord()
         {
@@ -418,6 +421,251 @@ namespace SalesManagement_SysDev
             comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
             numericUpDown_Suuryou.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
          
+        }
+
+        private void button_Nyuuko_Kakutei_Click(object sender, EventArgs e)
+        {
+            DecisionWarehousing();
+        }
+
+        private void DecisionWarehousing()
+        {
+            //変数の宣言
+            string WaID;
+            bool flg;
+            T_Warehousing warehousing = new T_Warehousing();
+            List<T_WarehousingDetail> ListWarehousingDetail = new List<T_WarehousingDetail>();
+            DialogResult result;
+
+            //確定対象の入庫IDを取得
+            WaID = GetWarehousingRecord();
+
+            //入庫IDから入庫情報を取得
+            warehousing = GetWarehousingAndWaDetailRecord(WaID, out ListWarehousingDetail);
+            if (warehousing == null)
+            {
+                return;
+            }
+
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の入庫を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //在庫の数量変更
+            flg = AddStQuantity(ListWarehousingDetail);
+            if (!flg)
+            {
+                return;
+            }
+
+            //注文状態フラグの変更
+            UpdateWaShelFlag(warehousing);
+
+        }
+
+        private void UpdateWaShelFlag(T_Warehousing warehousing)
+        {
+            //変数の宣言
+            bool flg;
+
+            //注文状態フラグを0から1にする
+            warehousing = ChangeWaStateFlag(warehousing);
+
+            //注文情報を更新する
+            flg = UpdateWarehousingRecord(warehousing);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("注文情報を確定しました", "確定完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("注文情報の確定に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+        }
+
+        private T_Warehousing ChangeWaStateFlag(T_Warehousing warehousing)
+        {
+            warehousing.WaShelfFlag = 1;
+            return warehousing;
+        }
+
+        private bool AddStQuantity(List<T_WarehousingDetail> ListWarehousingDetail)
+        {
+            //変数の宣言
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            bool flg;
+            List<T_Stock> ListStock = new List<T_Stock>();
+
+            //入庫詳細に存在する商品の在庫情報を受け取る
+            ListStock = GetStockRecord(ListWarehousingDetail, out msg, out title, out icon);
+            if (ListStock == null)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return false;
+            }
+            //在庫数を入庫数分増やす
+            ListStock = AddStockRecord(ListStock, ListWarehousingDetail, out msg, out title, out icon);
+            if (ListStock == null)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return false;
+            }
+            //在庫登録
+            flg = UpdateStockRecord(ListStock, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool UpdateStockRecord(List<T_Stock> listStock, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            bool flg = false;
+            //インスタンス化
+            StockDataAccess access = new StockDataAccess();
+            //初期値
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //変更した在庫数で更新
+            foreach (var upStock in listStock)
+            {
+                flg = access.UpdateStockData(upStock);
+                if (!flg)
+                {
+                    msg = "在庫の更新に失敗しました";
+                    title = "エラー";
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private List<T_Stock> AddStockRecord(List<T_Stock> listStock, List<T_WarehousingDetail> ListWarehousingDetail, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<T_Stock> retStock = new List<T_Stock>();
+            int Quantity;
+            //初期値の代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //在庫数を増やす
+            foreach (var Stock in listStock)
+            {
+                Quantity = Stock.StQuantity + ListWarehousingDetail.Single(x => x.PrID == Stock.PrID).WaQuantity;
+
+                Stock.StQuantity = Quantity;
+                retStock.Add(Stock);
+            }
+
+            return retStock;
+        }
+
+        private List<T_Stock> GetStockRecord(List<T_WarehousingDetail> ListWarehousingDetail, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispStockDTO> ListDispStockDTO = new List<DispStockDTO>();
+            List<T_Stock> retListStock = new List<T_Stock>();
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //インスタンス化
+            StockDataAccess access = new StockDataAccess();
+
+            //データベースから在庫テーブルのデータを取得
+            ListDispStockDTO = access.GetStockData().Where(x => ListWarehousingDetail.Any(y => y.PrID.ToString() == x.PrID)).ToList();
+            if (ListDispStockDTO == null)
+            {
+                msg = "在庫情報を取得できませんでした";
+                title = "エラー";
+                return null;
+            }
+
+            //表示用からテーブル形式に変換
+            foreach (var stock in ListDispStockDTO)
+            {
+                T_Stock inputStockData = new T_Stock();
+                inputStockData.StID = int.Parse(stock.StID);
+                inputStockData.PrID = int.Parse(stock.PrID);
+                inputStockData.StQuantity = int.Parse(stock.StQuantity);
+                inputStockData.StFlag = int.Parse(stock.StFlag);
+
+                retListStock.Add(inputStockData);
+            }
+
+            return retListStock;
+        }
+
+        private T_Warehousing GetWarehousingAndWaDetailRecord(string WaID, out List<T_WarehousingDetail> ListWarehousingDetail)
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> warehousingDTO = new List<DispWarehousingDTO>();
+            T_Warehousing retWarehousing = new T_Warehousing();
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            //初期値代入
+            ListWarehousingDetail = new List<T_WarehousingDetail>();
+
+            //入庫情報取得
+            warehousingDTO = CreateWarehousingRecord(WaID, out msg, out title, out icon);
+            if (warehousingDTO == null)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+
+            //入庫情報をテーブルデータに形式化
+            retWarehousing = FormalizationWarehousingInputRecord(warehousingDTO[0]);
+            //入庫詳細情報をテーブルデータに形式化
+            foreach (var AddWarehhousingDTO in warehousingDTO)
+            {
+                ListWarehousingDetail.Add(FormalizationWarehousingDetailInputRecord(AddWarehhousingDTO));
+            }
+
+
+            return retWarehousing;
+        }
+
+        private List<DispWarehousingDTO> CreateWarehousingRecord(string WaID, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispWarehousingDTO> ListDispWarehousing = new List<DispWarehousingDTO>();
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //受注IDの一致する受注情報を取得
+            ListDispWarehousing = GetTableData().Where(x => x.WaID == WaID).ToList();
+            if (ListDispWarehousing == null)
+            {
+                msg = "入庫情報を取得できませんでした";
+                title = "エラー";
+                return null;
+            }
+            if (ListDispWarehousing[0].WaShelfFlag == "1")
+            {
+                msg = "既に確定済みです";
+                title = "エラー";
+                return null;
+            }
+
+            return ListDispWarehousing;
         }
     }
 
