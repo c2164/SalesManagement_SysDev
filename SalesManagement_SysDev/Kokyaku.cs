@@ -192,15 +192,15 @@ namespace SalesManagement_SysDev
             DispClientDTO retDispClient = new DispClientDTO();
 
             //各コントロールから顧客情報を読み取る
-            retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();
-            retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();
-            retDispClient.ClPostal = textBox_Yuubin.Text.Trim();
-            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() + textBox_Dennwa2.Text.Trim() + textBox_Dennwa3.Text.Trim();
-            retDispClient.ClFAX = textBox_FAX1.Text.Trim() + textBox_FAX2.Text.Trim() + textBox_FAX3.Text.Trim();
-            retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();
+            retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();//顧客ID
+            retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();//顧客名
+            retDispClient.ClPostal = textBox_Yuubin.Text.Trim();//郵便番号
+            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() + textBox_Dennwa2.Text.Trim() + textBox_Dennwa3.Text.Trim();//電話番号
+            retDispClient.ClFAX = textBox_FAX1.Text.Trim() + textBox_FAX2.Text.Trim() + textBox_FAX3.Text.Trim();//FAX
+            retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();//住所
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
-                retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
-            retDispClient.SoName = comboBox_Eigyousyo.Text.Trim();
+                retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID
+            retDispClient.SoName = comboBox_Eigyousyo.Text.Trim();//営業所名
 
             return retDispClient;
         }

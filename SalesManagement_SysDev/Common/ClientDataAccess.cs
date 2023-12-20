@@ -71,7 +71,7 @@ namespace SalesManagement_SysDev.Common
 
                          where
                          Client.ClName.Contains(dispClientDTO.ClName) &&//顧客名
-                         Client.ClID.ToString().Contains(dispClientDTO.ClID)&&  //顧客ID
+                         Client.ClID.ToString().Contains(dispClientDTO.ClID) &&  //顧客ID
                          SalesOffice.SoName.Contains(dispClientDTO.SoName) && //営業所名
                          Client.ClPostal.Contains(dispClientDTO.ClPostal) && //郵便番号
                          Client.ClAddress.Contains(dispClientDTO.ClAddress) && //住所
@@ -89,6 +89,8 @@ namespace SalesManagement_SysDev.Common
                              ClFAX = Client.ClFAX,
                              ClFlag = Client.ClFlag.ToString(),
                              ClHidden = Client.ClHidden,
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName,
                          };
 
                 return tb.ToList();
