@@ -40,9 +40,8 @@ namespace SalesManagement_SysDev.Common
                     var UpdateTarget = context.T_Stocks.Single(x => x.StID == UpStock.StID);
                     UpdateTarget.StID = UpStock.StID;
                     UpdateTarget.StQuantity = UpStock.StQuantity;
-                    UpdateTarget.StFlag = UpStock.StFlag;
                     UpdateTarget.PrID = UpStock.PrID;
-
+                    UpdateTarget.StFlag = UpStock.StFlag;
 
                     context.SaveChanges();
                     return true;
