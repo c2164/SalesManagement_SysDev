@@ -154,6 +154,11 @@ namespace SalesManagement_SysDev
 
             //在庫管理フラグの変更
             stock = ChangeStFlag(stock);
+            if (stock == null)
+            {
+                return;
+            }
+
             //在庫の更新
             flg = UpdateStockRecord(stock);
             if (flg)
@@ -184,6 +189,14 @@ namespace SalesManagement_SysDev
 
         private T_Stock ChangeStFlag(T_Stock stock)
         {
+            string Hidden;
+            Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
+            if (string.IsNullOrEmpty(Hidden))
+            {
+                messageDsp.MessageBoxDsp_OK("非表示を中断します", "中断", MessageBoxIcon.Information);
+                return null;
+            }
+
             stock.StFlag = 2;
             return stock;
         }
@@ -305,12 +318,12 @@ namespace SalesManagement_SysDev
 
             //各コントロールから在庫情報を読み取る
             retStockDTO.StID = textBox_Zaiko_ID.Text.Trim();
-            if(!(comboBox_Meka_Namae.SelectedIndex == -1))
-                retStockDTO.MaID= comboBox_Meka_Namae.SelectedValue.ToString();
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1))
+                retStockDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
             retStockDTO.MaName = comboBox_Meka_Namae.Text.Trim();
             if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
                 retStockDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
-                retStockDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
+            retStockDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
             retStockDTO.StQuantity = domainUpDown_Zaikosuu.Value.ToString();
             retStockDTO.StFlag = "0";
 
@@ -350,7 +363,7 @@ namespace SalesManagement_SysDev
             bool flg;
             //チェック済みの入力情報を得る
             dispStockDTO = GetCheckedStockInf();
-            if(dispStockDTO == null)
+            if (dispStockDTO == null)
             {
                 return;
             }
@@ -383,7 +396,7 @@ namespace SalesManagement_SysDev
 
             //更新確認
             result = messageDsp.MessageBoxDsp_OKCancel("対象の在庫を更新してもよろしいですか", "更新確認", MessageBoxIcon.Question);
-            if(result == DialogResult.Cancel)
+            if (result == DialogResult.Cancel)
             {
                 return;
             }
@@ -425,7 +438,7 @@ namespace SalesManagement_SysDev
 
             //テーブルのデータを取得
             dispStock = access.GetStockData();
-            if(dispStock == null)
+            if (dispStock == null)
             {
                 msg = "在庫情報が取得できんせんでした";
                 title = "エラー";
@@ -437,7 +450,7 @@ namespace SalesManagement_SysDev
 
         private DispStockDTO GetCheckedStockInf()
         {
-           //変数の宣言
+            //変数の宣言
             DispStockDTO retDispStock = new DispStockDTO();
             bool flg;
             string msg;
