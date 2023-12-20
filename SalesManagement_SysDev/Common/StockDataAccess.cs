@@ -71,8 +71,6 @@ namespace SalesManagement_SysDev.Common
                          (dispStockDTO.StID.Equals("") ? true :
                          Stock.StID.ToString().Equals(dispStockDTO.StID)) && //在庫ID
                          Maker.MaName.Contains(dispStockDTO.MaName) && //メーカー名
-                         ((dispStockDTO.StQuantity == "") ? true :
-                         Stock.StQuantity == int.Parse(dispStockDTO.PrID)) &&//在庫数
                          Product.PrName.Contains(dispStockDTO.PrName) &&//商品名
                          Stock.StFlag == 0 //在庫管理フラグ
                          select new DispStockDTO
