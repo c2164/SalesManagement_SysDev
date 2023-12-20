@@ -390,6 +390,9 @@ namespace SalesManagement_SysDev
                 messageDsp.MessageBoxDsp_OK("受注情報の登録に失敗しました", "登録失敗", MessageBoxIcon.Error);
             }
 
+            SetCtrlFormat();
+            GetSelectData();
+
         }
 
         private T_Order FormalizationOrderInputRecord(DispOrderDTO dispOrderDTO, out T_OrderDetail orderDetail)
