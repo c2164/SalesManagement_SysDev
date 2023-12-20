@@ -125,7 +125,7 @@ namespace SalesManagement_SysDev
 
         private void button_Touroku_Click(object sender, EventArgs e)
         {
-            
+
             RegisterClient();
         }
 
@@ -195,8 +195,8 @@ namespace SalesManagement_SysDev
             retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();//顧客ID
             retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();//顧客名
             retDispClient.ClPostal = textBox_Yuubin.Text.Trim();//郵便番号
-            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() + textBox_Dennwa2.Text.Trim() + textBox_Dennwa3.Text.Trim();//電話番号
-            retDispClient.ClFAX = textBox_FAX1.Text.Trim() + textBox_FAX2.Text.Trim() + textBox_FAX3.Text.Trim();//FAX
+            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() + ('-') + textBox_Dennwa2.Text.Trim() + ('-') + textBox_Dennwa3.Text.Trim();//電話番号
+            retDispClient.ClFAX = textBox_FAX1.Text.Trim() + ('-') + textBox_FAX2.Text.Trim() + ('-') + textBox_FAX3.Text.Trim();//FAX
             retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();//住所
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID
@@ -678,9 +678,6 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
     }
 }

@@ -208,7 +208,7 @@ namespace SalesManagement_SysDev
                 retEmployeeDTO.PoID = comboBox_Yakusyoku_Namae.SelectedValue.ToString();
             retEmployeeDTO.PoName = comboBox_Yakusyoku_Namae.Text.Trim();
             retEmployeeDTO.EmHiredate = dateTimePicker1.Value;
-            retEmployeeDTO.EmPhone = textBox_Dennwa.Text.Trim() + textBox_Dennwa2.Text.Trim() + textBox_Dennwa3.Text.Trim();
+            retEmployeeDTO.EmPhone = textBox_Dennwa.Text.Trim() + ('-') + textBox_Dennwa2.Text.Trim() + ('-') + textBox_Dennwa3.Text.Trim();
             //Fax削除予定
             retEmployeeDTO.EmPassword = textBox_Pass.Text.Trim();
 

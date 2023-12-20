@@ -108,7 +108,7 @@ namespace SalesManagement_SysDev.Common
                          (dispOrderDTO.OrDetailID.Equals("") ? true :
                          OrderDetail.OrDetailID.ToString().Equals(dispOrderDTO.OrDetailID)) &&//受注詳細ID
                          Maker.MaName.Contains(dispOrderDTO.MaName) && //メーカー名
-                         Maker.MaName.Contains(dispOrderDTO.MaName) && // 営業所
+                         SalesOffice.SoName.Contains(dispOrderDTO.SoName) && // 営業所
                          Product.PrName.Contains(dispOrderDTO.PrName) && //商品名
 
 
