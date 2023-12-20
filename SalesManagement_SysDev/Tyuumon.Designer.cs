@@ -87,9 +87,9 @@
             this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
-            this.button_Sakuzyo.Location = new System.Drawing.Point(666, 35);
+            this.button_Sakuzyo.Location = new System.Drawing.Point(634, 35);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
-            this.button_Sakuzyo.Size = new System.Drawing.Size(179, 75);
+            this.button_Sakuzyo.Size = new System.Drawing.Size(211, 75);
             this.button_Sakuzyo.TabIndex = 2;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
@@ -100,11 +100,11 @@
             this.button_Kakutei.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kakutei.ForeColor = System.Drawing.Color.White;
-            this.button_Kakutei.Location = new System.Drawing.Point(952, 35);
+            this.button_Kakutei.Location = new System.Drawing.Point(945, 35);
             this.button_Kakutei.Name = "button_Kakutei";
-            this.button_Kakutei.Size = new System.Drawing.Size(179, 75);
+            this.button_Kakutei.Size = new System.Drawing.Size(211, 75);
             this.button_Kakutei.TabIndex = 3;
-            this.button_Kakutei.Text = "確定";
+            this.button_Kakutei.Text = "注文確定";
             this.button_Kakutei.UseVisualStyleBackColor = false;
             this.button_Kakutei.Click += new System.EventHandler(this.button_Kakutei_Click);
             // 
@@ -327,7 +327,7 @@
             this.Controls.Add(this.button_Kensaku);
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Name = "Tyuumon";
-            this.Size = new System.Drawing.Size(1609, 875);
+            this.Size = new System.Drawing.Size(1610, 875);
             this.Load += new System.EventHandler(this.Tyuumon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUPDown_Syouhin_Namae)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

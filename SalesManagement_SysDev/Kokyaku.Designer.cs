@@ -386,7 +386,7 @@
             this.Controls.Add(this.button_Touroku);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Kokyaku";
-            this.Size = new System.Drawing.Size(1580, 861);
+            this.Size = new System.Drawing.Size(1610, 875);
             this.Load += new System.EventHandler(this.Kokyaku_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

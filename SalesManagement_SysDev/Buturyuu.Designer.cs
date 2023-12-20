@@ -58,6 +58,7 @@
             // 
             // button_Nyuuko_Kannri
             // 
+            this.button_Nyuuko_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button_Nyuuko_Kannri.Location = new System.Drawing.Point(0, 753);
             this.button_Nyuuko_Kannri.Name = "button_Nyuuko_Kannri";
             this.button_Nyuuko_Kannri.Size = new System.Drawing.Size(337, 107);
@@ -68,6 +69,7 @@
             // 
             // button_Hattyuu_Kannri
             // 
+            this.button_Hattyuu_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button_Hattyuu_Kannri.Location = new System.Drawing.Point(0, 569);
             this.button_Hattyuu_Kannri.Name = "button_Hattyuu_Kannri";
             this.button_Hattyuu_Kannri.Size = new System.Drawing.Size(337, 107);
@@ -78,6 +80,7 @@
             // 
             // button_Syukko_Kannri
             // 
+            this.button_Syukko_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button_Syukko_Kannri.Location = new System.Drawing.Point(0, 371);
             this.button_Syukko_Kannri.Name = "button_Syukko_Kannri";
             this.button_Syukko_Kannri.Size = new System.Drawing.Size(337, 107);
@@ -88,6 +91,7 @@
             // 
             // button_Zaiko_Kannri
             // 
+            this.button_Zaiko_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button_Zaiko_Kannri.Location = new System.Drawing.Point(0, 191);
             this.button_Zaiko_Kannri.Name = "button_Zaiko_Kannri";
             this.button_Zaiko_Kannri.Size = new System.Drawing.Size(337, 107);
@@ -98,6 +102,7 @@
             // 
             // button_Syouhin_Kannri
             // 
+            this.button_Syouhin_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button_Syouhin_Kannri.Location = new System.Drawing.Point(0, 3);
             this.button_Syouhin_Kannri.Name = "button_Syouhin_Kannri";
             this.button_Syouhin_Kannri.Size = new System.Drawing.Size(337, 107);

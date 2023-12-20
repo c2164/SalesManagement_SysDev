@@ -52,7 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button_Kuria = new System.Windows.Forms.Button();
-            this.button_Syukka_Kakutei = new System.Windows.Forms.Button();
+            this.button_Nyuuka_Kakutei = new System.Windows.Forms.Button();
             this.button_Sakuzyo = new System.Windows.Forms.Button();
             this.button_Kensaku = new System.Windows.Forms.Button();
             this.button_Itirannhyouzi = new System.Windows.Forms.Button();
@@ -289,18 +289,18 @@
             this.button_Kuria.UseVisualStyleBackColor = false;
             this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
             // 
-            // button_Syukka_Kakutei
+            // button_Nyuuka_Kakutei
             // 
-            this.button_Syukka_Kakutei.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
-            this.button_Syukka_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.button_Syukka_Kakutei.ForeColor = System.Drawing.Color.White;
-            this.button_Syukka_Kakutei.Location = new System.Drawing.Point(1005, 27);
-            this.button_Syukka_Kakutei.Name = "button_Syukka_Kakutei";
-            this.button_Syukka_Kakutei.Size = new System.Drawing.Size(229, 75);
-            this.button_Syukka_Kakutei.TabIndex = 60;
-            this.button_Syukka_Kakutei.Text = "出荷確定";
-            this.button_Syukka_Kakutei.UseVisualStyleBackColor = false;
-            this.button_Syukka_Kakutei.Click += new System.EventHandler(this.button_Syukka_Kakutei_Click);
+            this.button_Nyuuka_Kakutei.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
+            this.button_Nyuuka_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.button_Nyuuka_Kakutei.ForeColor = System.Drawing.Color.White;
+            this.button_Nyuuka_Kakutei.Location = new System.Drawing.Point(1005, 27);
+            this.button_Nyuuka_Kakutei.Name = "button_Nyuuka_Kakutei";
+            this.button_Nyuuka_Kakutei.Size = new System.Drawing.Size(229, 75);
+            this.button_Nyuuka_Kakutei.TabIndex = 60;
+            this.button_Nyuuka_Kakutei.Text = "入荷確定";
+            this.button_Nyuuka_Kakutei.UseVisualStyleBackColor = false;
+            this.button_Nyuuka_Kakutei.Click += new System.EventHandler(this.button_Nyuuka_Kakutei_Click);
             // 
             // button_Sakuzyo
             // 
@@ -370,12 +370,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_Kuria);
-            this.Controls.Add(this.button_Syukka_Kakutei);
+            this.Controls.Add(this.button_Nyuuka_Kakutei);
             this.Controls.Add(this.button_Sakuzyo);
             this.Controls.Add(this.button_Kensaku);
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Name = "Nyuuka";
-            this.Size = new System.Drawing.Size(1609, 875);
+            this.Size = new System.Drawing.Size(1610, 875);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).EndInit();
             this.ResumeLayout(false);
@@ -407,7 +407,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_Kuria;
-        private System.Windows.Forms.Button button_Syukka_Kakutei;
+        private System.Windows.Forms.Button button_Nyuuka_Kakutei;
         private System.Windows.Forms.Button button_Sakuzyo;
         private System.Windows.Forms.Button button_Kensaku;
         private System.Windows.Forms.Button button_Itirannhyouzi;

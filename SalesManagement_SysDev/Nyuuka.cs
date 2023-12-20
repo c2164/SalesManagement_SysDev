@@ -416,7 +416,7 @@ namespace SalesManagement_SysDev
             return retArID;
         }
 
-        private void button_Syukka_Kakutei_Click(object sender, EventArgs e)
+        private void button_Nyuuka_Kakutei_Click(object sender, EventArgs e)
         {
             DecisionArrival();
         }

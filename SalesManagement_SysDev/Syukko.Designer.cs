@@ -91,9 +91,9 @@
             this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
-            this.button_Sakuzyo.Location = new System.Drawing.Point(742, 29);
+            this.button_Sakuzyo.Location = new System.Drawing.Point(696, 29);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
-            this.button_Sakuzyo.Size = new System.Drawing.Size(153, 74);
+            this.button_Sakuzyo.Size = new System.Drawing.Size(199, 74);
             this.button_Sakuzyo.TabIndex = 3;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
@@ -104,11 +104,11 @@
             this.button_Kakutei.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kakutei.ForeColor = System.Drawing.Color.White;
-            this.button_Kakutei.Location = new System.Drawing.Point(1029, 29);
+            this.button_Kakutei.Location = new System.Drawing.Point(976, 29);
             this.button_Kakutei.Name = "button_Kakutei";
-            this.button_Kakutei.Size = new System.Drawing.Size(153, 74);
+            this.button_Kakutei.Size = new System.Drawing.Size(206, 74);
             this.button_Kakutei.TabIndex = 4;
-            this.button_Kakutei.Text = "確定";
+            this.button_Kakutei.Text = "出庫確定";
             this.button_Kakutei.UseVisualStyleBackColor = false;
             this.button_Kakutei.Click += new System.EventHandler(this.button_Kakutei_Click);
             // 

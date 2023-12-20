@@ -293,7 +293,7 @@
             this.button_Syukka_Kakutei.Name = "button_Syukka_Kakutei";
             this.button_Syukka_Kakutei.Size = new System.Drawing.Size(224, 75);
             this.button_Syukka_Kakutei.TabIndex = 60;
-            this.button_Syukka_Kakutei.Text = "確定";
+            this.button_Syukka_Kakutei.Text = "出荷確定";
             this.button_Syukka_Kakutei.UseVisualStyleBackColor = false;
             this.button_Syukka_Kakutei.Click += new System.EventHandler(this.button_Syukka_Kakutei_Click);
             // 
@@ -370,7 +370,7 @@
             this.Controls.Add(this.button_Kensaku);
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Name = "Syukka";
-            this.Size = new System.Drawing.Size(1609, 875);
+            this.Size = new System.Drawing.Size(1610, 875);
             this.Load += new System.EventHandler(this.Syukka_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).EndInit();

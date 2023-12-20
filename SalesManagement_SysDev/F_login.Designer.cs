@@ -56,7 +56,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Bold);
+            this.button3.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 16.125F, System.Drawing.FontStyle.Bold);
             this.button3.Location = new System.Drawing.Point(10, 761);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
@@ -69,7 +69,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Bold);
+            this.button2.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 16.125F, System.Drawing.FontStyle.Bold);
             this.button2.Location = new System.Drawing.Point(10, 473);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
@@ -82,7 +82,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 12F, System.Drawing.FontStyle.Bold);
+            this.button1.Font = new System.Drawing.Font("HG丸ｺﾞｼｯｸM-PRO", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button1.Location = new System.Drawing.Point(13, 169);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
