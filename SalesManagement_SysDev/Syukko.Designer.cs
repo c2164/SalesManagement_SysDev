@@ -239,6 +239,7 @@
             // textBox_Syain
             // 
             this.textBox_Syain.Location = new System.Drawing.Point(1253, 193);
+            this.textBox_Syain.MaxLength = 50;
             this.textBox_Syain.Name = "textBox_Syain";
             this.textBox_Syain.Size = new System.Drawing.Size(247, 31);
             this.textBox_Syain.TabIndex = 17;
@@ -246,6 +247,7 @@
             // textBox_Zyutyuu_ID
             // 
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(696, 276);
+            this.textBox_Zyutyuu_ID.MaxLength = 6;
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(266, 31);
             this.textBox_Zyutyuu_ID.TabIndex = 18;
@@ -253,6 +255,7 @@
             // textBox_Kakutei_Syain_Namae
             // 
             this.textBox_Kakutei_Syain_Namae.Location = new System.Drawing.Point(1253, 276);
+            this.textBox_Kakutei_Syain_Namae.MaxLength = 50;
             this.textBox_Kakutei_Syain_Namae.Name = "textBox_Kakutei_Syain_Namae";
             this.textBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(247, 31);
             this.textBox_Kakutei_Syain_Namae.TabIndex = 19;
@@ -260,6 +263,7 @@
             // textBox_Syukkosyousai_ID
             // 
             this.textBox_Syukkosyousai_ID.Location = new System.Drawing.Point(239, 374);
+            this.textBox_Syukkosyousai_ID.MaxLength = 6;
             this.textBox_Syukkosyousai_ID.Name = "textBox_Syukkosyousai_ID";
             this.textBox_Syukkosyousai_ID.Size = new System.Drawing.Size(260, 31);
             this.textBox_Syukkosyousai_ID.TabIndex = 20;
@@ -306,6 +310,11 @@
             // domainUpDown_Suuryou
             // 
             this.domainUpDown_Suuryou.Location = new System.Drawing.Point(239, 462);
+            this.domainUpDown_Suuryou.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.domainUpDown_Suuryou.Name = "domainUpDown_Suuryou";
             this.domainUpDown_Suuryou.Size = new System.Drawing.Size(260, 31);
             this.domainUpDown_Suuryou.TabIndex = 26;

@@ -135,6 +135,7 @@
             // textBox_Zyutyuu_ID
             // 
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(240, 299);
+            this.textBox_Zyutyuu_ID.MaxLength = 6;
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(346, 31);
             this.textBox_Zyutyuu_ID.TabIndex = 33;
@@ -142,6 +143,7 @@
             // textBox_Uriagesyousai_ID
             // 
             this.textBox_Uriagesyousai_ID.Location = new System.Drawing.Point(240, 223);
+            this.textBox_Uriagesyousai_ID.MaxLength = 6;
             this.textBox_Uriagesyousai_ID.Name = "textBox_Uriagesyousai_ID";
             this.textBox_Uriagesyousai_ID.Size = new System.Drawing.Size(346, 31);
             this.textBox_Uriagesyousai_ID.TabIndex = 32;
@@ -149,6 +151,7 @@
             // textBox_Uriage_ID
             // 
             this.textBox_Uriage_ID.Location = new System.Drawing.Point(240, 147);
+            this.textBox_Uriage_ID.MaxLength = 6;
             this.textBox_Uriage_ID.Name = "textBox_Uriage_ID";
             this.textBox_Uriage_ID.Size = new System.Drawing.Size(346, 31);
             this.textBox_Uriage_ID.TabIndex = 31;

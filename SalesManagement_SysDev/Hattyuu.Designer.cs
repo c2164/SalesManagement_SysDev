@@ -119,6 +119,7 @@
             // 
             this.textBox_Hattyuusyousai.Location = new System.Drawing.Point(748, 356);
             this.textBox_Hattyuusyousai.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Hattyuusyousai.MaxLength = 6;
             this.textBox_Hattyuusyousai.Name = "textBox_Hattyuusyousai";
             this.textBox_Hattyuusyousai.ReadOnly = true;
             this.textBox_Hattyuusyousai.Size = new System.Drawing.Size(281, 31);
@@ -128,6 +129,7 @@
             // 
             this.textBox_Suuryou.Location = new System.Drawing.Point(246, 353);
             this.textBox_Suuryou.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Suuryou.MaxLength = 4;
             this.textBox_Suuryou.Name = "textBox_Suuryou";
             this.textBox_Suuryou.Size = new System.Drawing.Size(251, 31);
             this.textBox_Suuryou.TabIndex = 70;
@@ -136,6 +138,7 @@
             // 
             this.textBox_Syouhin_ID.Location = new System.Drawing.Point(746, 263);
             this.textBox_Syouhin_ID.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Syouhin_ID.MaxLength = 6;
             this.textBox_Syouhin_ID.Name = "textBox_Syouhin_ID";
             this.textBox_Syouhin_ID.Size = new System.Drawing.Size(284, 31);
             this.textBox_Syouhin_ID.TabIndex = 69;
@@ -144,6 +147,7 @@
             // 
             this.textBox_Syain_ID.Location = new System.Drawing.Point(748, 173);
             this.textBox_Syain_ID.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Syain_ID.MaxLength = 6;
             this.textBox_Syain_ID.Name = "textBox_Syain_ID";
             this.textBox_Syain_ID.Size = new System.Drawing.Size(281, 31);
             this.textBox_Syain_ID.TabIndex = 68;
@@ -152,6 +156,7 @@
             // 
             this.textBox_Hattyuu_ID.Location = new System.Drawing.Point(253, 173);
             this.textBox_Hattyuu_ID.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Hattyuu_ID.MaxLength = 6;
             this.textBox_Hattyuu_ID.Name = "textBox_Hattyuu_ID";
             this.textBox_Hattyuu_ID.Size = new System.Drawing.Size(251, 31);
             this.textBox_Hattyuu_ID.TabIndex = 67;

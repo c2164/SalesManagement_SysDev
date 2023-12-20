@@ -207,6 +207,7 @@
             // textBox_Syain_Namae
             // 
             this.textBox_Syain_Namae.Location = new System.Drawing.Point(240, 180);
+            this.textBox_Syain_Namae.MaxLength = 50;
             this.textBox_Syain_Namae.Name = "textBox_Syain_Namae";
             this.textBox_Syain_Namae.Size = new System.Drawing.Size(251, 31);
             this.textBox_Syain_Namae.TabIndex = 14;
@@ -222,6 +223,7 @@
             // textBox_Dennwa
             // 
             this.textBox_Dennwa.Location = new System.Drawing.Point(240, 416);
+            this.textBox_Dennwa.MaxLength = 4;
             this.textBox_Dennwa.Name = "textBox_Dennwa";
             this.textBox_Dennwa.Size = new System.Drawing.Size(130, 31);
             this.textBox_Dennwa.TabIndex = 18;
@@ -271,6 +273,7 @@
             // textBox_Dennwa3
             // 
             this.textBox_Dennwa3.Location = new System.Drawing.Point(618, 415);
+            this.textBox_Dennwa3.MaxLength = 4;
             this.textBox_Dennwa3.Name = "textBox_Dennwa3";
             this.textBox_Dennwa3.Size = new System.Drawing.Size(130, 31);
             this.textBox_Dennwa3.TabIndex = 57;
@@ -289,6 +292,7 @@
             // textBox_Dennwa2
             // 
             this.textBox_Dennwa2.Location = new System.Drawing.Point(426, 415);
+            this.textBox_Dennwa2.MaxLength = 4;
             this.textBox_Dennwa2.Name = "textBox_Dennwa2";
             this.textBox_Dennwa2.Size = new System.Drawing.Size(130, 31);
             this.textBox_Dennwa2.TabIndex = 55;

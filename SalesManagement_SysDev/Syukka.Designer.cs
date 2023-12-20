@@ -134,6 +134,7 @@
             // textBox_Syukkasyousai_ID
             // 
             this.textBox_Syukkasyousai_ID.Location = new System.Drawing.Point(776, 359);
+            this.textBox_Syukkasyousai_ID.MaxLength = 6;
             this.textBox_Syukkasyousai_ID.Name = "textBox_Syukkasyousai_ID";
             this.textBox_Syukkasyousai_ID.Size = new System.Drawing.Size(286, 31);
             this.textBox_Syukkasyousai_ID.TabIndex = 76;
@@ -141,6 +142,7 @@
             // textBox_Kakutei_Syain_Namae
             // 
             this.textBox_Kakutei_Syain_Namae.Location = new System.Drawing.Point(265, 359);
+            this.textBox_Kakutei_Syain_Namae.MaxLength = 50;
             this.textBox_Kakutei_Syain_Namae.Name = "textBox_Kakutei_Syain_Namae";
             this.textBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(265, 31);
             this.textBox_Kakutei_Syain_Namae.TabIndex = 75;
@@ -148,6 +150,7 @@
             // textBox_Zyutyuu_ID
             // 
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(776, 266);
+            this.textBox_Zyutyuu_ID.MaxLength = 6;
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(286, 31);
             this.textBox_Zyutyuu_ID.TabIndex = 74;
@@ -155,6 +158,7 @@
             // textBox_Nyuuka_Syain_Namae
             // 
             this.textBox_Nyuuka_Syain_Namae.Location = new System.Drawing.Point(265, 266);
+            this.textBox_Nyuuka_Syain_Namae.MaxLength = 50;
             this.textBox_Nyuuka_Syain_Namae.Name = "textBox_Nyuuka_Syain_Namae";
             this.textBox_Nyuuka_Syain_Namae.Size = new System.Drawing.Size(265, 31);
             this.textBox_Nyuuka_Syain_Namae.TabIndex = 73;
@@ -162,6 +166,7 @@
             // textBox_Syukka_ID
             // 
             this.textBox_Syukka_ID.Location = new System.Drawing.Point(776, 170);
+            this.textBox_Syukka_ID.MaxLength = 6;
             this.textBox_Syukka_ID.Name = "textBox_Syukka_ID";
             this.textBox_Syukka_ID.Size = new System.Drawing.Size(286, 31);
             this.textBox_Syukka_ID.TabIndex = 72;

@@ -246,6 +246,11 @@
             // numericUPDown_Syouhin_Namae
             // 
             this.numericUPDown_Syouhin_Namae.Location = new System.Drawing.Point(1239, 413);
+            this.numericUPDown_Syouhin_Namae.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.numericUPDown_Syouhin_Namae.Name = "numericUPDown_Syouhin_Namae";
             this.numericUPDown_Syouhin_Namae.Size = new System.Drawing.Size(251, 31);
             this.numericUPDown_Syouhin_Namae.TabIndex = 21;

@@ -103,6 +103,11 @@
             // numericUpDown_Suuryou
             // 
             this.numericUpDown_Suuryou.Location = new System.Drawing.Point(265, 449);
+            this.numericUpDown_Suuryou.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.numericUpDown_Suuryou.Name = "numericUpDown_Suuryou";
             this.numericUpDown_Suuryou.Size = new System.Drawing.Size(265, 31);
             this.numericUpDown_Suuryou.TabIndex = 80;
@@ -134,6 +139,7 @@
             // textBox_Nyuukasyousai_ID
             // 
             this.textBox_Nyuukasyousai_ID.Location = new System.Drawing.Point(759, 361);
+            this.textBox_Nyuukasyousai_ID.MaxLength = 6;
             this.textBox_Nyuukasyousai_ID.Name = "textBox_Nyuukasyousai_ID";
             this.textBox_Nyuukasyousai_ID.Size = new System.Drawing.Size(273, 31);
             this.textBox_Nyuukasyousai_ID.TabIndex = 76;
@@ -141,6 +147,7 @@
             // textBox_Kakutei_Syain_Namae
             // 
             this.textBox_Kakutei_Syain_Namae.Location = new System.Drawing.Point(263, 361);
+            this.textBox_Kakutei_Syain_Namae.MaxLength = 50;
             this.textBox_Kakutei_Syain_Namae.Name = "textBox_Kakutei_Syain_Namae";
             this.textBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(265, 31);
             this.textBox_Kakutei_Syain_Namae.TabIndex = 75;
@@ -148,6 +155,7 @@
             // textBox_Zyutyuu_ID
             // 
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(759, 268);
+            this.textBox_Zyutyuu_ID.MaxLength = 6;
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(273, 31);
             this.textBox_Zyutyuu_ID.TabIndex = 74;
@@ -155,6 +163,7 @@
             // textBox_Nyuuka_Syain_Namae
             // 
             this.textBox_Nyuuka_Syain_Namae.Location = new System.Drawing.Point(263, 268);
+            this.textBox_Nyuuka_Syain_Namae.MaxLength = 50;
             this.textBox_Nyuuka_Syain_Namae.Name = "textBox_Nyuuka_Syain_Namae";
             this.textBox_Nyuuka_Syain_Namae.Size = new System.Drawing.Size(265, 31);
             this.textBox_Nyuuka_Syain_Namae.TabIndex = 73;
@@ -162,6 +171,7 @@
             // textBox_Nyuuka_ID
             // 
             this.textBox_Nyuuka_ID.Location = new System.Drawing.Point(759, 176);
+            this.textBox_Nyuuka_ID.MaxLength = 6;
             this.textBox_Nyuuka_ID.Name = "textBox_Nyuuka_ID";
             this.textBox_Nyuuka_ID.Size = new System.Drawing.Size(273, 31);
             this.textBox_Nyuuka_ID.TabIndex = 72;

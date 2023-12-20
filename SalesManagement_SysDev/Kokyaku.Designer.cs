@@ -63,7 +63,7 @@
             // textBox_FAX3
             // 
             this.textBox_FAX3.Location = new System.Drawing.Point(1323, 391);
-            this.textBox_FAX3.MaxLength = 13;
+            this.textBox_FAX3.MaxLength = 4;
             this.textBox_FAX3.Name = "textBox_FAX3";
             this.textBox_FAX3.Size = new System.Drawing.Size(122, 31);
             this.textBox_FAX3.TabIndex = 57;
@@ -82,7 +82,7 @@
             // textBox_FAX2
             // 
             this.textBox_FAX2.Location = new System.Drawing.Point(1138, 391);
-            this.textBox_FAX2.MaxLength = 13;
+            this.textBox_FAX2.MaxLength = 4;
             this.textBox_FAX2.Name = "textBox_FAX2";
             this.textBox_FAX2.Size = new System.Drawing.Size(122, 31);
             this.textBox_FAX2.TabIndex = 55;
@@ -101,6 +101,7 @@
             // textBox_Dennwa3
             // 
             this.textBox_Dennwa3.Location = new System.Drawing.Point(658, 396);
+            this.textBox_Dennwa3.MaxLength = 4;
             this.textBox_Dennwa3.Name = "textBox_Dennwa3";
             this.textBox_Dennwa3.Size = new System.Drawing.Size(130, 31);
             this.textBox_Dennwa3.TabIndex = 53;
@@ -119,6 +120,7 @@
             // textBox_Dennwa2
             // 
             this.textBox_Dennwa2.Location = new System.Drawing.Point(466, 396);
+            this.textBox_Dennwa2.MaxLength = 4;
             this.textBox_Dennwa2.Name = "textBox_Dennwa2";
             this.textBox_Dennwa2.Size = new System.Drawing.Size(130, 31);
             this.textBox_Dennwa2.TabIndex = 51;
@@ -145,7 +147,7 @@
             // textBox_FAX1
             // 
             this.textBox_FAX1.Location = new System.Drawing.Point(954, 392);
-            this.textBox_FAX1.MaxLength = 13;
+            this.textBox_FAX1.MaxLength = 4;
             this.textBox_FAX1.Name = "textBox_FAX1";
             this.textBox_FAX1.Size = new System.Drawing.Size(122, 31);
             this.textBox_FAX1.TabIndex = 48;
@@ -153,6 +155,7 @@
             // textBox_Dennwa1
             // 
             this.textBox_Dennwa1.Location = new System.Drawing.Point(280, 396);
+            this.textBox_Dennwa1.MaxLength = 4;
             this.textBox_Dennwa1.Name = "textBox_Dennwa1";
             this.textBox_Dennwa1.Size = new System.Drawing.Size(130, 31);
             this.textBox_Dennwa1.TabIndex = 47;
@@ -160,6 +163,7 @@
             // textBox_Zyuusyo
             // 
             this.textBox_Zyuusyo.Location = new System.Drawing.Point(788, 288);
+            this.textBox_Zyuusyo.MaxLength = 50;
             this.textBox_Zyuusyo.Name = "textBox_Zyuusyo";
             this.textBox_Zyuusyo.Size = new System.Drawing.Size(735, 31);
             this.textBox_Zyuusyo.TabIndex = 46;
