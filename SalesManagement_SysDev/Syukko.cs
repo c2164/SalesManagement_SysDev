@@ -58,6 +58,7 @@ namespace SalesManagement_SysDev
             textBox_Syain.Text = "";
             textBox_Syukkosyousai_ID.Text = "";
             textBox_Zyutyuu_ID.Text = "";
+            textBox_Syukko_ID.Text = "";
 
 
             //各コンボボックスを初期化
@@ -256,7 +257,7 @@ namespace SalesManagement_SysDev
             DispSyukkoDTO retSyukkoDTO = new DispSyukkoDTO();
 
             //各コントロールから出庫情報を読み取る
-            retSyukkoDTO.SyID = numericUpDown_Syukko_ID.Value.ToString();
+            retSyukkoDTO.SyID = textBox_Syukko_ID.Text.ToString().Trim();
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retSyukkoDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
             retSyukkoDTO.ChumonEmID = textBox_Syain.Text.Trim();
@@ -442,7 +443,7 @@ namespace SalesManagement_SysDev
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            numericUpDown_Syukko_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            textBox_Syukko_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
             textBox_Syain.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value.ToString();
             comboBox_Kokyaku.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();

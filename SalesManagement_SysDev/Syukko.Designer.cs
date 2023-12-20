@@ -52,12 +52,11 @@
             this.comboBox_Kokyaku = new System.Windows.Forms.ComboBox();
             this.comboBox_Meka_Namae = new System.Windows.Forms.ComboBox();
             this.comboBoxSyouhin_Namae = new System.Windows.Forms.ComboBox();
-            this.numericUpDown_Syukko_ID = new System.Windows.Forms.NumericUpDown();
             this.domainUpDown_Suuryou = new System.Windows.Forms.NumericUpDown();
             this.checkBox_Mikakutei = new System.Windows.Forms.CheckBox();
             this.checkBox_Kakutei = new System.Windows.Forms.CheckBox();
+            this.textBox_Syukko_ID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Syukko_ID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.domainUpDown_Suuryou)).BeginInit();
             this.SuspendLayout();
             // 
@@ -300,13 +299,6 @@
             this.comboBoxSyouhin_Namae.Size = new System.Drawing.Size(247, 32);
             this.comboBoxSyouhin_Namae.TabIndex = 24;
             // 
-            // numericUpDown_Syukko_ID
-            // 
-            this.numericUpDown_Syukko_ID.Location = new System.Drawing.Point(239, 185);
-            this.numericUpDown_Syukko_ID.Name = "numericUpDown_Syukko_ID";
-            this.numericUpDown_Syukko_ID.Size = new System.Drawing.Size(260, 31);
-            this.numericUpDown_Syukko_ID.TabIndex = 25;
-            // 
             // domainUpDown_Suuryou
             // 
             this.domainUpDown_Suuryou.Location = new System.Drawing.Point(239, 462);
@@ -339,15 +331,22 @@
             this.checkBox_Kakutei.Text = "確定済み";
             this.checkBox_Kakutei.UseVisualStyleBackColor = true;
             // 
+            // textBox_Syukko_ID
+            // 
+            this.textBox_Syukko_ID.Location = new System.Drawing.Point(239, 185);
+            this.textBox_Syukko_ID.Name = "textBox_Syukko_ID";
+            this.textBox_Syukko_ID.Size = new System.Drawing.Size(260, 31);
+            this.textBox_Syukko_ID.TabIndex = 29;
+            // 
             // Syukko
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.Controls.Add(this.textBox_Syukko_ID);
             this.Controls.Add(this.checkBox_Kakutei);
             this.Controls.Add(this.checkBox_Mikakutei);
             this.Controls.Add(this.domainUpDown_Suuryou);
-            this.Controls.Add(this.numericUpDown_Syukko_ID);
             this.Controls.Add(this.comboBoxSyouhin_Namae);
             this.Controls.Add(this.comboBox_Meka_Namae);
             this.Controls.Add(this.comboBox_Kokyaku);
@@ -376,7 +375,6 @@
             this.Size = new System.Drawing.Size(1610, 875);
             this.Load += new System.EventHandler(this.Syukko_load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Syukko_ID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.domainUpDown_Suuryou)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -408,9 +406,9 @@
         private System.Windows.Forms.ComboBox comboBox_Kokyaku;
         private System.Windows.Forms.ComboBox comboBox_Meka_Namae;
         private System.Windows.Forms.ComboBox comboBoxSyouhin_Namae;
-        private System.Windows.Forms.NumericUpDown numericUpDown_Syukko_ID;
         private System.Windows.Forms.NumericUpDown domainUpDown_Suuryou;
         private System.Windows.Forms.CheckBox checkBox_Mikakutei;
         private System.Windows.Forms.CheckBox checkBox_Kakutei;
+        private System.Windows.Forms.TextBox textBox_Syukko_ID;
     }
 }
