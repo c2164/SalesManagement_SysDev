@@ -39,7 +39,7 @@ namespace SalesManagement_SysDev
             bool flg;
             string msg;
             string title;
-            MessageBoxIcon icon
+            MessageBoxIcon icon;
 
             //各コントロールからログイン情報取得
             retdispEmplyeeDTO = GetLoginInf();
@@ -50,6 +50,7 @@ namespace SalesManagement_SysDev
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return null;
             }
+            return retdispEmplyeeDTO;
         }
 
         private bool CheckLoginInf(DispEmplyeeDTO retdispEmplyeeDTO, out string msg, out string title, out MessageBoxIcon icon)
@@ -58,6 +59,8 @@ namespace SalesManagement_SysDev
             msg = "";
             title = "";
             icon = MessageBoxIcon.Error;
+
+            return true;
         }
 
         private DispEmplyeeDTO GetLoginInf()

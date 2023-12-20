@@ -52,6 +52,7 @@ namespace SalesManagement_SysDev
             SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
             MakerDateAccess makerDateAccess = new MakerDateAccess();
             ProductDataAccess productDataAccess = new ProductDataAccess();
+            ClientDataAccess clientDataAccess = new ClientDataAccess();
             //各テキストボックスに初期化(空白)
             textBox_Kakutei_Syain_Namae.Text = "";
             textBox_Syain.Text = "";
@@ -68,7 +69,7 @@ namespace SalesManagement_SysDev
 
             comboBox_Kokyaku.DisplayMember = "ClName";
             comboBox_Kokyaku.ValueMember = "ClID";
-            comboBox_Kokyaku.DataSource = productDataAccess.GetProductData();
+            comboBox_Kokyaku.DataSource = clientDataAccess.GetClientData();
             comboBox_Kokyaku.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Kokyaku.SelectedIndex = -1;
 
@@ -179,8 +180,8 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
-            //SetCtrlFormat();
+            GetSelectData();
+            SetCtrlFormat();
         }
 
         private void button_Itiranhyouzi_Click(object sender, EventArgs e)
