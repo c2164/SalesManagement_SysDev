@@ -44,12 +44,13 @@ namespace SalesManagement_SysDev
             SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
             ProductDataAccess productDataAccess = new ProductDataAccess();
             EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
+            ClientDataAccess clientDataAccess = new ClientDataAccess();
 
             textbox_Tyuumon_ID.Text = "";
             textbox_Tyuumonsyousai_ID.Text = "";
             textbox_Zyutyuusyousai.Text = "";
-            textbox_Kokyaku_Namae.Text = "";
-
+            numericUPDown_Syouhin_Namae.Value = 0;
+            dateTimePicker_Tyuumon_Nenngetu.Value = DateTime.Now;
 
             //各コンボボックスを初期化
             comboBox_Eigyousyo.DisplayMember = "SoName";
@@ -70,7 +71,11 @@ namespace SalesManagement_SysDev
             comboBox_Syain_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Syain_Namae.SelectedIndex = -1;
 
-
+            comboBox_Kokyaku_Namae.DisplayMember = "ClName";
+            comboBox_Kokyaku_Namae.ValueMember = "ClID";
+            comboBox_Kokyaku_Namae.DataSource = clientDataAccess.GetClientData();
+            comboBox_Kokyaku_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Kokyaku_Namae.SelectedIndex = -1;
         }
 
         private bool GetSelectData()
@@ -264,7 +269,7 @@ namespace SalesManagement_SysDev
 
             retChumonDTO.OrID = textbox_Tyuumonsyousai_ID.Text.Trim();//受注ID
 
-            retChumonDTO.ClName = textbox_Kokyaku_Namae.Text.Trim();//顧客名
+            retChumonDTO.ClName = comboBox_Kokyaku_Namae.Text;//顧客名
 
             if (!(comboBox_Syain_Namae.SelectedIndex == -1))
                 retChumonDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();//社員ID
@@ -460,6 +465,7 @@ namespace SalesManagement_SysDev
             return flg;
         }
 
+
         private void button_Kakutei_Click(object sender, EventArgs e)
         {
             DecisionChumon();
@@ -601,7 +607,7 @@ namespace SalesManagement_SysDev
             syukko.SyHidden = null;
 
             //出庫詳細レコードの作成
-            foreach(var chumondetail in listChumonDetail)
+            foreach (var chumondetail in listChumonDetail)
             {
                 T_SyukkoDetail syukkodetail = new T_SyukkoDetail();
                 syukkodetail.PrID = chumondetail.PrID;
@@ -610,7 +616,17 @@ namespace SalesManagement_SysDev
             }
 
             return syukko;
-            
+
+        }
+
+        private void UpdateOrStateFlag(T_Chumon chumon, T_ChumonDetail t_ChumonDetail)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool RegisrationChumonInf(T_Chumon chumon, List<T_ChumonDetail> listChumonDetail)
+        {
+            return false;
         }
 
         private bool SubStQuantity(List<T_ChumonDetail> ListChumonDetail)
@@ -624,14 +640,14 @@ namespace SalesManagement_SysDev
 
             //注文詳細に存在する商品の在庫情報を受け取る
             ListStock = GetStockRecord(ListChumonDetail, out msg, out title, out icon);
-            if(ListStock == null)
+            if (ListStock == null)
             {
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return false;
             }
             //在庫数を注文数分減らす
             ListStock = SubStockRecord(ListStock, ListChumonDetail, out msg, out title, out icon);
-            if(ListStock == null)
+            if (ListStock == null)
             {
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return false;
@@ -673,7 +689,7 @@ namespace SalesManagement_SysDev
             return true;
         }
 
-        private List<T_Stock> SubStockRecord(List<T_Stock> listStock, List<T_ChumonDetail> listChumonDetail, out string msg, out string title, out MessageBoxIcon icon )
+        private List<T_Stock> SubStockRecord(List<T_Stock> listStock, List<T_ChumonDetail> listChumonDetail, out string msg, out string title, out MessageBoxIcon icon)
         {
             //変数の宣言
             List<T_Stock> retStock = new List<T_Stock>();
@@ -684,15 +700,15 @@ namespace SalesManagement_SysDev
             icon = MessageBoxIcon.Error;
 
             //在庫数を減らす
-            foreach(var Stock in listStock)
+            foreach (var Stock in listStock)
             {
-                    Quantity = Stock.StQuantity - listChumonDetail.Single(x => x.PrID == Stock.PrID).ChQuantity;
-                    if (Quantity < 0)
-                    {
-                        msg = "在庫数が足りない商品が存在します";
-                        title = "在庫不足";
-                        return null;
-                    }
+                Quantity = Stock.StQuantity - listChumonDetail.Single(x => x.PrID == Stock.PrID).ChQuantity;
+                if (Quantity < 0)
+                {
+                    msg = "在庫数が足りない商品が存在します";
+                    title = "在庫不足";
+                    return null;
+                }
                 Stock.StQuantity = Quantity;
                 retStock.Add(Stock);
             }
@@ -714,7 +730,7 @@ namespace SalesManagement_SysDev
 
             //データベースから在庫テーブルのデータを取得
             ListDispStockDTO = access.GetStockData().Where(x => ListChumonDetail.Any(y => y.PrID.ToString() == x.PrID)).ToList();
-            if(ListDispStockDTO == null)
+            if (ListDispStockDTO == null)
             {
                 msg = "在庫情報を取得できませんでした";
                 title = "エラー";
@@ -722,7 +738,7 @@ namespace SalesManagement_SysDev
             }
 
             //表示用からテーブル形式に変換
-            foreach(var stock in ListDispStockDTO)
+            foreach (var stock in ListDispStockDTO)
             {
                 T_Stock inputStockData = new T_Stock();
                 inputStockData.StID = int.Parse(stock.StID);
@@ -778,7 +794,7 @@ namespace SalesManagement_SysDev
 
             //受注IDの一致する受注情報を取得
             ListDispChumon = GetTableData().Where(x => x.ChID == chID).ToList();
-            if (ListDispChumon == null)
+            if (ListDispChumon == null || ListDispChumon.Count == 0)
             {
                 msg = "注文情報を取得できませんでした";
                 title = "エラー";
@@ -792,6 +808,22 @@ namespace SalesManagement_SysDev
             }
 
             return ListDispChumon;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textbox_Tyuumon_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+            textbox_Tyuumonsyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            textbox_Zyutyuusyousai.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString();
+            comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+            dateTimePicker_Tyuumon_Nenngetu.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString());
+            numericUPDown_Syouhin_Namae.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString());
+
+
+
         }
     }
 }

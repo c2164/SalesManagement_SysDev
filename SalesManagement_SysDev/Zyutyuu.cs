@@ -266,7 +266,7 @@ namespace SalesManagement_SysDev
             if (!(comboBox_Syain_Namae.SelectedIndex == -1))
                 retOrderDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();//社員ID
             retOrderDTO.EmName = comboBox_Syain_Namae.Text.Trim();//社員名
-            retOrderDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();//受注ID 
+            retOrderDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();//受注ID
             retOrderDTO.OrDetailID = textBox_Zyutyuusyousai_ID.Text.Trim();//受注詳細ID
             retOrderDTO.MaName = comboBox_Meka_Namae.Text.Trim();//メーカー名
             if (!(comboBox_Eigyousyo.SelectedIndex == -1)) retOrderDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所名
@@ -735,7 +735,7 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void UpdateOrStateFlag(T_Order order,T_OrderDetail orderDetail)
+        private void UpdateOrStateFlag(T_Order order, T_OrderDetail orderDetail)
         {
             //変数の宣言
             bool flg;
@@ -743,7 +743,7 @@ namespace SalesManagement_SysDev
             //受注状態フラグを0から1にする
             order = ChangeOrStateFlag(order);
             //受注情報を更新する
-            flg = UpdateOrderRecord(order,orderDetail);
+            flg = UpdateOrderRecord(order, orderDetail);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("受注情報を確定しました", "確定完了", MessageBoxIcon.Information);
@@ -769,7 +769,7 @@ namespace SalesManagement_SysDev
             MessageBoxIcon icon;
             T_Chumon chumon;
             List<T_ChumonDetail> ListChumonDetail;
-            
+
             //注文と注文詳細のレコードを作成
             chumon = CreateChumonInputRecord(order, orderDetails, out ListChumonDetail);
 
@@ -817,17 +817,17 @@ namespace SalesManagement_SysDev
             MessageBoxIcon icon;
             //初期値代入
             ListOrderDetail = new List<T_OrderDetail>();
-            
+
             //受注情報取得
             orderDTO = CreateOrderRecord(orID, out msg, out title, out icon);
-            if(orderDTO == null)
+            if (orderDTO == null)
             {
                 messageDsp.MessageBoxDsp_OK(msg, title, icon);
                 return null;
             }
             //受注情報をテーブルデータに形式化
             order = FormalizationOrderInputRecord(orderDTO[0]);
-            foreach(var OrderDTO in orderDTO)
+            foreach (var OrderDTO in orderDTO)
             {
                 ListOrderDetail.Add(FormalizationOrderDetailRecord(OrderDTO));
             }
@@ -876,7 +876,7 @@ namespace SalesManagement_SysDev
 
             //受注IDの一致する受注情報を取得
             DispOrders = GetTableData().Where(x => x.OrID == orID).ToList();
-            if(DispOrders == null)
+            if (DispOrders == null || DispOrders.Count == 0)
             {
                 msg = "受注情報を取得できませんでした";
                 title = "エラー";

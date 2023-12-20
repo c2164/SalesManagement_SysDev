@@ -10,22 +10,21 @@ namespace SalesManagement_SysDev.Common
 {
     internal class ShipmentDataAccess
     {
-        public bool RegisterShipmentData(T_Shipment RegShipment, T_ShipmentDetail RegShipmentDetail)
+        public bool RegisterShipmentData(T_Shipment RegShipment, List<T_ShipmentDetail> ListRegShipmentDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
-                    int ShID = RegShipment.ShID;
-                    if(!context.T_Shipments.Any(x => x.ShID == RegShipment.ShID))
-                    {
-                        context.T_Shipments.Add(RegShipment);
-                        context.SaveChanges();
-                        ShID = context.T_Shipments.Max(x => x.ShID);
-                    }
-                    RegShipmentDetail.ShID = ShID;
-                    context.T_ShipmentDetails.Add(RegShipmentDetail);
+                    context.T_Shipments.Add(RegShipment);
                     context.SaveChanges();
+                    int ShID = context.T_Shipments.Max(x => x.ShID);
+                    foreach (var RegShipmentDetail in ListRegShipmentDetail)
+                    {
+                        RegShipmentDetail.ShID = ShID;
+                        context.T_ShipmentDetails.Add(RegShipmentDetail);
+                        context.SaveChanges();
+                    }
                     return true;
                 }
                 catch (Exception ex)
@@ -36,14 +35,29 @@ namespace SalesManagement_SysDev.Common
             }
         }
 
-        public bool UpdateShipmentData(T_Shipment UpShipment)
+        public bool UpdateShipmentData(T_Shipment UpShipment,T_ShipmentDetail UpShipmentDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.T_Shipments.Single(x => x.ShID == UpShipment.ShID);
-                    UpdateTarget = UpShipment;
+                    var UpdateTargetDetails=context.T_ShipmentDetails.Single(x=>x.ShDetailID == UpShipmentDetail.ShDetailID);
+
+                    UpdateTarget.ShID = UpShipment.ShID;
+                    UpdateTarget.ClID = UpShipment.ClID;
+                    UpdateTarget.EmID= UpShipment.EmID;
+                    UpdateTarget.SoID= UpShipment.SoID;
+                    UpdateTarget.OrID= UpShipment.OrID;
+                    UpdateTarget.ShStateFlag= UpShipment.ShStateFlag;
+                    UpdateTarget.ShFinishDate= UpShipment.ShFinishDate;
+                    UpdateTarget.ShFlag= UpShipment.ShFlag;
+                    UpdateTarget.ShHidden= UpShipment.ShHidden;
+
+                    UpdateTargetDetails.ShDetailID= UpShipmentDetail.ShDetailID;
+                    UpdateTargetDetails.ShID= UpShipmentDetail.ShID;
+                    UpdateTargetDetails.PrID= UpShipmentDetail.PrID;
+                    UpdateTargetDetails.ShQuantity= UpShipmentDetail.ShQuantity;
 
                     context.SaveChanges();
                     return true;

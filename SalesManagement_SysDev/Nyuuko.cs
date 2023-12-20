@@ -439,6 +439,10 @@ namespace SalesManagement_SysDev
 
             //確定対象の入庫IDを取得
             WaID = GetWarehousingRecord();
+            if (WaID == null)
+            {
+                return;
+            }
 
             //入庫IDから入庫情報を取得
             warehousing = GetWarehousingAndWaDetailRecord(WaID, out ListWarehousingDetail);
@@ -652,7 +656,7 @@ namespace SalesManagement_SysDev
 
             //受注IDの一致する受注情報を取得
             ListDispWarehousing = GetTableData().Where(x => x.WaID == WaID).ToList();
-            if (ListDispWarehousing == null)
+            if (ListDispWarehousing == null || ListDispWarehousing.Count == 0)
             {
                 msg = "入庫情報を取得できませんでした";
                 title = "エラー";
@@ -667,6 +671,8 @@ namespace SalesManagement_SysDev
 
             return ListDispWarehousing;
         }
+
+      
     }
 
 } 

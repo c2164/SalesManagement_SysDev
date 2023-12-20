@@ -57,6 +57,7 @@
             this.button_Kousin.TabIndex = 0;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
+            this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
             // 
             // button_Kensaku
             // 
@@ -69,6 +70,7 @@
             this.button_Kensaku.TabIndex = 1;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
+            this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
             // 
             // button_Itirannhyouzi
             // 
@@ -81,6 +83,7 @@
             this.button_Itirannhyouzi.TabIndex = 2;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
+            this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
             // 
             // button_Sakuzyo
             // 
@@ -93,6 +96,7 @@
             this.button_Sakuzyo.TabIndex = 3;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // button_Kuria
             // 
@@ -112,7 +116,7 @@
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
             this.label1.Location = new System.Drawing.Point(49, 231);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 41);
+            this.label1.Size = new System.Drawing.Size(136, 41);
             this.label1.TabIndex = 5;
             this.label1.Text = "在庫ID";
             // 
@@ -169,6 +173,11 @@
             // domainUpDown_Zaikosuu
             // 
             this.domainUpDown_Zaikosuu.Location = new System.Drawing.Point(242, 387);
+            this.domainUpDown_Zaikosuu.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.domainUpDown_Zaikosuu.Name = "domainUpDown_Zaikosuu";
             this.domainUpDown_Zaikosuu.Size = new System.Drawing.Size(250, 31);
             this.domainUpDown_Zaikosuu.TabIndex = 12;
@@ -182,6 +191,7 @@
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Zaiko
             // 
