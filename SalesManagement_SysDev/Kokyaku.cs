@@ -677,5 +677,10 @@ namespace SalesManagement_SysDev
 
 
         }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
