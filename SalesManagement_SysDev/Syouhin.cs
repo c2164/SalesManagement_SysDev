@@ -612,5 +612,10 @@ namespace SalesManagement_SysDev
         {
 
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

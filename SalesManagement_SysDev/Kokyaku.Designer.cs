@@ -147,77 +147,78 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(57, 138);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 30);
+            this.label1.Size = new System.Drawing.Size(79, 22);
             this.label1.TabIndex = 6;
             this.label1.Text = "顧客名";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(479, 132);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 30);
+            this.label2.Size = new System.Drawing.Size(75, 22);
             this.label2.TabIndex = 7;
             this.label2.Text = "顧客ID";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label3.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(878, 132);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 30);
+            this.label3.Size = new System.Drawing.Size(79, 22);
             this.label3.TabIndex = 8;
             this.label3.Text = "営業所";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label4.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(34, 215);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 30);
+            this.label4.Size = new System.Drawing.Size(102, 22);
             this.label4.TabIndex = 9;
             this.label4.Text = "郵便番号";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label5.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(489, 215);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 30);
+            this.label5.Size = new System.Drawing.Size(56, 22);
             this.label5.TabIndex = 10;
             this.label5.Text = "住所";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label6.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(34, 296);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(101, 30);
+            this.label6.Size = new System.Drawing.Size(102, 22);
             this.label6.TabIndex = 11;
             this.label6.Text = "電話番号";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label7.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(678, 299);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 30);
+            this.label7.Size = new System.Drawing.Size(53, 22);
             this.label7.TabIndex = 12;
             this.label7.Text = "FAX";
             // 
@@ -235,54 +236,61 @@
             // 
             // textBox_Kokyaku_Namae
             // 
+            this.textBox_Kokyaku_Namae.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Kokyaku_Namae.Location = new System.Drawing.Point(214, 138);
             this.textBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kokyaku_Namae.MaxLength = 50;
             this.textBox_Kokyaku_Namae.Name = "textBox_Kokyaku_Namae";
-            this.textBox_Kokyaku_Namae.Size = new System.Drawing.Size(194, 25);
+            this.textBox_Kokyaku_Namae.Size = new System.Drawing.Size(194, 29);
             this.textBox_Kokyaku_Namae.TabIndex = 14;
             // 
             // textBox_Kokyaku_ID
             // 
+            this.textBox_Kokyaku_ID.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Kokyaku_ID.Location = new System.Drawing.Point(605, 138);
             this.textBox_Kokyaku_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kokyaku_ID.MaxLength = 6;
             this.textBox_Kokyaku_ID.Name = "textBox_Kokyaku_ID";
-            this.textBox_Kokyaku_ID.Size = new System.Drawing.Size(194, 25);
+            this.textBox_Kokyaku_ID.Size = new System.Drawing.Size(194, 29);
             this.textBox_Kokyaku_ID.TabIndex = 15;
             // 
             // textBox_Yuubin
             // 
+            this.textBox_Yuubin.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Yuubin.Location = new System.Drawing.Point(214, 223);
             this.textBox_Yuubin.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Yuubin.MaxLength = 7;
             this.textBox_Yuubin.Name = "textBox_Yuubin";
-            this.textBox_Yuubin.Size = new System.Drawing.Size(194, 25);
+            this.textBox_Yuubin.Size = new System.Drawing.Size(194, 29);
             this.textBox_Yuubin.TabIndex = 16;
             // 
             // textBox_Zyuusyo
             // 
+            this.textBox_Zyuusyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Zyuusyo.Location = new System.Drawing.Point(605, 223);
             this.textBox_Zyuusyo.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Zyuusyo.Name = "textBox_Zyuusyo";
-            this.textBox_Zyuusyo.Size = new System.Drawing.Size(566, 25);
+            this.textBox_Zyuusyo.Size = new System.Drawing.Size(566, 29);
             this.textBox_Zyuusyo.TabIndex = 17;
             // 
             // textBox_Dennwa1
             // 
+            this.textBox_Dennwa1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Dennwa1.Location = new System.Drawing.Point(214, 304);
             this.textBox_Dennwa1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Dennwa1.Name = "textBox_Dennwa1";
-            this.textBox_Dennwa1.Size = new System.Drawing.Size(101, 25);
+            this.textBox_Dennwa1.Size = new System.Drawing.Size(101, 29);
             this.textBox_Dennwa1.TabIndex = 18;
+            this.textBox_Dennwa1.TextChanged += new System.EventHandler(this.textBox_Dennwa1_TextChanged);
             // 
             // textBox_FAX1
             // 
+            this.textBox_FAX1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_FAX1.Location = new System.Drawing.Point(732, 301);
             this.textBox_FAX1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_FAX1.MaxLength = 13;
             this.textBox_FAX1.Name = "textBox_FAX1";
-            this.textBox_FAX1.Size = new System.Drawing.Size(95, 25);
+            this.textBox_FAX1.Size = new System.Drawing.Size(95, 29);
             this.textBox_FAX1.TabIndex = 19;
             // 
             // comboBox_Eigyousyo
@@ -316,18 +324,20 @@
             // 
             // textBox_Dennwa2
             // 
+            this.textBox_Dennwa2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Dennwa2.Location = new System.Drawing.Point(357, 304);
             this.textBox_Dennwa2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Dennwa2.Name = "textBox_Dennwa2";
-            this.textBox_Dennwa2.Size = new System.Drawing.Size(101, 25);
+            this.textBox_Dennwa2.Size = new System.Drawing.Size(101, 29);
             this.textBox_Dennwa2.TabIndex = 22;
             // 
             // textBox_Dennwa3
             // 
+            this.textBox_Dennwa3.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Dennwa3.Location = new System.Drawing.Point(505, 304);
             this.textBox_Dennwa3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Dennwa3.Name = "textBox_Dennwa3";
-            this.textBox_Dennwa3.Size = new System.Drawing.Size(101, 25);
+            this.textBox_Dennwa3.Size = new System.Drawing.Size(101, 29);
             this.textBox_Dennwa3.TabIndex = 24;
             // 
             // label10
@@ -352,20 +362,22 @@
             // 
             // textBox_FAX2
             // 
+            this.textBox_FAX2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_FAX2.Location = new System.Drawing.Point(874, 300);
             this.textBox_FAX2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_FAX2.MaxLength = 13;
             this.textBox_FAX2.Name = "textBox_FAX2";
-            this.textBox_FAX2.Size = new System.Drawing.Size(95, 25);
+            this.textBox_FAX2.Size = new System.Drawing.Size(95, 29);
             this.textBox_FAX2.TabIndex = 26;
             // 
             // textBox_FAX3
             // 
+            this.textBox_FAX3.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_FAX3.Location = new System.Drawing.Point(1016, 300);
             this.textBox_FAX3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_FAX3.MaxLength = 13;
             this.textBox_FAX3.Name = "textBox_FAX3";
-            this.textBox_FAX3.Size = new System.Drawing.Size(95, 25);
+            this.textBox_FAX3.Size = new System.Drawing.Size(95, 29);
             this.textBox_FAX3.TabIndex = 28;
             // 
             // Kokyaku

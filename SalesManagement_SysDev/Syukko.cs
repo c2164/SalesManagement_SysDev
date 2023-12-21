@@ -182,5 +182,10 @@ namespace SalesManagement_SysDev
             //GetSelectData();
             //SetCtrlFormat();
         }
+
+        private void checkBox_Kakutei_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

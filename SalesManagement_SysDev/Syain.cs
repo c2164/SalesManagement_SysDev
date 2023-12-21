@@ -223,5 +223,15 @@ namespace SalesManagement_SysDev
             return retDispEmployee;
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_FAX_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

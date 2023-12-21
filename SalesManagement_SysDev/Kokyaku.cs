@@ -528,5 +528,15 @@ namespace SalesManagement_SysDev
             textBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
             
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_Dennwa1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

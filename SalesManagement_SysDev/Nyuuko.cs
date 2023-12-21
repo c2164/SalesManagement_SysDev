@@ -157,5 +157,10 @@ namespace SalesManagement_SysDev
             //GetSelectData();
             //SetCtrlFormat();
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
