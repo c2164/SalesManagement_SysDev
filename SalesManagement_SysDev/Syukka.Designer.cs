@@ -73,38 +73,42 @@
             // 
             // comboBox_Meka_Namae
             // 
+            this.comboBox_Meka_Namae.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.comboBox_Meka_Namae.FormattingEnabled = true;
             this.comboBox_Meka_Namae.Location = new System.Drawing.Point(987, 270);
             this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
-            this.comboBox_Meka_Namae.Size = new System.Drawing.Size(187, 26);
+            this.comboBox_Meka_Namae.Size = new System.Drawing.Size(187, 30);
             this.comboBox_Meka_Namae.TabIndex = 54;
             // 
             // comboBox_Syouhin_Namae
             // 
+            this.comboBox_Syouhin_Namae.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.comboBox_Syouhin_Namae.FormattingEnabled = true;
             this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(987, 200);
             this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
-            this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(187, 26);
+            this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(187, 30);
             this.comboBox_Syouhin_Namae.TabIndex = 53;
             // 
             // comboBox_Eigyousyo
             // 
+            this.comboBox_Eigyousyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.comboBox_Eigyousyo.FormattingEnabled = true;
             this.comboBox_Eigyousyo.Location = new System.Drawing.Point(987, 128);
             this.comboBox_Eigyousyo.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
-            this.comboBox_Eigyousyo.Size = new System.Drawing.Size(187, 26);
+            this.comboBox_Eigyousyo.Size = new System.Drawing.Size(187, 30);
             this.comboBox_Eigyousyo.TabIndex = 52;
             // 
             // radioButton_Kakutei
             // 
             this.radioButton_Kakutei.AutoSize = true;
+            this.radioButton_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.radioButton_Kakutei.Location = new System.Drawing.Point(598, 329);
             this.radioButton_Kakutei.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton_Kakutei.Name = "radioButton_Kakutei";
-            this.radioButton_Kakutei.Size = new System.Drawing.Size(103, 22);
+            this.radioButton_Kakutei.Size = new System.Drawing.Size(126, 26);
             this.radioButton_Kakutei.TabIndex = 51;
             this.radioButton_Kakutei.TabStop = true;
             this.radioButton_Kakutei.Text = "確定済み";
@@ -113,10 +117,11 @@
             // radioButton_Mikakutei
             // 
             this.radioButton_Mikakutei.AutoSize = true;
+            this.radioButton_Mikakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.radioButton_Mikakutei.Location = new System.Drawing.Point(440, 329);
             this.radioButton_Mikakutei.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton_Mikakutei.Name = "radioButton_Mikakutei";
-            this.radioButton_Mikakutei.Size = new System.Drawing.Size(87, 22);
+            this.radioButton_Mikakutei.Size = new System.Drawing.Size(104, 26);
             this.radioButton_Mikakutei.TabIndex = 50;
             this.radioButton_Mikakutei.TabStop = true;
             this.radioButton_Mikakutei.Text = "未確定";
@@ -124,159 +129,167 @@
             // 
             // numericUpDown_Suuryou
             // 
+            this.numericUpDown_Suuryou.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.numericUpDown_Suuryou.Location = new System.Drawing.Point(205, 329);
             this.numericUpDown_Suuryou.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown_Suuryou.Name = "numericUpDown_Suuryou";
-            this.numericUpDown_Suuryou.Size = new System.Drawing.Size(204, 25);
+            this.numericUpDown_Suuryou.Size = new System.Drawing.Size(204, 29);
             this.numericUpDown_Suuryou.TabIndex = 49;
             // 
             // textBox_Syukkasyousai_ID
             // 
+            this.textBox_Syukkasyousai_ID.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Syukkasyousai_ID.Location = new System.Drawing.Point(598, 270);
             this.textBox_Syukkasyousai_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Syukkasyousai_ID.Name = "textBox_Syukkasyousai_ID";
-            this.textBox_Syukkasyousai_ID.Size = new System.Drawing.Size(221, 25);
+            this.textBox_Syukkasyousai_ID.Size = new System.Drawing.Size(221, 29);
             this.textBox_Syukkasyousai_ID.TabIndex = 48;
             // 
             // textBox_Kakutei_Syain_Namae
             // 
+            this.textBox_Kakutei_Syain_Namae.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Kakutei_Syain_Namae.Location = new System.Drawing.Point(205, 270);
             this.textBox_Kakutei_Syain_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kakutei_Syain_Namae.Name = "textBox_Kakutei_Syain_Namae";
-            this.textBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(205, 25);
+            this.textBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(205, 29);
             this.textBox_Kakutei_Syain_Namae.TabIndex = 47;
             // 
             // textBox_Zyutyuu_ID
             // 
+            this.textBox_Zyutyuu_ID.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(598, 200);
             this.textBox_Zyutyuu_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
-            this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(221, 25);
+            this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(221, 29);
             this.textBox_Zyutyuu_ID.TabIndex = 46;
             // 
             // textBox_Nyuuka_Syain_Namae
             // 
+            this.textBox_Nyuuka_Syain_Namae.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Nyuuka_Syain_Namae.Location = new System.Drawing.Point(205, 200);
             this.textBox_Nyuuka_Syain_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Nyuuka_Syain_Namae.Name = "textBox_Nyuuka_Syain_Namae";
-            this.textBox_Nyuuka_Syain_Namae.Size = new System.Drawing.Size(205, 25);
+            this.textBox_Nyuuka_Syain_Namae.Size = new System.Drawing.Size(205, 29);
             this.textBox_Nyuuka_Syain_Namae.TabIndex = 45;
             // 
             // textBox_Syukka_ID
             // 
+            this.textBox_Syukka_ID.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.textBox_Syukka_ID.Location = new System.Drawing.Point(598, 128);
             this.textBox_Syukka_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Syukka_ID.Name = "textBox_Syukka_ID";
-            this.textBox_Syukka_ID.Size = new System.Drawing.Size(221, 25);
+            this.textBox_Syukka_ID.Size = new System.Drawing.Size(221, 29);
             this.textBox_Syukka_ID.TabIndex = 44;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label10.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label10.Location = new System.Drawing.Point(117, 322);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 30);
+            this.label10.Size = new System.Drawing.Size(56, 22);
             this.label10.TabIndex = 42;
             this.label10.Text = "数量";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label9.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label9.Location = new System.Drawing.Point(872, 264);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(95, 30);
+            this.label9.Size = new System.Drawing.Size(112, 22);
             this.label9.TabIndex = 41;
             this.label9.Text = "メーカー名";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label8.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label8.Location = new System.Drawing.Point(435, 264);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(122, 30);
+            this.label8.Size = new System.Drawing.Size(121, 22);
             this.label8.TabIndex = 40;
             this.label8.Text = "出荷詳細ID";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label7.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(47, 262);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 30);
+            this.label7.Size = new System.Drawing.Size(125, 22);
             this.label7.TabIndex = 39;
             this.label7.Text = "確定社員名";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label6.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(872, 194);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 30);
+            this.label6.Size = new System.Drawing.Size(79, 22);
             this.label6.TabIndex = 38;
             this.label6.Text = "商品名";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label5.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(481, 194);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 30);
+            this.label5.Size = new System.Drawing.Size(75, 22);
             this.label5.TabIndex = 37;
             this.label5.Text = "受注ID";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label4.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(47, 193);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 30);
+            this.label4.Size = new System.Drawing.Size(125, 22);
             this.label4.TabIndex = 36;
             this.label4.Text = "入荷社員名";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label3.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(872, 128);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 30);
+            this.label3.Size = new System.Drawing.Size(79, 22);
             this.label3.TabIndex = 35;
             this.label3.Text = "営業所";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(481, 128);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 30);
+            this.label2.Size = new System.Drawing.Size(75, 22);
             this.label2.TabIndex = 34;
             this.label2.Text = "出荷ID";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(93, 127);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 30);
+            this.label1.Size = new System.Drawing.Size(79, 22);
             this.label1.TabIndex = 33;
             this.label1.Text = "顧客名";
             // 
@@ -350,11 +363,12 @@
             // 
             // comboBox_Kokyaku_Namae
             // 
+            this.comboBox_Kokyaku_Namae.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.comboBox_Kokyaku_Namae.FormattingEnabled = true;
             this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(205, 127);
             this.comboBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Kokyaku_Namae.Name = "comboBox_Kokyaku_Namae";
-            this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(204, 26);
+            this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(204, 30);
             this.comboBox_Kokyaku_Namae.TabIndex = 56;
             // 
             // Syukka

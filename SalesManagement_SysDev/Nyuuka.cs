@@ -610,6 +610,16 @@ namespace SalesManagement_SysDev
 
             return DispArrivals;
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown_Suuryou_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
