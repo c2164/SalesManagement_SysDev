@@ -275,6 +275,8 @@ namespace SalesManagement_SysDev
                 retOrderDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
             retOrderDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
             retOrderDTO.OrQuantity = numericUpDown_Suuryou.Value.ToString();//数量
+            retOrderDTO.OrFlag = "0";
+            retOrderDTO.OrStateFlag = "0";
 
 
             return retOrderDTO;
@@ -324,19 +326,46 @@ namespace SalesManagement_SysDev
                 {
                     return;
                 }
+                //データを更新する
+                UpdateOrderInf(dispOrderDTO);
             }
-
-            //登録確認
-            //須田オーダー
-            result = messageDsp.MessageBoxDsp_OKCancel("登録すりゅ～？", "かくにん(はーと)", MessageBoxIcon.Question);
-            if (result == DialogResult.Cancel)
+            else
             {
-                return;
+                //登録確認
+                result = messageDsp.MessageBoxDsp_OKCancel("登録しますか？", "確認", MessageBoxIcon.Question);
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+                //データを登録する
+                RegisrationOrderInf(dispOrderDTO);
             }
 
-            //データを登録する
-            RegisrationOrderInf(dispOrderDTO);
 
+
+        }
+
+        private void UpdateOrderInf(DispOrderDTO dispOrderDTO)
+        {
+            //変数の宣言
+            bool flg;
+            T_Order order;
+            T_OrderDetail orderDetail;
+            //インスタンス化
+            OrderDataAccess orderDataAccess = new OrderDataAccess();
+
+            //登録用データに変換
+            order = FormalizationOrderInputRecord(dispOrderDTO, out orderDetail);
+            //登録処理
+            flg = orderDataAccess.UpdateOrderData(order, orderDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報を更新しました", "登録完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報の登録に更新しました", "登録失敗", MessageBoxIcon.Error);
+            }
         }
 
         private void RegisrationOrderInf(DispOrderDTO dispOrderDTO)
@@ -354,13 +383,11 @@ namespace SalesManagement_SysDev
             flg = orderDataAccess.RegisterOrderData(order, orderDetail);
             if (flg)
             {
-                //須田オーダー
-                messageDsp.MessageBoxDsp_OK("登録したおっ！", "とろくかんりょう！", MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("受注情報を登録しました", "登録完了", MessageBoxIcon.Information);
             }
             else
             {
-                //須田オーダー
-                messageDsp.MessageBoxDsp_OK("はぁ(*´Д｀)", "とうろくしっぱい...", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("受注情報の登録に失敗しました", "登録失敗", MessageBoxIcon.Error);
             }
 
         }
@@ -382,8 +409,8 @@ namespace SalesManagement_SysDev
             order.ClID = int.Parse(dispOrderDTO.ClID);//顧客ID
             order.ClCharge = dispOrderDTO.ClCharge;//顧客担当者名
             order.OrDate = DateTime.Now;//日付
-            order.OrStateFlag = 0;//受注状態フラグ
-            order.OrFlag = 0;//受注管理フラグ
+            order.OrStateFlag = int.Parse(dispOrderDTO.OrStateFlag);//受注状態フラグ
+            order.OrFlag = int.Parse(dispOrderDTO.OrFlag);//受注管理フラグ
             orderDetail.PrID = int.Parse(dispOrderDTO.PrID);//商品ID
             orderDetail.OrQuantity = int.Parse(dispOrderDTO.OrQuantity);//数量
             //合計金額はデータベース接続の登録処理側で行う
@@ -411,8 +438,6 @@ namespace SalesManagement_SysDev
                 title = "確認";
                 return false;
             }
-
-
 
             return true;
         }
