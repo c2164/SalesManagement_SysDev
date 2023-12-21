@@ -222,23 +222,23 @@ namespace SalesManagement_SysDev
             DispProductDTO retProductDTO = new DispProductDTO();
 
             //各コントロールから商品情報を読み取る
-            retProductDTO.PrID = textbox_Syouhin_ID.Text.Trim();
-            retProductDTO.PrName = textbox_Syouhin_Namae.Text.Trim();
+            retProductDTO.PrID = textbox_Syouhin_ID.Text.Trim();//商品ID
+            retProductDTO.PrName = textbox_Syouhin_Namae.Text.Trim();//商品名
             if (!(combobox_Meka_ID.SelectedIndex == -1))
-                retProductDTO.MaID = combobox_Meka_ID.SelectedValue.ToString();
-            retProductDTO.MaName = combobox_Syoubunnrui_Namae.Text.Trim();
+                retProductDTO.MaID = combobox_Meka_ID.SelectedValue.ToString();//メーカーID
+            retProductDTO.MaName = combobox_Meka_ID.Text.Trim();//メーカー名
             if (!(combobox_Syoubunnrui_Namae.SelectedIndex == -1))
-                retProductDTO.ScID = combobox_Syoubunnrui_Namae.SelectedValue.ToString();
-            retProductDTO.ScName = combobox_Syoubunnrui_Namae.Text.Trim();
-            retProductDTO.Price = textbox_Kakaku.Text.Trim();
-            retProductDTO.PrSafetyStock = textbox_Anzen.Text.Trim();
-            retProductDTO.PrModelNumber = textbox_Kataban.Text.Trim();
-            retProductDTO.PrColor = textbox_Iro.Text.Trim();
-            retProductDTO.PrReleaseDate = dateTimePicker1.Value;
-            retProductDTO.PrReleseFromDate = dateTimePicker_Nitizi_2.Value;
-            retProductDTO.PrReleaseToDate = dateTimePicker_Nitizi_3.Value;
+                retProductDTO.ScID = combobox_Syoubunnrui_Namae.SelectedValue.ToString();//小分類ID
+            retProductDTO.ScName = combobox_Syoubunnrui_Namae.Text.Trim();//小分類名
+            retProductDTO.Price = textbox_Kakaku.Text.Trim();//価格
+            retProductDTO.PrSafetyStock = textbox_Anzen.Text.Trim();//安全在庫数
+            retProductDTO.PrModelNumber = textbox_Kataban.Text.Trim();//型番
+            retProductDTO.PrColor = textbox_Iro.Text.Trim();//色
+            retProductDTO.PrReleaseDate = dateTimePicker1.Value;//発売日
+            retProductDTO.PrReleseFromDate = dateTimePicker_Nitizi_2.Value;//検索日時(から)
+            retProductDTO.PrReleaseToDate = dateTimePicker_Nitizi_3.Value;//検索日時(まで)
             retProductDTO.PrFlag = "0";
-            retProductDTO.PrHidden = null;
+            //retProductDTO.PrHidden = null;
             return retProductDTO;
         }
 
