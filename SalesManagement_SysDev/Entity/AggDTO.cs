@@ -30,11 +30,29 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("電話番号")]
         public string ClPhone { get; set; }
 
+        [DisplayName("電話番号1")]
+        public string ClPhone1 { get; set; }
+
+        [DisplayName("電話番号2")]
+        public string ClPhone2 { get; set; }
+
+        [DisplayName("電話番号3")]
+        public string ClPhone3 { get; set; }
+
         [DisplayName("郵便番号")]
         public string ClPostal { get; set; }
 
         [DisplayName("FAX")]
         public string ClFAX { get; set; }
+
+        [DisplayName("FAX1")]
+        public string ClFAX1 { get; set; }
+
+        [DisplayName("FAX2")]
+        public string ClFAX2 { get; set; }
+
+        [DisplayName("FAX3")]
+        public string ClFAX3 { get; set; }
 
         [DisplayName("顧客管理フラグ")]
         public string ClFlag { get; set; }

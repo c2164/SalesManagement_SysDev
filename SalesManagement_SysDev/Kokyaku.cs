@@ -107,19 +107,31 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[5].Width = 80;
-            //郵便番号
-            dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[6].Width = 55;
-            //FAX
-            dataGridView1.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[7].Width = 80;
-            //顧客管理フラグ(非表示)
+            //電話番号1(非表示)
+            dataGridView1.Columns[6].Visible = false;
+            //電話番号2(非表示)
+            dataGridView1.Columns[7].Visible = false;
+            //電話番号3(非表示)
             dataGridView1.Columns[8].Visible = false;
+            //郵便番号
+            dataGridView1.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[9].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[9].Width = 55;
+            //FAX
+            dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[10].Width = 80;
+            //FAX1(非表示)
+            dataGridView1.Columns[11].Visible = false;
+            //FAX2(非表示)
+            dataGridView1.Columns[12].Visible = false;
+            //FAX3(非表示)
+            dataGridView1.Columns[13].Visible = false;
+            //顧客管理フラグ(非表示)
+            dataGridView1.Columns[14].Visible = false;
             //非表示理由(非表示)
-            dataGridView1.Columns[9].Visible = false;
+            dataGridView1.Columns[15].Visible = false;
 
         }
 
@@ -196,7 +208,13 @@ namespace SalesManagement_SysDev
             retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();//顧客名
             retDispClient.ClPostal = textBox_Yuubin.Text.Trim();//郵便番号
             retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() + ('-') + textBox_Dennwa2.Text.Trim() + ('-') + textBox_Dennwa3.Text.Trim();//電話番号
+            retDispClient.ClPhone1 = textBox_Dennwa1.Text.Trim();
+            retDispClient.ClPhone2 = textBox_Dennwa2.Text.Trim();
+            retDispClient.ClPhone3 = textBox_Dennwa3.Text.Trim();
             retDispClient.ClFAX = textBox_FAX1.Text.Trim() + ('-') + textBox_FAX2.Text.Trim() + ('-') + textBox_FAX3.Text.Trim();//FAX
+            retDispClient.ClFAX1 = textBox_FAX1.Text.Trim();
+            retDispClient.ClFAX2 = textBox_FAX2.Text.Trim();
+            retDispClient.ClFAX3 = textBox_FAX3.Text.Trim();
             retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();//住所
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID
@@ -663,16 +681,16 @@ namespace SalesManagement_SysDev
             textBox_Kokyaku_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             textBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
             comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
-            textBox_Yuubin.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+            textBox_Yuubin.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString();
             textBox_Zyuusyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString();
 
             textBox_Dennwa1.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString().Split('-')[0];
             textBox_Dennwa2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString().Split('-')[1];
             textBox_Dennwa3.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString().Split('-')[2];
 
-            textBox_FAX1.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString().Split('-')[0];
-            textBox_FAX2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString().Split('-')[1];
-            textBox_FAX3.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString().Split('-')[2];
+            textBox_FAX1.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString().Split('-')[0];
+            textBox_FAX2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString().Split('-')[1];
+            textBox_FAX3.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString().Split('-')[2];
 
 
 
