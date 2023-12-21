@@ -58,12 +58,12 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 379);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 358);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1185, 253);
+            this.dataGridView1.Size = new System.Drawing.Size(1185, 274);
             this.dataGridView1.TabIndex = 19;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -73,7 +73,7 @@
             this.label8.Location = new System.Drawing.Point(296, 37);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(26, 18);
+            this.label8.Size = new System.Drawing.Size(33, 22);
             this.label8.TabIndex = 21;
             this.label8.Text = "～";
             // 
@@ -82,7 +82,7 @@
             this.dateTimePicker_Nitizi_3.Location = new System.Drawing.Point(333, 32);
             this.dateTimePicker_Nitizi_3.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi_3.Name = "dateTimePicker_Nitizi_3";
-            this.dateTimePicker_Nitizi_3.Size = new System.Drawing.Size(281, 25);
+            this.dateTimePicker_Nitizi_3.Size = new System.Drawing.Size(281, 29);
             this.dateTimePicker_Nitizi_3.TabIndex = 20;
             // 
             // groupBox1
@@ -90,21 +90,22 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_3);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_2);
-            this.groupBox1.Location = new System.Drawing.Point(57, 286);
+            this.groupBox1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.groupBox1.Location = new System.Drawing.Point(83, 274);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(731, 80);
+            this.groupBox1.Size = new System.Drawing.Size(711, 80);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "検索用日時";
             // 
             // dateTimePicker_Nitizi_2
             // 
-            this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(15, 32);
+            this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(22, 32);
             this.dateTimePicker_Nitizi_2.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker_Nitizi_2.Name = "dateTimePicker_Nitizi_2";
-            this.dateTimePicker_Nitizi_2.Size = new System.Drawing.Size(270, 25);
+            this.dateTimePicker_Nitizi_2.Size = new System.Drawing.Size(270, 29);
             this.dateTimePicker_Nitizi_2.TabIndex = 19;
             // 
             // dateTimePicker_Nitizi
@@ -169,77 +170,77 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label7.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(477, 218);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(101, 30);
+            this.label7.Size = new System.Drawing.Size(102, 22);
             this.label7.TabIndex = 30;
             this.label7.Text = "売上日時";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label6.Location = new System.Drawing.Point(51, 218);
+            this.label6.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(59, 218);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 30);
+            this.label6.Size = new System.Drawing.Size(75, 22);
             this.label6.TabIndex = 29;
             this.label6.Text = "受注ID";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label5.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(477, 161);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 30);
+            this.label5.Size = new System.Drawing.Size(79, 22);
             this.label5.TabIndex = 28;
             this.label5.Text = "社員名";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label4.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(15, 161);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 30);
+            this.label4.Size = new System.Drawing.Size(121, 22);
             this.label4.TabIndex = 27;
             this.label4.Text = "売上詳細ID";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label3.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(869, 104);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 30);
+            this.label3.Size = new System.Drawing.Size(79, 22);
             this.label3.TabIndex = 26;
             this.label3.Text = "営業所";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(477, 104);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 30);
+            this.label2.Size = new System.Drawing.Size(79, 22);
             this.label2.TabIndex = 25;
             this.label2.Text = "顧客名";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(62, 104);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 30);
+            this.label1.Size = new System.Drawing.Size(75, 22);
             this.label1.TabIndex = 24;
             this.label1.Text = "売上ID";
             // 
@@ -291,7 +292,7 @@
             this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(83, 20);
-            this.button_Itirannhyouzi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Itirannhyouzi.Margin = new System.Windows.Forms.Padding(2);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(195, 51);
             this.button_Itirannhyouzi.TabIndex = 39;
@@ -323,7 +324,7 @@
             this.Controls.Add(this.button_Sakuzyo);
             this.Controls.Add(this.button_Kensaku);
             this.Controls.Add(this.button_Itirannhyouzi);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Uriage";
             this.Size = new System.Drawing.Size(1215, 646);
             this.Load += new System.EventHandler(this.Uriage_Load);
