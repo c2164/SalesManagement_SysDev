@@ -39,7 +39,7 @@ namespace SalesManagement_SysDev
             bool flg;
             string msg;
             string title;
-            MessageBoxIcon icon
+            MessageBoxIcon icon;
 
             //各コントロールからログイン情報取得
             retdispEmplyeeDTO = GetLoginInf();
