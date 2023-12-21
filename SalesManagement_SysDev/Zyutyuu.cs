@@ -877,5 +877,10 @@ namespace SalesManagement_SysDev
             return DispOrders;
 
         }
+
+        private void numericUpDown_Suuryou_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -35,7 +35,6 @@
             this.comboBox_Meka_Namae = new System.Windows.Forms.ComboBox();
             this.comboBox_Syain_Namae = new System.Windows.Forms.ComboBox();
             this.textBox_Hattyuusyousai = new System.Windows.Forms.TextBox();
-            this.textBox_Suuryou = new System.Windows.Forms.TextBox();
             this.textBox_Syouhin_ID = new System.Windows.Forms.TextBox();
             this.textBox_Syain_ID = new System.Windows.Forms.TextBox();
             this.textBox_Hattyuu_ID = new System.Windows.Forms.TextBox();
@@ -54,7 +53,9 @@
             this.button_Itirannhyouzi = new System.Windows.Forms.Button();
             this.button_Kennsaku = new System.Windows.Forms.Button();
             this.button_Touroku = new System.Windows.Forms.Button();
+            this.numericUpDown_suuryou = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_suuryou)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -122,14 +123,6 @@
             this.textBox_Hattyuusyousai.Name = "textBox_Hattyuusyousai";
             this.textBox_Hattyuusyousai.Size = new System.Drawing.Size(217, 25);
             this.textBox_Hattyuusyousai.TabIndex = 45;
-            // 
-            // textBox_Suuryou
-            // 
-            this.textBox_Suuryou.Location = new System.Drawing.Point(189, 249);
-            this.textBox_Suuryou.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox_Suuryou.Name = "textBox_Suuryou";
-            this.textBox_Suuryou.Size = new System.Drawing.Size(194, 25);
-            this.textBox_Suuryou.TabIndex = 44;
             // 
             // textBox_Syouhin_ID
             // 
@@ -338,11 +331,19 @@
             this.button_Touroku.UseVisualStyleBackColor = false;
             this.button_Touroku.Click += new System.EventHandler(this.button_Touroku_Click);
             // 
+            // numericUpDown_suuryou
+            // 
+            this.numericUpDown_suuryou.Location = new System.Drawing.Point(194, 245);
+            this.numericUpDown_suuryou.Name = "numericUpDown_suuryou";
+            this.numericUpDown_suuryou.Size = new System.Drawing.Size(195, 25);
+            this.numericUpDown_suuryou.TabIndex = 53;
+            // 
             // Hattyuu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.Controls.Add(this.numericUpDown_suuryou);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.dateTimePicker1);
@@ -350,7 +351,6 @@
             this.Controls.Add(this.comboBox_Meka_Namae);
             this.Controls.Add(this.comboBox_Syain_Namae);
             this.Controls.Add(this.textBox_Hattyuusyousai);
-            this.Controls.Add(this.textBox_Suuryou);
             this.Controls.Add(this.textBox_Syouhin_ID);
             this.Controls.Add(this.textBox_Syain_ID);
             this.Controls.Add(this.textBox_Hattyuu_ID);
@@ -374,6 +374,7 @@
             this.Size = new System.Drawing.Size(1215, 646);
             this.Load += new System.EventHandler(this.Hattyuu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_suuryou)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,7 +389,6 @@
         private System.Windows.Forms.ComboBox comboBox_Meka_Namae;
         private System.Windows.Forms.ComboBox comboBox_Syain_Namae;
         private System.Windows.Forms.TextBox textBox_Hattyuusyousai;
-        private System.Windows.Forms.TextBox textBox_Suuryou;
         private System.Windows.Forms.TextBox textBox_Syouhin_ID;
         private System.Windows.Forms.TextBox textBox_Syain_ID;
         private System.Windows.Forms.TextBox textBox_Hattyuu_ID;
@@ -407,5 +407,6 @@
         private System.Windows.Forms.Button button_Itirannhyouzi;
         private System.Windows.Forms.Button button_Kennsaku;
         private System.Windows.Forms.Button button_Touroku;
+        private System.Windows.Forms.NumericUpDown numericUpDown_suuryou;
     }
 }
