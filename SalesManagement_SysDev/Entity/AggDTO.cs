@@ -91,6 +91,15 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("電話番号")]
         public string EmPhone { get; set; }
 
+        [DisplayName("電話番号1")]
+        public string EmPhone1 { get; set; }
+
+        [DisplayName("電話番号2")]
+        public string EmPhone2 { get; set; }
+
+        [DisplayName("電話番号3")]
+        public string EmPhone3 { get; set; }
+
         [DisplayName("社員管理フラグ")]
         public string EmFlag { get; set; }
 

@@ -88,10 +88,16 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[8].Width = 55;
-            //社員管理フラグ(非表示)
+            //電話番号1(非表示)
             dataGridView1.Columns[9].Visible = false;
-            //非表示理由(非表示)
+            //電話番号2(非表示)
             dataGridView1.Columns[10].Visible = false;
+            //電話番号3(非表示)
+            dataGridView1.Columns[11].Visible = false;
+            //社員管理フラグ(非表示)
+            dataGridView1.Columns[12].Visible = false;
+            //非表示理由(非表示)
+            dataGridView1.Columns[13].Visible = false;
 
         }
 
@@ -209,6 +215,9 @@ namespace SalesManagement_SysDev
             retEmployeeDTO.PoName = comboBox_Yakusyoku_Namae.Text.Trim();
             retEmployeeDTO.EmHiredate = dateTimePicker1.Value;
             retEmployeeDTO.EmPhone = textBox_Dennwa.Text.Trim() + ('-') + textBox_Dennwa2.Text.Trim() + ('-') + textBox_Dennwa3.Text.Trim();
+            retEmployeeDTO.EmPhone1 = textBox_Dennwa.Text.Trim();
+            retEmployeeDTO.EmPhone2 = textBox_Dennwa2.Text.Trim();
+            retEmployeeDTO.EmPhone3 = textBox_Dennwa3.Text.Trim();
             //Fax削除予定
             retEmployeeDTO.EmPassword = textBox_Pass.Text.Trim();
 
@@ -448,6 +457,8 @@ namespace SalesManagement_SysDev
                 messageDsp.MessageBoxDsp_OK("社員の登録に失敗しました", "登録エラー", MessageBoxIcon.Error);
             }
 
+            SetCtrlFormat();
+            GetSelectData();
         }
 
         private bool DuplicationCheckEmployeeInputRecord(DispEmplyeeDTO dispEmployeeDTO, out string msg, out string title, out MessageBoxIcon icon)
