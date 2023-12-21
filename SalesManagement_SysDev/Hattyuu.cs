@@ -392,6 +392,11 @@ namespace SalesManagement_SysDev
             comboBox_Syouhin_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
             dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString());
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
