@@ -16,7 +16,7 @@ namespace SalesManagement_SysDev.Common
                 {
                     try
                     {
-                        context.T_Sale.Add(RegSale);
+                    context.T_Sale.Add(RegSale);
                     context.SaveChanges();
                     int SaID = context.T_Sale.Max(x => x.SaID);
                     foreach(var RegSaleDetail in ListRegSaleDetail) 

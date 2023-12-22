@@ -187,7 +187,7 @@ namespace SalesManagement_SysDev.Common
                              ArrivalEmID = Chumon.ClID.ToString(),
                              ArrivalEmName = ChumonEm.EmName.ToString(),
                              ConfEmID = Arrival.EmID.ToString(),
-                             ConfEmName = Employee.EmName.ToString(),
+                             ConfEmName = Employee.EmName,
                              ClID = Arrival.ClID.ToString(),
                              ClName = Client.ClName.ToString(),
                              OrID = Arrival.OrID.ToString(),
