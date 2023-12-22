@@ -77,7 +77,7 @@
             this.checkBox1.Location = new System.Drawing.Point(718, 441);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(245, 49);
+            this.checkBox1.Size = new System.Drawing.Size(244, 34);
             this.checkBox1.TabIndex = 76;
             this.checkBox1.Text = "入庫済みフラグ";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             this.label9.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label9.Location = new System.Drawing.Point(38, 432);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(168, 41);
+            this.label9.Size = new System.Drawing.Size(168, 30);
             this.label9.TabIndex = 66;
             this.label9.Text = "発注年月日";
             // 
@@ -170,7 +170,7 @@
             this.label8.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label8.Location = new System.Drawing.Point(561, 345);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(167, 41);
+            this.label8.Size = new System.Drawing.Size(162, 30);
             this.label8.TabIndex = 65;
             this.label8.Text = "発注詳細ID";
             // 
@@ -180,7 +180,7 @@
             this.label7.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(77, 341);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 41);
+            this.label7.Size = new System.Drawing.Size(75, 30);
             this.label7.TabIndex = 64;
             this.label7.Text = "数量";
             // 
@@ -190,7 +190,7 @@
             this.label6.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(1123, 256);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(108, 41);
+            this.label6.Size = new System.Drawing.Size(106, 30);
             this.label6.TabIndex = 63;
             this.label6.Text = "商品名";
             // 
@@ -200,7 +200,7 @@
             this.label5.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(571, 255);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 41);
+            this.label5.Size = new System.Drawing.Size(100, 30);
             this.label5.TabIndex = 62;
             this.label5.Text = "商品ID";
             // 
@@ -210,7 +210,7 @@
             this.label4.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(44, 252);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 41);
+            this.label4.Size = new System.Drawing.Size(149, 30);
             this.label4.TabIndex = 61;
             this.label4.Text = "メーカー名";
             // 
@@ -220,7 +220,7 @@
             this.label3.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(1123, 167);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 41);
+            this.label3.Size = new System.Drawing.Size(106, 30);
             this.label3.TabIndex = 60;
             this.label3.Text = "社員名";
             // 
@@ -230,7 +230,7 @@
             this.label2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(575, 165);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 41);
+            this.label2.Size = new System.Drawing.Size(100, 30);
             this.label2.TabIndex = 59;
             this.label2.Text = "社員ID";
             // 
@@ -240,7 +240,7 @@
             this.label1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(77, 167);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 41);
+            this.label1.Size = new System.Drawing.Size(100, 30);
             this.label1.TabIndex = 58;
             this.label1.Text = "発注ID";
             // 
@@ -330,14 +330,14 @@
             // 
             // numericUpDown_suuryou
             // 
-            this.numericUpDown_suuryou.Location = new System.Drawing.Point(194, 245);
+            this.numericUpDown_suuryou.Location = new System.Drawing.Point(253, 347);
             this.numericUpDown_suuryou.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
             this.numericUpDown_suuryou.Name = "numericUpDown_suuryou";
-            this.numericUpDown_suuryou.Size = new System.Drawing.Size(195, 25);
+            this.numericUpDown_suuryou.Size = new System.Drawing.Size(251, 31);
             this.numericUpDown_suuryou.TabIndex = 53;
             // 
             // Hattyuu
