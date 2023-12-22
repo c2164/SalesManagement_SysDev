@@ -16,9 +16,11 @@ namespace SalesManagement_SysDev
     public partial class Hattyuu : UserControl
     {
         private MessageDsp messageDsp = new MessageDsp();
-        public Hattyuu()
+        private DispEmplyeeDTO loginEmployee;
+        public Hattyuu(DispEmplyeeDTO dispEmplyee)
         {
             InitializeComponent();
+            loginEmployee = dispEmplyee;
         }
 
         private void Hattyuu_Load(object sender, EventArgs e)

@@ -16,10 +16,11 @@ namespace SalesManagement_SysDev
     public partial class Nyuuko : UserControl
     {
         private MessageDsp messageDsp = new MessageDsp();
-
-        public Nyuuko()
+        private DispEmplyeeDTO loginEmployee;
+        public Nyuuko(DispEmplyeeDTO dispEmplyee)
         {
             InitializeComponent();
+            loginEmployee = dispEmplyee;
         }
 
         private void Nyuuko_Load(object sender, EventArgs e)

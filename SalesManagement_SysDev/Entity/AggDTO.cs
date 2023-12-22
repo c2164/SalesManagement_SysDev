@@ -44,7 +44,7 @@ namespace SalesManagement_SysDev.Entity
     }
 
     //社員管理画面表示用
-    class DispEmplyeeDTO
+    public class DispEmplyeeDTO
     {
         [DisplayName("社員ID")]
         public string EmID { get; set; }
@@ -286,20 +286,11 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("数量")]
         public string SyQuantity { get; set; }
 
-        [DisplayName("営業所")]
-        public string SaleceOffice { get; set; }
-
         [DisplayName("営業所ID")]
         public string SoID { get; set; }
 
         [DisplayName("営業所名")]
         public string SoName { get; set; }
-
-        [DisplayName("社員ID")]
-        public string EmID { get; set; }
-
-        [DisplayName("社員名")]
-        public string EmName { get; set; }
 
         [DisplayName("顧客ID")]
         public string ClID { get; set; }
@@ -370,7 +361,6 @@ namespace SalesManagement_SysDev.Entity
 
         [DisplayName("営業所名")]
         public string SoName { get; set; }
-
 
         [DisplayName("社員ID")]
         public string EmID { get; set; }
