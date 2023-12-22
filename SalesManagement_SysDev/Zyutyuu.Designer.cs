@@ -62,7 +62,8 @@
             this.button_Touroku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Touroku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Touroku.ForeColor = System.Drawing.Color.White;
-            this.button_Touroku.Location = new System.Drawing.Point(47, 36);
+            this.button_Touroku.Location = new System.Drawing.Point(36, 27);
+            this.button_Touroku.Margin = new System.Windows.Forms.Padding(2);
             this.button_Touroku.Name = "button_Touroku";
             this.button_Touroku.Size = new System.Drawing.Size(153, 75);
             this.button_Touroku.TabIndex = 0;
@@ -75,7 +76,8 @@
             this.button_Kensaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
-            this.button_Kensaku.Location = new System.Drawing.Point(300, 36);
+            this.button_Kensaku.Location = new System.Drawing.Point(231, 27);
+            this.button_Kensaku.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kensaku.Name = "button_Kensaku";
             this.button_Kensaku.Size = new System.Drawing.Size(153, 75);
             this.button_Kensaku.TabIndex = 1;
@@ -88,7 +90,8 @@
             this.button_Itirannhyouzi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
-            this.button_Itirannhyouzi.Location = new System.Drawing.Point(547, 36);
+            this.button_Itirannhyouzi.Location = new System.Drawing.Point(421, 27);
+            this.button_Itirannhyouzi.Margin = new System.Windows.Forms.Padding(2);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(209, 75);
             this.button_Itirannhyouzi.TabIndex = 2;
@@ -101,7 +104,8 @@
             this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
-            this.button_Sakuzyo.Location = new System.Drawing.Point(864, 36);
+            this.button_Sakuzyo.Location = new System.Drawing.Point(665, 27);
+            this.button_Sakuzyo.Margin = new System.Windows.Forms.Padding(2);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
             this.button_Sakuzyo.Size = new System.Drawing.Size(153, 75);
             this.button_Sakuzyo.TabIndex = 3;
@@ -114,7 +118,8 @@
             this.button_Zyutyuu_Kakutei.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Zyutyuu_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Zyutyuu_Kakutei.ForeColor = System.Drawing.Color.White;
-            this.button_Zyutyuu_Kakutei.Location = new System.Drawing.Point(1119, 36);
+            this.button_Zyutyuu_Kakutei.Location = new System.Drawing.Point(861, 27);
+            this.button_Zyutyuu_Kakutei.Margin = new System.Windows.Forms.Padding(2);
             this.button_Zyutyuu_Kakutei.Name = "button_Zyutyuu_Kakutei";
             this.button_Zyutyuu_Kakutei.Size = new System.Drawing.Size(179, 75);
             this.button_Zyutyuu_Kakutei.TabIndex = 4;
@@ -127,7 +132,8 @@
             this.button_Kuria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kuria.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
-            this.button_Kuria.Location = new System.Drawing.Point(1372, 36);
+            this.button_Kuria.Location = new System.Drawing.Point(1055, 27);
+            this.button_Kuria.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(153, 75);
             this.button_Kuria.TabIndex = 5;
@@ -235,8 +241,8 @@
             // 
             // textBox_Zyutyuu_ID
             // 
-            this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(246, 297);
-            this.textBox_Zyutyuu_ID.MaxLength = 6;
+            this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(189, 223);
+            this.textBox_Zyutyuu_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(254, 31);
             this.textBox_Zyutyuu_ID.TabIndex = 18;
@@ -252,7 +258,8 @@
             // comboBox_Eigyousyo
             // 
             this.comboBox_Eigyousyo.FormattingEnabled = true;
-            this.comboBox_Eigyousyo.Location = new System.Drawing.Point(246, 401);
+            this.comboBox_Eigyousyo.Location = new System.Drawing.Point(189, 301);
+            this.comboBox_Eigyousyo.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(254, 32);
             this.comboBox_Eigyousyo.TabIndex = 22;
@@ -268,11 +275,13 @@
             this.numericUpDown_Suuryou.Name = "numericUpDown_Suuryou";
             this.numericUpDown_Suuryou.Size = new System.Drawing.Size(240, 31);
             this.numericUpDown_Suuryou.TabIndex = 23;
+            this.numericUpDown_Suuryou.ValueChanged += new System.EventHandler(this.numericUpDown_Suuryou_ValueChanged);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(25, 487);
+            this.dataGridView1.Location = new System.Drawing.Point(19, 365);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
@@ -346,6 +355,7 @@
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Controls.Add(this.button_Kensaku);
             this.Controls.Add(this.button_Touroku);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Zyutyuu";
             this.Size = new System.Drawing.Size(1610, 875);
             this.Load += new System.EventHandler(this.Zyutyuu_Load);
