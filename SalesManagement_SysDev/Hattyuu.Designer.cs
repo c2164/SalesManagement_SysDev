@@ -119,7 +119,7 @@
             // 
             // textBox_Hattyuusyousai
             // 
-            this.textBox_Hattyuusyousai.Location = new System.Drawing.Point(748, 356);
+            this.textBox_Hattyuusyousai.Location = new System.Drawing.Point(748, 347);
             this.textBox_Hattyuusyousai.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Hattyuusyousai.MaxLength = 6;
             this.textBox_Hattyuusyousai.Name = "textBox_Hattyuusyousai";

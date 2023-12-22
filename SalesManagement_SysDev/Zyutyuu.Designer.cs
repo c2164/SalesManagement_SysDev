@@ -102,6 +102,7 @@
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
             this.dataGridView1.TabIndex = 49;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // numericUpDown_Suuryou
             // 
@@ -248,6 +249,7 @@
             this.button_Kuria.TabIndex = 34;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
+            this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
             // 
             // button_Zyutyuu_Kakutei
             // 
@@ -260,6 +262,7 @@
             this.button_Zyutyuu_Kakutei.TabIndex = 33;
             this.button_Zyutyuu_Kakutei.Text = "受注確定";
             this.button_Zyutyuu_Kakutei.UseVisualStyleBackColor = false;
+            this.button_Zyutyuu_Kakutei.Click += new System.EventHandler(this.button_Zyutyuu_Kakutei_Click);
             // 
             // button_Sakuzyo
             // 
@@ -272,6 +275,7 @@
             this.button_Sakuzyo.TabIndex = 32;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // button_Itirannhyouzi
             // 
@@ -284,6 +288,7 @@
             this.button_Itirannhyouzi.TabIndex = 31;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
+            this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
             // 
             // button_Kensaku
             // 
@@ -296,6 +301,7 @@
             this.button_Kensaku.TabIndex = 30;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
+            this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
             // 
             // button_Touroku
             // 
@@ -308,6 +314,7 @@
             this.button_Touroku.TabIndex = 29;
             this.button_Touroku.Text = "🖊登録";
             this.button_Touroku.UseVisualStyleBackColor = false;
+            this.button_Touroku.Click += new System.EventHandler(this.button_Touroku_Click);
             // 
             // Zyutyuu
             // 
