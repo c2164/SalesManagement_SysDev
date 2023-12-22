@@ -137,7 +137,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(75, 172);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 41);
@@ -147,7 +147,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(611, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 41);
@@ -157,7 +157,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label3.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(1086, 171);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(138, 41);
@@ -167,7 +167,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label4.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(75, 285);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 41);
@@ -177,7 +177,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label5.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(549, 288);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(168, 41);
@@ -187,7 +187,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label6.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(46, 405);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(138, 41);
@@ -197,8 +197,8 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label8.Location = new System.Drawing.Point(1097, 293);
+            this.label8.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(1114, 405);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(127, 41);
             this.label8.TabIndex = 13;
