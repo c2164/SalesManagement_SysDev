@@ -463,7 +463,7 @@ namespace SalesManagement_SysDev
             bool flg;
 
             //入荷状態フラグを0から1にする
-            arrival = ChangeArStateFlag(arrival);
+            arrival = FormalizationArrivalRecord(arrival);
             //入荷情報を更新する
             flg = UpdateArrivalRecord(arrival);
             if (flg)
@@ -476,8 +476,9 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private T_Arrival ChangeArStateFlag(T_Arrival arrival)
+        private T_Arrival FormalizationArrivalRecord(T_Arrival arrival)
         {
+            arrival.EmID = int.Parse(loginEmployee.EmID);
             arrival.ArStateFlag = 1;
             return arrival;
         }

@@ -438,7 +438,7 @@ namespace SalesManagement_SysDev
         {
             if (dataGridView1.CurrentRow.Index != -1)
             {
-                numericUpDown_Syukko_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                textBox_Syukko_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
                 comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
                 textBox_Syain.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
                 comboBox_Kokyaku.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
@@ -504,7 +504,7 @@ namespace SalesManagement_SysDev
             bool flg;
 
             //出庫状態フラグを0から1にする
-            syukko = ChangeSyStateFlag(syukko);
+            syukko = FormalizationSyukkoRecord(syukko);
             //出庫情報を更新する
             flg = UpdateSyukkoRecord(syukko);
             if (flg)
@@ -516,8 +516,9 @@ namespace SalesManagement_SysDev
                 messageDsp.MessageBoxDsp_OK("出庫情報の確定に失敗しました", "エラー", MessageBoxIcon.Error);
             }
         }
-        private T_Syukko ChangeSyStateFlag(T_Syukko syukko)
+        private T_Syukko FormalizationSyukkoRecord(T_Syukko syukko)
         {
+            syukko.EmID =int.Parse(loginEmployee.EmID);
             syukko.SyStateFlag = 1;
             return syukko;
         }
