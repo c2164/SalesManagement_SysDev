@@ -334,6 +334,11 @@
             // numericUpDown_suuryou
             // 
             this.numericUpDown_suuryou.Location = new System.Drawing.Point(194, 245);
+            this.numericUpDown_suuryou.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.numericUpDown_suuryou.Name = "numericUpDown_suuryou";
             this.numericUpDown_suuryou.Size = new System.Drawing.Size(195, 25);
             this.numericUpDown_suuryou.TabIndex = 53;
