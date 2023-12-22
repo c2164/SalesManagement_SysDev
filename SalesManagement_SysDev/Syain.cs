@@ -61,33 +61,33 @@ namespace SalesManagement_SysDev
             //社員ID
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[0].Width = 30;
+            dataGridView1.Columns[0].Width = 77;
             //社員名
             dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[1].Width = 100;
             //営業所ID(非表示)
             dataGridView1.Columns[2].Visible = false;
             //営業所名
             dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[3].Width = 80;
+            dataGridView1.Columns[3].Width = 100;
             //役職ID(非表示)
             dataGridView1.Columns[4].Visible = false;
             //役職名
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[5].Width = 50;
+            dataGridView1.Columns[5].Width = 100;
             //入社年月日
             dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[6].Width = 120;
+            dataGridView1.Columns[6].Width = 130;
             //パスワード
             dataGridView1.Columns[7].Visible = false;
             //電話番号
             dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[8].Width = 55;
+            dataGridView1.Columns[8].Width = 100;
             //電話番号1(非表示)
             dataGridView1.Columns[9].Visible = false;
             //電話番号2(非表示)
