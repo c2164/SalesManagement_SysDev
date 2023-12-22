@@ -61,25 +61,26 @@ namespace SalesManagement_SysDev
 
             //ヘッダー文字位置、セル文字位置、列幅の設定
             //在庫ID
+            dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[0].Width = 30;
+            dataGridView1.Columns[0].Width = 103;
             //商品ID(非表示)
             dataGridView1.Columns[1].Visible = false;
             //商品名
             dataGridView1.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[2].Width = 80;
+            dataGridView1.Columns[2].Width = 200;
             //メーカーID(非表示)
             dataGridView1.Columns[3].Visible = false;
             //メーカー名
             dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[4].Width = 200;
             //在庫数
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[5].Width = 50;
+            dataGridView1.Columns[5].Width = 105;
             //在庫管理フラグ(非表示)
             dataGridView1.Columns[6].Visible = false;
         }

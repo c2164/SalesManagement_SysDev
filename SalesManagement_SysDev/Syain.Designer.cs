@@ -206,7 +206,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(1114, 405);
+            this.label8.Location = new System.Drawing.Point(1116, 415);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(139, 30);
             this.label8.TabIndex = 13;
