@@ -334,6 +334,7 @@
             // textBox_Syukko_ID
             // 
             this.textBox_Syukko_ID.Location = new System.Drawing.Point(239, 185);
+            this.textBox_Syukko_ID.MaxLength = 6;
             this.textBox_Syukko_ID.Name = "textBox_Syukko_ID";
             this.textBox_Syukko_ID.Size = new System.Drawing.Size(260, 31);
             this.textBox_Syukko_ID.TabIndex = 29;

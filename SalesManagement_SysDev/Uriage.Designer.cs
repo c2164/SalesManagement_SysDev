@@ -72,10 +72,10 @@
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_3);
             this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_2);
             this.groupBox1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(123, 371);
+            this.groupBox1.Location = new System.Drawing.Point(74, 381);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(924, 107);
-            this.groupBox1.TabIndex = 58;
+            this.groupBox1.Size = new System.Drawing.Size(950, 107);
+            this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "検索用日時";
             // 
@@ -84,7 +84,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(385, 49);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 24);
+            this.label8.Size = new System.Drawing.Size(44, 30);
             this.label8.TabIndex = 21;
             this.label8.Text = "～";
             // 
@@ -92,26 +92,14 @@
             // 
             this.dateTimePicker_Nitizi_3.Location = new System.Drawing.Point(433, 43);
             this.dateTimePicker_Nitizi_3.Name = "dateTimePicker_Nitizi_3";
-            this.dateTimePicker_Nitizi_3.Size = new System.Drawing.Size(364, 31);
+            this.dateTimePicker_Nitizi_3.Size = new System.Drawing.Size(364, 37);
             this.dateTimePicker_Nitizi_3.TabIndex = 20;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_3);
-            this.groupBox1.Controls.Add(this.dateTimePicker_Nitizi_2);
-            this.groupBox1.Location = new System.Drawing.Point(74, 381);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(950, 107);
-            this.groupBox1.TabIndex = 38;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "検索用日時";
             // 
             // dateTimePicker_Nitizi_2
             // 
             this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(20, 43);
             this.dateTimePicker_Nitizi_2.Name = "dateTimePicker_Nitizi_2";
-            this.dateTimePicker_Nitizi_2.Size = new System.Drawing.Size(350, 31);
+            this.dateTimePicker_Nitizi_2.Size = new System.Drawing.Size(350, 37);
             this.dateTimePicker_Nitizi_2.TabIndex = 19;
             // 
             // dateTimePicker_Nitizi
@@ -148,6 +136,7 @@
             // textBox_Zyutyuu_ID
             // 
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(255, 305);
+            this.textBox_Zyutyuu_ID.MaxLength = 6;
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(346, 31);
             this.textBox_Zyutyuu_ID.TabIndex = 53;
@@ -155,6 +144,7 @@
             // textBox_Uriagesyousai_ID
             // 
             this.textBox_Uriagesyousai_ID.Location = new System.Drawing.Point(255, 229);
+            this.textBox_Uriagesyousai_ID.MaxLength = 6;
             this.textBox_Uriagesyousai_ID.Name = "textBox_Uriagesyousai_ID";
             this.textBox_Uriagesyousai_ID.Size = new System.Drawing.Size(346, 31);
             this.textBox_Uriagesyousai_ID.TabIndex = 52;
@@ -162,6 +152,7 @@
             // textBox_Uriage_ID
             // 
             this.textBox_Uriage_ID.Location = new System.Drawing.Point(255, 153);
+            this.textBox_Uriage_ID.MaxLength = 6;
             this.textBox_Uriage_ID.Name = "textBox_Uriage_ID";
             this.textBox_Uriage_ID.Size = new System.Drawing.Size(346, 31);
             this.textBox_Uriage_ID.TabIndex = 51;
