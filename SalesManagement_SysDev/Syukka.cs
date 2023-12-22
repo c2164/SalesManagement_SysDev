@@ -16,9 +16,11 @@ namespace SalesManagement_SysDev
     public partial class Syukka : UserControl
     {
         private MessageDsp messageDsp = new MessageDsp();
-        public Syukka()
+        private DispEmplyeeDTO loginEmployee;
+        public Syukka(DispEmplyeeDTO dispEmplyee)
         {
             InitializeComponent();
+            loginEmployee = dispEmplyee;
         }
 
         private void Syukka_Load(object sender, EventArgs e)
