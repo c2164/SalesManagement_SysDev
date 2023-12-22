@@ -254,6 +254,10 @@ namespace SalesManagement_SysDev
             T_HattyuDetail hattyuDetail = new T_HattyuDetail();
             //データグリッドビューで選択されているデータの商品IDを受け取る
             HaID = GetHattyuRecode();
+            if (HaID == null)
+            {
+                return;
+            }
 
             //取得した商品IDでデータベースを検索する
             hattyu = SelectRemoveHattyu(HaID, out hattyuDetail);

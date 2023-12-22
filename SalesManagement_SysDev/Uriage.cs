@@ -136,7 +136,7 @@ namespace SalesManagement_SysDev
             //社員名
             dataGridView1.Columns[11].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[11].Width = 60;
+            dataGridView1.Columns[11].Width = 90;
             //受注ID
             dataGridView1.Columns[12].Visible = false;
             //売上日時
