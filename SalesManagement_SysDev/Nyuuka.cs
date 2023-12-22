@@ -18,8 +18,11 @@ namespace SalesManagement_SysDev
     public partial class Nyuuka : UserControl
     {
         private MessageDsp messageDsp = new MessageDsp();
-        public Nyuuka()
+        private DispEmplyeeDTO loginEmployee;
+
+        public Nyuuka(DispEmplyeeDTO dispEmplyee)
         {
+            loginEmployee = dispEmplyee;
             InitializeComponent();
         }
 
@@ -60,11 +63,11 @@ namespace SalesManagement_SysDev
             dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //売上ID
+            //入荷ID
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[0].Width = 70;
-            //売上詳細ID
+            //入荷詳細ID
             dataGridView1.Columns[1].Visible = false;
             //商品ID
             dataGridView1.Columns[2].Visible = false;
@@ -290,10 +293,10 @@ namespace SalesManagement_SysDev
             }
 
             //入荷管理フラグを0から2にする
-            UpdateArFlag(arrival, ArrivalDetail);
+            UpdateArFlag(arrival);
         }
 
-        private void UpdateArFlag(T_Arrival arrival, T_ArrivalDetail arrivalDetail)
+        private void UpdateArFlag(T_Arrival arrival)
         {
             //変数の宣言
             DialogResult result;
@@ -312,7 +315,7 @@ namespace SalesManagement_SysDev
                 return;
             }
             //入荷の更新
-            if (UpdateArrivalRecord(arrival, arrivalDetail))
+            if (UpdateArrivalRecord(arrival))
             {
                 messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
             }
@@ -322,14 +325,14 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private bool UpdateArrivalRecord(T_Arrival arrival, T_ArrivalDetail arrivalDetail)
+        private bool UpdateArrivalRecord(T_Arrival arrival)
         {
             //変数の宣言
             bool flg;
 
             //データベース接続のインスタンス化
             ArraivalDataAccess access = new ArraivalDataAccess();
-            flg = access.UpdateArrivalData(arrival, arrivalDetail);
+            flg = access.UpdateArrivalData(arrival);
 
             SetCtrlFormat();
             GetSelectData();
@@ -378,9 +381,10 @@ namespace SalesManagement_SysDev
         private T_Arrival FormalizationArrivalInputRecord(DispArrivalDTO dispArrivalDTO)
         {
             T_Arrival retarrival = new T_Arrival();
-            retarrival.ArID = int.Parse(dispArrivalDTO.PrID);
+            retarrival.ArID = int.Parse(dispArrivalDTO.ArID);
             retarrival.SoID = int.Parse(dispArrivalDTO.SoID);
-            retarrival.EmID = int.Parse(dispArrivalDTO.EmID);
+            if (dispArrivalDTO.EmID != null)
+                retarrival.EmID = int.Parse(dispArrivalDTO.EmID);
             retarrival.OrID = int.Parse(dispArrivalDTO.OrID);
             retarrival.ClID = int.Parse(dispArrivalDTO.ClID);
             retarrival.ArDate = dispArrivalDTO.ArDate;
@@ -461,7 +465,7 @@ namespace SalesManagement_SysDev
             //入荷状態フラグを0から1にする
             arrival = ChangeArStateFlag(arrival);
             //入荷情報を更新する
-            flg = UpdateArrivalRecord(arrival, arrivalDetail);
+            flg = UpdateArrivalRecord(arrival);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("入荷情報を確定しました", "確定完了", MessageBoxIcon.Information);
@@ -568,7 +572,7 @@ namespace SalesManagement_SysDev
             retShipment.ShFinishDate = null;
             retShipment.ShStateFlag = 0;
             retShipment.ShFlag = 0;
-            retShipment.ShHidden = arrival.ArHidden;
+            retShipment.ShHidden = null;
 
             //出荷詳細レコードの作成
             foreach (var arrivaldetail in ListArrivalDetail)
@@ -608,6 +612,11 @@ namespace SalesManagement_SysDev
             }
 
             return DispArrivals;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

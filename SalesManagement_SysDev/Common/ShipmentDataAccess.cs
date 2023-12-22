@@ -86,7 +86,8 @@ namespace SalesManagement_SysDev.Common
                          join SalesOffice in context.M_SalesOffices
                          on Shipment.SoID equals SalesOffice.SoID
                          join Employee in context.M_Employees
-                         on Shipment.EmID equals Employee.EmID
+                         on Shipment.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join Order in context.T_Orders
                          on Shipment.OrID equals Order.OrID
                          join Arrival in context.T_Arrivals
@@ -165,13 +166,15 @@ namespace SalesManagement_SysDev.Common
                          join SalesOffice in context.M_SalesOffices
                          on Shipment.SoID equals SalesOffice.SoID
                          join Employee in context.M_Employees
-                         on Shipment.EmID equals Employee.EmID
+                         on Shipment.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join Order in context.T_Orders
                          on Shipment.OrID equals Order.OrID
                          join Arrival in context.T_Arrivals
                          on Shipment.OrID equals Arrival.OrID
-                         join ArrivalEmployee in context.M_Employees
-                         on Arrival.EmID equals ArrivalEmployee.EmID
+                         join ArrivalEmployee in context.M_Employees 
+                         on Arrival.EmID equals ArrivalEmployee.EmID into Arem
+                         from ArrivalEmployee in Arem.DefaultIfEmpty()
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
                          where

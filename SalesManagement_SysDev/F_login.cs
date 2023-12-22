@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesManagement_SysDev.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,10 +17,24 @@ namespace SalesManagement_SysDev
 {
     public partial class F_Login : Form
     {
+        private DispEmplyeeDTO loginEmployee;
+        public DispEmplyeeDTO LoginEmployee
+        {
+            set
+            {
+                loginEmployee = value;
+                label_loginEmName.Text = loginEmployee.EmName;
+                label_loginEmPosition.Text = loginEmployee.PoName;
+            }
+            get
+            {
+                return loginEmployee;
+            }
+        }
+
         public F_Login()
         {
             InitializeComponent();
-
         }
 
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -764,7 +779,7 @@ namespace SalesManagement_SysDev
         private void F_Login_Load(object sender, EventArgs e)
         {
             SalesManagement_SysDev.Roguin roguin = new Roguin();
-
+            roguin.mainform = this;
             panel3.Controls.Add(roguin);
         }
 
@@ -776,7 +791,7 @@ namespace SalesManagement_SysDev
                 RemCotl = panel3.Controls[0];
                 panel3.Controls.Remove(RemCotl);
             }
-            SalesManagement_SysDev.Buturyuu buturyuu = new Buturyuu();
+            SalesManagement_SysDev.Buturyuu buturyuu = new Buturyuu(loginEmployee);
             panel3.Controls.Add(buturyuu);
         }
 
@@ -788,7 +803,7 @@ namespace SalesManagement_SysDev
                 RemCotl = panel3.Controls[0];
                 panel3.Controls.Remove(RemCotl);
             }
-            SalesManagement_SysDev.Eigyou eigyou = new Eigyou();
+            SalesManagement_SysDev.Eigyou eigyou = new Eigyou(loginEmployee);
             panel3.Controls.Add(eigyou);
         }
 
@@ -808,6 +823,27 @@ namespace SalesManagement_SysDev
 
         private void button4_Click(object sender, EventArgs e)
         {
+        }
+
+        public void LimitBottunAdministrator()
+        {
+            button1.Visible = true;
+            button2.Visible = true;
+            button3.Visible = true;
+        }
+
+        public void LimitBottunSales()
+        {
+            button1.Visible = false;
+            button2.Visible = true;
+            button3.Visible = false;
+        }
+
+        public void LimitBottunLogistics()
+        {
+            button1.Visible = true;
+            button2.Visible = false;
+            button3.Visible = false;
         }
     }
 }

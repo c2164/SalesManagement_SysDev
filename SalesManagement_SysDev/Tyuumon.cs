@@ -17,11 +17,12 @@ namespace SalesManagement_SysDev
 {
     public partial class Tyuumon : UserControl
     {
-
+        private DispEmplyeeDTO loginEmployee;
         private MessageDsp messageDsp = new MessageDsp();
 
-        public Tyuumon()
+        public Tyuumon(DispEmplyeeDTO dispEmplyee)
         {
+            loginEmployee = dispEmplyee;
             InitializeComponent();
         }
 
@@ -523,7 +524,7 @@ namespace SalesManagement_SysDev
             bool flg;
 
             //注文状態フラグを0から1にする
-            chumon = ChangeChStateFlag(chumon);
+            chumon = FormalizationChumonRecord(chumon);
 
             //注文情報を更新する
             flg = UpdateChumonRecord(chumon);
@@ -537,9 +538,10 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private T_Chumon ChangeChStateFlag(T_Chumon chumon)
+        private T_Chumon FormalizationChumonRecord(T_Chumon chumon)
         {
             chumon.ChStateFlag = 1;
+            chumon.EmID = int.Parse(loginEmployee.EmID);
             return chumon;
         }
 
@@ -792,7 +794,7 @@ namespace SalesManagement_SysDev
             title = "";
             icon = MessageBoxIcon.Error;
 
-            //受注IDの一致する受注情報を取得
+            //注文IDの一致する注文情報を取得
             ListDispChumon = GetTableData().Where(x => x.ChID == chID).ToList();
             if (ListDispChumon == null || ListDispChumon.Count == 0)
             {
@@ -818,7 +820,8 @@ namespace SalesManagement_SysDev
             textbox_Tyuumonsyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
             textbox_Zyutyuusyousai.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
             comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString();
-            comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+            if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value != null)
+                comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
             dateTimePicker_Tyuumon_Nenngetu.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString());
             numericUPDown_Syouhin_Namae.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString());
 

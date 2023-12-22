@@ -45,8 +45,16 @@ namespace SalesManagement_SysDev.Common
                 {
                     try
                     {
-                        var UpdateTarget = context.T_Syukkos.Single(x => x.SyID == UpSyukko.SyID);
-                        UpdateTarget = UpSyukko;
+                    var UpdateTarget = context.T_Syukkos.Single(x => x.SyID == UpSyukko.SyID);
+                    UpdateTarget.SyID = UpSyukko.SyID;
+                    UpdateTarget.EmID = UpSyukko.EmID;
+                    UpdateTarget.ClID = UpSyukko.ClID;
+                    UpdateTarget.SoID = UpSyukko.SoID;
+                    UpdateTarget.OrID = UpSyukko.OrID;
+                    UpdateTarget.SyDate = UpSyukko.SyDate;
+                    UpdateTarget.SyStateFlag = UpSyukko.SyStateFlag;
+                    UpdateTarget.SyFlag = UpSyukko.SyFlag;
+                    UpdateTarget.SyHidden = UpSyukko.SyHidden;
 
                         context.SaveChanges();
                         return true;
@@ -76,7 +84,8 @@ namespace SalesManagement_SysDev.Common
                              join Client in context.M_Clients
                              on Syukko.ClID equals Client.ClID
                              join Employee in context.M_Employees
-                             on Syukko.EmID equals Employee.EmID
+                             on Syukko.EmID equals Employee.EmID into em
+                             from Employee in em.DefaultIfEmpty()
                              join Chumon in context.T_Chumons
                             on Employee.EmID equals Chumon.EmID
                              join SalesOffice in context.M_SalesOffices
@@ -106,16 +115,25 @@ namespace SalesManagement_SysDev.Common
                              select new DispSyukkoDTO
                              {
                                  SyID = Syukko.SyID.ToString(),
-                                 ChumonEmName = Chumon.ChID.ToString(),
-                                 ClName = Client.ClName.ToString(),
+                                 ClName = Client.ClName,
                                  OrID = Order.OrID.ToString(),
-                                 ConfEmName = Employee.EmName.ToString(),
+                                 ConfEmID = Employee.EmID.ToString(),
+                                 ConfEmName = Employee.EmName,
                                  SyDetailID = SyukkoDetail.SyDetailID.ToString(),
                                  MaName = Maker.MaName.ToString(),
-                                 PrName = Product.PrName.ToString(),
+                                 PrID = Product.PrID.ToString(),
+                                 PrName = Product.PrName,
                                  SyQuantity = SyukkoDetail.SyQuantity.ToString(),
-
-
+                                 ClID = Client.ClID.ToString(),
+                                 ChID = Chumon.ChID.ToString(),
+                                 ChumonEmID = ChumonEmployee.EmName,
+                                 ChumonEmName = Chumon.ChID.ToString(),
+                                 SoID = SalesOffice.SoID.ToString(),
+                                 SoName = SalesOffice.SoName.ToString(),
+                                 SyDate = Syukko.SyDate,
+                                 SyStateFlag = Syukko.SyStateFlag.ToString(),
+                                 SyFlag = Syukko.SyFlag.ToString(),
+                                 SyHidden = Syukko.SyHidden.ToString(),
                              };
 
                     return tb.ToList();
@@ -148,13 +166,14 @@ namespace SalesManagement_SysDev.Common
                          join Client in context.M_Clients
                          on Syukko.ClID equals Client.ClID
                          join Employee in context.M_Employees
-                         on Syukko.EmID equals Employee.EmID
+                         on Syukko.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join SalesOffice in context.M_SalesOffices
                          on Syukko.SoID equals SalesOffice.SoID
                          join Order in context.T_Orders
                          on Syukko.OrID equals Order.OrID
                          join Chumon in context.T_Chumons
-                       on Employee.EmID equals Chumon.EmID
+                         on Syukko.OrID equals Chumon.OrID
                          join ChumonEmployee in context.M_Employees
                          on Chumon.EmID equals ChumonEmployee.EmID
 
@@ -162,16 +181,25 @@ namespace SalesManagement_SysDev.Common
                          select new DispSyukkoDTO
                          {
                              SyID = Syukko.SyID.ToString(),
-                             ChumonEmName = Chumon.ChID.ToString(),
-                             ClName = Client.ClName.ToString(),
+                             ClName = Client.ClName,
                              OrID = Order.OrID.ToString(),
-                             ConfEmName = Employee.EmName.ToString(),
+                             ConfEmID = Employee.EmID.ToString(),
+                             ConfEmName = Employee.EmName,
                              SyDetailID = SyukkoDetail.SyDetailID.ToString(),
                              MaName = Maker.MaName.ToString(),
-                             PrName = Product.PrName.ToString(),
+                             PrID = Product.PrID.ToString(),
+                             PrName = Product.PrName,
                              SyQuantity = SyukkoDetail.SyQuantity.ToString(),
-
-
+                             ClID = Client.ClID.ToString(),
+                             ChID = Chumon.ChID.ToString(),
+                             ChumonEmID = ChumonEmployee.EmName,
+                             ChumonEmName = Chumon.ChID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName.ToString(),
+                             SyDate = Syukko.SyDate,
+                             SyStateFlag = Syukko.SyStateFlag.ToString(),
+                             SyFlag = Syukko.SyFlag.ToString(),
+                             SyHidden = Syukko.SyHidden.ToString(),
                          };
 
             

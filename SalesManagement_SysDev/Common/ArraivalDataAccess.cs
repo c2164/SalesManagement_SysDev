@@ -25,7 +25,7 @@ namespace SalesManagement_SysDev.Common
                     foreach (var RegArrivalDetail in ListRegArrivalDetail)
                     {
                         RegArrivalDetail.ArID = ArID;
-                        context.T_Arrivals.Add(RegArrival);
+                        context.T_ArrivalDetails.Add(RegArrivalDetail);
                         context.SaveChanges();
                     }
                     return true;
@@ -38,16 +38,22 @@ namespace SalesManagement_SysDev.Common
             }
         }
 
-        public bool UpdateArrivalData(T_Arrival UpArrival,T_ArrivalDetail UpArrivalDetail)
+        public bool UpdateArrivalData(T_Arrival UpArrival)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.T_Arrivals.Single(x => x.ArID == UpArrival.ArID);
-                    var UpdateTargetDetail = context.T_ArrivalDetails.Single(x => x.ArDetailID == UpArrivalDetail.ArID);
-                    UpdateTarget = UpArrival;
-                    UpdateTargetDetail = UpArrivalDetail;
+                    UpdateTarget.ArID = UpArrival.ArID;
+                    UpdateTarget.ClID = UpArrival.ClID;
+                    UpdateTarget.EmID = UpArrival.EmID;
+                    UpdateTarget.SoID = UpArrival.SoID;
+                    UpdateTarget.OrID = UpArrival.OrID;
+                    UpdateTarget.ArDate = UpArrival.ArDate;
+                    UpdateTarget.ArStateFlag = UpArrival.ArStateFlag;
+                    UpdateTarget.ArFlag = UpArrival.ArFlag;
+                    UpdateTarget.ArHidden = UpArrival.ArHidden;
 
                     context.SaveChanges();
                     return true;
@@ -74,7 +80,8 @@ namespace SalesManagement_SysDev.Common
                          join SalesOffice in context.M_SalesOffices
                          on Arrival.SoID equals SalesOffice.SoID
                          join Employee in context.M_Employees
-                         on Arrival.EmID equals Employee.EmID
+                         on Arrival.EmID equals Employee.EmID into  em
+                         from Employee in em.DefaultIfEmpty()
                          join Client in context.M_Clients
                          on Arrival.ClID equals Client.ClID
                          join Order in context.T_Orders
@@ -121,8 +128,9 @@ namespace SalesManagement_SysDev.Common
                              ClName = Client.ClName.ToString(),
                              OrID = Arrival.OrID.ToString(),
                              ArDate = Arrival.ArDate,
-                             ArStateFlag = Arrival.ArStateFlag.ToString()
-
+                             ArStateFlag = Arrival.ArStateFlag.ToString(),
+                             ArFlag = Arrival.ArFlag.ToString(),
+                             ArHidden = Arrival.ArHidden,
                          };
 
                 return tb.ToList();
@@ -150,7 +158,8 @@ namespace SalesManagement_SysDev.Common
                          join SalesOffice in context.M_SalesOffices
                          on Arrival.SoID equals SalesOffice.SoID
                          join Employee in context.M_Employees
-                         on Arrival.EmID equals Employee.EmID
+                         on Arrival.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join Client in context.M_Clients
                          on Arrival.ClID equals Client.ClID
                          join Order in context.T_Orders
@@ -161,7 +170,8 @@ namespace SalesManagement_SysDev.Common
                          on Chumon.EmID equals ChumonEm.EmID
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
-
+                         where
+                         Arrival.ArFlag == 0 //非表示フラグ
 
                          select new DispArrivalDTO
                          {
@@ -182,7 +192,9 @@ namespace SalesManagement_SysDev.Common
                              ClName = Client.ClName.ToString(),
                              OrID = Arrival.OrID.ToString(),
                              ArDate = Arrival.ArDate,
-                             ArStateFlag = Arrival.ArStateFlag.ToString()
+                             ArStateFlag = Arrival.ArStateFlag.ToString(),
+                             ArFlag = Arrival.ArFlag.ToString(),
+                             ArHidden = Arrival.ArHidden,
 
                          };
 

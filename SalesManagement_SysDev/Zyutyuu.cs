@@ -17,11 +17,12 @@ namespace SalesManagement_SysDev
     public partial class Zyutyuu : UserControl
     {
         private MessageDsp messageDsp = new MessageDsp();
+        private DispEmplyeeDTO loginEmployee;
 
-
-        public Zyutyuu()
+        public Zyutyuu(DispEmplyeeDTO dispEmplyee)
         {
             InitializeComponent();
+            loginEmployee = dispEmplyee;
         }
 
         private void Zyutyuu_Load(object sender, EventArgs e)

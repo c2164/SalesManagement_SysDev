@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesManagement_SysDev.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +13,11 @@ namespace SalesManagement_SysDev
 {
     public partial class Eigyou : UserControl
     {
-        public Eigyou()
+        private DispEmplyeeDTO loginEmployee;
+        public Eigyou(DispEmplyeeDTO emplyeeDTO)
         {
             InitializeComponent();
-
-            /*kokyaku1.Visible = false;
-            zyutyuu1.Visible = false;
-            tyuumon1.Visible = false;
-            nyuuka1.Visible = false;
-            syukka1.Visible = false;
-            uriage1.Visible = false;*/
+            loginEmployee = emplyeeDTO;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,7 +38,7 @@ namespace SalesManagement_SysDev
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SalesManagement_SysDev.Zyutyuu zyutyuu = new Zyutyuu();
+            SalesManagement_SysDev.Zyutyuu zyutyuu = new Zyutyuu(loginEmployee);
 
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
@@ -51,7 +47,7 @@ namespace SalesManagement_SysDev
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SalesManagement_SysDev.Tyuumon tyuumon = new Tyuumon();
+            SalesManagement_SysDev.Tyuumon tyuumon = new Tyuumon(loginEmployee);
 
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
@@ -61,7 +57,7 @@ namespace SalesManagement_SysDev
 
         private void button4_Click(object sender, EventArgs e)
         {
-            SalesManagement_SysDev.Nyuuka nyuuka = new Nyuuka();
+            SalesManagement_SysDev.Nyuuka nyuuka = new Nyuuka(loginEmployee);
 
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
@@ -71,7 +67,7 @@ namespace SalesManagement_SysDev
 
         private void button5_Click(object sender, EventArgs e)
         {
-            SalesManagement_SysDev.Syukka syukka = new Syukka();
+            SalesManagement_SysDev.Syukka syukka = new Syukka(loginEmployee);
 
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
