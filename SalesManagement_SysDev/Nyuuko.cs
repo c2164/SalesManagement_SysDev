@@ -100,11 +100,11 @@ namespace SalesManagement_SysDev
             //入庫ID
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[0].Width = 40;
+            dataGridView1.Columns[0].Width = 30;
             //入庫詳細ID
             dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[1].Width = 45;
             //商品ID
             dataGridView1.Columns[2].Visible = false;
             //商品名

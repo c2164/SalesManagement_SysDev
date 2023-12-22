@@ -111,12 +111,12 @@ namespace SalesManagement_SysDev
             //受注ID
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[0].Width = 40;
+            dataGridView1.Columns[0].Width = 30;
 
             //受注詳細ID
             dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[1].Width = 45;
 
             //商品ID(非表示)
             dataGridView1.Columns[2].Visible = false;
@@ -129,7 +129,7 @@ namespace SalesManagement_SysDev
             //数量
             dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[4].Width = 60;
 
             //合計金額
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -163,12 +163,12 @@ namespace SalesManagement_SysDev
             //顧客担当者名
             dataGridView1.Columns[12].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[12].Width = 80;
+            dataGridView1.Columns[12].Width = 110;
 
             //受注年月日
             dataGridView1.Columns[13].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[13].Width = 80;
+            dataGridView1.Columns[13].Width = 90;
 
             //受注状態フラグ
             dataGridView1.Columns[14].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -181,8 +181,13 @@ namespace SalesManagement_SysDev
             //非表示理由(非表示)
             dataGridView1.Columns[16].Visible = false;
 
+            //メーカー名
+            dataGridView1.Columns[17].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[17].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[17].Width = 80;
 
-
+            //価格(非表示)
+            dataGridView1.Columns[18].Visible = false;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)

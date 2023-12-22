@@ -66,7 +66,7 @@ namespace SalesManagement_SysDev
             //商品名
             dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[1].Width = 95;
             //メーカーID(非表示)
             dataGridView1.Columns[2].Visible = false;
             //メーカー名
@@ -80,7 +80,7 @@ namespace SalesManagement_SysDev
             //安全在庫数
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[5].Width = 50;
+            dataGridView1.Columns[5].Width = 60;
             //小分類ID(非表示)
             dataGridView1.Columns[6].Visible = false;
             //小分類名
@@ -98,7 +98,7 @@ namespace SalesManagement_SysDev
             //発売日
             dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[10].Width = 60;
+            dataGridView1.Columns[10].Width = 67;
             //検索用発売日(開始期間)(非表示)
             dataGridView1.Columns[11].Visible = false;
             //検索用発売日(終了期間)(非表示)
