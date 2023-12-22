@@ -33,15 +33,15 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label_loginEmPosition = new System.Windows.Forms.Label();
+            this.label_loginEmName = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.button_CleateDatabase = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label_loginEmName = new System.Windows.Forms.Label();
-            this.label_loginEmPosition = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +65,7 @@
             this.button3.Location = new System.Drawing.Point(10, 761);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(217, 171);
+            this.button3.Size = new System.Drawing.Size(280, 228);
             this.button3.TabIndex = 2;
             this.button3.Text = "社員管理";
             this.button3.UseVisualStyleBackColor = false;
@@ -91,7 +91,7 @@
             this.button1.Location = new System.Drawing.Point(13, 169);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(215, 171);
+            this.button1.Size = new System.Drawing.Size(280, 228);
             this.button1.TabIndex = 2;
             this.button1.Text = "物流担当";
             this.button1.UseVisualStyleBackColor = false;
@@ -113,6 +113,49 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1905, 144);
             this.panel2.TabIndex = 1;
+            // 
+            // label_loginEmPosition
+            // 
+            this.label_loginEmPosition.AutoSize = true;
+            this.label_loginEmPosition.Location = new System.Drawing.Point(307, 73);
+            this.label_loginEmPosition.Name = "label_loginEmPosition";
+            this.label_loginEmPosition.Size = new System.Drawing.Size(0, 24);
+            this.label_loginEmPosition.TabIndex = 7;
+            // 
+            // label_loginEmName
+            // 
+            this.label_loginEmName.AutoSize = true;
+            this.label_loginEmName.Location = new System.Drawing.Point(322, 48);
+            this.label_loginEmName.Name = "label_loginEmName";
+            this.label_loginEmName.Size = new System.Drawing.Size(0, 24);
+            this.label_loginEmName.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(281, 15);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(104, 24);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "ログイン中";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(243, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 24);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "役職";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(234, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 24);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "社員名";
             // 
             // button_CleateDatabase
             // 
@@ -157,58 +200,15 @@
             this.panel3.Size = new System.Drawing.Size(1610, 875);
             this.panel3.TabIndex = 2;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(232, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "社員名";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(250, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 18);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "役職";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(280, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 18);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "ログイン中";
-            // 
-            // label_loginEmName
-            // 
-            this.label_loginEmName.AutoSize = true;
-            this.label_loginEmName.Location = new System.Drawing.Point(322, 48);
-            this.label_loginEmName.Name = "label_loginEmName";
-            this.label_loginEmName.Size = new System.Drawing.Size(0, 18);
-            this.label_loginEmName.TabIndex = 6;
-            // 
-            // label_loginEmPosition
-            // 
-            this.label_loginEmPosition.AutoSize = true;
-            this.label_loginEmPosition.Location = new System.Drawing.Point(307, 73);
-            this.label_loginEmPosition.Name = "label_loginEmPosition";
-            this.label_loginEmPosition.Size = new System.Drawing.Size(0, 18);
-            this.label_loginEmPosition.TabIndex = 7;
-            // 
             // F_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1894, 1009);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "F_Login";
             this.Text = "販売管理システム";
