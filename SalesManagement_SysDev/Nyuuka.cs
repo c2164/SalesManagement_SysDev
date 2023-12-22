@@ -68,49 +68,59 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[0].Width = 70;
             //入荷詳細ID
-            dataGridView1.Columns[1].Visible = false;
+            dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[1].Width = 70;
             //商品ID
             dataGridView1.Columns[2].Visible = false;
             //商品名
             dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[3].Width = 70;
-            //個数
-            dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[4].Width = 60;
-            //合計金額
+            //メーカID
+            dataGridView1.Columns[4].Visible = false;
+            //商品名
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[5].Width = 60;
+            dataGridView1.Columns[5].Width = 70;
+            //個数
+            dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[6].Width = 60;
             //顧客ID
-            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].Visible = false;
             //顧客名
-            dataGridView1.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[7].Width = 70;
+            dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[8].Width = 70;
             //営業所ID
-            dataGridView1.Columns[8].Visible = false;
+            dataGridView1.Columns[9].Visible = false;
             //営業所名
-            dataGridView1.Columns[9].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[9].Width = 90;
+            dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[10].Width = 90;
             //社員ID
-            dataGridView1.Columns[10].Visible = false;
+            dataGridView1.Columns[11].Visible = false;
             //社員名
-            dataGridView1.Columns[11].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[11].Width = 60;
+            dataGridView1.Columns[12].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[12].Width = 60;
+            //社員ID
+            dataGridView1.Columns[13].Visible = false;
+            //社員名
+            dataGridView1.Columns[14].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[14].Width = 60;
             //受注ID
-            dataGridView1.Columns[12].Visible = false;
-            //売上日時
-            dataGridView1.Columns[13].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[13].Width = 80;
-            //売上管理フラグ
-            dataGridView1.Columns[14].Visible = false;
-            //非表示理由
             dataGridView1.Columns[15].Visible = false;
+            //売上日時
+            dataGridView1.Columns[16].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[16].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[16].Width = 80;
+            //売上管理フラグ
+            dataGridView1.Columns[17].Visible = false;
+            //非表示理由
+            dataGridView1.Columns[18].Visible = false;
 
         }
 
@@ -383,8 +393,8 @@ namespace SalesManagement_SysDev
             T_Arrival retarrival = new T_Arrival();
             retarrival.ArID = int.Parse(dispArrivalDTO.ArID);
             retarrival.SoID = int.Parse(dispArrivalDTO.SoID);
-            if (dispArrivalDTO.EmID != null)
-                retarrival.EmID = int.Parse(dispArrivalDTO.EmID);
+            if (!String.IsNullOrEmpty(dispArrivalDTO.ConfEmID))
+                retarrival.EmID = int.Parse(dispArrivalDTO.ConfEmID);
             retarrival.OrID = int.Parse(dispArrivalDTO.OrID);
             retarrival.ClID = int.Parse(dispArrivalDTO.ClID);
             retarrival.ArDate = dispArrivalDTO.ArDate;

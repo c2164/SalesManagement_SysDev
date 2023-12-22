@@ -367,7 +367,8 @@ namespace SalesManagement_SysDev
 
             retshipment.ShID = int.Parse(dispshipmentDTO.ShID);
             retshipment.ClID = int.Parse(dispshipmentDTO.ClID);
-            retshipment.EmID = int.Parse(dispshipmentDTO.EmID);
+            if (dispshipmentDTO.EmID != null)
+                retshipment.EmID = int.Parse(dispshipmentDTO.EmID);
             retshipment.SoID = int.Parse(dispshipmentDTO.SoID);
             retshipment.OrID = int.Parse(dispshipmentDTO.OrID);
             retshipment.ShStateFlag = int.Parse(dispshipmentDTO.ShStateFlag);
@@ -578,7 +579,7 @@ namespace SalesManagement_SysDev
             //売上レコードの作成
             retSale.ClID = shipment.ClID;
             retSale.SoID = shipment.SoID;
-            retSale.EmID = shipment.EmID.Value;//営業担当の社員IDにする
+            retSale.EmID = int.Parse(loginEmployee.EmID);//営業担当の社員IDにする
             retSale.ChID = shipment.ClID;
             retSale.SaDate = DateTime.Now;//売上処理がされた日付にする
             retSale.SaHidden = shipment.ShHidden;
