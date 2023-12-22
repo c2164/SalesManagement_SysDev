@@ -102,7 +102,7 @@ namespace SalesManagement_SysDev
             //売上ID
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[0].Width = 70;
+            dataGridView1.Columns[0].Width = 30;
             //売上詳細ID
             dataGridView1.Columns[1].Visible = false;
             //商品ID

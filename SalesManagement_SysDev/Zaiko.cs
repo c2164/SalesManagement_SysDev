@@ -69,17 +69,17 @@ namespace SalesManagement_SysDev
             //商品名
             dataGridView1.Columns[2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[2].Width = 80;
+            dataGridView1.Columns[2].Width = 207;
             //メーカーID(非表示)
             dataGridView1.Columns[3].Visible = false;
             //メーカー名
             dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[4].Width = 207;
             //在庫数
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[5].Width = 50;
+            dataGridView1.Columns[5].Width = 165;
             //在庫管理フラグ(非表示)
             dataGridView1.Columns[6].Visible = false;
         }

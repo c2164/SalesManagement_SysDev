@@ -111,12 +111,12 @@ namespace SalesManagement_SysDev
             //注文ID
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[0].Width = 40;
+            dataGridView1.Columns[0].Width = 30;
 
             //注文詳細ID
             dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[1].Width = 45;
 
             //商品ID(非表示)
             dataGridView1.Columns[2].Visible = false;
@@ -129,7 +129,7 @@ namespace SalesManagement_SysDev
             //数量
             dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[4].Width = 50;
 
             //営業所ID(非表示)
             dataGridView1.Columns[5].Visible = false;
@@ -158,12 +158,12 @@ namespace SalesManagement_SysDev
             //受注ID
             dataGridView1.Columns[11].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[11].Width = 80;
+            dataGridView1.Columns[11].Width = 30;
 
             //注文年月日
             dataGridView1.Columns[12].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[12].Width = 80;
+            dataGridView1.Columns[12].Width = 90;
 
             //注文状態フラグ
             dataGridView1.Columns[13].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
