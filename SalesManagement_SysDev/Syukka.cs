@@ -575,6 +575,7 @@ namespace SalesManagement_SysDev
             //変数の宣言
             T_Sale retSale = new T_Sale();
             ListSaleDetail = new List<T_SaleDetail>();
+            ProductDataAccess access = new ProductDataAccess();
 
             //売上レコードの作成
             retSale.ClID = shipment.ClID;
@@ -586,13 +587,13 @@ namespace SalesManagement_SysDev
             retSale.SaFlag = shipment.ShFlag;
 
             //売上詳細レコードの作成
-            foreach (var saledetail in ListSaleDetail)
+            foreach (var saledetail in ListShipmentDetail)
             {
                 T_SaleDetail saleDetail = new T_SaleDetail();
-
                 saleDetail.PrID = saledetail.PrID;
-                saleDetail.SaQuantity = saledetail.SaQuantity;
-                saleDetail.SaTotalPrice = saledetail.SaTotalPrice;
+                saleDetail.SaQuantity = saledetail.ShQuantity;
+                saleDetail.SaTotalPrice = saledetail.ShQuantity * decimal.Parse(access.GetProductData().Single(x => x.PrID == saledetail.PrID.ToString()).Price);
+                ListSaleDetail.Add(saleDetail);
             }
 
             return retSale;
@@ -645,7 +646,8 @@ namespace SalesManagement_SysDev
         private T_Shipment ChangeShipmentFlag(T_Shipment shipment)
         {
             shipment.ShStateFlag = 1;
-
+            shipment.EmID = int.Parse(loginEmployee.EmID);
+            shipment.ShFinishDate = DateTime.Now;
             return shipment;
         }
     }

@@ -135,8 +135,9 @@ namespace SalesManagement_SysDev.Common
                              ClName = Client.ClName.ToString(),
                              OrID = Shipment.OrID.ToString(),
                              ShDate = Shipment.ShFinishDate,
-                             ShStateFlag = Shipment.ShStateFlag.ToString()
-
+                             ShStateFlag = Shipment.ShStateFlag.ToString(),
+                             ShFlag = Shipment.ShFlag.ToString(),
+                             ShHidden = Shipment.ShHidden,
                          };
 
                 return tb.ToList();

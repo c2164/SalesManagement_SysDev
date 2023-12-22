@@ -126,15 +126,6 @@
             this.textBox_Hattyuusyousai.Size = new System.Drawing.Size(281, 31);
             this.textBox_Hattyuusyousai.TabIndex = 71;
             // 
-            // textBox_Suuryou
-            // 
-            this.textBox_Suuryou.Location = new System.Drawing.Point(246, 353);
-            this.textBox_Suuryou.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox_Suuryou.MaxLength = 4;
-            this.textBox_Suuryou.Name = "textBox_Suuryou";
-            this.textBox_Suuryou.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Suuryou.TabIndex = 70;
-            // 
             // textBox_Syouhin_ID
             // 
             this.textBox_Syouhin_ID.Location = new System.Drawing.Point(746, 263);
