@@ -268,6 +268,7 @@
             this.numericUpDown_Suuryou.Name = "numericUpDown_Suuryou";
             this.numericUpDown_Suuryou.Size = new System.Drawing.Size(240, 31);
             this.numericUpDown_Suuryou.TabIndex = 23;
+            this.numericUpDown_Suuryou.ValueChanged += new System.EventHandler(this.numericUpDown_Suuryou_ValueChanged);
             // 
             // dataGridView1
             // 

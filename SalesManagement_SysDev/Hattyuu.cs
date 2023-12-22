@@ -59,7 +59,7 @@ namespace SalesManagement_SysDev
             textBox_Hattyuu_ID.Text = "";
             textBox_Syain_ID.Text = "";
             textBox_Syouhin_ID.Text = "";
-            textBox_Suuryou.Text = "";
+            numericUpDown_suuryou.Text = "0";
             textBox_Hattyuusyousai.Text = "";
 
             //各コンボボックスを初期化
@@ -140,8 +140,8 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
-            //SetCtrlFormat();
+            GetSelectData();
+            SetCtrlFormat();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -220,7 +220,7 @@ namespace SalesManagement_SysDev
                 retHattyuDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
             retHattyuDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
 
-            retHattyuDTO.HaQuantity = textBox_Suuryou.Text.Trim();
+            retHattyuDTO.HaQuantity = numericUpDown_suuryou.Value.ToString();
             retHattyuDTO.HaDetailID = textBox_Hattyuusyousai.Text.Trim();
             retHattyuDTO.HaDate = dateTimePicker1.Value;
 
@@ -410,7 +410,7 @@ namespace SalesManagement_SysDev
             textBox_Syain_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
             textBox_Syouhin_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
             textBox_Hattyuusyousai.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-            textBox_Suuryou.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+            numericUpDown_suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
             comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
             comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
             comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
