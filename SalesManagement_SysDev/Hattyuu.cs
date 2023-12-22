@@ -259,7 +259,6 @@ namespace SalesManagement_SysDev
             hattyu = SelectRemoveHattyu(HaID, out hattyuDetail);
             if (hattyu == null)
             {
-                messageDsp.MessageBoxDsp_OK("商品情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
 
@@ -341,6 +340,7 @@ namespace SalesManagement_SysDev
 
             if (dispHattyus == null) //データの取得失敗
             {
+                messageDsp.MessageBoxDsp_OK("発注情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return null;
             }
 

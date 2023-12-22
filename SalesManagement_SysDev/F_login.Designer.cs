@@ -48,7 +48,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(200)))), ((int)(((byte)(230)))));
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -99,7 +99,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(200)))), ((int)(((byte)(230)))));
             this.panel2.Controls.Add(this.label_loginEmPosition);
             this.panel2.Controls.Add(this.label_loginEmName);
             this.panel2.Controls.Add(this.label4);
@@ -183,7 +183,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(200)))), ((int)(((byte)(230)))));
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 19.875F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(690, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);

@@ -216,6 +216,10 @@ namespace SalesManagement_SysDev
             T_SaleDetail saleDetail = new T_SaleDetail();
             //データグリッドビューで選択されているデータの商品IDを受け取る
             SaID = GetSaleRecode();
+            if (SaID == null)
+            {
+                return;
+            }
 
             //取得した商品IDでデータベースを検索する
             sale = SelectRemoveSale(SaID,out saleDetail);
@@ -347,6 +351,11 @@ namespace SalesManagement_SysDev
             //変数の宣言
             string retSaID;
 
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
             retSaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retSaID;
         }

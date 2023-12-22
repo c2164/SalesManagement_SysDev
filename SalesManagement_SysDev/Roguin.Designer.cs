@@ -58,9 +58,8 @@
             this.textBox_Syain_ID.Font = new System.Drawing.Font("MS UI Gothic", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox_Syain_ID.Location = new System.Drawing.Point(613, 161);
             this.textBox_Syain_ID.MaxLength = 6;
-            this.textBox_Syain_ID.Multiline = true;
             this.textBox_Syain_ID.Name = "textBox_Syain_ID";
-            this.textBox_Syain_ID.Size = new System.Drawing.Size(837, 143);
+            this.textBox_Syain_ID.Size = new System.Drawing.Size(837, 135);
             this.textBox_Syain_ID.TabIndex = 2;
             // 
             // textBox_Pass
@@ -68,9 +67,8 @@
             this.textBox_Pass.Font = new System.Drawing.Font("MS UI Gothic", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox_Pass.Location = new System.Drawing.Point(613, 438);
             this.textBox_Pass.MaxLength = 10;
-            this.textBox_Pass.Multiline = true;
             this.textBox_Pass.Name = "textBox_Pass";
-            this.textBox_Pass.Size = new System.Drawing.Size(837, 143);
+            this.textBox_Pass.Size = new System.Drawing.Size(837, 135);
             this.textBox_Pass.TabIndex = 3;
             // 
             // button_Roguin
@@ -90,6 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(205)))), ((int)(((byte)(227)))));
             this.Controls.Add(this.button_Roguin);
             this.Controls.Add(this.textBox_Pass);
             this.Controls.Add(this.textBox_Syain_ID);
