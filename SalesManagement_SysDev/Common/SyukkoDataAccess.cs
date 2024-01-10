@@ -84,7 +84,8 @@ namespace SalesManagement_SysDev.Common
                          join Client in context.M_Clients
                          on Syukko.ClID equals Client.ClID
                          join Employee in context.M_Employees
-                         on Syukko.EmID equals Employee.EmID 
+                         on Syukko.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join Chumon in context.T_Chumons
                         on Employee.EmID equals Chumon.EmID
                          join SalesOffice in context.M_SalesOffices
@@ -97,13 +98,17 @@ namespace SalesManagement_SysDev.Common
                          where
                           (dispSyukkoDTO.SyID.Equals("") ? true :
                          Syukko.SyID.ToString().Equals(dispSyukkoDTO.SyID)) &&//出庫ID
+
                          SalesOffice.SoName.Contains(dispSyukkoDTO.SoName) && //営業所名
+
                          ChumonEmployee.EmName.Contains(dispSyukkoDTO.ChumonEmName) && //注文社員名
+
                          Client.ClName.Contains(dispSyukkoDTO.ClName) && //顧客名
+
                           (dispSyukkoDTO.OrID.Equals("") ? true :
                          Order.OrID.ToString().Equals(dispSyukkoDTO.OrID)) && //受注ID
                          Employee.EmID.ToString().Contains(dispSyukkoDTO.ConfEmName) && //確定社員名
-                          (dispSyukkoDTO.SyID.Equals("") ? true :
+                          (dispSyukkoDTO.SyDetailID.Equals("") ? true :
                          SyukkoDetail.SyDetailID.ToString().Equals(dispSyukkoDTO.SyDetailID)) && //出庫詳細ID
                          Maker.MaName.Contains(dispSyukkoDTO.MaName) && //メーカー名
                          Product.PrName.Contains(dispSyukkoDTO.PrName) &&  //商品名
@@ -114,25 +119,28 @@ namespace SalesManagement_SysDev.Common
                          select new DispSyukkoDTO
                          {
                              SyID = Syukko.SyID.ToString(),
-                             ClName = Client.ClName,
-                             OrID = Order.OrID.ToString(),
-                             ConfEmID = Employee.EmID.ToString(),
-                             ConfEmName = Employee.EmName,
                              SyDetailID = SyukkoDetail.SyDetailID.ToString(),
-                             MaName = Maker.MaName.ToString(),
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
                              SyQuantity = SyukkoDetail.SyQuantity.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName.ToString(),
                              ClID = Client.ClID.ToString(),
+                             ClName = Client.ClName,
                              ChID = Chumon.ChID.ToString(),
                              ChumonEmID = ChumonEmployee.EmID.ToString(),
                              ChumonEmName = ChumonEmployee.EmName,
-                             SoID = SalesOffice.SoID.ToString(),
-                             SoName = SalesOffice.SoName.ToString(),
+                             ConfEmID = Employee.EmID.ToString(),
+                             ConfEmName = Employee.EmName,
+                             MaID = Maker.MaID.ToString(),
+                             MaName = Maker.MaName.ToString(),
+                             OrID = Order.OrID.ToString(),
+                             EmID = Syukko.EmID.ToString(),
                              SyDate = Syukko.SyDate,
                              SyStateFlag = Syukko.SyStateFlag.ToString(),
                              SyFlag = Syukko.SyFlag.ToString(),
                              SyHidden = Syukko.SyHidden.ToString(),
+
                          };
 
                 return tb.ToList();
@@ -182,21 +190,23 @@ namespace SalesManagement_SysDev.Common
                          select new DispSyukkoDTO
                          {
                              SyID = Syukko.SyID.ToString(),
-                             ClName = Client.ClName,
-                             OrID = Order.OrID.ToString(),
-                             ConfEmID = Employee.EmID.ToString(),
-                             ConfEmName = Employee.EmName,
                              SyDetailID = SyukkoDetail.SyDetailID.ToString(),
-                             MaName = Maker.MaName.ToString(),
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
                              SyQuantity = SyukkoDetail.SyQuantity.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName.ToString(),
                              ClID = Client.ClID.ToString(),
+                             ClName = Client.ClName,
                              ChID = Chumon.ChID.ToString(),
                              ChumonEmID = ChumonEmployee.EmID.ToString(),
                              ChumonEmName = ChumonEmployee.EmName,
-                             SoID = SalesOffice.SoID.ToString(),
-                             SoName = SalesOffice.SoName.ToString(),
+                             ConfEmID = Employee.EmID.ToString(),
+                             ConfEmName = Employee.EmName,
+                             MaID = Maker.MaID.ToString(),
+                             MaName = Maker.MaName.ToString(),
+                             OrID = Order.OrID.ToString(),
+                             EmID = Syukko.EmID.ToString(),
                              SyDate = Syukko.SyDate,
                              SyStateFlag = Syukko.SyStateFlag.ToString(),
                              SyFlag = Syukko.SyFlag.ToString(),

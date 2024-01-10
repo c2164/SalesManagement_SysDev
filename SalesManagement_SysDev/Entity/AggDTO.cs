@@ -340,11 +340,17 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("確定社員名")]
         public string ConfEmName { get; set; }
 
+        [DisplayName("メーカーID")]
+        public string MaID { get; set; }
+
         [DisplayName("メーカー名")]
         public string MaName { get; set; }
 
         [DisplayName("受注ID")]
         public string OrID { get; set; }
+
+        [DisplayName("社員ID")]
+        public string EmID { get; set; }
 
         [DisplayName("出庫年月日")]
         public DateTime? SyDate { get; set; }

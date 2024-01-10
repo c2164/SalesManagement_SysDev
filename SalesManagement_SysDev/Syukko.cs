@@ -149,26 +149,30 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[13].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[13].Width = 103;
+            //確定社員ID
+            dataGridView1.Columns[14].Visible = false;
             //メーカー名
-            dataGridView1.Columns[14].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[14].Width = 80;
-            //受注ID
             dataGridView1.Columns[15].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[15].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[15].Width = 30;
-            //出庫年月日
+            dataGridView1.Columns[15].Width = 80;
+            //受注ID
             dataGridView1.Columns[16].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[16].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[16].Width = 90;
+            dataGridView1.Columns[16].Width = 30;
+            //確定社員ID
+            dataGridView1.Columns[17].Visible = false;
+            //出庫年月日
+            dataGridView1.Columns[18].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[18].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[18].Width = 90;
             //出庫状態フラグ
-            dataGridView1.Columns[17].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[17].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[17].Width = 80;
+            dataGridView1.Columns[19].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[19].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[19].Width = 80;
             //出庫管理フラグ(非表示)
-            dataGridView1.Columns[18].Visible = false;
+            dataGridView1.Columns[20].Visible = false;
             //非表示理由(非表示)
-            dataGridView1.Columns[19].Visible = false;
+            dataGridView1.Columns[21].Visible = false;
 
         }
 
@@ -250,20 +254,24 @@ namespace SalesManagement_SysDev
             DispSyukkoDTO retSyukkoDTO = new DispSyukkoDTO();
 
             //各コントロールから出庫情報を読み取る
-            retSyukkoDTO.SyID = textBox_Syukko_ID.Text.ToString().Trim();
+            retSyukkoDTO.SyID = textBox_Syukko_ID.Text.ToString().Trim();//出庫ID
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
-                retSyukkoDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
-            retSyukkoDTO.ChumonEmID = textBox_Syain.Text.Trim();
+                retSyukkoDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID
+            retSyukkoDTO.SoName = comboBox_Eigyousyo.Text.Trim();//営業所名
+            retSyukkoDTO.ChumonEmName = textBox_Syain.Text.Trim();//注文社員名
             if (!(comboBox_Kokyaku.SelectedIndex == -1))
-                retSyukkoDTO.ClName = comboBox_Kokyaku.SelectedValue.ToString();
-            retSyukkoDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();
-            retSyukkoDTO.ConfEmID = textBox_Kakutei_Syain_Namae.Text.Trim();
-            retSyukkoDTO.SyDetailID = textBox_Syukkosyousai_ID.Text.Trim();
+                retSyukkoDTO.ClID = comboBox_Kokyaku.SelectedValue.ToString();//顧客ID
+            retSyukkoDTO.ClName = comboBox_Kokyaku.Text.Trim();//顧客名
+            retSyukkoDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();//受注ID
+            retSyukkoDTO.ConfEmName = textBox_Kakutei_Syain_Namae.Text.Trim();//確定社員名
+            retSyukkoDTO.SyDetailID = textBox_Syukkosyousai_ID.Text.Trim();//出庫詳細ID
             if (!(comboBox_Meka_Namae.SelectedIndex == -1))
-                retSyukkoDTO.MaName = comboBox_Meka_Namae.SelectedValue.ToString();
+                retSyukkoDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();//メーカーID
+            retSyukkoDTO.MaName = comboBox_Meka_Namae.Text.Trim();//メーカー名
             if (!(comboBoxSyouhin_Namae.SelectedIndex == -1))
-                retSyukkoDTO.PrName = comboBoxSyouhin_Namae.SelectedValue.ToString();
-            retSyukkoDTO.SyQuantity = domainUpDown_Suuryou.Value.ToString();
+                retSyukkoDTO.PrID = comboBoxSyouhin_Namae.SelectedValue.ToString();//商品ID
+            retSyukkoDTO.PrName = comboBoxSyouhin_Namae.Text.Trim();//商品名
+            retSyukkoDTO.SyQuantity = domainUpDown_Suuryou.Value.ToString();//数量
 
 
             return retSyukkoDTO;
