@@ -139,13 +139,6 @@ namespace SalesManagement_SysDev.Common
                              OrHidden = Order.OrHidden.ToString(),
                          };
 
-
-
-
-
-
-
-
                 return tb.ToList();
             }
             catch (Exception ex)

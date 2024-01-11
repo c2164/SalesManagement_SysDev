@@ -621,16 +621,6 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void UpdateOrStateFlag(T_Chumon chumon, T_ChumonDetail t_ChumonDetail)
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool RegisrationChumonInf(T_Chumon chumon, List<T_ChumonDetail> listChumonDetail)
-        {
-            return false;
-        }
-
         private bool SubStQuantity(List<T_ChumonDetail> ListChumonDetail)
         {
             //変数の宣言

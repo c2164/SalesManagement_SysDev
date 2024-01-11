@@ -120,7 +120,8 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
-                             HaDate= Hattyu.HaDate,
+                             WaWarehouseFlag = Hattyu.WaWarehouseFlag.ToString(),
+                             HaDate = Hattyu.HaDate,
                              HaQuantity=HattyuDetail.HaQuantity.ToString(),
                              HaFlag=Hattyu.HaFlag.ToString(),
                              HaHidden=Hattyu.HaHidden.ToString(),
@@ -168,11 +169,11 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
+                             WaWarehouseFlag = Hattyu.WaWarehouseFlag.ToString(),
                              HaDate = Hattyu.HaDate,
                              HaQuantity = HattyuDetail.HaQuantity.ToString(),
                              HaFlag=Hattyu.HaFlag.ToString(),
                              HaHidden = Hattyu.HaHidden.ToString(),
-                             
                          };
 
                 return tb.ToList();

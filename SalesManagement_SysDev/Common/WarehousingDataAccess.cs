@@ -44,7 +44,13 @@ namespace SalesManagement_SysDev.Common
                 try
                 {
                     var UpdateTarget = context.T_Warehousings.Single(x => x.WaID == UpWarehousing.WaID);
-                    UpdateTarget = UpWarehousing;
+                    UpdateTarget.WaID = UpWarehousing.WaID;
+                    UpdateTarget.HaID = UpWarehousing.HaID;
+                    UpdateTarget.EmID = UpWarehousing.EmID;
+                    UpdateTarget.WaDate = UpWarehousing.WaDate;
+                    UpdateTarget.WaShelfFlag = UpWarehousing.WaShelfFlag;
+                    UpdateTarget.WaFlag = UpWarehousing.WaFlag;
+                    UpdateTarget.WaHidden = UpWarehousing.WaHidden;
 
                     context.SaveChanges();
                     return true;
@@ -96,14 +102,20 @@ namespace SalesManagement_SysDev.Common
                              WaID = Warehousing.WaID.ToString(),
                              HaID = Hattyu.HaID.ToString(),
                              WaDetailID = WarehousingDetail.WaDetailID.ToString(),
+                             HattyuEmID = HattyuEmployee.EmID.ToString(),
                              HattyuEmName = HattyuEmployee.EmName.ToString(),
+                             ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
                              MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
+                             PrID = Product.PrID.ToString(),
                              PrName = Product.PrName.ToString(),
                              WaQuantity = WarehousingDetail.WaQuantity.ToString(),
-                            
-
+                             WaShelfFlag = Warehousing.WaShelfFlag.ToString(),
+                             WaDate = Warehousing.WaDate,
+                             WaFlag = Warehousing.WaFlag.ToString(),
+                             WaHidden = Warehousing.WaHidden.ToString(),
+                             
                          };
 
                 return tb.ToList();
@@ -149,8 +161,13 @@ namespace SalesManagement_SysDev.Common
                              ConfEmName = Employee.EmName.ToString(),
                              MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
+                             PrID = Product.PrID.ToString(),
                              PrName = Product.PrName.ToString(),
                              WaQuantity = WarehousingDetail.WaQuantity.ToString(),
+                             WaShelfFlag = Warehousing.WaShelfFlag.ToString(),
+                             WaDate = Warehousing.WaDate,
+                             WaFlag = Warehousing.WaFlag.ToString(),
+                             WaHidden = Warehousing.WaHidden.ToString(),
                          };
 
                 return tb.ToList();
