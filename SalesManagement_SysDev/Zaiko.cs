@@ -228,8 +228,8 @@ namespace SalesManagement_SysDev
             T_Stock retstock = new T_Stock();
             retstock.StID = int.Parse(dispStockDTO.StID);
             retstock.PrID = int.Parse(dispStockDTO.PrID);
-            retstock.PrID = int.Parse(dispStockDTO.PrID);
             retstock.StQuantity = int.Parse(dispStockDTO.StQuantity);
+            retstock.StFlag = 0;
             return retstock;
         }
 
