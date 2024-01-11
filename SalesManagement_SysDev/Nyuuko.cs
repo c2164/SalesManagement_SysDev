@@ -374,6 +374,7 @@ namespace SalesManagement_SysDev
             T_Warehousing retwarehousing = new T_Warehousing();
             retwarehousing.WaID = int.Parse(dispWarehousingDTO.WaID);
             retwarehousing.HaID = int.Parse(dispWarehousingDTO.HaID);
+            retwarehousing.EmID = int.Parse(dispWarehousingDTO.ConfEmID);
             retwarehousing.WaDate = dispWarehousingDTO.WaDate;
             retwarehousing.WaShelfFlag = int.Parse(dispWarehousingDTO.WaShelfFlag);
             retwarehousing.WaFlag = int.Parse(dispWarehousingDTO.WaFlag);
@@ -477,7 +478,7 @@ namespace SalesManagement_SysDev
             bool flg;
 
             //注文状態フラグを0から1にする
-            warehousing = ChangeWaStateFlag(warehousing);
+            warehousing = FormalizationWarehousingRecord(warehousing);
 
             //注文情報を更新する
             flg = UpdateWarehousingRecord(warehousing);
@@ -491,9 +492,10 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private T_Warehousing ChangeWaStateFlag(T_Warehousing warehousing)
+        private T_Warehousing FormalizationWarehousingRecord(T_Warehousing warehousing)
         {
             warehousing.WaShelfFlag = 1;
+            warehousing.EmID = int.Parse(loginEmployee.EmID);
             return warehousing;
         }
 

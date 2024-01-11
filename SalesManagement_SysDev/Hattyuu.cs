@@ -454,7 +454,7 @@ namespace SalesManagement_SysDev
 
             //登録確認
             //須田オーダー
-            result = messageDsp.MessageBoxDsp_OKCancel("登録すりゅ～？", "かくにん(はーと)", MessageBoxIcon.Question);
+            result = messageDsp.MessageBoxDsp_OKCancel("登録しますか？", "確認", MessageBoxIcon.Question);
             if (result == DialogResult.Cancel)
             {
                 return;
@@ -481,13 +481,12 @@ namespace SalesManagement_SysDev
 
             if (flg)
             {
-                //須田オーダー
-                messageDsp.MessageBoxDsp_OK("登録したおっ！", "とろくかんりょう！", MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("発注情報を登録しました", "登録完了", MessageBoxIcon.Information);
             }
             else
             {
                 //須田オーダー
-                messageDsp.MessageBoxDsp_OK("はぁ(*´Д｀)", "とうろくしっぱい...", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("発注情報の登録に失敗しました", "エラー", MessageBoxIcon.Error);
             }
 
         }
@@ -790,7 +789,7 @@ namespace SalesManagement_SysDev
                 title = "エラー";
                 return null;
             }
-            if (dispHattyu[0].H == "1")
+            if (dispHattyu[0].WaWarehouseFlag == "1")
             {
                 msg = "既に確定済みです";
                 title = "エラー";

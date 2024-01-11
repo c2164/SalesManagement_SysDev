@@ -530,7 +530,7 @@ namespace SalesManagement_SysDev.Entity
         public DateTime? HaDate { get; set; }
 
         [DisplayName("入庫済みフラグ")]
-        public string H { get; set; }
+        public string WaWarehouseFlag { get; set; }
 
         [DisplayName("発注管理フラグ")]
         public string HaFlag { get; set; }
