@@ -385,7 +385,7 @@ namespace SalesManagement_SysDev
             }
 
             //Listの中を受け取った出庫IDで検索
-            dispSyukkoDTO = dispSyukkos.Single(x => x.SyID == SyID);
+            dispSyukkoDTO = dispSyukkos.First(x => x.SyID == SyID);
 
             //検索結果を返却用にする
             retsyukko = FormalizationSyukkoInputRecord(dispSyukkoDTO);
@@ -427,7 +427,7 @@ namespace SalesManagement_SysDev
             string retSyID;
             if (dataGridView1.SelectedRows.Count <= 0)
             {
-                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("表から確定対象を選択してください", "エラー", MessageBoxIcon.Error);
                 return null;
             }
             retSyID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();

@@ -11,7 +11,7 @@ namespace SalesManagement_SysDev.Common
     internal class WarehousingDataAccess
     {
         //入庫情報登録(登録情報)
-        public bool RegisterWerehousingData(T_Warehousing RegWerehousing,List<T_WarehousingDetail> warehousingDetails)
+        public bool RegisterWerehousingData(T_Warehousing RegWerehousing, List<T_WarehousingDetail> warehousingDetails)
         {
             using (var context = new SalesManagement_DevContext())
             {
@@ -37,7 +37,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫情報アップデート(アップデート情報)
-        public bool UpdateWarehousingData(T_Warehousing UpWarehousing)
+        public bool UpdateWarehousingData(T_Warehousing UpWarehousing, T_WarehousingDetail UpwarehousingDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
@@ -51,6 +51,13 @@ namespace SalesManagement_SysDev.Common
                     UpdateTarget.WaShelfFlag = UpWarehousing.WaShelfFlag;
                     UpdateTarget.WaFlag = UpWarehousing.WaFlag;
                     UpdateTarget.WaHidden = UpWarehousing.WaHidden;
+
+                    var UpdateTargetDetail = context.T_WarehousingDetails.Single(x => x.WaDetailID == UpwarehousingDetail.WaDetailID);
+
+                    UpdateTargetDetail.WaDetailID = UpwarehousingDetail.WaDetailID;
+                    UpdateTargetDetail.WaID = UpwarehousingDetail.WaID;
+                    UpdateTargetDetail.PrID = UpwarehousingDetail.PrID;
+                    UpdateTargetDetail.WaQuantity = UpwarehousingDetail.WaQuantity;
 
                     context.SaveChanges();
                     return true;
@@ -115,7 +122,7 @@ namespace SalesManagement_SysDev.Common
                              WaDate = Warehousing.WaDate,
                              WaFlag = Warehousing.WaFlag.ToString(),
                              WaHidden = Warehousing.WaHidden.ToString(),
-                             
+
                          };
 
                 return tb.ToList();
@@ -148,15 +155,17 @@ namespace SalesManagement_SysDev.Common
                          on Warehousing.EmID equals Employee.EmID
                          join HattyuEmployee in context.M_Employees
                          on Hattyu.EmID equals HattyuEmployee.EmID
-                         
+
+                         where
+                         Warehousing.WaFlag == 0
 
                          select new DispWarehousingDTO
                          {
                              WaID = Warehousing.WaID.ToString(),
                              HaID = Hattyu.HaID.ToString(),
                              WaDetailID = WarehousingDetail.WaDetailID.ToString(),
-                             HattyuEmID = HattyuEmployee.EmID.ToString(),
-                             HattyuEmName = HattyuEmployee.EmName.ToString(),
+                             HattyuEmID = HattyuEmployee.EmID.ToString(),//
+                             HattyuEmName = HattyuEmployee.EmName.ToString(),//
                              ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
                              MaID = Maker.MaID.ToString(),
