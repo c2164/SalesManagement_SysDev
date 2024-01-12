@@ -170,6 +170,7 @@ namespace SalesManagement_SysDev.Common
                          on Chumon.EmID equals ChumonEm.EmID
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
+
                          where
                          Arrival.ArFlag == 0 //非表示フラグ
 
@@ -179,18 +180,18 @@ namespace SalesManagement_SysDev.Common
                              ArDetailID = ArrivalDetail.ArDetailID.ToString(),
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName.ToString(),
-                             MaID = Product.MaID.ToString(),
+                             MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
                              ArQuantity = ArrivalDetail.ArQuantity.ToString(),
-                             SoID = Arrival.SoID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName.ToString(),
-                             ArrivalEmID = Chumon.ClID.ToString(),
-                             ArrivalEmName = ChumonEm.EmName.ToString(),
-                             ConfEmID = Arrival.EmID.ToString(),
-                             ConfEmName = Employee.EmName,
-                             ClID = Arrival.ClID.ToString(),
+                             ArrivalEmID = Employee.EmID.ToString(),//
+                             ArrivalEmName = Employee.EmName.ToString(),//
+                             ConfEmID = Employee.EmID.ToString(),//
+                             ConfEmName = Employee.EmName,//
+                             ClID = Client.ClID.ToString(),
                              ClName = Client.ClName.ToString(),
-                             OrID = Arrival.OrID.ToString(),
+                             OrID = Order.OrID.ToString(),
                              ArDate = Arrival.ArDate,
                              ArStateFlag = Arrival.ArStateFlag.ToString(),
                              ArFlag = Arrival.ArFlag.ToString(),

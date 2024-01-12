@@ -489,6 +489,8 @@ namespace SalesManagement_SysDev
                 messageDsp.MessageBoxDsp_OK("発注情報の登録に失敗しました", "エラー", MessageBoxIcon.Error);
             }
 
+            SetCtrlFormat();
+            GetSelectData();
         }
 
         private T_Hattyu FormalizationHattyuInputRecord(DispHattyuDTO dispHattyu, T_HattyuDetail hattyuDetail)

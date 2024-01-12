@@ -452,7 +452,7 @@ namespace SalesManagement_SysDev.Entity
         public string PrName { get; set; }
 
         [DisplayName("数量")]
-        public string ArQuantity { get; set; }
+        public string ShQuantity { get; set; }
 
         [DisplayName("営業所ID")]
         public string SoID { get; set; }

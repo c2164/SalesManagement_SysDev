@@ -253,21 +253,23 @@ namespace SalesManagement_SysDev
 
             //各コントロールから商品情報を読み取る
             retShipmentDTO.ShID = textBox_Syukka_ID.Text.Trim(); //出荷ID
-            retShipmentDTO.ClName = comboBox_Kokyaku_Namae.Text.Trim(); //顧客名
+            if (!(comboBox_Kokyaku_Namae.SelectedIndex == -1))
+                retShipmentDTO.ClID = comboBox_Kokyaku_Namae.SelectedValue.ToString();//顧客ID
+            retShipmentDTO.ClName = comboBox_Kokyaku_Namae.Text.Trim();//顧客名
             retShipmentDTO.ArrivalEmName = textBox_Nyuuka_Syain_Namae.Text.Trim(); //入荷社員名
             retShipmentDTO.ConfEmName = textBox_Kakutei_Syain_Namae.Text.Trim(); //確定社員名
             retShipmentDTO.ShDetailID = textBox_Syukkasyousai_ID.Text.Trim(); //出荷詳細ID
             retShipmentDTO.OrID = textBox_Zyutyuu_ID.Text.Trim(); //受注ID
-            retShipmentDTO.ArQuantity = numericUpDown_Suuryou.Value.ToString(); //数量
-            if (!(comboBox_Eigyousyo.SelectedIndex == -1)) //営業所
-                retShipmentDTO.OrID = comboBox_Eigyousyo.SelectedValue.ToString();
-            retShipmentDTO.SoName = comboBox_Eigyousyo.Text.Trim();
-            if (!(comboBox_Meka_Namae.SelectedIndex == -1)) //メーカー
-                retShipmentDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
-            retShipmentDTO.MaName = comboBox_Meka_Namae.Text.Trim();
-            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1)) //商品
-                retShipmentDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
-            retShipmentDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
+            retShipmentDTO.ShQuantity = numericUpDown_Suuryou.Value.ToString(); //数量
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1)) 
+                retShipmentDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID
+            retShipmentDTO.SoName = comboBox_Eigyousyo.Text.Trim();//営業所名
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1)) 
+                retShipmentDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();//メーカーID
+            retShipmentDTO.MaName = comboBox_Meka_Namae.Text.Trim();//メーカー名
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1)) 
+                retShipmentDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();//商品ID
+            retShipmentDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
             if (radioButton_Mikakutei.Checked) //出荷状態フラグ
                 retShipmentDTO.ShStateFlag = "0";
             else if (radioButton_Kakutei.Checked)
@@ -386,7 +388,7 @@ namespace SalesManagement_SysDev
             retshipmentDetail.ShDetailID = int.Parse(shipmentDTO.ShDetailID);
             retshipmentDetail.ShID = int.Parse(shipmentDTO.ShID);
             retshipmentDetail.PrID = int.Parse(shipmentDTO.PrID);
-            retshipmentDetail.ShQuantity = int.Parse(shipmentDTO.ArQuantity);
+            retshipmentDetail.ShQuantity = int.Parse(shipmentDTO.ShQuantity);
 
             return retshipmentDetail;
         }
@@ -649,6 +651,20 @@ namespace SalesManagement_SysDev
             shipment.EmID = int.Parse(loginEmployee.EmID);
             shipment.ShFinishDate = DateTime.Now;
             return shipment;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[14].Value.ToString();
+            textBox_Syukka_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+            textBox_Nyuuka_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString();
+            textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
+            comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+            textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
+            textBox_Syukkasyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            numericUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
         }
     }
 }

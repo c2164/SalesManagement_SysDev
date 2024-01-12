@@ -237,6 +237,7 @@ namespace SalesManagement_SysDev
         {
             //変数宣言
             DialogResult result;
+            bool flg;
 
             //非表示実行確認
             result=messageDsp.MessageBoxDsp_OKCancel("対象のデータを非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
@@ -252,10 +253,18 @@ namespace SalesManagement_SysDev
                 return;
             }
             //データの更新
-            UpdateSaleRecord(sale, saleDetail);
+            flg=UpdateSaleRecord(sale, saleDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象のデータを非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+            else
+            {                
+                messageDsp.MessageBoxDsp_OK("対象のデータの非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
         }
 
-        private void UpdateSaleRecord(T_Sale sale,T_SaleDetail saleDetail)
+        private bool UpdateSaleRecord(T_Sale sale,T_SaleDetail saleDetail)
         {
             //変数の宣言
             bool flg;
@@ -263,17 +272,11 @@ namespace SalesManagement_SysDev
             //データベース接続のインスタンス化
             SaleDataAccess access = new SaleDataAccess();
             flg = access.UpdateSaleData(sale, saleDetail);
-            if (!flg)
-            {
-                messageDsp.MessageBoxDsp_OK("対象のデータの非表示に失敗しました", "エラー", MessageBoxIcon.Error);
-            }
-            else
-            {
-                messageDsp.MessageBoxDsp_OK("対象のデータを非表示にしました", "非表示完了", MessageBoxIcon.Information);
-            }
-
+            
             SetCtrlFormat();
             GetSelectData();
+
+            return flg;
         }
 
         private　T_Sale  ChangeSaFlg(T_Sale sale)
@@ -302,11 +305,12 @@ namespace SalesManagement_SysDev
             
             if (dispSales == null) //データの取得失敗
             {
+                messageDsp.MessageBoxDsp_OK("売上情報を取得できませんでした", "エラー", MessageBoxIcon.Error);
                 return null;
             }
 
             //Listの中を受け取った商品IDで検索
-            dispSaleDTO = dispSales.Single(x => x.SaID == SaID);
+            dispSaleDTO = dispSales.First(x => x.SaID == SaID);
 
             //検索結果を返却用にする
             retsale = FormalizationSaleInputRecord(dispSaleDTO);
