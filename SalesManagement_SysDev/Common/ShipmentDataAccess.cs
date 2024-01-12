@@ -93,7 +93,7 @@ namespace SalesManagement_SysDev.Common
                          join Arrival in context.T_Arrivals
                          on Shipment.OrID equals Arrival.OrID
                          join ArrivalEmployee in context.M_Employees
-                         on Arrival.EmID equals ArrivalEmployee.EmID
+                         on Employee.EmID equals ArrivalEmployee.EmID
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
 
@@ -105,14 +105,14 @@ namespace SalesManagement_SysDev.Common
 
                          SalesOffice.SoName.Contains(dispShipmentDTO.SoName) && //営業所名
 
-                         Employee.EmName.Contains(dispShipmentDTO.ArrivalEmName) && //入荷社員名
+                         ArrivalEmployee.EmName.Contains(dispShipmentDTO.ArrivalEmName) && //入荷社員名
 
                          (dispShipmentDTO.OrID.Equals("") ? true :
-                         Shipment.OrID.ToString().Equals(dispShipmentDTO.OrID)) && //受注ID
+                         Order.OrID.ToString().Equals(dispShipmentDTO.OrID)) && //受注ID
 
                          Product.PrName.Contains(dispShipmentDTO.PrName) && //商品名
 
-                         Employee.EmID.ToString().Contains(dispShipmentDTO.ConfEmName) && //確定社員名
+                         ArrivalEmployee.EmID.ToString().Contains(dispShipmentDTO.ConfEmName) && //確定社員名
 
                          (dispShipmentDTO.ShDetailID.Equals("") ? true :
                          ShipmentDetail.ShDetailID.ToString().Equals(dispShipmentDTO.ShDetailID)) && //出荷詳細ID
