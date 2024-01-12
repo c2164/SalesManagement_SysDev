@@ -53,6 +53,7 @@ namespace SalesManagement_SysDev
             SalesOfficeDataAccess salesOfficeDataAccess = new SalesOfficeDataAccess();
             MakerDateAccess makerDateAccess = new MakerDateAccess();
             ProductDataAccess productDataAccess = new ProductDataAccess();
+            EmployeeDataAccess employeeDataAccess = new EmployeeDataAccess();
             //各テキストボックスに初期化(空白)
             textBox_Hattyuu_ID.Text = "";
             textBox_Hattyuu_Syain_Namae.Text = "";
@@ -61,9 +62,9 @@ namespace SalesManagement_SysDev
 
 
             //各コンボボックスを初期化
-            comboBox_Kakutei_Syain_Namae.DisplayMember = "SoName";
-            comboBox_Kakutei_Syain_Namae.ValueMember = "SoID";
-            comboBox_Kakutei_Syain_Namae.DataSource = salesOfficeDataAccess.GetSalesOfficeData();
+            comboBox_Kakutei_Syain_Namae.DisplayMember = "EmName";
+            comboBox_Kakutei_Syain_Namae.ValueMember = "EmID";
+            comboBox_Kakutei_Syain_Namae.DataSource = employeeDataAccess.GetEmployeeData();
             comboBox_Kakutei_Syain_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Kakutei_Syain_Namae.SelectedIndex = -1;
 

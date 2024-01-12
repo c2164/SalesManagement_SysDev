@@ -93,7 +93,7 @@ namespace SalesManagement_SysDev
                 return false;
             //データグリッドビューへの設定
             var grouptb = tb.GroupBy(x => x.OrID).ToList();
-            foreach(var groupingordertb in grouptb)
+            foreach (var groupingordertb in grouptb)
             {
                 foreach (var ordertb in groupingordertb)
                 {
@@ -471,7 +471,7 @@ namespace SalesManagement_SysDev
                 {
                     return;
                 }
-                
+
                 //データを更新する
                 UpdateOrderInf(dispOrderDTO);
             }

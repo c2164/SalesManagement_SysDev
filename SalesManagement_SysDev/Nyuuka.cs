@@ -79,48 +79,50 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[3].Width = 70;
             //メーカID
             dataGridView1.Columns[4].Visible = false;
-            //商品名
+            //メーカー名
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[5].Width = 70;
-            //個数
+            //数量
             dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[6].Width = 60;
-            //顧客ID
+            //営業所ID
             dataGridView1.Columns[7].Visible = false;
-            //顧客名
+            //営業所名
             dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[8].Width = 70;
-            //営業所ID
+            //入荷社員ID
             dataGridView1.Columns[9].Visible = false;
-            //営業所名
+            //入荷社員名
             dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[10].Width = 90;
-            //社員ID
+            //確定社員ID
             dataGridView1.Columns[11].Visible = false;
-            //社員名
+            //確定社員名
             dataGridView1.Columns[12].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[12].Width = 60;
-            //社員ID
+            //顧客ID
             dataGridView1.Columns[13].Visible = false;
-            //社員名
+            //顧客名
             dataGridView1.Columns[14].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[14].Width = 60;
             //受注ID
             dataGridView1.Columns[15].Visible = false;
-            //売上日時
+            //入荷年月日
             dataGridView1.Columns[16].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[16].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[16].Width = 80;
-            //売上管理フラグ
+            //入荷状態フラグ
             dataGridView1.Columns[17].Visible = false;
-            //非表示理由
+            //入荷管理フラグ
             dataGridView1.Columns[18].Visible = false;
+            //非表示理由
+            dataGridView1.Columns[19].Visible = false;
 
         }
 
@@ -303,13 +305,14 @@ namespace SalesManagement_SysDev
             }
 
             //入荷管理フラグを0から2にする
-            UpdateArFlag(arrival);
+            UpdateArFlag(arrival,ArrivalDetail);
         }
 
-        private void UpdateArFlag(T_Arrival arrival)
+        private void UpdateArFlag(T_Arrival arrival,T_ArrivalDetail arrivalDetail)
         {
             //変数の宣言
             DialogResult result;
+            bool flg;
 
             //非表示実行確認
             result = messageDsp.MessageBoxDsp_OKCancel("対象の商品を非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
@@ -324,8 +327,10 @@ namespace SalesManagement_SysDev
             {
                 return;
             }
+
             //入荷の更新
-            if (UpdateArrivalRecord(arrival))
+            flg = UpdateArrivalRecord(arrival, arrivalDetail);
+            if(flg)
             {
                 messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
             }
@@ -335,7 +340,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private bool UpdateArrivalRecord(T_Arrival arrival)
+        private bool UpdateArrivalRecord(T_Arrival arrival,T_ArrivalDetail arrivalDetail)
         {
             //変数の宣言
             bool flg;
@@ -379,7 +384,7 @@ namespace SalesManagement_SysDev
             }
 
             //Listの中を受け取った入荷IDで検索
-            dispArrivalDTO = dispArrivals.Single(x => x.ArID == ArID);
+            dispArrivalDTO = dispArrivals.First(x => x.ArID == ArID);
 
             //検索結果を返却用にする
             retarrival = FormalizationArrivalInputRecord(dispArrivalDTO);
@@ -475,7 +480,7 @@ namespace SalesManagement_SysDev
             //入荷状態フラグを0から1にする
             arrival = FormalizationArrivalRecord(arrival);
             //入荷情報を更新する
-            flg = UpdateArrivalRecord(arrival);
+            flg = UpdateArrivalRecord(arrival,arrivalDetail);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("入荷情報を確定しました", "確定完了", MessageBoxIcon.Information);
@@ -627,7 +632,16 @@ namespace SalesManagement_SysDev
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[14].Value.ToString();
+            textBox_Nyuuka_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+            textBox_Nyuuka_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString();
+            textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
+            comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+            textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
+            textBox_Nyuukasyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+            comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+            numericUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
         }
     }
 }
