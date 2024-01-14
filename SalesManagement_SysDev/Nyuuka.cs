@@ -245,22 +245,26 @@ namespace SalesManagement_SysDev
             DispArrivalDTO retArrivalDTO = new DispArrivalDTO();
 
             //各コントロールから入荷情報を読み取る
+            if(!(comboBox_Kokyaku_Namae.SelectedIndex==1))
+                retArrivalDTO.ClID=comboBox_Kokyaku_Namae.SelectedValue.ToString();
             retArrivalDTO.ClName = comboBox_Kokyaku_Namae.Text.Trim();
             retArrivalDTO.ArID = textBox_Nyuuka_ID.Text.Trim();
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
-                retArrivalDTO.SoName = comboBox_Eigyousyo.SelectedIndex.ToString();
-            retArrivalDTO.SoID = comboBox_Eigyousyo.SelectedIndex.ToString();
+                retArrivalDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
+            retArrivalDTO.SoName = comboBox_Eigyousyo.Text.Trim();
             retArrivalDTO.ArrivalEmName = textBox_Nyuuka_Syain_Namae.Text.Trim();
             retArrivalDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();
             if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
-                retArrivalDTO.PrName = comboBox_Syouhin_Namae.SelectedIndex.ToString();
-            retArrivalDTO.PrID = comboBox_Syouhin_Namae.Text.Trim();
+                retArrivalDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+            retArrivalDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
             retArrivalDTO.ConfEmName = textBox_Kakutei_Syain_Namae.Text.Trim();
-            retArrivalDTO.ArID = textBox_Nyuukasyousai_ID.Text.Trim();
+            retArrivalDTO.ArDetailID = textBox_Nyuukasyousai_ID.Text.Trim();
             if (!(comboBox_Meka_Namae.SelectedIndex == -1))
-                retArrivalDTO.MaName = comboBox_Meka_Namae.SelectedIndex.ToString();
-            retArrivalDTO.MaID = comboBox_Meka_Namae.Text.Trim();
-            retArrivalDTO.ArQuantity = numericUpDown_Suuryou.Text.Trim();
+                retArrivalDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+            retArrivalDTO.MaName = comboBox_Meka_Namae.Text.Trim();
+            retArrivalDTO.ArQuantity = numericUpDown_Suuryou.Value.ToString();
+            retArrivalDTO.ArFlag = "0";
+            retArrivalDTO.ArStateFlag = "0";
 
             return retArrivalDTO;
         }
@@ -638,7 +642,13 @@ namespace SalesManagement_SysDev
             textBox_Nyuuka_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString();
             textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
             comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
-            textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
+            //textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
+            if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value != null)
+                textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
+            else
+            {
+                textBox_Kakutei_Syain_Namae.Text = "";
+            }
             textBox_Nyuukasyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
             comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
             numericUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());

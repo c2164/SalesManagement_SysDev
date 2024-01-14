@@ -80,7 +80,7 @@ namespace SalesManagement_SysDev.Common
                          join SalesOffice in context.M_SalesOffices
                          on Arrival.SoID equals SalesOffice.SoID
                          join Employee in context.M_Employees
-                         on Arrival.EmID equals Employee.EmID into  em
+                         on Arrival.EmID equals Employee.EmID into em
                          from Employee in em.DefaultIfEmpty()
                          join Client in context.M_Clients
                          on Arrival.ClID equals Client.ClID
@@ -94,18 +94,18 @@ namespace SalesManagement_SysDev.Common
                          on Product.MaID equals Maker.MaID
                          where
                          Client.ClName.Contains(dispArrivalDTO.ClName) && //顧客名
-                         (dispArrivalDTO.ArID.Equals("") ? true:
-                         ArrivalDetail.ArID.ToString().Equals(dispArrivalDTO.ArID)) && //入荷ID
+                         (dispArrivalDTO.ArID.Equals("") ? true :
+                         Arrival.ArID.ToString().Equals(dispArrivalDTO.ArID)) && //入荷ID
                          SalesOffice.SoName.Contains(dispArrivalDTO.SoName) && //営業所名
-                         ChumonEm.EmName.Contains(dispArrivalDTO.ArrivalEmName) && //入荷社員名
-                         (dispArrivalDTO.OrID.Equals("")? true:
-                         Arrival.OrID.ToString().Contains(dispArrivalDTO.OrID)) && //受注ID
+                         Employee.EmName.Contains(dispArrivalDTO.ArrivalEmName) && //入荷社員名
+                         (dispArrivalDTO.OrID.Equals("") ? true :
+                         Order.OrID.ToString().Contains(dispArrivalDTO.OrID)) && //受注ID
                          Product.PrName.Contains(dispArrivalDTO.PrName) && //商品名
-                         Employee.EmID.ToString().Contains(dispArrivalDTO.ConfEmName) && //確定社員名
-                         (dispArrivalDTO.ArDetailID.Equals("")? true:
+                         Employee.EmName.ToString().Contains(dispArrivalDTO.ConfEmName) && //確定社員名
+                         (dispArrivalDTO.ArDetailID.Equals("") ? true :
                          ArrivalDetail.ArDetailID.ToString().Contains(dispArrivalDTO.ArDetailID)) && //入荷詳細ID
                          Maker.MaName.Contains(dispArrivalDTO.MaName) && //メーカー名
-                         Arrival.ArStateFlag.ToString() == dispArrivalDTO.ArStateFlag &&//入荷状態フラグ
+                         Arrival.ArStateFlag.ToString().Contains(dispArrivalDTO.ArStateFlag) &&//入荷状態フラグ
                          Arrival.ArFlag == 0 //非表示フラグ
 
 
@@ -115,18 +115,18 @@ namespace SalesManagement_SysDev.Common
                              ArDetailID = ArrivalDetail.ArDetailID.ToString(),
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName.ToString(),
-                             MaID = Product.MaID.ToString(),
+                             MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
                              ArQuantity = ArrivalDetail.ArQuantity.ToString(),
-                             SoID = Arrival.SoID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName.ToString(),
-                             ArrivalEmID = Chumon.ClID.ToString(),
-                             ArrivalEmName = ChumonEm.EmName.ToString(),
-                             ConfEmID = Arrival.EmID.ToString(),
+                             ArrivalEmID = Employee.EmID.ToString(),
+                             ArrivalEmName = Employee.EmName.ToString(),
+                             ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
-                             ClID = Arrival.ClID.ToString(),
+                             ClID = Client.ClID.ToString(),
                              ClName = Client.ClName.ToString(),
-                             OrID = Arrival.OrID.ToString(),
+                             OrID = Order.OrID.ToString(),
                              ArDate = Arrival.ArDate,
                              ArStateFlag = Arrival.ArStateFlag.ToString(),
                              ArFlag = Arrival.ArFlag.ToString(),
