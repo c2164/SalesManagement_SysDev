@@ -262,7 +262,7 @@ namespace SalesManagement_SysDev
             if (!(comboBox_Meka_Namae.SelectedIndex == -1))
                 retArrivalDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
             retArrivalDTO.MaName = comboBox_Meka_Namae.Text.Trim();
-            retArrivalDTO.ArQuantity = numericUpDown_Suuryou.Text.Trim();
+            retArrivalDTO.ArQuantity = numericUpDown_Suuryou.Value.ToString();
             retArrivalDTO.ArFlag = "0";
             retArrivalDTO.ArStateFlag = "0";
 
