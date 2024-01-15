@@ -245,8 +245,8 @@ namespace SalesManagement_SysDev
             DispArrivalDTO retArrivalDTO = new DispArrivalDTO();
 
             //各コントロールから入荷情報を読み取る
-            if(!(comboBox_Kokyaku_Namae.SelectedIndex==1))
-                retArrivalDTO.ClID=comboBox_Kokyaku_Namae.SelectedValue.ToString();
+            if (!(comboBox_Kokyaku_Namae.SelectedIndex == -1))
+                retArrivalDTO.ClID = comboBox_Kokyaku_Namae.SelectedValue.ToString();
             retArrivalDTO.ClName = comboBox_Kokyaku_Namae.Text.Trim();
             retArrivalDTO.ArID = textBox_Nyuuka_ID.Text.Trim();
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
@@ -309,10 +309,10 @@ namespace SalesManagement_SysDev
             }
 
             //入荷管理フラグを0から2にする
-            UpdateArFlag(arrival,ArrivalDetail);
+            UpdateArFlag(arrival, ArrivalDetail);
         }
 
-        private void UpdateArFlag(T_Arrival arrival,T_ArrivalDetail arrivalDetail)
+        private void UpdateArFlag(T_Arrival arrival, T_ArrivalDetail arrivalDetail)
         {
             //変数の宣言
             DialogResult result;
@@ -334,7 +334,7 @@ namespace SalesManagement_SysDev
 
             //入荷の更新
             flg = UpdateArrivalRecord(arrival, arrivalDetail);
-            if(flg)
+            if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("対象商品を非表示にしました", "非表示完了", MessageBoxIcon.Information);
             }
@@ -344,7 +344,7 @@ namespace SalesManagement_SysDev
             }
         }
 
-        private bool UpdateArrivalRecord(T_Arrival arrival,T_ArrivalDetail arrivalDetail)
+        private bool UpdateArrivalRecord(T_Arrival arrival, T_ArrivalDetail arrivalDetail)
         {
             //変数の宣言
             bool flg;
@@ -484,7 +484,7 @@ namespace SalesManagement_SysDev
             //入荷状態フラグを0から1にする
             arrival = FormalizationArrivalRecord(arrival);
             //入荷情報を更新する
-            flg = UpdateArrivalRecord(arrival,arrivalDetail);
+            flg = UpdateArrivalRecord(arrival, arrivalDetail);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("入荷情報を確定しました", "確定完了", MessageBoxIcon.Information);
