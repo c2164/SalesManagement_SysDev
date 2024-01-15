@@ -105,7 +105,6 @@ namespace SalesManagement_SysDev.Common
                          (dispArrivalDTO.ArDetailID.Equals("") ? true :
                          ArrivalDetail.ArDetailID.ToString().Contains(dispArrivalDTO.ArDetailID)) && //入荷詳細ID
                          Maker.MaName.Contains(dispArrivalDTO.MaName) && //メーカー名
-                         //Arrival.ArStateFlag.ToString().Contains(dispArrivalDTO.ArStateFlag) &&//入荷状態フラグ
                          Arrival.ArFlag == 0 //非表示フラグ
 
 
