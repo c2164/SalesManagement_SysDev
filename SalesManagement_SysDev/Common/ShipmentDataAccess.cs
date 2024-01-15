@@ -105,25 +105,25 @@ namespace SalesManagement_SysDev.Common
 
                          SalesOffice.SoName.Contains(dispShipmentDTO.SoName) && //営業所名
 
-                         ArrivalEmployee.EmName.Contains(dispShipmentDTO.ArrivalEmName) && //入荷社員名
+                         Employee.EmName.Contains(dispShipmentDTO.ArrivalEmName) && //入荷社員名
 
                          (dispShipmentDTO.OrID.Equals("") ? true :
                          Order.OrID.ToString().Equals(dispShipmentDTO.OrID)) && //受注ID
 
                          Product.PrName.Contains(dispShipmentDTO.PrName) && //商品名
 
-                         ArrivalEmployee.EmID.ToString().Contains(dispShipmentDTO.ConfEmName) && //確定社員名
+                         Employee.EmName.Contains(dispShipmentDTO.ConfEmName) && //確定社員名
 
                          (dispShipmentDTO.ShDetailID.Equals("") ? true :
                          ShipmentDetail.ShDetailID.ToString().Equals(dispShipmentDTO.ShDetailID)) && //出荷詳細ID
 
                          Maker.MaName.Contains(dispShipmentDTO.MaName) && //メーカー名
 
-                         (dispShipmentDTO.ShQuantity.Equals("") ? true :
+                         /*(dispShipmentDTO.ShQuantity.Equals("") ? true :
                          ShipmentDetail.ShQuantity.ToString().Equals(dispShipmentDTO.ShQuantity)) &&//数量
 
                          (dispShipmentDTO.ShStateFlag.Contains("2") ? true :
-                         Shipment.ShStateFlag.ToString().Equals(dispShipmentDTO.ShStateFlag)) &&//出荷状態フラグ
+                         Shipment.ShStateFlag.ToString().Equals(dispShipmentDTO.ShStateFlag)) &&//出荷状態フラグ*/
 
                          Shipment.ShFlag == 0 //非表示フラグ
 

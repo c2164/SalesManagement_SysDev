@@ -261,21 +261,23 @@ namespace SalesManagement_SysDev
             retShipmentDTO.ShDetailID = textBox_Syukkasyousai_ID.Text.Trim(); //出荷詳細ID
             retShipmentDTO.OrID = textBox_Zyutyuu_ID.Text.Trim(); //受注ID
             retShipmentDTO.ShQuantity = numericUpDown_Suuryou.Value.ToString(); //数量
-            if (!(comboBox_Eigyousyo.SelectedIndex == -1)) 
+            if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retShipmentDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID
             retShipmentDTO.SoName = comboBox_Eigyousyo.Text.Trim();//営業所名
-            if (!(comboBox_Meka_Namae.SelectedIndex == -1)) 
+            if (!(comboBox_Meka_Namae.SelectedIndex == -1))
                 retShipmentDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();//メーカーID
             retShipmentDTO.MaName = comboBox_Meka_Namae.Text.Trim();//メーカー名
-            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1)) 
+            if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
                 retShipmentDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();//商品ID
             retShipmentDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
-            if (radioButton_Mikakutei.Checked) //出荷状態フラグ
+            retShipmentDTO.ShFlag = "0";
+            retShipmentDTO.ShStateFlag = "0";
+            /*if (radioButton_Mikakutei.Checked) //出荷状態フラグ
                 retShipmentDTO.ShStateFlag = "0";
             else if (radioButton_Kakutei.Checked)
                 retShipmentDTO.ShStateFlag = "1";
             else
-                retShipmentDTO.ShStateFlag = "2";
+                retShipmentDTO.ShStateFlag = "2";*/
             return retShipmentDTO;
         }
 
@@ -656,7 +658,7 @@ namespace SalesManagement_SysDev
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[14].Value.ToString();
-            textBox_Syukka_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+            textBox_Syukka_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
             textBox_Nyuuka_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString();
             textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
