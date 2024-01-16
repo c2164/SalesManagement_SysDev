@@ -105,9 +105,9 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.button_CleateDatabase);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.button_CleateDatabase);
             this.panel2.Location = new System.Drawing.Point(4, 4);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
@@ -133,7 +133,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(281, 15);
+            this.label4.Location = new System.Drawing.Point(301, 15);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 24);
             this.label4.TabIndex = 5;
@@ -160,7 +160,7 @@
             // button_CleateDatabase
             // 
             this.button_CleateDatabase.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.button_CleateDatabase.Location = new System.Drawing.Point(1472, 33);
+            this.button_CleateDatabase.Location = new System.Drawing.Point(1683, 35);
             this.button_CleateDatabase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_CleateDatabase.Name = "button_CleateDatabase";
             this.button_CleateDatabase.Size = new System.Drawing.Size(195, 64);
@@ -172,10 +172,10 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.button4.Location = new System.Drawing.Point(1703, 35);
+            this.button4.Location = new System.Drawing.Point(1683, 35);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(169, 64);
+            this.button4.Size = new System.Drawing.Size(195, 64);
             this.button4.TabIndex = 1;
             this.button4.Text = "👤ログイン";
             this.button4.UseVisualStyleBackColor = true;
