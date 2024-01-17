@@ -11,7 +11,7 @@ namespace SalesManagement_SysDev.Common
     internal class ProductDataAccess
     {
         //商品情報登録(登録情報)
-        public bool RegisterClientData(M_Product RegProduct)
+        public bool RegisterProductData(M_Product RegProduct)
         {
             using (var context = new SalesManagement_DevContext())
             {
@@ -30,14 +30,23 @@ namespace SalesManagement_SysDev.Common
         }
 
         //商品情報アップデート(アップデート情報)
-        public bool UpdateClinetData(M_Product UpProduct)
+        public bool UpdateProductData(M_Product UpProduct)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
-                    var UpdateTarget = context.M_Products.Single(x => x.PrID == UpProduct.PrID);
-                    UpdateTarget = UpProduct;
+                    var UpdateTarget = context.M_Products.FirstOrDefault(x => x.PrID == UpProduct.PrID);
+                    UpdateTarget.PrName = UpProduct.PrName;
+                    UpdateTarget.MaID = UpProduct.MaID;
+                    UpdateTarget.Price = UpProduct.Price;
+                    UpdateTarget.PrSafetyStock = UpProduct.PrSafetyStock;
+                    UpdateTarget.ScID =UpProduct.ScID;
+                    UpdateTarget.PrModelNumber = UpProduct.PrModelNumber;
+                    UpdateTarget.PrColor = UpProduct.PrColor;
+                    UpdateTarget.PrReleaseDate = UpProduct.PrReleaseDate;
+                    UpdateTarget.PrFlag = UpProduct.PrFlag;
+                    UpdateTarget.PrHidden = UpProduct.PrHidden;
 
                     context.SaveChanges();
                     return true;
@@ -67,28 +76,42 @@ namespace SalesManagement_SysDev.Common
 
                          where
                          Product.PrName.Contains(dispProductDTO.PrName) && //商品名
-                         Product.PrID.ToString().Contains(dispProductDTO.PrID)&&//商品ID
+
+                         (dispProductDTO.PrID.Equals("") ? true:
+                         Product.PrID.ToString().Equals(dispProductDTO.PrID))&&//商品ID
+
                          Maker.MaName.Contains(dispProductDTO.MaName) && //メーカー名
+
                          SmallClassification.ScName.Contains(dispProductDTO.ScName) && //小分類名
-                         Product.Price.ToString().Contains(dispProductDTO.Price) &&//価格
-                         Product.PrSafetyStock.ToString().Contains(dispProductDTO.PrSafetyStock) &&//安全在庫数
+
+                         (dispProductDTO.Price.Equals("") ? true:
+                         Product.Price.ToString().Equals(dispProductDTO.Price)) &&//価格
+
+                         (dispProductDTO.PrSafetyStock.Equals("") ? true:
+                         Product.PrSafetyStock.ToString().Equals(dispProductDTO.PrSafetyStock)) &&//安全在庫数
+
                          Product.PrModelNumber.Contains(dispProductDTO.PrModelNumber) &&//型番
-                         Product.PrColor.Contains(dispProductDTO.PrColor) &&
+
+                         Product.PrColor.Contains(dispProductDTO.PrColor) &&//色
+
+                         //Product.PrReleaseDate.Date==dispProductDTO.PrReleaseDate &&//発売日
                          Product.PrFlag == 0 //非表示フラグ
 
                          select new DispProductDTO
                          {
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
-                             MaID = Product.MaID.ToString(),
+                             MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName,
                              Price = Product.Price.ToString(),
                              PrSafetyStock = Product.PrSafetyStock.ToString(),
-                             ScID = Product.ScID.ToString(),
+                             ScID = SmallClassification.ScID.ToString(),
                              ScName = SmallClassification.ScName,
                              PrModelNumber = Product.PrModelNumber,
                              PrColor = Product.PrColor,
                              PrReleaseDate = Product.PrReleaseDate,
+                             PrFlag=Product.PrFlag.ToString(),
+                             PrHidden = Product.PrHidden,
                          };
 
                 return tb.ToList();
@@ -123,15 +146,17 @@ namespace SalesManagement_SysDev.Common
                          {
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
-                             MaID = Product.MaID.ToString(),
+                             MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName,
                              Price = Product.Price.ToString(),
                              PrSafetyStock = Product.PrSafetyStock.ToString(),
-                             ScID = Product.ScID.ToString(),
+                             ScID = SmallClassification.ScID.ToString(),
                              ScName = SmallClassification.ScName,
                              PrModelNumber = Product.PrModelNumber,
                              PrColor = Product.PrColor,
                              PrReleaseDate = Product.PrReleaseDate,
+                             PrFlag = Product.PrFlag.ToString(),
+                             PrHidden = Product.PrHidden,
                          };
 
                 return tb.ToList();

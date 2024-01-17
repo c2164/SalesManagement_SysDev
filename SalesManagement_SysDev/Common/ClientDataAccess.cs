@@ -30,14 +30,22 @@ namespace SalesManagement_SysDev.Common
         }
 
         //顧客情報アップデート(アップデート情報)
-        public bool UpdateClinetData(M_Client UpClient)
+        public bool UpdateClientData(M_Client UpClient)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.M_Clients.Single(x => x.ClID == UpClient.ClID);
-                    UpdateTarget = UpClient;
+                    UpdateTarget.ClID = UpClient.ClID;
+                    UpdateTarget.SoID = UpClient.SoID;
+                    UpdateTarget.ClName = UpClient.ClName;
+                    UpdateTarget.ClAddress = UpClient.ClAddress;
+                    UpdateTarget.ClPhone = UpClient.ClPhone;
+                    UpdateTarget.ClPostal = UpClient.ClPostal;
+                    UpdateTarget.ClFAX = UpClient.ClFAX;
+                    UpdateTarget.ClFlag = UpClient.ClFlag;
+                    UpdateTarget.ClHidden = UpClient.ClHidden;
 
                     context.SaveChanges();
                     return true;
@@ -57,18 +65,22 @@ namespace SalesManagement_SysDev.Common
             try
             {
                 //「M_Client」テーブルから「M_SalesOffice」を参照
-                var tb = from Client in context.M_Clients
+                var tb = from Client in context.M_Clients.AsEnumerable()
                          join SalesOffice in context.M_SalesOffices
                          on Client.SoID equals SalesOffice.SoID
 
                          where
                          Client.ClName.Contains(dispClientDTO.ClName) &&//顧客名
-                         Client.ClID.ToString().Contains(dispClientDTO.ClID)&&  //顧客ID
+                         Client.ClID.ToString().Contains(dispClientDTO.ClID) &&  //顧客ID
                          SalesOffice.SoName.Contains(dispClientDTO.SoName) && //営業所名
                          Client.ClPostal.Contains(dispClientDTO.ClPostal) && //郵便番号
                          Client.ClAddress.Contains(dispClientDTO.ClAddress) && //住所
-                         Client.ClPhone.Contains(dispClientDTO.ClPhone) && //電話番号
-                         Client.ClFAX.Contains(Client.ClFAX) &&//FAX
+                         Client.ClPhone.Split('-')[0].ToString().Contains(dispClientDTO.ClPhone1) && //電話番号1
+                         Client.ClPhone.Split('-')[1].ToString().Contains(dispClientDTO.ClPhone2) && //電話番号2
+                         Client.ClPhone.Split('-')[2].ToString().Contains(dispClientDTO.ClPhone3) && //電話番号3
+                         Client.ClFAX.Split('-')[0].ToString().Contains(dispClientDTO.ClFAX1) &&//FAX1
+                         Client.ClFAX.Split('-')[1].ToString().Contains(dispClientDTO.ClFAX2) &&//FAX2
+                         Client.ClFAX.Split('-')[2].ToString().Contains(dispClientDTO.ClFAX3) &&//FAX3
                          Client.ClFlag == 0 //非表示フラグ
 
                          select new DispClientDTO
@@ -79,7 +91,10 @@ namespace SalesManagement_SysDev.Common
                              ClAddress = Client.ClAddress,
                              ClPhone = Client.ClPhone,
                              ClFAX = Client.ClFAX,
-
+                             ClFlag = Client.ClFlag.ToString(),
+                             ClHidden = Client.ClHidden,
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName,
                          };
 
                 return tb.ToList();
@@ -114,7 +129,8 @@ namespace SalesManagement_SysDev.Common
                              ClAddress = Client.ClAddress,
                              ClPhone = Client.ClPhone,
                              ClFAX = Client.ClFAX,
-
+                             ClFlag = Client.ClFlag.ToString(),
+                             ClHidden = Client.ClHidden,
                          };
 
                 return tb.ToList();

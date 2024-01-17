@@ -61,10 +61,11 @@
             this.button_Nyuuko_Kakutei.ForeColor = System.Drawing.Color.White;
             this.button_Nyuuko_Kakutei.Location = new System.Drawing.Point(84, 45);
             this.button_Nyuuko_Kakutei.Name = "button_Nyuuko_Kakutei";
-            this.button_Nyuuko_Kakutei.Size = new System.Drawing.Size(185, 74);
+            this.button_Nyuuko_Kakutei.Size = new System.Drawing.Size(185, 75);
             this.button_Nyuuko_Kakutei.TabIndex = 0;
             this.button_Nyuuko_Kakutei.Text = "入庫確定";
             this.button_Nyuuko_Kakutei.UseVisualStyleBackColor = false;
+            this.button_Nyuuko_Kakutei.Click += new System.EventHandler(this.button_Nyuuko_Kakutei_Click);
             // 
             // button_Kennsaku
             // 
@@ -73,7 +74,7 @@
             this.button_Kennsaku.ForeColor = System.Drawing.Color.White;
             this.button_Kennsaku.Location = new System.Drawing.Point(363, 45);
             this.button_Kennsaku.Name = "button_Kennsaku";
-            this.button_Kennsaku.Size = new System.Drawing.Size(153, 74);
+            this.button_Kennsaku.Size = new System.Drawing.Size(153, 75);
             this.button_Kennsaku.TabIndex = 1;
             this.button_Kennsaku.Text = "🔍検索";
             this.button_Kennsaku.UseVisualStyleBackColor = false;
@@ -86,7 +87,7 @@
             this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(670, 45);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
-            this.button_Itirannhyouzi.Size = new System.Drawing.Size(224, 74);
+            this.button_Itirannhyouzi.Size = new System.Drawing.Size(224, 75);
             this.button_Itirannhyouzi.TabIndex = 2;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
@@ -99,10 +100,11 @@
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
             this.button_Sakuzyo.Location = new System.Drawing.Point(1027, 45);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
-            this.button_Sakuzyo.Size = new System.Drawing.Size(153, 74);
+            this.button_Sakuzyo.Size = new System.Drawing.Size(153, 75);
             this.button_Sakuzyo.TabIndex = 3;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // button_Kuria
             // 
@@ -111,7 +113,7 @@
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
             this.button_Kuria.Location = new System.Drawing.Point(1326, 45);
             this.button_Kuria.Name = "button_Kuria";
-            this.button_Kuria.Size = new System.Drawing.Size(153, 74);
+            this.button_Kuria.Size = new System.Drawing.Size(153, 75);
             this.button_Kuria.TabIndex = 4;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
@@ -121,7 +123,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label1.Location = new System.Drawing.Point(40, 186);
+            this.label1.Location = new System.Drawing.Point(40, 187);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 41);
             this.label1.TabIndex = 5;
@@ -131,7 +133,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label2.Location = new System.Drawing.Point(584, 186);
+            this.label2.Location = new System.Drawing.Point(584, 187);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 41);
             this.label2.TabIndex = 6;
@@ -141,7 +143,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label3.Location = new System.Drawing.Point(1083, 186);
+            this.label3.Location = new System.Drawing.Point(1083, 187);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(167, 41);
             this.label3.TabIndex = 7;
@@ -181,7 +183,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label7.Location = new System.Drawing.Point(583, 403);
+            this.label7.Location = new System.Drawing.Point(582, 403);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(108, 41);
             this.label7.TabIndex = 11;
@@ -206,10 +208,12 @@
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // textBox_Nyuuko_ID
             // 
             this.textBox_Nyuuko_ID.Location = new System.Drawing.Point(222, 196);
+            this.textBox_Nyuuko_ID.MaxLength = 6;
             this.textBox_Nyuuko_ID.Name = "textBox_Nyuuko_ID";
             this.textBox_Nyuuko_ID.Size = new System.Drawing.Size(294, 31);
             this.textBox_Nyuuko_ID.TabIndex = 14;
@@ -217,6 +221,7 @@
             // textBox_Hattyuu_ID
             // 
             this.textBox_Hattyuu_ID.Location = new System.Drawing.Point(760, 197);
+            this.textBox_Hattyuu_ID.MaxLength = 6;
             this.textBox_Hattyuu_ID.Name = "textBox_Hattyuu_ID";
             this.textBox_Hattyuu_ID.Size = new System.Drawing.Size(280, 31);
             this.textBox_Hattyuu_ID.TabIndex = 15;
@@ -224,13 +229,15 @@
             // textBox_Nyuukosyousai_ID
             // 
             this.textBox_Nyuukosyousai_ID.Location = new System.Drawing.Point(1275, 197);
+            this.textBox_Nyuukosyousai_ID.MaxLength = 6;
             this.textBox_Nyuukosyousai_ID.Name = "textBox_Nyuukosyousai_ID";
             this.textBox_Nyuukosyousai_ID.Size = new System.Drawing.Size(251, 31);
             this.textBox_Nyuukosyousai_ID.TabIndex = 16;
             // 
             // textBox_Hattyuu_Syain_Namae
             // 
-            this.textBox_Hattyuu_Syain_Namae.Location = new System.Drawing.Point(223, 303);
+            this.textBox_Hattyuu_Syain_Namae.Location = new System.Drawing.Point(224, 303);
+            this.textBox_Hattyuu_Syain_Namae.MaxLength = 50;
             this.textBox_Hattyuu_Syain_Namae.Name = "textBox_Hattyuu_Syain_Namae";
             this.textBox_Hattyuu_Syain_Namae.Size = new System.Drawing.Size(294, 31);
             this.textBox_Hattyuu_Syain_Namae.TabIndex = 17;

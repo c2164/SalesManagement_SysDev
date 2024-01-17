@@ -37,7 +37,15 @@ namespace SalesManagement_SysDev.Common
                 try
                 {
                     var UpdateTarget = context.M_Employees.Single(x => x.EmID == UpEmployee.EmID);
-                    UpdateTarget = UpEmployee;
+                    UpdateTarget.EmID = UpEmployee.EmID;
+                    UpdateTarget.EmName = UpEmployee.EmName;
+                    UpdateTarget.SoID = UpEmployee.SoID;
+                    UpdateTarget.PoID = UpEmployee.PoID;
+                    UpdateTarget.EmHiredate = UpEmployee.EmHiredate;
+                    UpdateTarget.EmPhone = UpEmployee.EmPhone;
+                    UpdateTarget.EmPassword = UpEmployee.EmPassword;
+                    UpdateTarget.EmFlag = UpEmployee.EmFlag;
+                    UpdateTarget.EmHidden = UpEmployee.EmHidden;
 
                     context.SaveChanges();
                     return true;
@@ -57,7 +65,7 @@ namespace SalesManagement_SysDev.Common
             try
             {
                 //「M_Employee」テーブルから「M_SalesOffice」「M_Position」を参照
-                var tb = from Employee in context.M_Employees
+                var tb = from Employee in context.M_Employees.AsEnumerable()
                          join SalesOffice in context.M_SalesOffices
                          on Employee.SoID equals SalesOffice.SoID
                          join Position in context.M_Positions
@@ -68,9 +76,11 @@ namespace SalesManagement_SysDev.Common
                          Employee.EmID.ToString().Contains(dispEmployeeDTO.EmID) && //社員ID
                          SalesOffice.SoName.Contains(dispEmployeeDTO.SoName) && //営業所名
                          Position.PoName.Contains(dispEmployeeDTO.PoName) && //役職名
-                                                                            //入社年月日
-                         Employee.EmPhone.Contains(dispEmployeeDTO.EmPhone) && //電話番号
-                         　　　　　　　　　　　　　　　　　　　　　　　　　　　//FAX
+                                                                             //入社年月日
+                         Employee.EmPhone.Split('-')[0].ToString().Contains(dispEmployeeDTO.EmPhone1) && //電話番号
+                         Employee.EmPhone.Split('-')[1].ToString().Contains(dispEmployeeDTO.EmPhone2) && //電話番号
+                         Employee.EmPhone.Split('-')[2].ToString().Contains(dispEmployeeDTO.EmPhone3) && //電話番号
+                                                                                                         //FAX
                          Employee.EmPassword.Contains(dispEmployeeDTO.EmPassword) &&//パスワード
                          Employee.EmFlag == 0 //非表示フラグ
 
@@ -78,11 +88,15 @@ namespace SalesManagement_SysDev.Common
                          {
                              EmName = Employee.EmName,
                              EmID = Employee.EmID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName,
+                             PoID = Position.PoID.ToString(),
                              PoName = Position.PoName,
                              EmHiredate = Employee.EmHiredate,
                              EmPhone = Employee.EmPhone,
                              EmPassword = Employee.EmPassword,
+                             EmFlag = Employee.EmFlag.ToString(),
+                             EmHidden = Employee.EmHidden,
                          };
 
                 return tb.ToList();
@@ -109,16 +123,22 @@ namespace SalesManagement_SysDev.Common
                          on Employee.PoID equals Position.PoID
 
                          where
-                         Employee.EmFlag == 0 //社員管理フラグ
+
+                         Employee.EmFlag == 0 //非表示フラグ
+
                          select new DispEmplyeeDTO
                          {
                              EmName = Employee.EmName,
                              EmID = Employee.EmID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName,
+                             PoID = Position.PoID.ToString(),
                              PoName = Position.PoName,
                              EmHiredate = Employee.EmHiredate,
                              EmPhone = Employee.EmPhone,
                              EmPassword = Employee.EmPassword,
+                             EmFlag = Employee.EmFlag.ToString(),
+                             EmHidden = Employee.EmHidden,
                          };
 
                 return tb.ToList();

@@ -31,7 +31,7 @@ namespace SalesManagement_SysDev
         public virtual M_Client M_Client { get; set; }
         public virtual M_Employee M_Employee { get; set; }
         public virtual M_SalesOffice M_SalesOffice { get; set; }
-        public virtual T_Chumon T_Chumon { get; set; }
+        public virtual T_Order T_Order { get; set; }
         public virtual ICollection<T_SaleDetail> T_SaleDetail { get; set; }
     }
 }

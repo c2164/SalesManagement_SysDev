@@ -1,5 +1,6 @@
 ﻿using SalesManagement_SysDev.Entity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,10 @@ namespace SalesManagement_SysDev.Common
                 try
                 {
                     var UpdateTarget = context.T_Stocks.Single(x => x.StID == UpStock.StID);
-                    UpdateTarget = UpStock;
+                    UpdateTarget.StID = UpStock.StID;
+                    UpdateTarget.StQuantity = UpStock.StQuantity;
+                    UpdateTarget.PrID = UpStock.PrID;
+                    UpdateTarget.StFlag = UpStock.StFlag;
 
                     context.SaveChanges();
                     return true;
@@ -64,11 +68,11 @@ namespace SalesManagement_SysDev.Common
                          on Product.MaID equals Maker.MaID
 
                          where
-                         Stock.StID.ToString().Contains(dispStockDTO.StID) && //在庫ID
+                         (dispStockDTO.StID.Equals("") ? true :
+                         Stock.StID.ToString().Equals(dispStockDTO.StID)) && //在庫ID
                          Maker.MaName.Contains(dispStockDTO.MaName) && //メーカー名
-                         Product.PrName.Contains(dispStockDTO.PrName) && //商品名
-                         ((dispStockDTO.StQuantity == "") ? true :
-                         Stock.StQuantity == int.Parse(dispStockDTO.PrID)) //在庫数
+                         Product.PrName.Contains(dispStockDTO.PrName) &&//商品名
+                         Stock.StFlag == 0 //在庫管理フラグ
                          select new DispStockDTO
                          {
                              StID = Stock.StID.ToString(),
@@ -76,6 +80,7 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrName = Product.PrName,
                              StQuantity = Stock.StQuantity.ToString(),
+                             StFlag = Stock.StFlag.ToString(),
                          };
 
                 return tb.ToList();
@@ -111,6 +116,7 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrName = Product.PrName,
                              StQuantity = Stock.StQuantity.ToString(),
+                             StFlag = Stock.StFlag.ToString(),
                          };
 
                 return tb.ToList();

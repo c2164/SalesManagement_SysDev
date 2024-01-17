@@ -11,7 +11,7 @@ namespace SalesManagement_SysDev.Common
     internal class WarehousingDataAccess
     {
         //入庫情報登録(登録情報)
-        public bool RegisterWerehousingData(T_Warehousing RegWerehousing)
+        public bool RegisterWerehousingData(T_Warehousing RegWerehousing, List<T_WarehousingDetail> warehousingDetails)
         {
             using (var context = new SalesManagement_DevContext())
             {
@@ -19,6 +19,13 @@ namespace SalesManagement_SysDev.Common
                 {
                     context.T_Warehousings.Add(RegWerehousing);
                     context.SaveChanges();
+                    int WaID = context.T_Warehousings.Max(x => x.WaID);
+                    foreach (var RegWaDetail in warehousingDetails)
+                    {
+                        RegWaDetail.WaID = WaID;
+                        context.T_WarehousingDetails.Add(RegWaDetail);
+                        context.SaveChanges();
+                    }
                     return true;
                 }
                 catch (Exception ex)
@@ -30,14 +37,27 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫情報アップデート(アップデート情報)
-        public bool UpdateWerehousingData(T_Warehousing UpWarehousing)
+        public bool UpdateWarehousingData(T_Warehousing UpWarehousing, T_WarehousingDetail UpwarehousingDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.T_Warehousings.Single(x => x.WaID == UpWarehousing.WaID);
-                    UpdateTarget = UpWarehousing;
+                    UpdateTarget.WaID = UpWarehousing.WaID;
+                    UpdateTarget.HaID = UpWarehousing.HaID;
+                    UpdateTarget.EmID = UpWarehousing.EmID;
+                    UpdateTarget.WaDate = UpWarehousing.WaDate;
+                    UpdateTarget.WaShelfFlag = UpWarehousing.WaShelfFlag;
+                    UpdateTarget.WaFlag = UpWarehousing.WaFlag;
+                    UpdateTarget.WaHidden = UpWarehousing.WaHidden;
+
+                    var UpdateTargetDetail = context.T_WarehousingDetails.Single(x => x.WaDetailID == UpwarehousingDetail.WaDetailID);
+
+                    UpdateTargetDetail.WaDetailID = UpwarehousingDetail.WaDetailID;
+                    UpdateTargetDetail.WaID = UpwarehousingDetail.WaID;
+                    UpdateTargetDetail.PrID = UpwarehousingDetail.PrID;
+                    UpdateTargetDetail.WaQuantity = UpwarehousingDetail.WaQuantity;
 
                     context.SaveChanges();
                     return true;
@@ -72,16 +92,15 @@ namespace SalesManagement_SysDev.Common
                          on Hattyu.EmID equals HattyuEmployee.EmID
                          where
                           ((dispWarehousingDTO.WaID == "") ? true :
-                         Warehousing.WaID == int.Parse(dispWarehousingDTO.WaID)) &&//入庫ID
-                          ((dispWarehousingDTO.WaID == "") ? true :
-                         Hattyu.HaID == int.Parse(dispWarehousingDTO.HaID)) && //発注ID
-                          ((dispWarehousingDTO.WaID == "") ? true :
-                         WarehousingDetail.WaDetailID == int.Parse(dispWarehousingDTO.WaDetailID)) && //入庫詳細ID
+                         Warehousing.WaID.ToString().Equals(dispWarehousingDTO.WaID)) &&//入庫ID
+                          ((dispWarehousingDTO.HaID == "") ? true :
+                         Hattyu.HaID.ToString().Equals(dispWarehousingDTO.HaID)) && //発注ID
+                          ((dispWarehousingDTO.WaDetailID == "") ? true :
+                         WarehousingDetail.WaDetailID.ToString().Equals(dispWarehousingDTO.WaDetailID)) && //入庫詳細ID
                          HattyuEmployee.EmName.Contains(dispWarehousingDTO.HattyuEmName) && //発注社員名
                          Employee.EmID.ToString().Contains(dispWarehousingDTO.ConfEmName) && //確定社員名
                          Maker.MaName.Contains(dispWarehousingDTO.MaName) && //メーカー名
-                         Product.PrName.Contains(dispWarehousingDTO.PrName) && //商品名
-                         WarehousingDetail.ToString().Contains(dispWarehousingDTO.WaQuantity)  //数量
+                         Product.PrName.Contains(dispWarehousingDTO.PrName)  //商品名
 
 
 
@@ -90,13 +109,19 @@ namespace SalesManagement_SysDev.Common
                              WaID = Warehousing.WaID.ToString(),
                              HaID = Hattyu.HaID.ToString(),
                              WaDetailID = WarehousingDetail.WaDetailID.ToString(),
+                             HattyuEmID = HattyuEmployee.EmID.ToString(),
                              HattyuEmName = HattyuEmployee.EmName.ToString(),
+                             ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
                              MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
+                             PrID = Product.PrID.ToString(),
                              PrName = Product.PrName.ToString(),
-                             WaQuantity = WarehousingDetail.ToString(),
-                            
+                             WaQuantity = WarehousingDetail.WaQuantity.ToString(),
+                             WaShelfFlag = Warehousing.WaShelfFlag.ToString(),
+                             WaDate = Warehousing.WaDate,
+                             WaFlag = Warehousing.WaFlag.ToString(),
+                             WaHidden = Warehousing.WaHidden.ToString(),
 
                          };
 
@@ -130,21 +155,28 @@ namespace SalesManagement_SysDev.Common
                          on Warehousing.EmID equals Employee.EmID
                          join HattyuEmployee in context.M_Employees
                          on Hattyu.EmID equals HattyuEmployee.EmID
-                         
+
+                         where
+                         Warehousing.WaFlag == 0
 
                          select new DispWarehousingDTO
                          {
                              WaID = Warehousing.WaID.ToString(),
                              HaID = Hattyu.HaID.ToString(),
                              WaDetailID = WarehousingDetail.WaDetailID.ToString(),
-                             HattyuEmID = HattyuEmployee.EmID.ToString(),
-                             HattyuEmName = HattyuEmployee.EmName.ToString(),
+                             HattyuEmID = HattyuEmployee.EmID.ToString(),//
+                             HattyuEmName = HattyuEmployee.EmName.ToString(),//
                              ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
                              MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
+                             PrID = Product.PrID.ToString(),
                              PrName = Product.PrName.ToString(),
                              WaQuantity = WarehousingDetail.WaQuantity.ToString(),
+                             WaShelfFlag = Warehousing.WaShelfFlag.ToString(),
+                             WaDate = Warehousing.WaDate,
+                             WaFlag = Warehousing.WaFlag.ToString(),
+                             WaHidden = Warehousing.WaHidden.ToString(),
                          };
 
                 return tb.ToList();

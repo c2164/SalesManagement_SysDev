@@ -57,6 +57,7 @@
             this.button_Kousin.TabIndex = 0;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
+            this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
             // 
             // button_Kensaku
             // 
@@ -69,6 +70,7 @@
             this.button_Kensaku.TabIndex = 1;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
+            this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
             // 
             // button_Itirannhyouzi
             // 
@@ -94,6 +96,7 @@
             this.button_Sakuzyo.TabIndex = 3;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
+            this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
             // 
             // button_Kuria
             // 
@@ -110,16 +113,16 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label1.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(49, 231);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 41);
+            this.label1.Size = new System.Drawing.Size(136, 41);
             this.label1.TabIndex = 5;
             this.label1.Text = "在庫ID";
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(551, 232);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 41);
@@ -128,7 +131,7 @@
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label3.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(1049, 230);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(134, 41);
@@ -137,7 +140,7 @@
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label4.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(49, 377);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 41);
@@ -147,6 +150,7 @@
             // textBox_Zaiko_ID
             // 
             this.textBox_Zaiko_ID.Location = new System.Drawing.Point(242, 239);
+            this.textBox_Zaiko_ID.MaxLength = 6;
             this.textBox_Zaiko_ID.Name = "textBox_Zaiko_ID";
             this.textBox_Zaiko_ID.Size = new System.Drawing.Size(250, 31);
             this.textBox_Zaiko_ID.TabIndex = 9;
@@ -170,6 +174,11 @@
             // domainUpDown_Zaikosuu
             // 
             this.domainUpDown_Zaikosuu.Location = new System.Drawing.Point(242, 387);
+            this.domainUpDown_Zaikosuu.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.domainUpDown_Zaikosuu.Name = "domainUpDown_Zaikosuu";
             this.domainUpDown_Zaikosuu.Size = new System.Drawing.Size(250, 31);
             this.domainUpDown_Zaikosuu.TabIndex = 12;
@@ -183,6 +192,7 @@
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Zaiko
             // 

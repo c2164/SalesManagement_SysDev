@@ -37,34 +37,38 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 19.875F);
-            this.label1.Location = new System.Drawing.Point(175, 167);
+            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(133, 161);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(244, 143);
+            this.label1.Size = new System.Drawing.Size(440, 143);
             this.label1.TabIndex = 0;
             this.label1.Text = "社員ID";
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 19.875F);
-            this.label2.Location = new System.Drawing.Point(175, 444);
+            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(89, 438);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(244, 143);
+            this.label2.Size = new System.Drawing.Size(484, 143);
             this.label2.TabIndex = 1;
             this.label2.Text = "パスワード";
             // 
             // textBox_Syain_ID
             // 
-            this.textBox_Syain_ID.Location = new System.Drawing.Point(667, 200);
+            this.textBox_Syain_ID.Font = new System.Drawing.Font("MS UI Gothic", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox_Syain_ID.Location = new System.Drawing.Point(613, 161);
+            this.textBox_Syain_ID.MaxLength = 6;
             this.textBox_Syain_ID.Name = "textBox_Syain_ID";
-            this.textBox_Syain_ID.Size = new System.Drawing.Size(731, 31);
+            this.textBox_Syain_ID.Size = new System.Drawing.Size(837, 135);
             this.textBox_Syain_ID.TabIndex = 2;
             // 
             // textBox_Pass
             // 
-            this.textBox_Pass.Location = new System.Drawing.Point(667, 477);
+            this.textBox_Pass.Font = new System.Drawing.Font("MS UI Gothic", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox_Pass.Location = new System.Drawing.Point(613, 438);
+            this.textBox_Pass.MaxLength = 10;
             this.textBox_Pass.Name = "textBox_Pass";
-            this.textBox_Pass.Size = new System.Drawing.Size(731, 31);
+            this.textBox_Pass.Size = new System.Drawing.Size(837, 135);
             this.textBox_Pass.TabIndex = 3;
             // 
             // button_Roguin
@@ -74,7 +78,7 @@
             this.button_Roguin.ForeColor = System.Drawing.Color.White;
             this.button_Roguin.Location = new System.Drawing.Point(445, 647);
             this.button_Roguin.Name = "button_Roguin";
-            this.button_Roguin.Size = new System.Drawing.Size(595, 88);
+            this.button_Roguin.Size = new System.Drawing.Size(690, 138);
             this.button_Roguin.TabIndex = 4;
             this.button_Roguin.Text = "ログイン";
             this.button_Roguin.UseVisualStyleBackColor = false;
@@ -84,6 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(205)))), ((int)(((byte)(227)))));
             this.Controls.Add(this.button_Roguin);
             this.Controls.Add(this.textBox_Pass);
             this.Controls.Add(this.textBox_Syain_ID);
