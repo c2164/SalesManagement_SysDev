@@ -93,7 +93,7 @@ namespace SalesManagement_SysDev.Common
                          join Arrival in context.T_Arrivals
                          on Shipment.OrID equals Arrival.OrID
                          join ArrivalEmployee in context.M_Employees
-                         on Employee.EmID equals ArrivalEmployee.EmID
+                         on Arrival.EmID equals ArrivalEmployee.EmID
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
 
