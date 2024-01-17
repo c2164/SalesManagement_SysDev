@@ -95,13 +95,14 @@ namespace SalesManagement_SysDev.Common
                          where
                          Client.ClName.Contains(dispArrivalDTO.ClName) && //顧客名
                          (dispArrivalDTO.ArID.Equals("") ? true :
-                         Arrival.ArID.ToString().Equals(dispArrivalDTO.ArID)) && //入荷ID
+                         Arrival.ArID.ToString() == (dispArrivalDTO.ArID)) && //入荷ID
                          SalesOffice.SoName.Contains(dispArrivalDTO.SoName) && //営業所名
-                         Employee.EmName.Contains(dispArrivalDTO.ArrivalEmName) && //入荷社員名
+                         ChumonEm.EmName.Contains(dispArrivalDTO.ArrivalEmName) && //入荷社員名
                          (dispArrivalDTO.OrID.Equals("") ? true :
                          Order.OrID.ToString().Contains(dispArrivalDTO.OrID)) && //受注ID
                          Product.PrName.Contains(dispArrivalDTO.PrName) && //商品名
-                         Employee.EmName.Contains(dispArrivalDTO.ConfEmName) && //確定社員名
+                         (dispArrivalDTO.ConfEmID == "" && Employee.EmName == null ? true :
+                         Employee.EmName.Contains(dispArrivalDTO.ConfEmName)) && //確定社員名
                          (dispArrivalDTO.ArDetailID.Equals("") ? true :
                          ArrivalDetail.ArDetailID.ToString().Contains(dispArrivalDTO.ArDetailID)) && //入荷詳細ID
                          Maker.MaName.Contains(dispArrivalDTO.MaName) && //メーカー名
@@ -119,8 +120,8 @@ namespace SalesManagement_SysDev.Common
                              ArQuantity = ArrivalDetail.ArQuantity.ToString(),
                              SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName.ToString(),
-                             ArrivalEmID = Employee.EmID.ToString(),
-                             ArrivalEmName = Employee.EmName.ToString(),
+                             ArrivalEmID = ChumonEm.EmID.ToString(),
+                             ArrivalEmName = ChumonEm.EmName.ToString(),
                              ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
                              ClID = Client.ClID.ToString(),
@@ -184,8 +185,8 @@ namespace SalesManagement_SysDev.Common
                              ArQuantity = ArrivalDetail.ArQuantity.ToString(),
                              SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName.ToString(),
-                             ArrivalEmID = Employee.EmID.ToString(),//
-                             ArrivalEmName = Employee.EmName.ToString(),//
+                             ArrivalEmID = ChumonEm.EmID.ToString(),//
+                             ArrivalEmName = ChumonEm.EmName.ToString(),//
                              ConfEmID = Employee.EmID.ToString(),//
                              ConfEmName = Employee.EmName,//
                              ClID = Client.ClID.ToString(),
