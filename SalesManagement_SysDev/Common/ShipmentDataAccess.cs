@@ -105,7 +105,7 @@ namespace SalesManagement_SysDev.Common
 
                          SalesOffice.SoName.Contains(dispShipmentDTO.SoName) && //営業所名
 
-                         Employee.EmName.Contains(dispShipmentDTO.ArrivalEmName) && //入荷社員名
+                         ArrivalEmployee.EmName.Contains(dispShipmentDTO.ArrivalEmName) && //入荷社員名
 
                          (dispShipmentDTO.OrID.Equals("") ? true :
                          Order.OrID.ToString().Equals(dispShipmentDTO.OrID)) && //受注ID

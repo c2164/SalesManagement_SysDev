@@ -174,6 +174,16 @@
             this.label8.TabIndex = 65;
             this.label8.Text = "発注詳細ID";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
+            this.label8.Location = new System.Drawing.Point(576, 352);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(167, 41);
+            this.label8.TabIndex = 39;
+            this.label8.Text = "発注詳細ID";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
