@@ -139,7 +139,7 @@ namespace SalesManagement_SysDev.Common
                              ShQuantity = ShipmentDetail.ShQuantity.ToString(),
                              SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName,
-                             ArrivalEmID = Employee.EmID.ToString(),
+                             ArrivalEmID = Arrival.ClID.ToString(),
                              ArrivalEmName = Employee.EmName,
                              ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName,
