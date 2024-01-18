@@ -62,7 +62,7 @@
             this.button_Nyuuko_Kakutei.Location = new System.Drawing.Point(84, 45);
             this.button_Nyuuko_Kakutei.Name = "button_Nyuuko_Kakutei";
             this.button_Nyuuko_Kakutei.Size = new System.Drawing.Size(185, 75);
-            this.button_Nyuuko_Kakutei.TabIndex = 0;
+            this.button_Nyuuko_Kakutei.TabIndex = 1;
             this.button_Nyuuko_Kakutei.Text = "入庫確定";
             this.button_Nyuuko_Kakutei.UseVisualStyleBackColor = false;
             this.button_Nyuuko_Kakutei.Click += new System.EventHandler(this.button_Nyuuko_Kakutei_Click);
@@ -75,7 +75,7 @@
             this.button_Kennsaku.Location = new System.Drawing.Point(363, 45);
             this.button_Kennsaku.Name = "button_Kennsaku";
             this.button_Kennsaku.Size = new System.Drawing.Size(153, 75);
-            this.button_Kennsaku.TabIndex = 1;
+            this.button_Kennsaku.TabIndex = 2;
             this.button_Kennsaku.Text = "🔍検索";
             this.button_Kennsaku.UseVisualStyleBackColor = false;
             this.button_Kennsaku.Click += new System.EventHandler(this.button_Kennsaku_Click);
@@ -88,7 +88,7 @@
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(670, 45);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(224, 75);
-            this.button_Itirannhyouzi.TabIndex = 2;
+            this.button_Itirannhyouzi.TabIndex = 3;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
             this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
@@ -101,7 +101,7 @@
             this.button_Sakuzyo.Location = new System.Drawing.Point(1027, 45);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
             this.button_Sakuzyo.Size = new System.Drawing.Size(153, 75);
-            this.button_Sakuzyo.TabIndex = 3;
+            this.button_Sakuzyo.TabIndex = 4;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
             this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
@@ -114,7 +114,7 @@
             this.button_Kuria.Location = new System.Drawing.Point(1326, 45);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(153, 75);
-            this.button_Kuria.TabIndex = 4;
+            this.button_Kuria.TabIndex = 5;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
             this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
@@ -207,7 +207,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
-            this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // textBox_Nyuuko_ID
@@ -216,7 +216,7 @@
             this.textBox_Nyuuko_ID.MaxLength = 6;
             this.textBox_Nyuuko_ID.Name = "textBox_Nyuuko_ID";
             this.textBox_Nyuuko_ID.Size = new System.Drawing.Size(294, 31);
-            this.textBox_Nyuuko_ID.TabIndex = 14;
+            this.textBox_Nyuuko_ID.TabIndex = 6;
             // 
             // textBox_Hattyuu_ID
             // 
@@ -224,7 +224,7 @@
             this.textBox_Hattyuu_ID.MaxLength = 6;
             this.textBox_Hattyuu_ID.Name = "textBox_Hattyuu_ID";
             this.textBox_Hattyuu_ID.Size = new System.Drawing.Size(280, 31);
-            this.textBox_Hattyuu_ID.TabIndex = 15;
+            this.textBox_Hattyuu_ID.TabIndex = 7;
             // 
             // textBox_Nyuukosyousai_ID
             // 
@@ -232,7 +232,7 @@
             this.textBox_Nyuukosyousai_ID.MaxLength = 6;
             this.textBox_Nyuukosyousai_ID.Name = "textBox_Nyuukosyousai_ID";
             this.textBox_Nyuukosyousai_ID.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Nyuukosyousai_ID.TabIndex = 16;
+            this.textBox_Nyuukosyousai_ID.TabIndex = 8;
             // 
             // textBox_Hattyuu_Syain_Namae
             // 
@@ -240,14 +240,14 @@
             this.textBox_Hattyuu_Syain_Namae.MaxLength = 50;
             this.textBox_Hattyuu_Syain_Namae.Name = "textBox_Hattyuu_Syain_Namae";
             this.textBox_Hattyuu_Syain_Namae.Size = new System.Drawing.Size(294, 31);
-            this.textBox_Hattyuu_Syain_Namae.TabIndex = 17;
+            this.textBox_Hattyuu_Syain_Namae.TabIndex = 9;
             // 
             // numericUpDown_Suuryou
             // 
             this.numericUpDown_Suuryou.Location = new System.Drawing.Point(1268, 420);
             this.numericUpDown_Suuryou.Name = "numericUpDown_Suuryou";
             this.numericUpDown_Suuryou.Size = new System.Drawing.Size(265, 31);
-            this.numericUpDown_Suuryou.TabIndex = 21;
+            this.numericUpDown_Suuryou.TabIndex = 13;
             // 
             // comboBox_Meka_Namae
             // 
@@ -255,7 +255,7 @@
             this.comboBox_Meka_Namae.Location = new System.Drawing.Point(222, 412);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
             this.comboBox_Meka_Namae.Size = new System.Drawing.Size(294, 32);
-            this.comboBox_Meka_Namae.TabIndex = 22;
+            this.comboBox_Meka_Namae.TabIndex = 11;
             // 
             // comboBox_Syouhin_Namae
             // 
@@ -263,7 +263,7 @@
             this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(760, 411);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
             this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(294, 32);
-            this.comboBox_Syouhin_Namae.TabIndex = 23;
+            this.comboBox_Syouhin_Namae.TabIndex = 12;
             // 
             // comboBox_Kakutei_Syain_Namae
             // 
@@ -271,7 +271,7 @@
             this.comboBox_Kakutei_Syain_Namae.Location = new System.Drawing.Point(760, 301);
             this.comboBox_Kakutei_Syain_Namae.Name = "comboBox_Kakutei_Syain_Namae";
             this.comboBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(294, 32);
-            this.comboBox_Kakutei_Syain_Namae.TabIndex = 24;
+            this.comboBox_Kakutei_Syain_Namae.TabIndex = 10;
             // 
             // Nyuuko
             // 

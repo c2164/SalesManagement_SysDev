@@ -238,32 +238,9 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if (String.IsNullOrEmpty(checkClientDTO.ClAddress))
-            {
-                msg = "住所は必須入力です";
-                title = "入力エラー";
-                return false;
-            }
-
             if (String.IsNullOrEmpty(checkClientDTO.SoName))
             {
                 msg = "営業所は必須項目です";
-                title = "入力エラー";
-                return false;
-            }
-
-            if (!String.IsNullOrEmpty(checkClientDTO.ClFAX))
-            {
-                if (!formCheck.CheckPhoneAndFAX(checkClientDTO.ClFAX))
-                {
-                    msg = "FAXの値が不正です";
-                    title = "入力エラー";
-                    return false;
-                }
-            }
-            else
-            {
-                msg = "FAXは必須項目です";
                 title = "入力エラー";
                 return false;
             }
@@ -284,6 +261,13 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
+            if (String.IsNullOrEmpty(checkClientDTO.ClAddress))
+            {
+                msg = "住所は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
             if (!String.IsNullOrEmpty(checkClientDTO.ClPhone))
             {
                 if (!formCheck.CheckPhoneAndFAX(checkClientDTO.ClPhone))
@@ -299,6 +283,24 @@ namespace SalesManagement_SysDev
                 title = "入力エラー";
                 return false;
             }
+
+            if (!String.IsNullOrEmpty(checkClientDTO.ClFAX))
+            {
+                if (!formCheck.CheckPhoneAndFAX(checkClientDTO.ClFAX))
+                {
+                    msg = "FAXの値が不正です";
+                    title = "入力エラー";
+                    return false;
+                }
+            }
+            else
+            {
+                msg = "FAXは必須項目です";
+                title = "入力エラー";
+                return false;
+            }
+
+
 
             return true;
 

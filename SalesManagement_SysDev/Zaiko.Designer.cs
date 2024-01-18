@@ -54,7 +54,7 @@
             this.button_Kousin.Location = new System.Drawing.Point(56, 55);
             this.button_Kousin.Name = "button_Kousin";
             this.button_Kousin.Size = new System.Drawing.Size(155, 74);
-            this.button_Kousin.TabIndex = 0;
+            this.button_Kousin.TabIndex = 1;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
             this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
@@ -67,7 +67,7 @@
             this.button_Kensaku.Location = new System.Drawing.Point(360, 55);
             this.button_Kensaku.Name = "button_Kensaku";
             this.button_Kensaku.Size = new System.Drawing.Size(155, 74);
-            this.button_Kensaku.TabIndex = 1;
+            this.button_Kensaku.TabIndex = 2;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
             this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
@@ -80,7 +80,7 @@
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(659, 55);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(212, 74);
-            this.button_Itirannhyouzi.TabIndex = 2;
+            this.button_Itirannhyouzi.TabIndex = 3;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
             this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
@@ -93,7 +93,7 @@
             this.button_Sakuzyo.Location = new System.Drawing.Point(1028, 55);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
             this.button_Sakuzyo.Size = new System.Drawing.Size(155, 74);
-            this.button_Sakuzyo.TabIndex = 3;
+            this.button_Sakuzyo.TabIndex = 4;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
             this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
@@ -106,7 +106,7 @@
             this.button_Kuria.Location = new System.Drawing.Point(1324, 55);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(155, 74);
-            this.button_Kuria.TabIndex = 4;
+            this.button_Kuria.TabIndex = 5;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
             this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
@@ -153,7 +153,7 @@
             this.textBox_Zaiko_ID.MaxLength = 6;
             this.textBox_Zaiko_ID.Name = "textBox_Zaiko_ID";
             this.textBox_Zaiko_ID.Size = new System.Drawing.Size(250, 31);
-            this.textBox_Zaiko_ID.TabIndex = 9;
+            this.textBox_Zaiko_ID.TabIndex = 6;
             // 
             // comboBox_Meka_Namae
             // 
@@ -161,7 +161,7 @@
             this.comboBox_Meka_Namae.Location = new System.Drawing.Point(703, 239);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
             this.comboBox_Meka_Namae.Size = new System.Drawing.Size(273, 32);
-            this.comboBox_Meka_Namae.TabIndex = 10;
+            this.comboBox_Meka_Namae.TabIndex = 7;
             // 
             // comboBox_Syouhin_Namae
             // 
@@ -169,7 +169,7 @@
             this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(1202, 238);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
             this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(277, 32);
-            this.comboBox_Syouhin_Namae.TabIndex = 11;
+            this.comboBox_Syouhin_Namae.TabIndex = 8;
             // 
             // domainUpDown_Zaikosuu
             // 
@@ -181,7 +181,7 @@
             0});
             this.domainUpDown_Zaikosuu.Name = "domainUpDown_Zaikosuu";
             this.domainUpDown_Zaikosuu.Size = new System.Drawing.Size(250, 31);
-            this.domainUpDown_Zaikosuu.TabIndex = 12;
+            this.domainUpDown_Zaikosuu.TabIndex = 9;
             // 
             // dataGridView1
             // 
@@ -191,7 +191,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
-            this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.TabIndex = 10;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Zaiko

@@ -63,7 +63,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1540, 337);
-            this.dataGridView1.TabIndex = 19;
+            this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // groupBox1
@@ -93,21 +93,21 @@
             this.dateTimePicker_Nitizi_3.Location = new System.Drawing.Point(433, 43);
             this.dateTimePicker_Nitizi_3.Name = "dateTimePicker_Nitizi_3";
             this.dateTimePicker_Nitizi_3.Size = new System.Drawing.Size(364, 37);
-            this.dateTimePicker_Nitizi_3.TabIndex = 20;
+            this.dateTimePicker_Nitizi_3.TabIndex = 13;
             // 
             // dateTimePicker_Nitizi_2
             // 
             this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(20, 43);
             this.dateTimePicker_Nitizi_2.Name = "dateTimePicker_Nitizi_2";
             this.dateTimePicker_Nitizi_2.Size = new System.Drawing.Size(350, 37);
-            this.dateTimePicker_Nitizi_2.TabIndex = 19;
+            this.dateTimePicker_Nitizi_2.TabIndex = 12;
             // 
             // dateTimePicker_Nitizi
             // 
             this.dateTimePicker_Nitizi.Location = new System.Drawing.Point(811, 303);
             this.dateTimePicker_Nitizi.Name = "dateTimePicker_Nitizi";
             this.dateTimePicker_Nitizi.Size = new System.Drawing.Size(287, 31);
-            this.dateTimePicker_Nitizi.TabIndex = 57;
+            this.dateTimePicker_Nitizi.TabIndex = 11;
             // 
             // comboBox_Syain_Namae
             // 
@@ -115,7 +115,7 @@
             this.comboBox_Syain_Namae.Location = new System.Drawing.Point(811, 229);
             this.comboBox_Syain_Namae.Name = "comboBox_Syain_Namae";
             this.comboBox_Syain_Namae.Size = new System.Drawing.Size(287, 32);
-            this.comboBox_Syain_Namae.TabIndex = 56;
+            this.comboBox_Syain_Namae.TabIndex = 9;
             // 
             // comboBox_Eigyousyo_Namae
             // 
@@ -123,7 +123,7 @@
             this.comboBox_Eigyousyo_Namae.Location = new System.Drawing.Point(1309, 153);
             this.comboBox_Eigyousyo_Namae.Name = "comboBox_Eigyousyo_Namae";
             this.comboBox_Eigyousyo_Namae.Size = new System.Drawing.Size(242, 32);
-            this.comboBox_Eigyousyo_Namae.TabIndex = 55;
+            this.comboBox_Eigyousyo_Namae.TabIndex = 7;
             // 
             // comboBox_Kokyaku_Namae
             // 
@@ -131,7 +131,7 @@
             this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(811, 153);
             this.comboBox_Kokyaku_Namae.Name = "comboBox_Kokyaku_Namae";
             this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(287, 32);
-            this.comboBox_Kokyaku_Namae.TabIndex = 54;
+            this.comboBox_Kokyaku_Namae.TabIndex = 6;
             // 
             // textBox_Zyutyuu_ID
             // 
@@ -139,7 +139,7 @@
             this.textBox_Zyutyuu_ID.MaxLength = 6;
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(346, 31);
-            this.textBox_Zyutyuu_ID.TabIndex = 53;
+            this.textBox_Zyutyuu_ID.TabIndex = 10;
             // 
             // textBox_Uriagesyousai_ID
             // 
@@ -147,7 +147,7 @@
             this.textBox_Uriagesyousai_ID.MaxLength = 6;
             this.textBox_Uriagesyousai_ID.Name = "textBox_Uriagesyousai_ID";
             this.textBox_Uriagesyousai_ID.Size = new System.Drawing.Size(346, 31);
-            this.textBox_Uriagesyousai_ID.TabIndex = 52;
+            this.textBox_Uriagesyousai_ID.TabIndex = 8;
             // 
             // textBox_Uriage_ID
             // 
@@ -155,7 +155,7 @@
             this.textBox_Uriage_ID.MaxLength = 6;
             this.textBox_Uriage_ID.Name = "textBox_Uriage_ID";
             this.textBox_Uriage_ID.Size = new System.Drawing.Size(346, 31);
-            this.textBox_Uriage_ID.TabIndex = 51;
+            this.textBox_Uriage_ID.TabIndex = 5;
             // 
             // label7
             // 
@@ -235,7 +235,7 @@
             this.button_Kuria.Location = new System.Drawing.Point(1220, 26);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(218, 75);
-            this.button_Kuria.TabIndex = 43;
+            this.button_Kuria.TabIndex = 4;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
             this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
@@ -248,7 +248,7 @@
             this.button_Sakuzyo.Location = new System.Drawing.Point(859, 26);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
             this.button_Sakuzyo.Size = new System.Drawing.Size(218, 75);
-            this.button_Sakuzyo.TabIndex = 42;
+            this.button_Sakuzyo.TabIndex = 3;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
             this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
@@ -261,7 +261,7 @@
             this.button_Kensaku.Location = new System.Drawing.Point(504, 26);
             this.button_Kensaku.Name = "button_Kensaku";
             this.button_Kensaku.Size = new System.Drawing.Size(211, 75);
-            this.button_Kensaku.TabIndex = 41;
+            this.button_Kensaku.TabIndex = 2;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
             this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
@@ -274,7 +274,7 @@
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(108, 27);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(253, 68);
-            this.button_Itirannhyouzi.TabIndex = 59;
+            this.button_Itirannhyouzi.TabIndex = 1;
             this.button_Itirannhyouzi.Text = "📚一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
             this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);

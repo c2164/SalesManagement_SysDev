@@ -232,7 +232,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
-            this.dataGridView1.TabIndex = 16;
+            this.dataGridView1.TabIndex = 18;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // textBox_Syain
@@ -241,7 +241,7 @@
             this.textBox_Syain.MaxLength = 50;
             this.textBox_Syain.Name = "textBox_Syain";
             this.textBox_Syain.Size = new System.Drawing.Size(247, 31);
-            this.textBox_Syain.TabIndex = 17;
+            this.textBox_Syain.TabIndex = 8;
             // 
             // textBox_Zyutyuu_ID
             // 
@@ -249,7 +249,7 @@
             this.textBox_Zyutyuu_ID.MaxLength = 6;
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(266, 31);
-            this.textBox_Zyutyuu_ID.TabIndex = 18;
+            this.textBox_Zyutyuu_ID.TabIndex = 10;
             // 
             // textBox_Kakutei_Syain_Namae
             // 
@@ -257,7 +257,7 @@
             this.textBox_Kakutei_Syain_Namae.MaxLength = 50;
             this.textBox_Kakutei_Syain_Namae.Name = "textBox_Kakutei_Syain_Namae";
             this.textBox_Kakutei_Syain_Namae.Size = new System.Drawing.Size(247, 31);
-            this.textBox_Kakutei_Syain_Namae.TabIndex = 19;
+            this.textBox_Kakutei_Syain_Namae.TabIndex = 11;
             // 
             // textBox_Syukkosyousai_ID
             // 
@@ -265,7 +265,7 @@
             this.textBox_Syukkosyousai_ID.MaxLength = 6;
             this.textBox_Syukkosyousai_ID.Name = "textBox_Syukkosyousai_ID";
             this.textBox_Syukkosyousai_ID.Size = new System.Drawing.Size(260, 31);
-            this.textBox_Syukkosyousai_ID.TabIndex = 20;
+            this.textBox_Syukkosyousai_ID.TabIndex = 12;
             // 
             // comboBox_Eigyousyo
             // 
@@ -273,7 +273,7 @@
             this.comboBox_Eigyousyo.Location = new System.Drawing.Point(696, 183);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(266, 32);
-            this.comboBox_Eigyousyo.TabIndex = 21;
+            this.comboBox_Eigyousyo.TabIndex = 7;
             // 
             // comboBox_Kokyaku
             // 
@@ -281,7 +281,7 @@
             this.comboBox_Kokyaku.Location = new System.Drawing.Point(239, 276);
             this.comboBox_Kokyaku.Name = "comboBox_Kokyaku";
             this.comboBox_Kokyaku.Size = new System.Drawing.Size(260, 32);
-            this.comboBox_Kokyaku.TabIndex = 22;
+            this.comboBox_Kokyaku.TabIndex = 9;
             // 
             // comboBox_Meka_Namae
             // 
@@ -289,7 +289,7 @@
             this.comboBox_Meka_Namae.Location = new System.Drawing.Point(696, 375);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
             this.comboBox_Meka_Namae.Size = new System.Drawing.Size(266, 32);
-            this.comboBox_Meka_Namae.TabIndex = 23;
+            this.comboBox_Meka_Namae.TabIndex = 13;
             // 
             // comboBoxSyouhin_Namae
             // 
@@ -297,7 +297,7 @@
             this.comboBoxSyouhin_Namae.Location = new System.Drawing.Point(1253, 375);
             this.comboBoxSyouhin_Namae.Name = "comboBoxSyouhin_Namae";
             this.comboBoxSyouhin_Namae.Size = new System.Drawing.Size(247, 32);
-            this.comboBoxSyouhin_Namae.TabIndex = 24;
+            this.comboBoxSyouhin_Namae.TabIndex = 14;
             // 
             // domainUpDown_Suuryou
             // 
@@ -309,7 +309,7 @@
             0});
             this.domainUpDown_Suuryou.Name = "domainUpDown_Suuryou";
             this.domainUpDown_Suuryou.Size = new System.Drawing.Size(260, 31);
-            this.domainUpDown_Suuryou.TabIndex = 26;
+            this.domainUpDown_Suuryou.TabIndex = 15;
             // 
             // checkBox_Mikakutei
             // 
@@ -317,7 +317,7 @@
             this.checkBox_Mikakutei.Location = new System.Drawing.Point(590, 465);
             this.checkBox_Mikakutei.Name = "checkBox_Mikakutei";
             this.checkBox_Mikakutei.Size = new System.Drawing.Size(114, 28);
-            this.checkBox_Mikakutei.TabIndex = 27;
+            this.checkBox_Mikakutei.TabIndex = 16;
             this.checkBox_Mikakutei.Text = "未確定";
             this.checkBox_Mikakutei.UseVisualStyleBackColor = true;
             // 
@@ -327,7 +327,7 @@
             this.checkBox_Kakutei.Location = new System.Drawing.Point(760, 465);
             this.checkBox_Kakutei.Name = "checkBox_Kakutei";
             this.checkBox_Kakutei.Size = new System.Drawing.Size(135, 28);
-            this.checkBox_Kakutei.TabIndex = 28;
+            this.checkBox_Kakutei.TabIndex = 17;
             this.checkBox_Kakutei.Text = "確定済み";
             this.checkBox_Kakutei.UseVisualStyleBackColor = true;
             // 

@@ -64,7 +64,7 @@
             this.button_Touroku.Location = new System.Drawing.Point(20, 32);
             this.button_Touroku.Name = "button_Touroku";
             this.button_Touroku.Size = new System.Drawing.Size(153, 75);
-            this.button_Touroku.TabIndex = 0;
+            this.button_Touroku.TabIndex = 1;
             this.button_Touroku.Text = "🖊登録";
             this.button_Touroku.UseVisualStyleBackColor = false;
             this.button_Touroku.Click += new System.EventHandler(this.button_Touroku_Click);
@@ -77,7 +77,7 @@
             this.button_Kousin.Location = new System.Drawing.Point(266, 32);
             this.button_Kousin.Name = "button_Kousin";
             this.button_Kousin.Size = new System.Drawing.Size(153, 75);
-            this.button_Kousin.TabIndex = 1;
+            this.button_Kousin.TabIndex = 2;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
             this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
@@ -90,7 +90,7 @@
             this.button_Kensaku.Location = new System.Drawing.Point(516, 32);
             this.button_Kensaku.Name = "button_Kensaku";
             this.button_Kensaku.Size = new System.Drawing.Size(153, 75);
-            this.button_Kensaku.TabIndex = 2;
+            this.button_Kensaku.TabIndex = 3;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
             this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
@@ -103,7 +103,7 @@
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(781, 32);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(218, 75);
-            this.button_Itirannhyouzi.TabIndex = 3;
+            this.button_Itirannhyouzi.TabIndex = 4;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
             this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
@@ -116,7 +116,7 @@
             this.button_Sakuzyo.Location = new System.Drawing.Point(1121, 32);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
             this.button_Sakuzyo.Size = new System.Drawing.Size(153, 75);
-            this.button_Sakuzyo.TabIndex = 4;
+            this.button_Sakuzyo.TabIndex = 5;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
             this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
@@ -129,7 +129,7 @@
             this.button_Kuria.Location = new System.Drawing.Point(1362, 32);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(153, 75);
-            this.button_Kuria.TabIndex = 5;
+            this.button_Kuria.TabIndex = 6;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
             this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
@@ -210,7 +210,7 @@
             this.textBox_Syain_Namae.MaxLength = 50;
             this.textBox_Syain_Namae.Name = "textBox_Syain_Namae";
             this.textBox_Syain_Namae.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Syain_Namae.TabIndex = 14;
+            this.textBox_Syain_Namae.TabIndex = 7;
             // 
             // textBox_Syain_ID
             // 
@@ -218,7 +218,7 @@
             this.textBox_Syain_ID.MaxLength = 6;
             this.textBox_Syain_ID.Name = "textBox_Syain_ID";
             this.textBox_Syain_ID.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Syain_ID.TabIndex = 15;
+            this.textBox_Syain_ID.TabIndex = 8;
             // 
             // textBox_Dennwa
             // 
@@ -226,7 +226,7 @@
             this.textBox_Dennwa.MaxLength = 4;
             this.textBox_Dennwa.Name = "textBox_Dennwa";
             this.textBox_Dennwa.Size = new System.Drawing.Size(130, 31);
-            this.textBox_Dennwa.TabIndex = 18;
+            this.textBox_Dennwa.TabIndex = 13;
             // 
             // textBox_Pass
             // 
@@ -234,7 +234,7 @@
             this.textBox_Pass.MaxLength = 10;
             this.textBox_Pass.Name = "textBox_Pass";
             this.textBox_Pass.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Pass.TabIndex = 20;
+            this.textBox_Pass.TabIndex = 12;
             // 
             // comboBox_Eigyousyo
             // 
@@ -242,7 +242,7 @@
             this.comboBox_Eigyousyo.Location = new System.Drawing.Point(1264, 181);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(251, 32);
-            this.comboBox_Eigyousyo.TabIndex = 21;
+            this.comboBox_Eigyousyo.TabIndex = 9;
             // 
             // dataGridView1
             // 
@@ -252,7 +252,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
-            this.dataGridView1.TabIndex = 22;
+            this.dataGridView1.TabIndex = 16;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -261,7 +261,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(749, 299);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(250, 31);
-            this.dateTimePicker1.TabIndex = 23;
+            this.dateTimePicker1.TabIndex = 11;
             // 
             // comboBox_Yakusyoku_Namae
             // 
@@ -269,7 +269,7 @@
             this.comboBox_Yakusyoku_Namae.Location = new System.Drawing.Point(253, 301);
             this.comboBox_Yakusyoku_Namae.Name = "comboBox_Yakusyoku_Namae";
             this.comboBox_Yakusyoku_Namae.Size = new System.Drawing.Size(238, 32);
-            this.comboBox_Yakusyoku_Namae.TabIndex = 24;
+            this.comboBox_Yakusyoku_Namae.TabIndex = 10;
             // 
             // textBox_Dennwa3
             // 
@@ -277,7 +277,7 @@
             this.textBox_Dennwa3.MaxLength = 4;
             this.textBox_Dennwa3.Name = "textBox_Dennwa3";
             this.textBox_Dennwa3.Size = new System.Drawing.Size(130, 31);
-            this.textBox_Dennwa3.TabIndex = 57;
+            this.textBox_Dennwa3.TabIndex = 15;
             // 
             // label9
             // 
@@ -296,7 +296,7 @@
             this.textBox_Dennwa2.MaxLength = 4;
             this.textBox_Dennwa2.Name = "textBox_Dennwa2";
             this.textBox_Dennwa2.Size = new System.Drawing.Size(130, 31);
-            this.textBox_Dennwa2.TabIndex = 55;
+            this.textBox_Dennwa2.TabIndex = 14;
             // 
             // label7
             // 

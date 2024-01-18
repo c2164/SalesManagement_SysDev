@@ -441,7 +441,7 @@ namespace SalesManagement_SysDev
             //チェック済みの入力情報を得る
             dispProductDTO = GetCheckedProductInf();
             PrID = GetProductRecord();
-            if(dispProductDTO == null)
+            if (dispProductDTO == null)
             {
                 return;
             }
@@ -567,6 +567,22 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
+            //メーカー名のチェック
+            if (combobox_Meka_ID.SelectedIndex == -1)
+            {
+                msg = "メーカーを選択してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            //小分類名のチェック
+            if (combobox_Syoubunnrui_Namae.SelectedIndex == -1)
+            {
+                msg = "小分類名を選択してください";
+                title = "入力エラー";
+                return false;
+            }
+
             //価格のチェック
             if (!String.IsNullOrEmpty(checklDispProduct.Price))
             {
@@ -618,21 +634,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            //メーカー名のチェック
-            if (combobox_Meka_ID.SelectedIndex == -1)
-            {
-                msg = "メーカーを選択してください";
-                title = "入力エラー";
-                return false;
-            }
 
-            //小分類名のチェック
-            if (combobox_Syoubunnrui_Namae.SelectedIndex == -1)
-            {
-                msg = "小分類名を選択してください";
-                title = "入力エラー";
-                return false;
-            }
 
             return true;
         }

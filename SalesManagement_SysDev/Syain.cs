@@ -558,6 +558,13 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
+            if (String.IsNullOrEmpty(checkdata.EmPassword))
+            {
+                msg = "パスワードは必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
             if (!String.IsNullOrEmpty(checkdata.EmPhone))
             {
                 if (!inputFormCheck.CheckPhoneAndFAX(checkdata.EmPhone))
@@ -570,13 +577,6 @@ namespace SalesManagement_SysDev
             else
             {
                 msg = "電話番号は必須入力です";
-                title = "入力エラー";
-                return false;
-            }
-
-            if (String.IsNullOrEmpty(checkdata.EmPassword))
-            {
-                msg = "パスワードは必須入力です";
                 title = "入力エラー";
                 return false;
             }

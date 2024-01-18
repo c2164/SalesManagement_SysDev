@@ -67,7 +67,7 @@
             this.combobox_Meka_ID.Location = new System.Drawing.Point(1251, 189);
             this.combobox_Meka_ID.Name = "combobox_Meka_ID";
             this.combobox_Meka_ID.Size = new System.Drawing.Size(280, 32);
-            this.combobox_Meka_ID.TabIndex = 75;
+            this.combobox_Meka_ID.TabIndex = 9;
             // 
             // groupBox1
             // 
@@ -95,14 +95,14 @@
             this.dateTimePicker_Nitizi_3.Location = new System.Drawing.Point(433, 43);
             this.dateTimePicker_Nitizi_3.Name = "dateTimePicker_Nitizi_3";
             this.dateTimePicker_Nitizi_3.Size = new System.Drawing.Size(364, 31);
-            this.dateTimePicker_Nitizi_3.TabIndex = 20;
+            this.dateTimePicker_Nitizi_3.TabIndex = 17;
             // 
             // dateTimePicker_Nitizi_2
             // 
             this.dateTimePicker_Nitizi_2.Location = new System.Drawing.Point(20, 43);
             this.dateTimePicker_Nitizi_2.Name = "dateTimePicker_Nitizi_2";
             this.dateTimePicker_Nitizi_2.Size = new System.Drawing.Size(350, 31);
-            this.dateTimePicker_Nitizi_2.TabIndex = 19;
+            this.dateTimePicker_Nitizi_2.TabIndex = 16;
             // 
             // dateTimePicker1
             // 
@@ -110,7 +110,7 @@
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(278, 31);
-            this.dateTimePicker1.TabIndex = 77;
+            this.dateTimePicker1.TabIndex = 15;
             // 
             // dataGridView1
             // 
@@ -120,7 +120,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
-            this.dataGridView1.TabIndex = 76;
+            this.dataGridView1.TabIndex = 18;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // combobox_Syoubunnrui_Namae
@@ -129,7 +129,7 @@
             this.combobox_Syoubunnrui_Namae.Location = new System.Drawing.Point(222, 261);
             this.combobox_Syoubunnrui_Namae.Name = "combobox_Syoubunnrui_Namae";
             this.combobox_Syoubunnrui_Namae.Size = new System.Drawing.Size(280, 32);
-            this.combobox_Syoubunnrui_Namae.TabIndex = 74;
+            this.combobox_Syoubunnrui_Namae.TabIndex = 10;
             // 
             // textbox_Anzen
             // 
@@ -137,7 +137,7 @@
             this.textbox_Anzen.MaxLength = 4;
             this.textbox_Anzen.Name = "textbox_Anzen";
             this.textbox_Anzen.Size = new System.Drawing.Size(280, 31);
-            this.textbox_Anzen.TabIndex = 73;
+            this.textbox_Anzen.TabIndex = 12;
             // 
             // textbox_Kakaku
             // 
@@ -145,7 +145,7 @@
             this.textbox_Kakaku.MaxLength = 9;
             this.textbox_Kakaku.Name = "textbox_Kakaku";
             this.textbox_Kakaku.Size = new System.Drawing.Size(280, 31);
-            this.textbox_Kakaku.TabIndex = 72;
+            this.textbox_Kakaku.TabIndex = 11;
             // 
             // textbox_Kataban
             // 
@@ -153,7 +153,7 @@
             this.textbox_Kataban.MaxLength = 20;
             this.textbox_Kataban.Name = "textbox_Kataban";
             this.textbox_Kataban.Size = new System.Drawing.Size(280, 31);
-            this.textbox_Kataban.TabIndex = 71;
+            this.textbox_Kataban.TabIndex = 13;
             // 
             // textbox_Iro
             // 
@@ -161,7 +161,7 @@
             this.textbox_Iro.MaxLength = 20;
             this.textbox_Iro.Name = "textbox_Iro";
             this.textbox_Iro.Size = new System.Drawing.Size(280, 31);
-            this.textbox_Iro.TabIndex = 70;
+            this.textbox_Iro.TabIndex = 14;
             // 
             // textbox_Syouhin_Namae
             // 
@@ -169,7 +169,7 @@
             this.textbox_Syouhin_Namae.MaxLength = 50;
             this.textbox_Syouhin_Namae.Name = "textbox_Syouhin_Namae";
             this.textbox_Syouhin_Namae.Size = new System.Drawing.Size(280, 31);
-            this.textbox_Syouhin_Namae.TabIndex = 69;
+            this.textbox_Syouhin_Namae.TabIndex = 8;
             // 
             // textbox_Syouhin_ID
             // 
@@ -177,7 +177,7 @@
             this.textbox_Syouhin_ID.MaxLength = 6;
             this.textbox_Syouhin_ID.Name = "textbox_Syouhin_ID";
             this.textbox_Syouhin_ID.Size = new System.Drawing.Size(280, 31);
-            this.textbox_Syouhin_ID.TabIndex = 68;
+            this.textbox_Syouhin_ID.TabIndex = 7;
             // 
             // label9
             // 
@@ -277,7 +277,7 @@
             this.button_Kuria.Location = new System.Drawing.Point(1375, 29);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(153, 75);
-            this.button_Kuria.TabIndex = 58;
+            this.button_Kuria.TabIndex = 6;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
             this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
@@ -290,7 +290,7 @@
             this.button_Sakujyo.Location = new System.Drawing.Point(1124, 29);
             this.button_Sakujyo.Name = "button_Sakujyo";
             this.button_Sakujyo.Size = new System.Drawing.Size(153, 75);
-            this.button_Sakujyo.TabIndex = 57;
+            this.button_Sakujyo.TabIndex = 5;
             this.button_Sakujyo.Text = "🚮削除";
             this.button_Sakujyo.UseVisualStyleBackColor = false;
             this.button_Sakujyo.Click += new System.EventHandler(this.button_Sakujyo_Click);
@@ -303,7 +303,7 @@
             this.button_Itiran.Location = new System.Drawing.Point(842, 29);
             this.button_Itiran.Name = "button_Itiran";
             this.button_Itiran.Size = new System.Drawing.Size(207, 75);
-            this.button_Itiran.TabIndex = 56;
+            this.button_Itiran.TabIndex = 4;
             this.button_Itiran.Text = "📖一覧表示";
             this.button_Itiran.UseVisualStyleBackColor = false;
             this.button_Itiran.Click += new System.EventHandler(this.button_Itiran_Click);
@@ -316,7 +316,7 @@
             this.button_Kennsaku.Location = new System.Drawing.Point(586, 29);
             this.button_Kennsaku.Name = "button_Kennsaku";
             this.button_Kennsaku.Size = new System.Drawing.Size(153, 75);
-            this.button_Kennsaku.TabIndex = 55;
+            this.button_Kennsaku.TabIndex = 3;
             this.button_Kennsaku.Text = "🔍検索";
             this.button_Kennsaku.UseVisualStyleBackColor = false;
             this.button_Kennsaku.Click += new System.EventHandler(this.button_Kennsaku_Click);
@@ -329,7 +329,7 @@
             this.button_Kousin.Location = new System.Drawing.Point(326, 29);
             this.button_Kousin.Name = "button_Kousin";
             this.button_Kousin.Size = new System.Drawing.Size(153, 75);
-            this.button_Kousin.TabIndex = 54;
+            this.button_Kousin.TabIndex = 2;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
             this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
@@ -342,7 +342,7 @@
             this.button_Touroku.Location = new System.Drawing.Point(68, 29);
             this.button_Touroku.Name = "button_Touroku";
             this.button_Touroku.Size = new System.Drawing.Size(153, 75);
-            this.button_Touroku.TabIndex = 53;
+            this.button_Touroku.TabIndex = 1;
             this.button_Touroku.Text = "🖊登録";
             this.button_Touroku.UseVisualStyleBackColor = false;
             this.button_Touroku.Click += new System.EventHandler(this.button_Touroku_Click);
