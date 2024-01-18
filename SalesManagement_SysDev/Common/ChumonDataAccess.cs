@@ -92,7 +92,7 @@ namespace SalesManagement_SysDev.Common
                          where
                          (dispChumonDTO.ChID.Equals("") ? true :
                          Chumon.ChID.ToString().Equals(dispChumonDTO.ChID)) && //注文ID
-                                                                               //
+                                                                               
                          Product.PrName.Contains(dispChumonDTO.PrName) && //商品名
 
                          SalesOffice.SoName.Contains(dispChumonDTO.SoName) && //営業所名
@@ -130,9 +130,6 @@ namespace SalesManagement_SysDev.Common
                              ChStateFlag = Chumon.ChStateFlag.ToString(),
                              ChFlag = Chumon.ChFlag.ToString(),
                              ChHidden = Chumon.ChHidden.ToString(),
-
-
-
 
                          };
 

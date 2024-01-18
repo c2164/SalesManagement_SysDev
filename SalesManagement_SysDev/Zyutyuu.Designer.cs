@@ -93,7 +93,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(30, 365);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
@@ -105,7 +105,7 @@
             // numericUpDown_Suuryou
             // 
             this.numericUpDown_Suuryou.Location = new System.Drawing.Point(975, 302);
-            this.numericUpDown_Suuryou.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDown_Suuryou.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown_Suuryou.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -119,7 +119,7 @@
             // 
             this.comboBox_Eigyousyo.FormattingEnabled = true;
             this.comboBox_Eigyousyo.Location = new System.Drawing.Point(200, 301);
-            this.comboBox_Eigyousyo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox_Eigyousyo.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(196, 26);
             this.comboBox_Eigyousyo.TabIndex = 47;
@@ -127,7 +127,7 @@
             // textBox_Zyutyuusyousai_ID
             // 
             this.textBox_Zyutyuusyousai_ID.Location = new System.Drawing.Point(615, 228);
-            this.textBox_Zyutyuusyousai_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Zyutyuusyousai_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Zyutyuusyousai_ID.MaxLength = 6;
             this.textBox_Zyutyuusyousai_ID.Name = "textBox_Zyutyuusyousai_ID";
             this.textBox_Zyutyuusyousai_ID.Size = new System.Drawing.Size(189, 25);
@@ -136,7 +136,7 @@
             // textBox_Zyutyuu_ID
             // 
             this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(200, 223);
-            this.textBox_Zyutyuu_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Zyutyuu_ID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Zyutyuu_ID.MaxLength = 6;
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(196, 25);
@@ -145,7 +145,7 @@
             // textBox_Kokyaku_Tantou
             // 
             this.textBox_Kokyaku_Tantou.Location = new System.Drawing.Point(615, 141);
-            this.textBox_Kokyaku_Tantou.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Kokyaku_Tantou.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Kokyaku_Tantou.MaxLength = 50;
             this.textBox_Kokyaku_Tantou.Name = "textBox_Kokyaku_Tantou";
             this.textBox_Kokyaku_Tantou.Size = new System.Drawing.Size(189, 25);
@@ -256,7 +256,7 @@
             this.button_Kuria.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
             this.button_Kuria.Location = new System.Drawing.Point(1066, 27);
-            this.button_Kuria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Kuria.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kuria.Name = "button_Kuria";
             this.button_Kuria.Size = new System.Drawing.Size(118, 56);
             this.button_Kuria.TabIndex = 34;
@@ -270,7 +270,7 @@
             this.button_Zyutyuu_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Zyutyuu_Kakutei.ForeColor = System.Drawing.Color.White;
             this.button_Zyutyuu_Kakutei.Location = new System.Drawing.Point(872, 27);
-            this.button_Zyutyuu_Kakutei.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Zyutyuu_Kakutei.Margin = new System.Windows.Forms.Padding(2);
             this.button_Zyutyuu_Kakutei.Name = "button_Zyutyuu_Kakutei";
             this.button_Zyutyuu_Kakutei.Size = new System.Drawing.Size(138, 56);
             this.button_Zyutyuu_Kakutei.TabIndex = 33;
@@ -284,7 +284,7 @@
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
             this.button_Sakuzyo.Location = new System.Drawing.Point(675, 27);
-            this.button_Sakuzyo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Sakuzyo.Margin = new System.Windows.Forms.Padding(2);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
             this.button_Sakuzyo.Size = new System.Drawing.Size(118, 56);
             this.button_Sakuzyo.TabIndex = 32;
@@ -298,7 +298,7 @@
             this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(432, 27);
-            this.button_Itirannhyouzi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Itirannhyouzi.Margin = new System.Windows.Forms.Padding(2);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(161, 56);
             this.button_Itirannhyouzi.TabIndex = 31;
@@ -312,7 +312,7 @@
             this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
             this.button_Kensaku.Location = new System.Drawing.Point(242, 27);
-            this.button_Kensaku.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Kensaku.Margin = new System.Windows.Forms.Padding(2);
             this.button_Kensaku.Name = "button_Kensaku";
             this.button_Kensaku.Size = new System.Drawing.Size(118, 56);
             this.button_Kensaku.TabIndex = 30;
@@ -326,7 +326,7 @@
             this.button_Touroku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Touroku.ForeColor = System.Drawing.Color.White;
             this.button_Touroku.Location = new System.Drawing.Point(47, 27);
-            this.button_Touroku.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Touroku.Margin = new System.Windows.Forms.Padding(2);
             this.button_Touroku.Name = "button_Touroku";
             this.button_Touroku.Size = new System.Drawing.Size(118, 56);
             this.button_Touroku.TabIndex = 29;
