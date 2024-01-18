@@ -87,7 +87,8 @@ namespace SalesManagement_SysDev.Common
                          join Hattyu in context.T_Hattyus
                          on Warehousing.HaID equals Hattyu.HaID
                          join Employee in context.M_Employees
-                         on Warehousing.EmID equals Employee.EmID
+                         on Warehousing.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join HattyuEmployee in context.M_Employees
                          on Hattyu.EmID equals HattyuEmployee.EmID
                          where
@@ -98,7 +99,8 @@ namespace SalesManagement_SysDev.Common
                           ((dispWarehousingDTO.WaDetailID == "") ? true :
                          WarehousingDetail.WaDetailID.ToString().Equals(dispWarehousingDTO.WaDetailID)) && //入庫詳細ID
                          HattyuEmployee.EmName.Contains(dispWarehousingDTO.HattyuEmName) && //発注社員名
-                         Employee.EmID.ToString().Contains(dispWarehousingDTO.ConfEmName) && //確定社員名
+                         (dispWarehousingDTO.ConfEmID == "" && Employee.EmName == null ? true :
+                         Employee.EmName.Contains(dispWarehousingDTO.ConfEmName)) && //確定社員名
                          Maker.MaName.Contains(dispWarehousingDTO.MaName) && //メーカー名
                          Product.PrName.Contains(dispWarehousingDTO.PrName)  //商品名
 

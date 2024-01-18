@@ -233,13 +233,16 @@ namespace SalesManagement_SysDev
             retWarehousingDTO.WaDetailID = textBox_Nyuukosyousai_ID.Text.Trim();
             retWarehousingDTO.HattyuEmID = textBox_Hattyuu_Syain_Namae.Text.Trim();
             if (!(comboBox_Kakutei_Syain_Namae.SelectedIndex == -1))
-                retWarehousingDTO.ConfEmName = comboBox_Kakutei_Syain_Namae.SelectedValue.ToString();
+                retWarehousingDTO.ConfEmID = comboBox_Kakutei_Syain_Namae.SelectedValue.ToString();
+            retWarehousingDTO.ConfEmName = comboBox_Kakutei_Syain_Namae.Text.Trim();
             if (!(comboBox_Meka_Namae.SelectedIndex == -1))
                 retWarehousingDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+            retWarehousingDTO.MaName = comboBox_Meka_Namae.Text.Trim();
             if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
-                retWarehousingDTO.MaID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+                retWarehousingDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
+            retWarehousingDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
             retWarehousingDTO.WaQuantity = numericUpDown_Suuryou.Value.ToString();
-
+            retWarehousingDTO.HattyuEmName = textBox_Hattyuu_Syain_Namae.Text.Trim();
 
             return retWarehousingDTO;
         }
