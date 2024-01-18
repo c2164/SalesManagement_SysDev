@@ -123,9 +123,9 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(551, 232);
+            this.label2.Location = new System.Drawing.Point(527, 237);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 41);
+            this.label2.Size = new System.Drawing.Size(170, 41);
             this.label2.TabIndex = 6;
             this.label2.Text = "メーカー名";
             // 
