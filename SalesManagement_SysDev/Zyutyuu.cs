@@ -877,6 +877,7 @@ namespace SalesManagement_SysDev
             List<T_OrderDetail> orderDetail = new List<T_OrderDetail>();
             T_Chumon chumon = new T_Chumon();
             List<T_ChumonDetail> ListChumonDetail = new List<T_ChumonDetail>();
+            DialogResult result;
 
             //確定対象の受注IDを取得
             OrID = GetOrderRecord();
@@ -884,6 +885,13 @@ namespace SalesManagement_SysDev
             //受注IDから受注情報を取得
             order = GetOrderAndOrDetailRecord(OrID, out orderDetail);
             if (order == null)
+            {
+                return;
+            }
+
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の注文を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
             {
                 return;
             }

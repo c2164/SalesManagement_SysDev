@@ -481,6 +481,7 @@ namespace SalesManagement_SysDev
             List<T_SyukkoDetail> syukkoDetail = new List<T_SyukkoDetail>();
             T_Arrival arrival = new T_Arrival();
             List<T_ArrivalDetail> ListArrival = new List<T_ArrivalDetail>();
+            DialogResult result;
 
             //確定対象の出庫IDを取得
             SyID = GetSyukkoRecord();
@@ -492,6 +493,13 @@ namespace SalesManagement_SysDev
             //出庫IDから出庫情報を取得
             syukko = GetSyukkoAndSyDetailRecord(SyID, out syukkoDetail);
             if (syukko == null)
+            {
+                return;
+            }
+
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の注文を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
             {
                 return;
             }

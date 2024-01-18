@@ -371,7 +371,7 @@ namespace SalesManagement_SysDev
 
             retshipment.ShID = int.Parse(dispshipmentDTO.ShID);
             retshipment.ClID = int.Parse(dispshipmentDTO.ClID);
-            if (dispshipmentDTO.EmID != null)
+            if (!String.IsNullOrEmpty(dispshipmentDTO.EmID))
                 retshipment.EmID = int.Parse(dispshipmentDTO.EmID);
             retshipment.SoID = int.Parse(dispshipmentDTO.SoID);
             retshipment.OrID = int.Parse(dispshipmentDTO.OrID);
@@ -470,6 +470,7 @@ namespace SalesManagement_SysDev
             List<T_ShipmentDetail> shipmentDetail = new List<T_ShipmentDetail>();
             T_Sale sale = new T_Sale();
             List<T_SaleDetail> saleDetail = new List<T_SaleDetail>();
+            DialogResult result;
 
             //確定対象の出荷IDを取得
             ShID = GetShipmentRecord();
@@ -477,6 +478,13 @@ namespace SalesManagement_SysDev
             //出荷IDから出荷情報を取得
             shipment = GetShipmentAndShipmentDetailRecord(ShID, out shipmentDetail);
             if (shipment == null)
+            {
+                return;
+            }
+
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の注文を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
             {
                 return;
             }

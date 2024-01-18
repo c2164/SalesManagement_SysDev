@@ -617,6 +617,7 @@ namespace SalesManagement_SysDev
             List<T_HattyuDetail> hattyuDetails = new List<T_HattyuDetail>();
             T_Warehousing warehousing = new T_Warehousing();
             List<T_WarehousingDetail> warehousingDetails = new List<T_WarehousingDetail>();
+            DialogResult result;
 
             //確定対象の発注IDを取得
             HaID = GetHattyuRecode();
@@ -628,6 +629,13 @@ namespace SalesManagement_SysDev
             //発注IDから発注情報を取得
             hattyu = GetHattyuAndDetailRecord(HaID, out hattyuDetails);
             if (hattyu == null)
+            {
+                return;
+            }
+
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の注文を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
             {
                 return;
             }

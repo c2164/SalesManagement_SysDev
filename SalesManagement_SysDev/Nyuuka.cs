@@ -453,6 +453,7 @@ namespace SalesManagement_SysDev
             List<T_ArrivalDetail> arrivalDetail = new List<T_ArrivalDetail>();
             T_Shipment shipment = new T_Shipment();
             List<T_ShipmentDetail> ListShipmentDetail = new List<T_ShipmentDetail>();
+            DialogResult result;
 
             //確定対象の入荷IDを取得
             ArID = GetArrivalRecord();
@@ -460,6 +461,13 @@ namespace SalesManagement_SysDev
             //入荷IDから入荷情報を取得
             arrival = GetArrivalAndArDetailRecord(ArID, out arrivalDetail);
             if (arrival == null)
+            {
+                return;
+            }
+
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の注文を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
             {
                 return;
             }
