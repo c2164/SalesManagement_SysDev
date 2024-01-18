@@ -61,7 +61,7 @@
             // 
             this.comboBox_Meka_Namae.FormattingEnabled = true;
             this.comboBox_Meka_Namae.Location = new System.Drawing.Point(1268, 297);
-            this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
             this.comboBox_Meka_Namae.Size = new System.Drawing.Size(241, 32);
             this.comboBox_Meka_Namae.TabIndex = 12;
@@ -70,7 +70,7 @@
             // 
             this.comboBox_Syouhin_Namae.FormattingEnabled = true;
             this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(800, 399);
-            this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
             this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(244, 32);
             this.comboBox_Syouhin_Namae.TabIndex = 15;
@@ -79,7 +79,7 @@
             // 
             this.comboBox_Syain_Namae.FormattingEnabled = true;
             this.comboBox_Syain_Namae.Location = new System.Drawing.Point(1268, 188);
-            this.comboBox_Syain_Namae.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Syain_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Syain_Namae.Name = "comboBox_Syain_Namae";
             this.comboBox_Syain_Namae.Size = new System.Drawing.Size(239, 32);
             this.comboBox_Syain_Namae.TabIndex = 9;
@@ -88,7 +88,7 @@
             // 
             this.comboBox_Kokyaku_Namae.FormattingEnabled = true;
             this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(260, 180);
-            this.comboBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Kokyaku_Namae.Name = "comboBox_Kokyaku_Namae";
             this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(254, 32);
             this.comboBox_Kokyaku_Namae.TabIndex = 7;
@@ -244,9 +244,9 @@
             this.button_Kuria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kuria.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
-            this.button_Kuria.Location = new System.Drawing.Point(1386, 36);
+            this.button_Kuria.Location = new System.Drawing.Point(1373, 29);
             this.button_Kuria.Name = "button_Kuria";
-            this.button_Kuria.Size = new System.Drawing.Size(153, 75);
+            this.button_Kuria.Size = new System.Drawing.Size(188, 88);
             this.button_Kuria.TabIndex = 6;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
@@ -257,9 +257,9 @@
             this.button_Zyutyuu_Kakutei.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Zyutyuu_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Zyutyuu_Kakutei.ForeColor = System.Drawing.Color.White;
-            this.button_Zyutyuu_Kakutei.Location = new System.Drawing.Point(1134, 36);
+            this.button_Zyutyuu_Kakutei.Location = new System.Drawing.Point(1120, 29);
             this.button_Zyutyuu_Kakutei.Name = "button_Zyutyuu_Kakutei";
-            this.button_Zyutyuu_Kakutei.Size = new System.Drawing.Size(179, 75);
+            this.button_Zyutyuu_Kakutei.Size = new System.Drawing.Size(199, 88);
             this.button_Zyutyuu_Kakutei.TabIndex = 5;
             this.button_Zyutyuu_Kakutei.Text = "受注確定";
             this.button_Zyutyuu_Kakutei.UseVisualStyleBackColor = false;
@@ -270,9 +270,9 @@
             this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
-            this.button_Sakuzyo.Location = new System.Drawing.Point(877, 36);
+            this.button_Sakuzyo.Location = new System.Drawing.Point(847, 29);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
-            this.button_Sakuzyo.Size = new System.Drawing.Size(153, 75);
+            this.button_Sakuzyo.Size = new System.Drawing.Size(197, 88);
             this.button_Sakuzyo.TabIndex = 4;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
@@ -283,9 +283,9 @@
             this.button_Itirannhyouzi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
-            this.button_Itirannhyouzi.Location = new System.Drawing.Point(562, 36);
+            this.button_Itirannhyouzi.Location = new System.Drawing.Point(543, 29);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
-            this.button_Itirannhyouzi.Size = new System.Drawing.Size(209, 75);
+            this.button_Itirannhyouzi.Size = new System.Drawing.Size(233, 88);
             this.button_Itirannhyouzi.TabIndex = 3;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
@@ -296,9 +296,9 @@
             this.button_Kensaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
-            this.button_Kensaku.Location = new System.Drawing.Point(315, 36);
+            this.button_Kensaku.Location = new System.Drawing.Point(297, 29);
             this.button_Kensaku.Name = "button_Kensaku";
-            this.button_Kensaku.Size = new System.Drawing.Size(153, 75);
+            this.button_Kensaku.Size = new System.Drawing.Size(198, 88);
             this.button_Kensaku.TabIndex = 2;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
@@ -309,9 +309,9 @@
             this.button_Touroku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Touroku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Touroku.ForeColor = System.Drawing.Color.White;
-            this.button_Touroku.Location = new System.Drawing.Point(61, 36);
+            this.button_Touroku.Location = new System.Drawing.Point(39, 29);
             this.button_Touroku.Name = "button_Touroku";
-            this.button_Touroku.Size = new System.Drawing.Size(153, 75);
+            this.button_Touroku.Size = new System.Drawing.Size(199, 88);
             this.button_Touroku.TabIndex = 1;
             this.button_Touroku.Text = "🖊登録";
             this.button_Touroku.UseVisualStyleBackColor = false;

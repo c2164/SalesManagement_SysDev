@@ -51,9 +51,9 @@
             this.button_Kousin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kousin.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kousin.ForeColor = System.Drawing.Color.White;
-            this.button_Kousin.Location = new System.Drawing.Point(56, 55);
+            this.button_Kousin.Location = new System.Drawing.Point(54, 55);
             this.button_Kousin.Name = "button_Kousin";
-            this.button_Kousin.Size = new System.Drawing.Size(155, 74);
+            this.button_Kousin.Size = new System.Drawing.Size(224, 74);
             this.button_Kousin.TabIndex = 1;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
@@ -66,7 +66,7 @@
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
             this.button_Kensaku.Location = new System.Drawing.Point(360, 55);
             this.button_Kensaku.Name = "button_Kensaku";
-            this.button_Kensaku.Size = new System.Drawing.Size(155, 74);
+            this.button_Kensaku.Size = new System.Drawing.Size(243, 74);
             this.button_Kensaku.TabIndex = 2;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
@@ -77,9 +77,9 @@
             this.button_Itirannhyouzi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
-            this.button_Itirannhyouzi.Location = new System.Drawing.Point(659, 55);
+            this.button_Itirannhyouzi.Location = new System.Drawing.Point(670, 55);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
-            this.button_Itirannhyouzi.Size = new System.Drawing.Size(212, 74);
+            this.button_Itirannhyouzi.Size = new System.Drawing.Size(270, 74);
             this.button_Itirannhyouzi.TabIndex = 3;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
@@ -90,9 +90,9 @@
             this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
-            this.button_Sakuzyo.Location = new System.Drawing.Point(1028, 55);
+            this.button_Sakuzyo.Location = new System.Drawing.Point(1010, 55);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
-            this.button_Sakuzyo.Size = new System.Drawing.Size(155, 74);
+            this.button_Sakuzyo.Size = new System.Drawing.Size(240, 74);
             this.button_Sakuzyo.TabIndex = 4;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
@@ -103,9 +103,9 @@
             this.button_Kuria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kuria.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
-            this.button_Kuria.Location = new System.Drawing.Point(1324, 55);
+            this.button_Kuria.Location = new System.Drawing.Point(1314, 55);
             this.button_Kuria.Name = "button_Kuria";
-            this.button_Kuria.Size = new System.Drawing.Size(155, 74);
+            this.button_Kuria.Size = new System.Drawing.Size(237, 74);
             this.button_Kuria.TabIndex = 5;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;

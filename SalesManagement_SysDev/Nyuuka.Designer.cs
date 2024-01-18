@@ -295,7 +295,7 @@
             this.button_Nyuuka_Kakutei.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Nyuuka_Kakutei.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Nyuuka_Kakutei.ForeColor = System.Drawing.Color.White;
-            this.button_Nyuuka_Kakutei.Location = new System.Drawing.Point(1006, 27);
+            this.button_Nyuuka_Kakutei.Location = new System.Drawing.Point(986, 27);
             this.button_Nyuuka_Kakutei.Name = "button_Nyuuka_Kakutei";
             this.button_Nyuuka_Kakutei.Size = new System.Drawing.Size(229, 75);
             this.button_Nyuuka_Kakutei.TabIndex = 4;
@@ -308,7 +308,7 @@
             this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
-            this.button_Sakuzyo.Location = new System.Drawing.Point(712, 27);
+            this.button_Sakuzyo.Location = new System.Drawing.Point(688, 27);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
             this.button_Sakuzyo.Size = new System.Drawing.Size(229, 75);
             this.button_Sakuzyo.TabIndex = 3;
@@ -321,7 +321,7 @@
             this.button_Kensaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
-            this.button_Kensaku.Location = new System.Drawing.Point(390, 27);
+            this.button_Kensaku.Location = new System.Drawing.Point(364, 27);
             this.button_Kensaku.Name = "button_Kensaku";
             this.button_Kensaku.Size = new System.Drawing.Size(229, 75);
             this.button_Kensaku.TabIndex = 2;

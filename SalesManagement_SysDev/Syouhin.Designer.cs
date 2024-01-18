@@ -276,7 +276,7 @@
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
             this.button_Kuria.Location = new System.Drawing.Point(1375, 29);
             this.button_Kuria.Name = "button_Kuria";
-            this.button_Kuria.Size = new System.Drawing.Size(153, 75);
+            this.button_Kuria.Size = new System.Drawing.Size(188, 75);
             this.button_Kuria.TabIndex = 6;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
@@ -289,7 +289,7 @@
             this.button_Sakujyo.ForeColor = System.Drawing.Color.White;
             this.button_Sakujyo.Location = new System.Drawing.Point(1124, 29);
             this.button_Sakujyo.Name = "button_Sakujyo";
-            this.button_Sakujyo.Size = new System.Drawing.Size(153, 75);
+            this.button_Sakujyo.Size = new System.Drawing.Size(188, 75);
             this.button_Sakujyo.TabIndex = 5;
             this.button_Sakujyo.Text = "🚮削除";
             this.button_Sakujyo.UseVisualStyleBackColor = false;
@@ -315,7 +315,7 @@
             this.button_Kennsaku.ForeColor = System.Drawing.Color.White;
             this.button_Kennsaku.Location = new System.Drawing.Point(586, 29);
             this.button_Kennsaku.Name = "button_Kennsaku";
-            this.button_Kennsaku.Size = new System.Drawing.Size(153, 75);
+            this.button_Kennsaku.Size = new System.Drawing.Size(188, 75);
             this.button_Kennsaku.TabIndex = 3;
             this.button_Kennsaku.Text = "🔍検索";
             this.button_Kennsaku.UseVisualStyleBackColor = false;
@@ -328,7 +328,7 @@
             this.button_Kousin.ForeColor = System.Drawing.Color.White;
             this.button_Kousin.Location = new System.Drawing.Point(326, 29);
             this.button_Kousin.Name = "button_Kousin";
-            this.button_Kousin.Size = new System.Drawing.Size(153, 75);
+            this.button_Kousin.Size = new System.Drawing.Size(188, 75);
             this.button_Kousin.TabIndex = 2;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
@@ -341,7 +341,7 @@
             this.button_Touroku.ForeColor = System.Drawing.Color.White;
             this.button_Touroku.Location = new System.Drawing.Point(68, 29);
             this.button_Touroku.Name = "button_Touroku";
-            this.button_Touroku.Size = new System.Drawing.Size(153, 75);
+            this.button_Touroku.Size = new System.Drawing.Size(188, 75);
             this.button_Touroku.TabIndex = 1;
             this.button_Touroku.Text = "🖊登録";
             this.button_Touroku.UseVisualStyleBackColor = false;
