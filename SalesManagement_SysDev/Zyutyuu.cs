@@ -497,9 +497,9 @@ namespace SalesManagement_SysDev
             //インスタンス化
             OrderDataAccess orderDataAccess = new OrderDataAccess();
 
-            //登録用データに変換
+            //更新用データに変換
             order = FormalizationOrderInputRecord(dispOrderDTO, out orderDetail);
-            //登録処理
+            //更新処理
             flg = orderDataAccess.UpdateOrderData(order, orderDetail);
             if (flg)
             {
@@ -509,6 +509,13 @@ namespace SalesManagement_SysDev
             {
                 messageDsp.MessageBoxDsp_OK("受注情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
             }
+        }
+        private DispOrderDTO SetLoginEmInf(DispOrderDTO order)
+        {
+            order.EmID = loginEmployee.EmID;
+            order.EmName = loginEmployee.EmName;
+
+            return order;
         }
 
         private void RegisrationOrderInf(DispOrderDTO dispOrderDTO)
@@ -521,6 +528,7 @@ namespace SalesManagement_SysDev
             OrderDataAccess orderDataAccess = new OrderDataAccess();
 
             //登録用データに変換
+            dispOrderDTO = SetLoginEmInf(dispOrderDTO);
             order = FormalizationOrderInputRecord(dispOrderDTO, out orderDetail);
             //登録処理
             flg = orderDataAccess.RegisterOrderData(order, orderDetail);

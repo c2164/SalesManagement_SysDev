@@ -42,6 +42,42 @@ namespace SalesManagement_SysDev
 
         }
 
+        private bool GetSelectData()
+        {
+            ChumonDataAccess access = new ChumonDataAccess();
+            //出荷情報の全件取得
+            List<DispChumonDTO> tb = access.GetChumonData();
+            List<DispChumonDTO> disptb = new List<DispChumonDTO>();
+            if (tb == null)
+                return false;
+            //データグリッドビューへの設定
+            var grouptb = tb.GroupBy(x => x.ChID).ToList();
+            foreach (var groupingchumontb in grouptb)
+            {
+                foreach (var chumontb in groupingchumontb)
+                {
+                    DispChumonDTO chumonDTO = new DispChumonDTO();
+                    chumonDTO.OrID = chumontb.OrID;
+                    chumonDTO.SoID = chumontb.SoID;
+                    chumonDTO.SoName = chumontb.SoName;
+                    chumonDTO.EmID = chumontb.EmID;
+                    chumonDTO.EmName = chumontb.EmName;
+                    chumonDTO.ClID = chumontb.ClID;
+                    chumonDTO.ClName = chumontb.ClName;
+                    chumonDTO.ChID = chumontb.ChID;
+                    chumonDTO.ChDate = chumontb.ChDate;
+                    chumonDTO.ChStateFlag = chumontb.ChStateFlag;
+                    chumonDTO.ChFlag = chumontb.ChFlag;
+                    chumonDTO.ChHidden = chumontb.ChHidden;
+
+                    disptb.Add(chumonDTO);
+                    break;
+                }
+            }
+            SetDataGridView(disptb);
+            return true;
+        }
+
         private bool GetSelectDetailData(string ChID)
         {
             ChumonDataAccess access = new ChumonDataAccess();
@@ -105,42 +141,7 @@ namespace SalesManagement_SysDev
             comboBox_Kokyaku_Namae.SelectedIndex = -1;
         }
 
-        private bool GetSelectData()
-        {
-            ChumonDataAccess access = new ChumonDataAccess();
-            //出荷情報の全件取得
-            List<DispChumonDTO> tb = access.GetChumonData();
-            List<DispChumonDTO> disptb = new List<DispChumonDTO>();
-            if (tb == null)
-                return false;
-            //データグリッドビューへの設定
-            //データグリッドビューへの設定
-            var grouptb = tb.GroupBy(x => x.ChID).ToList();
-            foreach (var groupingchumontb in grouptb)
-            {
-                foreach (var chumontb in groupingchumontb)
-                {
-                    DispChumonDTO chumonDTO = new DispChumonDTO();
-                    chumonDTO.OrID = chumontb.OrID;
-                    chumonDTO.SoID = chumontb.SoID;
-                    chumonDTO.SoName = chumontb.SoName;
-                    chumonDTO.EmID = chumontb.EmID;
-                    chumonDTO.EmName = chumontb.EmName;
-                    chumonDTO.ClID = chumontb.ClID;
-                    chumonDTO.ClName = chumontb.ClName;
-                    chumonDTO.ChID = chumontb.ChID;
-                    chumonDTO.ChDate = chumontb.ChDate;
-                    chumonDTO.ChStateFlag = chumontb.ChStateFlag;
-                    chumonDTO.ChFlag = chumontb.ChFlag;
-                    chumonDTO.ChHidden = chumontb.ChHidden;
 
-                    disptb.Add(chumonDTO);
-                    break;
-                }
-            }
-            SetDataGridView(disptb);
-            return true;
-        }
 
         private void SetDataGridView(List<DispChumonDTO> tb)
         {
