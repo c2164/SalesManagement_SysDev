@@ -33,7 +33,7 @@ namespace SalesManagement_SysDev.Common
         //電話番号とFAXのチェック
         public bool CheckPhoneAndFAX(string chkData)
         {
-            Regex regex = new Regex(@"^0\d{1,4}-\d{1,4}-\d{4}$|^0\d{9,10}$|^0120-\d{1,4}-\d{3}$");
+            Regex regex = new Regex(@"^0[0-9]{1,4}-[0-9]{1,4}-[0-9]{4}$|^0[0-9]{9,10}$|^0120-[0-9]{1,4}-[0-9]{3}$");
             if (!regex.IsMatch(chkData))
                 return false;
             else
@@ -42,7 +42,7 @@ namespace SalesManagement_SysDev.Common
 
         public bool CheckPostal(string chkData)
         {
-            Regex regex = new Regex(@"^\d{7}$");
+            Regex regex = new Regex(@"^[0-9]{7}$");
             if (!regex.IsMatch(chkData))
                 return false;
             else
@@ -51,7 +51,7 @@ namespace SalesManagement_SysDev.Common
 
         public bool CheckPrice(string chkData)
         {
-            Regex regex = new Regex(@"^\d{1,}|\d{1,}\.\d{,2}");
+            Regex regex = new Regex(@"^[0-9]{1,}|[0-9]{1,}\.[0-9]{,2}");
             if (!regex.IsMatch(chkData)) 
                 return false;
             else

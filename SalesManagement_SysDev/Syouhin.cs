@@ -588,7 +588,7 @@ namespace SalesManagement_SysDev
             {
                 if (!formCheck.CheckPrice(checklDispProduct.Price))
                 {
-                    msg = "価格には数字を入力してください";
+                    msg = "価格には半角数字を入力してください";
                     title = "入力エラー";
                     return false;
                 }
@@ -605,7 +605,7 @@ namespace SalesManagement_SysDev
             {
                 if (!formCheck.CheckNumeric(checklDispProduct.PrSafetyStock))
                 {
-                    msg = "安全在庫数には数字を入力してください";
+                    msg = "安全在庫数には半角数字を入力してください";
                     title = "入力エラー";
                     return false;
                 }

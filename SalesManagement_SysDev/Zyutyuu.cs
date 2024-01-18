@@ -637,6 +637,13 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
+            if (String.IsNullOrEmpty(checkdata.EmName))
+            {
+                msg = "社員名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
             if (!String.IsNullOrEmpty(checkdata.OrID))
             {
                 if (!inputFormCheck.CheckNumeric(checkdata.OrID))
@@ -645,6 +652,13 @@ namespace SalesManagement_SysDev
                     title = "入力エラー";
                     return false;
                 }
+            }
+
+            if (comboBox_Meka_Namae.SelectedIndex == -1)
+            {
+                msg = "メーカーを選択してください";
+                title = "入力エラー";
+                return false;
             }
 
             if (String.IsNullOrEmpty(checkdata.SoName))
