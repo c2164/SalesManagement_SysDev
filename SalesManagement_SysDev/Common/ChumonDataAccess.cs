@@ -105,7 +105,8 @@ namespace SalesManagement_SysDev.Common
 
                          Client.ClName.Contains(dispChumonDTO.ClName) && //顧客名
 
-                         Employee.EmName.Contains(dispChumonDTO.EmName) &&//社員名
+                         (Employee.EmName == null && dispChumonDTO.EmName == "" ? true :
+                         Employee.EmName.Contains(dispChumonDTO.EmName)) &&//社員名
 
                          //Chumon.ChDate.(dispChumonDTO.ChDate)&&//注文年月日
 
