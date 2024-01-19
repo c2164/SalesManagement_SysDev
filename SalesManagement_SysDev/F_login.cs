@@ -863,10 +863,5 @@ namespace SalesManagement_SysDev
         {
             label1.Text = text;
         }
-
-        /*private void F_Login_Load(object sender, EventArgs e)
-        {
-
-        }*/
     }
 }
