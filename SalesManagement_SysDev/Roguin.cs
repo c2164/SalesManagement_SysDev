@@ -16,6 +16,7 @@ namespace SalesManagement_SysDev
     {
         MessageDsp messageDsp = new MessageDsp();
         public F_Login mainform;
+        
         public Roguin()
         {
             InitializeComponent();

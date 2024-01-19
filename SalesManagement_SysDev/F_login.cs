@@ -780,7 +780,7 @@ namespace SalesManagement_SysDev
         {
             SalesManagement_SysDev.Roguin roguin = new Roguin();
             roguin.mainform = this;
-            //panel3.Controls.Add(roguin);
+            panel3.Controls.Add(roguin);
         }
 
         private void button1_Click(object sender, EventArgs e)

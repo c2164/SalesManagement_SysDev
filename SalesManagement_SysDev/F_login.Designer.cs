@@ -42,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button_CleateDatabase = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.roguin1 = new SalesManagement_SysDev.Roguin();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +55,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(299, 1019);
+            this.panel1.Size = new System.Drawing.Size(299, 1047);
             this.panel1.TabIndex = 0;
             // 
             // button3
@@ -109,10 +108,10 @@
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.button_CleateDatabase);
-            this.panel2.Location = new System.Drawing.Point(10, 1);
+            this.panel2.Location = new System.Drawing.Point(-21, 1);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1905, 144);
+            this.panel2.Size = new System.Drawing.Size(1936, 144);
             this.panel2.TabIndex = 1;
             // 
             // label_loginEmPosition
@@ -195,19 +194,11 @@
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(299, 148);
+            this.panel3.Location = new System.Drawing.Point(297, 141);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1610, 875);
+            this.panel3.Size = new System.Drawing.Size(1614, 882);
             this.panel3.TabIndex = 2;
-            // 
-            // roguin1
-            // 
-            this.roguin1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(205)))), ((int)(((byte)(227)))));
-            this.roguin1.Location = new System.Drawing.Point(0, -4);
-            this.roguin1.Name = "roguin1";
-            this.roguin1.Size = new System.Drawing.Size(1906, 1024);
-            this.roguin1.TabIndex = 0;
             // 
             // F_Login
             // 
@@ -215,10 +206,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1894, 1009);
-            this.Controls.Add(this.roguin1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "F_Login";
             this.Text = "販売管理システム";
@@ -246,7 +236,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private Roguin roguin1;
     }
 }
 
