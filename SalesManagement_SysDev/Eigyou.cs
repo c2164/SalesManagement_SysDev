@@ -14,6 +14,7 @@ namespace SalesManagement_SysDev
     public partial class Eigyou : UserControl
     {
         private DispEmplyeeDTO loginEmployee;
+        public F_Login mainform;
         public Eigyou(DispEmplyeeDTO emplyeeDTO)
         {
             InitializeComponent();
@@ -23,17 +24,18 @@ namespace SalesManagement_SysDev
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if(splitContainer1.Panel2.Controls.Count != 0)
+            if (splitContainer1.Panel2.Controls.Count != 0)
             {
                 Control RemCotl;
                 RemCotl = splitContainer1.Panel2.Controls[0];
                 splitContainer1.Panel2.Controls.Remove(RemCotl);
             }
             SalesManagement_SysDev.Kokyaku kokyaku = new Kokyaku();
-            
+
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
             splitContainer1.Panel2.Controls.Add(kokyaku);
+            mainform.setlabeltext("顧客管理");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -43,6 +45,7 @@ namespace SalesManagement_SysDev
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
             splitContainer1.Panel2.Controls.Add(zyutyuu);
+            mainform.setlabeltext("受注管理");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -52,6 +55,7 @@ namespace SalesManagement_SysDev
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
             splitContainer1.Panel2.Controls.Add(tyuumon);
+            mainform.setlabeltext("注文管理");
 
         }
 
@@ -62,6 +66,7 @@ namespace SalesManagement_SysDev
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
             splitContainer1.Panel2.Controls.Add(nyuuka);
+            mainform.setlabeltext("入荷管理");
 
         }
 
@@ -72,7 +77,7 @@ namespace SalesManagement_SysDev
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
             splitContainer1.Panel2.Controls.Add(syukka);
-
+            mainform.setlabeltext("出荷管理");
 
         }
 
@@ -83,6 +88,7 @@ namespace SalesManagement_SysDev
             splitContainer1.Panel1Collapsed = true;
             splitContainer1.Panel2Collapsed = false;
             splitContainer1.Panel2.Controls.Add(uriage);
+            mainform.setlabeltext("売上管理");
             //uriage1.Visible = true;
         }
     }

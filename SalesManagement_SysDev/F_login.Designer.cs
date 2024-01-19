@@ -172,13 +172,13 @@
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(200)))), ((int)(((byte)(230)))));
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 19.875F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(690, 15);
+            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 28.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(745, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(315, 93);
+            this.label1.Size = new System.Drawing.Size(547, 93);
             this.label1.TabIndex = 0;
-            this.label1.Text = "販売管理";
+            this.label1.Text = "販売在庫管理";
             // 
             // button_CleateDatabase
             // 

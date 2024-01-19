@@ -792,6 +792,8 @@ namespace SalesManagement_SysDev
                 panel3.Controls.Remove(RemCotl);
             }
             SalesManagement_SysDev.Buturyuu buturyuu = new Buturyuu(loginEmployee);
+            buturyuu.mainform = this;
+            label1.Text = "販売在庫管理";
             panel3.Controls.Add(buturyuu);
         }
 
@@ -804,13 +806,15 @@ namespace SalesManagement_SysDev
                 panel3.Controls.Remove(RemCotl);
             }
             SalesManagement_SysDev.Eigyou eigyou = new Eigyou(loginEmployee);
+            eigyou.mainform = this;
+            label1.Text = "販売在庫管理";
             panel3.Controls.Add(eigyou);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             SalesManagement_SysDev.Syain syain = new Syain();
-
+            int i = 0;
             if (panel3.Controls.Count != 0)
             {
                 Control RemCotl;
@@ -818,7 +822,16 @@ namespace SalesManagement_SysDev
                 panel3.Controls.Remove(RemCotl);
             }
             panel3.Controls.Add(syain);
-
+            if (i == 0)
+            {
+                label1.Text = "社員管理";
+                i = 1;
+            }
+            else
+            {
+                label1.Text = "販売在庫管理";
+                i = 0;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -844,6 +857,11 @@ namespace SalesManagement_SysDev
             button1.Visible = true;
             button2.Visible = false;
             button3.Visible = false;
+        }
+
+        public void setlabeltext(string text)
+        {
+            label1.Text = text;
         }
     }
 }
