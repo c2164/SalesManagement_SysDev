@@ -183,7 +183,7 @@
             // button_CleateDatabase
             // 
             this.button_CleateDatabase.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.button_CleateDatabase.Location = new System.Drawing.Point(1416, 25);
+            this.button_CleateDatabase.Location = new System.Drawing.Point(1897, 52);
             this.button_CleateDatabase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_CleateDatabase.Name = "button_CleateDatabase";
             this.button_CleateDatabase.Size = new System.Drawing.Size(195, 64);
