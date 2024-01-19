@@ -81,6 +81,38 @@ namespace SalesManagement_SysDev
             comboBox_Syain_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Syain_Namae.SelectedIndex = -1;
 
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
+
+            label1.ForeColor = Color.Black;
+            comboBox_Kokyaku_Namae.Enabled = true;
+            comboBox_Kokyaku_Namae.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Kokyaku_Tantou.Enabled = true;
+            textBox_Kokyaku_Tantou.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Syain_Namae.Enabled = true;
+            comboBox_Syain_Namae.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textBox_Zyutyuu_ID.Enabled = true;
+            textBox_Zyutyuu_ID.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Zyutyuusyousai_ID.Enabled = true;
+            textBox_Zyutyuusyousai_ID.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            numericUpDown_Suuryou.Enabled = true;
+            numericUpDown_Suuryou.BackColor = Color.White;
         }
 
         private bool GetSelectData()
@@ -1083,6 +1115,120 @@ namespace SalesManagement_SysDev
         private void numericUpDown_Suuryou_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label4.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuusyousai_ID.Enabled = false;
+            textBox_Zyutyuusyousai_ID.BackColor = Color.LightGray;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label9.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_Tantou.Enabled = false;
+            textBox_Kokyaku_Tantou.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuusyousai_ID.Enabled = false;
+            textBox_Zyutyuusyousai_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_Tantou.Enabled = false;
+            textBox_Kokyaku_Tantou.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuusyousai_ID.Enabled = false;
+            textBox_Zyutyuusyousai_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            comboBox_Kokyaku_Namae.Enabled = true;
+            comboBox_Kokyaku_Namae.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Kokyaku_Tantou.Enabled = true;
+            textBox_Kokyaku_Tantou.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Syain_Namae.Enabled = true;
+            comboBox_Syain_Namae.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textBox_Zyutyuu_ID.Enabled = true;
+            textBox_Zyutyuu_ID.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Zyutyuusyousai_ID.Enabled = true;
+            textBox_Zyutyuusyousai_ID.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            numericUpDown_Suuryou.Enabled = true;
+            numericUpDown_Suuryou.BackColor = Color.White;
         }
     }
 }

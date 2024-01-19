@@ -53,6 +53,10 @@
             this.button_Itirannhyouzi = new System.Windows.Forms.Button();
             this.button_Kensaku = new System.Windows.Forms.Button();
             this.button_Touroku = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Suuryou)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +64,7 @@
             // comboBox_Meka_Namae
             // 
             this.comboBox_Meka_Namae.FormattingEnabled = true;
-            this.comboBox_Meka_Namae.Location = new System.Drawing.Point(1268, 297);
+            this.comboBox_Meka_Namae.Location = new System.Drawing.Point(1263, 324);
             this.comboBox_Meka_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
             this.comboBox_Meka_Namae.Size = new System.Drawing.Size(241, 32);
@@ -69,7 +73,7 @@
             // comboBox_Syouhin_Namae
             // 
             this.comboBox_Syouhin_Namae.FormattingEnabled = true;
-            this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(800, 399);
+            this.comboBox_Syouhin_Namae.Location = new System.Drawing.Point(795, 426);
             this.comboBox_Syouhin_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Syouhin_Namae.Name = "comboBox_Syouhin_Namae";
             this.comboBox_Syouhin_Namae.Size = new System.Drawing.Size(244, 32);
@@ -78,7 +82,7 @@
             // comboBox_Syain_Namae
             // 
             this.comboBox_Syain_Namae.FormattingEnabled = true;
-            this.comboBox_Syain_Namae.Location = new System.Drawing.Point(1268, 188);
+            this.comboBox_Syain_Namae.Location = new System.Drawing.Point(1263, 215);
             this.comboBox_Syain_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Syain_Namae.Name = "comboBox_Syain_Namae";
             this.comboBox_Syain_Namae.Size = new System.Drawing.Size(239, 32);
@@ -87,7 +91,7 @@
             // comboBox_Kokyaku_Namae
             // 
             this.comboBox_Kokyaku_Namae.FormattingEnabled = true;
-            this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(260, 180);
+            this.comboBox_Kokyaku_Namae.Location = new System.Drawing.Point(255, 207);
             this.comboBox_Kokyaku_Namae.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Kokyaku_Namae.Name = "comboBox_Kokyaku_Namae";
             this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(254, 32);
@@ -107,7 +111,7 @@
             // 
             // numericUpDown_Suuryou
             // 
-            this.numericUpDown_Suuryou.Location = new System.Drawing.Point(1268, 403);
+            this.numericUpDown_Suuryou.Location = new System.Drawing.Point(1263, 430);
             this.numericUpDown_Suuryou.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -120,14 +124,14 @@
             // comboBox_Eigyousyo
             // 
             this.comboBox_Eigyousyo.FormattingEnabled = true;
-            this.comboBox_Eigyousyo.Location = new System.Drawing.Point(260, 401);
+            this.comboBox_Eigyousyo.Location = new System.Drawing.Point(255, 428);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(254, 32);
             this.comboBox_Eigyousyo.TabIndex = 14;
             // 
             // textBox_Zyutyuusyousai_ID
             // 
-            this.textBox_Zyutyuusyousai_ID.Location = new System.Drawing.Point(800, 304);
+            this.textBox_Zyutyuusyousai_ID.Location = new System.Drawing.Point(795, 331);
             this.textBox_Zyutyuusyousai_ID.MaxLength = 6;
             this.textBox_Zyutyuusyousai_ID.Name = "textBox_Zyutyuusyousai_ID";
             this.textBox_Zyutyuusyousai_ID.Size = new System.Drawing.Size(244, 31);
@@ -135,7 +139,7 @@
             // 
             // textBox_Zyutyuu_ID
             // 
-            this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(260, 297);
+            this.textBox_Zyutyuu_ID.Location = new System.Drawing.Point(255, 324);
             this.textBox_Zyutyuu_ID.MaxLength = 6;
             this.textBox_Zyutyuu_ID.Name = "textBox_Zyutyuu_ID";
             this.textBox_Zyutyuu_ID.Size = new System.Drawing.Size(254, 31);
@@ -143,7 +147,7 @@
             // 
             // textBox_Kokyaku_Tantou
             // 
-            this.textBox_Kokyaku_Tantou.Location = new System.Drawing.Point(800, 188);
+            this.textBox_Kokyaku_Tantou.Location = new System.Drawing.Point(795, 215);
             this.textBox_Kokyaku_Tantou.MaxLength = 50;
             this.textBox_Kokyaku_Tantou.Name = "textBox_Kokyaku_Tantou";
             this.textBox_Kokyaku_Tantou.Size = new System.Drawing.Size(244, 31);
@@ -153,7 +157,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label9.Location = new System.Drawing.Point(1126, 393);
+            this.label9.Location = new System.Drawing.Point(1121, 420);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 41);
             this.label9.TabIndex = 43;
@@ -163,7 +167,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label8.Location = new System.Drawing.Point(644, 393);
+            this.label8.Location = new System.Drawing.Point(639, 420);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(108, 41);
             this.label8.TabIndex = 42;
@@ -173,7 +177,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label7.Location = new System.Drawing.Point(92, 393);
+            this.label7.Location = new System.Drawing.Point(87, 420);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(108, 41);
             this.label7.TabIndex = 41;
@@ -183,7 +187,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label6.Location = new System.Drawing.Point(1082, 297);
+            this.label6.Location = new System.Drawing.Point(1077, 324);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(129, 41);
             this.label6.TabIndex = 40;
@@ -193,7 +197,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label5.Location = new System.Drawing.Point(585, 297);
+            this.label5.Location = new System.Drawing.Point(580, 324);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 41);
             this.label5.TabIndex = 39;
@@ -203,7 +207,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label4.Location = new System.Drawing.Point(92, 289);
+            this.label4.Location = new System.Drawing.Point(87, 316);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 41);
             this.label4.TabIndex = 38;
@@ -213,7 +217,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label3.Location = new System.Drawing.Point(1102, 180);
+            this.label3.Location = new System.Drawing.Point(1097, 207);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 41);
             this.label3.TabIndex = 37;
@@ -223,7 +227,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label2.Location = new System.Drawing.Point(554, 180);
+            this.label2.Location = new System.Drawing.Point(549, 207);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(198, 41);
             this.label2.TabIndex = 36;
@@ -233,7 +237,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 11F);
-            this.label1.Location = new System.Drawing.Point(92, 180);
+            this.label1.Location = new System.Drawing.Point(87, 207);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 41);
             this.label1.TabIndex = 35;
@@ -317,11 +321,67 @@
             this.button_Touroku.UseVisualStyleBackColor = false;
             this.button_Touroku.Click += new System.EventHandler(this.button_Touroku_Click);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton1.Location = new System.Drawing.Point(53, 123);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(189, 36);
+            this.radioButton1.TabIndex = 44;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "登録必要項目";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton2.Location = new System.Drawing.Point(297, 123);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(189, 36);
+            this.radioButton2.TabIndex = 45;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "検索可能項目";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton3.Location = new System.Drawing.Point(847, 123);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(189, 36);
+            this.radioButton3.TabIndex = 46;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "削除必要項目";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton4.Location = new System.Drawing.Point(1128, 123);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(189, 36);
+            this.radioButton4.TabIndex = 47;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "確定必要項目";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            // 
             // Zyutyuu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.comboBox_Meka_Namae);
             this.Controls.Add(this.comboBox_Syouhin_Namae);
             this.Controls.Add(this.comboBox_Syain_Namae);
@@ -384,5 +444,9 @@
         private System.Windows.Forms.Button button_Itirannhyouzi;
         private System.Windows.Forms.Button button_Kensaku;
         private System.Windows.Forms.Button button_Touroku;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
     }
 }
