@@ -142,7 +142,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(243, 75);
+            this.label3.Location = new System.Drawing.Point(243, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 24);
             this.label3.TabIndex = 4;
@@ -165,7 +165,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(195, 64);
             this.button4.TabIndex = 4;
-            this.button4.Text = "👤ログイン";
+            this.button4.Text = "👤ログアウト";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 

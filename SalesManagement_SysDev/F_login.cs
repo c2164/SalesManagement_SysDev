@@ -781,6 +781,13 @@ namespace SalesManagement_SysDev
             SalesManagement_SysDev.Roguin roguin = new Roguin();
             roguin.mainform = this;
             panel3.Controls.Add(roguin);
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            label2.Visible = false;
+            label3 .Visible = false;
+            label4.Visible = false;
+            button4.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -840,23 +847,39 @@ namespace SalesManagement_SysDev
 
         public void LimitBottunAdministrator()
         {
-            button1.Visible = true;
-            button2.Visible = true;
-            button3.Visible = true;
+            button1.Enabled = true;
+            button2.Enabled = true;
+            button3.Enabled = true;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            button4.Visible = true;
         }
 
         public void LimitBottunSales()
         {
-            button1.Visible = false;
-            button2.Visible = true;
-            button3.Visible = false;
+            button1.Enabled = false;
+            button1.BackColor = Color.DarkGray;
+            button2.Enabled = true;            
+            button3.Enabled = false;
+            button3.BackColor = Color.LightGray;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            button4.Visible = true;
         }
 
         public void LimitBottunLogistics()
         {
-            button1.Visible = true;
-            button2.Visible = false;
-            button3.Visible = false;
+            button1.Enabled = true;
+            button2.Enabled = false;
+            button2.BackColor = Color.LightGray;
+            button3.Enabled = false;
+            button3.BackColor = Color.LightGray;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            button4.Visible = true;
         }
 
         public void setlabeltext(string text)
