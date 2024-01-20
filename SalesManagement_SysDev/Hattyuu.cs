@@ -827,6 +827,11 @@ namespace SalesManagement_SysDev
             dateTimePicker1.Enabled = false;
             dateTimePicker1.CalendarMonthBackground = Color.LightGray;
         }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
