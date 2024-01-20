@@ -54,6 +54,7 @@
             this.button_Kennsaku = new System.Windows.Forms.Button();
             this.button_Touroku = new System.Windows.Forms.Button();
             this.numericUpDown_suuryou = new System.Windows.Forms.NumericUpDown();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_suuryou)).BeginInit();
             this.SuspendLayout();
@@ -340,11 +341,25 @@
             this.numericUpDown_suuryou.Size = new System.Drawing.Size(251, 31);
             this.numericUpDown_suuryou.TabIndex = 13;
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton1.Location = new System.Drawing.Point(44, 114);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(189, 36);
+            this.radioButton1.TabIndex = 67;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "登録必要項目";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
             // Hattyuu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(221)))), ((int)(((byte)(216)))));
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.numericUpDown_suuryou);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.checkBox1);
@@ -409,5 +424,6 @@
         private System.Windows.Forms.Button button_Kennsaku;
         private System.Windows.Forms.Button button_Touroku;
         private System.Windows.Forms.NumericUpDown numericUpDown_suuryou;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
