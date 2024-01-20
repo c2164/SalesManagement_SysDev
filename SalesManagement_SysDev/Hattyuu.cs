@@ -135,6 +135,11 @@ namespace SalesManagement_SysDev
 
             //日付を現在の日付にする
             dateTimePicker1.Value = DateTime.Now;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
 
         private void SetDataGridView(List<DispHattyuDTO> tb)
@@ -248,6 +253,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -936,6 +942,7 @@ namespace SalesManagement_SysDev
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            cmbclia();
             label1.ForeColor = Color.LightGray;
             textBox_Hattyuu_ID.Enabled = false;
             textBox_Hattyuu_ID.BackColor = Color.LightGray;
@@ -950,12 +957,127 @@ namespace SalesManagement_SysDev
             textBox_Hattyuusyousai.BackColor = Color.LightGray;
             label9.ForeColor = Color.LightGray;
             dateTimePicker1.Enabled = false;
-            dateTimePicker1.CalendarMonthBackground = Color.LightGray;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            cmbclia();
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+        }
 
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Syouhin_ID.Enabled = false;
+            textBox_Syouhin_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Syouhin_ID.Enabled = false;
+            textBox_Syouhin_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Hattyuu_ID.Enabled = true;
+            textBox_Hattyuu_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Syain_ID.Enabled = true;
+            textBox_Syain_ID.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Syain_Namae.Enabled = true;
+            comboBox_Syain_Namae.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Syouhin_ID.Enabled = true;
+            textBox_Syouhin_ID.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            numericUpDown_suuryou.Enabled = true;
+            numericUpDown_suuryou.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            textBox_Hattyuusyousai.Enabled = true;
+            textBox_Hattyuusyousai.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker1.CalendarTitleBackColor = Color.White;
+            checkBox1.Enabled = true;
+            checkBox1.ForeColor = Color.Black;
         }
     }
 

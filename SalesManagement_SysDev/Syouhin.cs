@@ -141,12 +141,18 @@ namespace SalesManagement_SysDev
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker_Nitizi_2.Value = DateTime.Now;
             dateTimePicker_Nitizi_3.Value = DateTime.Now;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
             SetCtrlFormat();
             GetSelectData();
+            cmbclia();
         }
 
         private void button_Itiran_Click(object sender, EventArgs e)
@@ -733,6 +739,125 @@ namespace SalesManagement_SysDev
             GetSelectData();
         }
 
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Syouhin_ID.Enabled = false;
+            textbox_Syouhin_ID.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+        }
 
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Syouhin_ID.Enabled = false;
+            textbox_Syouhin_ID.BackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Syouhin_ID.Enabled = false;
+            textbox_Syouhin_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textbox_Syouhin_Namae.Enabled = false;
+            textbox_Syouhin_Namae.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            combobox_Meka_ID.Enabled = false;
+            combobox_Meka_ID.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            combobox_Syoubunnrui_Namae.Enabled = false;
+            combobox_Syoubunnrui_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textbox_Kakaku.Enabled = false;
+            textbox_Kakaku.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            textbox_Anzen.Enabled = false;
+            textbox_Anzen.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            textbox_Kataban.Enabled = false;
+            textbox_Kataban.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textbox_Iro.Enabled = false;
+            textbox_Iro.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textbox_Syouhin_ID.Enabled = true;
+            textbox_Syouhin_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textbox_Syouhin_Namae.Enabled = true;
+            textbox_Syouhin_Namae.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            combobox_Meka_ID.Enabled = true;
+            combobox_Meka_ID.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            combobox_Syoubunnrui_Namae.Enabled = true;
+            combobox_Syoubunnrui_Namae.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textbox_Kakaku.Enabled = true;
+            textbox_Kakaku.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            textbox_Anzen.Enabled = true;
+            textbox_Anzen.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            textbox_Kataban.Enabled = true;
+            textbox_Kataban.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            textbox_Iro.Enabled = true;
+            textbox_Iro.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker1.CalendarTitleBackColor = Color.White;
+            groupBox1.ForeColor = Color.Black;
+            dateTimePicker_Nitizi_2.Enabled = true;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.White;
+            dateTimePicker_Nitizi_3.Enabled = true;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.White;
+            label10.ForeColor = Color.Black;
+        }
     }
 }

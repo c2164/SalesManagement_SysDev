@@ -52,6 +52,9 @@
             this.comboBox_Syouhin_Namae = new System.Windows.Forms.ComboBox();
             this.comboBox_Syain_Namae = new System.Windows.Forms.ComboBox();
             this.comboBox_Kokyaku_Namae = new System.Windows.Forms.ComboBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numericUPDown_Syouhin_Namae)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +79,7 @@
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
             this.button_Kensaku.Location = new System.Drawing.Point(354, 35);
             this.button_Kensaku.Name = "button_Kensaku";
-            this.button_Kensaku.Size = new System.Drawing.Size(191, 75);
+            this.button_Kensaku.Size = new System.Drawing.Size(225, 75);
             this.button_Kensaku.TabIndex = 2;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
@@ -297,11 +300,53 @@
             this.comboBox_Kokyaku_Namae.Size = new System.Drawing.Size(251, 32);
             this.comboBox_Kokyaku_Namae.TabIndex = 11;
             // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton2.Location = new System.Drawing.Point(372, 116);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(189, 36);
+            this.radioButton2.TabIndex = 46;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "検索可能項目";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton3.Location = new System.Drawing.Point(660, 116);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(189, 36);
+            this.radioButton3.TabIndex = 47;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "削除必要項目";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton4.Location = new System.Drawing.Point(976, 116);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(189, 36);
+            this.radioButton4.TabIndex = 48;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "確定必要項目";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            // 
             // Tyuumon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.comboBox_Kokyaku_Namae);
             this.Controls.Add(this.comboBox_Syain_Namae);
             this.Controls.Add(this.comboBox_Syouhin_Namae);
@@ -362,5 +407,8 @@
         private System.Windows.Forms.ComboBox comboBox_Syouhin_Namae;
         private System.Windows.Forms.ComboBox comboBox_Syain_Namae;
         private System.Windows.Forms.ComboBox comboBox_Kokyaku_Namae;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
     }
 }

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 namespace SalesManagement_SysDev
 {
 
-    
+
     public partial class Uriage : UserControl
     {
 
@@ -71,20 +71,22 @@ namespace SalesManagement_SysDev
             comboBox_Eigyousyo_Namae.DisplayMember = "SoName";
             comboBox_Eigyousyo_Namae.ValueMember = "SoID";
             comboBox_Eigyousyo_Namae.DataSource = salesOfficeDataAccess.GetSalesOfficeData();
-            comboBox_Eigyousyo_Namae.DropDownStyle= ComboBoxStyle.DropDownList;
+            comboBox_Eigyousyo_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Eigyousyo_Namae.SelectedIndex = -1;
 
             comboBox_Syain_Namae.DisplayMember = "EmName";
             comboBox_Syain_Namae.ValueMember = "EmID";
             comboBox_Syain_Namae.DataSource = EmployeeDataAccess.GetEmployeeData();
-            comboBox_Syain_Namae.DropDownStyle=ComboBoxStyle.DropDownList;
-            comboBox_Syain_Namae.SelectedIndex= -1;
+            comboBox_Syain_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Syain_Namae.SelectedIndex = -1;
 
             //  日時を初期化
-            dateTimePicker_Nitizi.Value= DateTime.Now;
-            dateTimePicker_Nitizi_2.Value= DateTime.Now;
-            dateTimePicker_Nitizi_3.Value= DateTime.Now;
+            dateTimePicker_Nitizi.Value = DateTime.Now;
+            dateTimePicker_Nitizi_2.Value = DateTime.Now;
+            dateTimePicker_Nitizi_3.Value = DateTime.Now;
 
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
         }
 
         private void SetDataGridView(List<DispSaleDTO> tb)
@@ -159,6 +161,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private DispSaleDTO GetSaleInf()
@@ -166,27 +169,27 @@ namespace SalesManagement_SysDev
             DispSaleDTO retSaleDTO = new DispSaleDTO();
 
             //各コントロールの情報
-            retSaleDTO.SaID=textBox_Uriage_ID.Text.Trim();
+            retSaleDTO.SaID = textBox_Uriage_ID.Text.Trim();
 
-            if(!(comboBox_Kokyaku_Namae.SelectedIndex == -1))
-                retSaleDTO.ClID=comboBox_Kokyaku_Namae.SelectedValue.ToString();
-                retSaleDTO.ClName=comboBox_Kokyaku_Namae.Text.Trim();
+            if (!(comboBox_Kokyaku_Namae.SelectedIndex == -1))
+                retSaleDTO.ClID = comboBox_Kokyaku_Namae.SelectedValue.ToString();
+            retSaleDTO.ClName = comboBox_Kokyaku_Namae.Text.Trim();
 
-            if(!(comboBox_Eigyousyo_Namae.SelectedIndex == -1))
-                retSaleDTO.SoID=comboBox_Eigyousyo_Namae.SelectedValue.ToString();
+            if (!(comboBox_Eigyousyo_Namae.SelectedIndex == -1))
+                retSaleDTO.SoID = comboBox_Eigyousyo_Namae.SelectedValue.ToString();
             retSaleDTO.SoName = comboBox_Eigyousyo_Namae.Text.Trim();
 
-            retSaleDTO.SaDetailID=textBox_Uriagesyousai_ID.Text.Trim();
+            retSaleDTO.SaDetailID = textBox_Uriagesyousai_ID.Text.Trim();
 
-            if(!(comboBox_Syain_Namae.SelectedIndex== -1))
-                retSaleDTO.EmID=comboBox_Syain_Namae.SelectedValue.ToString() ;
+            if (!(comboBox_Syain_Namae.SelectedIndex == -1))
+                retSaleDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();
             retSaleDTO.EmName = comboBox_Syain_Namae.Text.Trim();
 
-            retSaleDTO.OrID=textBox_Zyutyuu_ID.Text.Trim();
+            retSaleDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();
 
             retSaleDTO.SaReleseFromDate = dateTimePicker_Nitizi_2.Value;
 
-            retSaleDTO.SaReleaseToDate=dateTimePicker_Nitizi_3.Value;
+            retSaleDTO.SaReleaseToDate = dateTimePicker_Nitizi_3.Value;
 
             return retSaleDTO;
 
@@ -196,9 +199,9 @@ namespace SalesManagement_SysDev
         {
             List<DispSaleDTO> retDispSale = new List<DispSaleDTO>();
 
-            SaleDataAccess SaAcsess=new SaleDataAccess();
+            SaleDataAccess SaAcsess = new SaleDataAccess();
 
-            retDispSale=SaAcsess.GetSaleData(SaleDTO);
+            retDispSale = SaAcsess.GetSaleData(SaleDTO);
             return retDispSale;
 
         }
@@ -222,7 +225,7 @@ namespace SalesManagement_SysDev
             }
 
             //取得した商品IDでデータベースを検索する
-            sale = SelectRemoveSale(SaID,out saleDetail);
+            sale = SelectRemoveSale(SaID, out saleDetail);
             if (sale == null)
             {
                 messageDsp.MessageBoxDsp_OK("商品情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
@@ -240,7 +243,7 @@ namespace SalesManagement_SysDev
             bool flg;
 
             //非表示実行確認
-            result=messageDsp.MessageBoxDsp_OKCancel("対象のデータを非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
+            result = messageDsp.MessageBoxDsp_OKCancel("対象のデータを非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
             if (result == DialogResult.Cancel)
             {
                 return;
@@ -248,23 +251,23 @@ namespace SalesManagement_SysDev
 
             //売上管理フラグ変更
             sale = ChangeSaFlg(sale);
-            if(sale == null)
+            if (sale == null)
             {
                 return;
             }
             //データの更新
-            flg=UpdateSaleRecord(sale, saleDetail);
+            flg = UpdateSaleRecord(sale, saleDetail);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("対象のデータを非表示にしました", "非表示完了", MessageBoxIcon.Information);
             }
             else
-            {                
+            {
                 messageDsp.MessageBoxDsp_OK("対象のデータの非表示に失敗しました", "エラー", MessageBoxIcon.Error);
             }
         }
 
-        private bool UpdateSaleRecord(T_Sale sale,T_SaleDetail saleDetail)
+        private bool UpdateSaleRecord(T_Sale sale, T_SaleDetail saleDetail)
         {
             //変数の宣言
             bool flg;
@@ -272,14 +275,14 @@ namespace SalesManagement_SysDev
             //データベース接続のインスタンス化
             SaleDataAccess access = new SaleDataAccess();
             flg = access.UpdateSaleData(sale, saleDetail);
-            
+
             SetCtrlFormat();
             GetSelectData();
 
             return flg;
         }
 
-        private　T_Sale  ChangeSaFlg(T_Sale sale)
+        private T_Sale ChangeSaFlg(T_Sale sale)
         {
             string Hidden;
             Hidden = Microsoft.VisualBasic.Interaction.InputBox("非表示理由を入力してください", "非表示理由", "", -1, -1).Trim();
@@ -302,7 +305,7 @@ namespace SalesManagement_SysDev
             saleDetail = null;
             //データベースからデータを取得する
             dispSales = GetTableData();
-            
+
             if (dispSales == null) //データの取得失敗
             {
                 messageDsp.MessageBoxDsp_OK("売上情報を取得できませんでした", "エラー", MessageBoxIcon.Error);
@@ -325,13 +328,13 @@ namespace SalesManagement_SysDev
 
 
             retsale.SaID = int.Parse(dispSaleDTO.SaID);
-            retsale.ClID= int.Parse(dispSaleDTO.ClID);
+            retsale.ClID = int.Parse(dispSaleDTO.ClID);
             retsale.SoID = int.Parse(dispSaleDTO.SoID);
             retsale.EmID = int.Parse(dispSaleDTO.EmID);
             retsale.ChID = int.Parse(dispSaleDTO.OrID);
             retsale.SaDate = dispSaleDTO.SaDate.Value;
             retsale.SaHidden = dispSaleDTO.SaHidden;
-            retsale.SaFlag=int.Parse(dispSaleDTO.SaFlag);
+            retsale.SaFlag = int.Parse(dispSaleDTO.SaFlag);
 
             return retsale;
         }
@@ -386,14 +389,14 @@ namespace SalesManagement_SysDev
         {
             List<DispSaleDTO> sale = new List<DispSaleDTO>();
 
-            SaleDataAccess saleacsess= new SaleDataAccess();
+            SaleDataAccess saleacsess = new SaleDataAccess();
 
             sale = saleacsess.GetSaleData();
 
             return sale;
         }
 
-        private List<DispSaleDTO> SortSaleData (List<DispSaleDTO> dispSales)
+        private List<DispSaleDTO> SortSaleData(List<DispSaleDTO> dispSales)
 
         {
             dispSales.OrderBy(x => x.SaID);
@@ -427,6 +430,83 @@ namespace SalesManagement_SysDev
             comboBox_Eigyousyo_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString();
             comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
             dateTimePicker_Nitizi.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value.ToString());
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label7.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi.Enabled = false;
+            dateTimePicker_Nitizi.CalendarTitleBackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Uriage_ID.Enabled = false;
+            textBox_Uriage_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo_Namae.Enabled = false;
+            comboBox_Eigyousyo_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Uriagesyousai_ID.Enabled = false;
+            textBox_Uriagesyousai_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi.Enabled = false;
+            dateTimePicker_Nitizi.CalendarTitleBackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Uriage_ID.Enabled = true;
+            textBox_Uriage_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            comboBox_Kokyaku_Namae.Enabled = true;
+            comboBox_Kokyaku_Namae.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Eigyousyo_Namae.Enabled = true;
+            comboBox_Eigyousyo_Namae.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textBox_Uriagesyousai_ID.Enabled = true;
+            textBox_Uriagesyousai_ID.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            comboBox_Syain_Namae.Enabled = true;
+            comboBox_Syain_Namae.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            textBox_Zyutyuu_ID.Enabled = true;
+            textBox_Zyutyuu_ID.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            dateTimePicker_Nitizi.Enabled = true;
+            dateTimePicker_Nitizi.CalendarTitleBackColor = Color.White;
+            groupBox1.ForeColor = Color.Black;
+            dateTimePicker_Nitizi_2.Enabled = true;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.White;
+            dateTimePicker_Nitizi_3.Enabled = true;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.White;
+            label8.ForeColor = Color.Black;
         }
     }
 }

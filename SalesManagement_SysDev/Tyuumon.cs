@@ -147,6 +147,10 @@ namespace SalesManagement_SysDev
             comboBox_Kokyaku_Namae.DataSource = clientDataAccess.GetClientData();
             comboBox_Kokyaku_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Kokyaku_Namae.SelectedIndex = -1;
+
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
 
 
@@ -244,7 +248,7 @@ namespace SalesManagement_SysDev
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
+
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -319,6 +323,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -970,6 +975,112 @@ namespace SalesManagement_SysDev
                 }
             }
 
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label8.ForeColor = Color.LightGray;
+            dateTimePicker_Tyuumon_Nenngetu.Enabled = false;
+            dateTimePicker_Tyuumon_Nenngetu.CalendarTitleBackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUPDown_Syouhin_Namae.Enabled = false;
+            numericUPDown_Syouhin_Namae.BackColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Tyuumon_ID.Enabled = false;
+            textbox_Tyuumon_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textbox_Tyuumonsyousai_ID.Enabled = false;
+            textbox_Tyuumonsyousai_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textbox_Zyutyuusyousai.Enabled = false;
+            textbox_Zyutyuusyousai.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            dateTimePicker_Tyuumon_Nenngetu.Enabled = false;
+            dateTimePicker_Tyuumon_Nenngetu.CalendarTitleBackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUPDown_Syouhin_Namae.Enabled = false;
+            numericUPDown_Syouhin_Namae.BackColor = Color.LightGray;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Tyuumon_ID.Enabled = false;
+            textbox_Tyuumon_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textbox_Tyuumonsyousai_ID.Enabled = false;
+            textbox_Tyuumonsyousai_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textbox_Zyutyuusyousai.Enabled = false;
+            textbox_Zyutyuusyousai.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            dateTimePicker_Tyuumon_Nenngetu.Enabled = false;
+            dateTimePicker_Tyuumon_Nenngetu.CalendarTitleBackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUPDown_Syouhin_Namae.Enabled = false;
+            numericUPDown_Syouhin_Namae.BackColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textbox_Tyuumon_ID.Enabled = true;
+            textbox_Tyuumon_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textbox_Tyuumonsyousai_ID.Enabled = true;
+            textbox_Tyuumonsyousai_ID.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textbox_Zyutyuusyousai.Enabled = true;
+            textbox_Zyutyuusyousai.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Kokyaku_Namae.Enabled = true;
+            comboBox_Kokyaku_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            comboBox_Syain_Namae.Enabled = true;
+            comboBox_Syain_Namae.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            dateTimePicker_Tyuumon_Nenngetu.Enabled = true;
+            dateTimePicker_Tyuumon_Nenngetu.CalendarTitleBackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            numericUPDown_Syouhin_Namae.Enabled = true;
+            numericUPDown_Syouhin_Namae.BackColor = Color.White;
         }
     }
 }

@@ -4,6 +4,7 @@ using SalesManagement_SysDev.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -128,12 +129,18 @@ namespace SalesManagement_SysDev
 
             //日付を現在の日付にする
             dateTimePicker1.Value = DateTime.Now;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -698,6 +705,98 @@ namespace SalesManagement_SysDev
             }
 
             return true;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label5.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label5.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Pass.Enabled = false;
+            textBox_Pass.BackColor = Color.LightGray;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Syain_Namae.Enabled = false;
+            textBox_Syain_Namae.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            comboBox_Yakusyoku_Namae.Enabled = false;
+            comboBox_Yakusyoku_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            textBox_Pass.Enabled = false;
+            textBox_Pass.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            textBox_Dennwa.Enabled = false;
+            textBox_Dennwa.BackColor = Color.LightGray;
+            textBox_Dennwa2.Enabled = false;
+            textBox_Dennwa2.BackColor = Color.LightGray;
+            textBox_Dennwa3.Enabled = false;
+            textBox_Dennwa3.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+
+
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Syain_Namae.Enabled = true;
+            textBox_Syain_Namae.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Syain_ID.Enabled = true;
+            textBox_Syain_ID.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            comboBox_Yakusyoku_Namae.Enabled = true;
+            comboBox_Yakusyoku_Namae.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker1.CalendarTitleBackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            textBox_Pass.Enabled = true;
+            textBox_Pass.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            textBox_Dennwa.Enabled = true;
+            textBox_Dennwa.BackColor = Color.White;
+            textBox_Dennwa2.Enabled = true;
+            textBox_Dennwa2.BackColor = Color.White;
+            textBox_Dennwa3.Enabled = true;
+            textBox_Dennwa3.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            label9.ForeColor = Color.Black;
         }
     }
 }

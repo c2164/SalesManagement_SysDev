@@ -53,6 +53,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBox_Dennwa2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,7 +221,7 @@
             this.textBox_Syain_ID.Location = new System.Drawing.Point(749, 180);
             this.textBox_Syain_ID.MaxLength = 6;
             this.textBox_Syain_ID.Name = "textBox_Syain_ID";
-            this.textBox_Syain_ID.Size = new System.Drawing.Size(251, 31);
+            this.textBox_Syain_ID.Size = new System.Drawing.Size(268, 31);
             this.textBox_Syain_ID.TabIndex = 8;
             // 
             // textBox_Dennwa
@@ -260,7 +264,7 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(749, 299);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(250, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(268, 31);
             this.dateTimePicker1.TabIndex = 11;
             // 
             // comboBox_Yakusyoku_Namae
@@ -309,11 +313,67 @@
             this.label7.TabIndex = 54;
             this.label7.Text = "ー";
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton1.Location = new System.Drawing.Point(51, 113);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(189, 36);
+            this.radioButton1.TabIndex = 57;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "登録必要項目";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton2.Location = new System.Drawing.Point(285, 113);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(189, 36);
+            this.radioButton2.TabIndex = 58;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "更新可能項目";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton3.Location = new System.Drawing.Point(537, 113);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(189, 36);
+            this.radioButton3.TabIndex = 59;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "検索可能項目";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton4.Location = new System.Drawing.Point(1091, 113);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(189, 36);
+            this.radioButton4.TabIndex = 60;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "削除必要項目";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            // 
             // Syain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(235)))), ((int)(((byte)(196)))));
+            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.textBox_Dennwa3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBox_Dennwa2);
@@ -375,5 +435,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox_Dennwa2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
     }
 }

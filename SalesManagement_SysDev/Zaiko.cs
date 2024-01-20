@@ -106,12 +106,17 @@ namespace SalesManagement_SysDev
 
             //各ドメインアップダウンを初期化
             domainUpDown_Zaikosuu.Value = 0;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Sakuzyo_Click(object sender, EventArgs e)
@@ -515,6 +520,55 @@ namespace SalesManagement_SysDev
             }
 
             return true;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Zaiko_ID.Enabled = false;
+            textBox_Zaiko_ID.BackColor = Color.LightGray;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label4.ForeColor = Color.LightGray;
+            domainUpDown_Zaikosuu.Enabled = false;
+            domainUpDown_Zaikosuu.BackColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Zaiko_ID.Enabled = false;
+            textBox_Zaiko_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            domainUpDown_Zaikosuu.Enabled = false;
+            domainUpDown_Zaikosuu.BackColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Zaiko_ID.Enabled = true;
+            textBox_Zaiko_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            domainUpDown_Zaikosuu.Enabled = true;
+            domainUpDown_Zaikosuu.BackColor = Color.White;
         }
     }
 }

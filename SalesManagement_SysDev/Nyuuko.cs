@@ -83,6 +83,10 @@ namespace SalesManagement_SysDev
 
             //数量の初期化
             numericUpDown_Suuryou.Value = 0;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
         }
 
         private void SetDataGridView(List<DispWarehousingDTO> tb)
@@ -158,6 +162,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -493,7 +498,7 @@ namespace SalesManagement_SysDev
 
         }
 
-        private void UpdateWaShelFlag(T_Warehousing warehousing,T_WarehousingDetail warehousingDetail)
+        private void UpdateWaShelFlag(T_Warehousing warehousing, T_WarehousingDetail warehousingDetail)
         {
             //変数の宣言
             bool flg;
@@ -502,7 +507,7 @@ namespace SalesManagement_SysDev
             warehousing = FormalizationWarehousingRecord(warehousing);
 
             //注文情報を更新する
-            flg = UpdateWarehousingRecord(warehousing,warehousingDetail);
+            flg = UpdateWarehousingRecord(warehousing, warehousingDetail);
             if (flg)
             {
                 messageDsp.MessageBoxDsp_OK("注文情報を確定しました", "確定完了", MessageBoxIcon.Information);
@@ -696,7 +701,99 @@ namespace SalesManagement_SysDev
             return ListDispWarehousing;
         }
 
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label8.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+        }
 
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Nyuuko_ID.Enabled = false;
+            textBox_Nyuuko_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            textBox_Nyuukosyousai_ID.Enabled = false;
+            textBox_Nyuukosyousai_ID.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Hattyuu_Syain_Namae.Enabled = false;
+            textBox_Hattyuu_Syain_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            comboBox_Kakutei_Syain_Namae.Enabled = false;
+            comboBox_Kakutei_Syain_Namae.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Nyuuko_ID.Enabled = false;
+            textBox_Nyuuko_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            textBox_Nyuukosyousai_ID.Enabled = false;
+            textBox_Nyuukosyousai_ID.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Hattyuu_Syain_Namae.Enabled = false;
+            textBox_Hattyuu_Syain_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            comboBox_Kakutei_Syain_Namae.Enabled = false;
+            comboBox_Kakutei_Syain_Namae.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Nyuuko_ID.Enabled = true;
+            textBox_Nyuuko_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Hattyuu_ID.Enabled = true;
+            textBox_Hattyuu_ID.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            textBox_Nyuukosyousai_ID.Enabled = true;
+            textBox_Nyuukosyousai_ID.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textBox_Hattyuu_Syain_Namae.Enabled = true;
+            textBox_Hattyuu_Syain_Namae.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            comboBox_Kakutei_Syain_Namae.Enabled = true;
+            comboBox_Kakutei_Syain_Namae.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            numericUpDown_Suuryou.Enabled = true;
+            numericUpDown_Suuryou.BackColor = Color.White;
+        }
     }
 
 }

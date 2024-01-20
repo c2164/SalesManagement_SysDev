@@ -109,8 +109,6 @@ namespace SalesManagement_SysDev.Common
 
                          Employee.EmName.Contains(dispSaleDTO.EmName) && //社員名
 
-                         //商品ID
-
                          dispSaleDTO.OrID.Equals("") ? true :
                          Order.OrID.ToString().Equals(dispSaleDTO.OrID) && //受注ID
 

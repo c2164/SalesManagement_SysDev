@@ -86,33 +86,6 @@ namespace SalesManagement_SysDev
             radioButton3.Checked = false;
             radioButton4.Checked = false;
 
-            label1.ForeColor = Color.Black;
-            comboBox_Kokyaku_Namae.Enabled = true;
-            comboBox_Kokyaku_Namae.BackColor = Color.White;
-            label2.ForeColor = Color.Black;
-            textBox_Kokyaku_Tantou.Enabled = true;
-            textBox_Kokyaku_Tantou.BackColor = Color.White;
-            label3.ForeColor = Color.Black;
-            comboBox_Syain_Namae.Enabled = true;
-            comboBox_Syain_Namae.BackColor = Color.White;
-            label4.ForeColor = Color.Black;
-            textBox_Zyutyuu_ID.Enabled = true;
-            textBox_Zyutyuu_ID.BackColor = Color.White;
-            label5.ForeColor = Color.Black;
-            textBox_Zyutyuusyousai_ID.Enabled = true;
-            textBox_Zyutyuusyousai_ID.BackColor = Color.White;
-            label6.ForeColor = Color.Black;
-            comboBox_Meka_Namae.Enabled = true;
-            comboBox_Meka_Namae.BackColor = Color.White;
-            label7.ForeColor = Color.Black;
-            comboBox_Eigyousyo.Enabled = true;
-            comboBox_Eigyousyo.BackColor = Color.White;
-            label8.ForeColor = Color.Black;
-            comboBox_Syouhin_Namae.Enabled = true;
-            comboBox_Syouhin_Namae.BackColor = Color.White;
-            label9.ForeColor = Color.Black;
-            numericUpDown_Suuryou.Enabled = true;
-            numericUpDown_Suuryou.BackColor = Color.White;
         }
 
         private bool GetSelectData()
@@ -375,6 +348,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -650,7 +624,7 @@ namespace SalesManagement_SysDev
 
             //既に確定されているかチェックする
             flg = ordertabledata.First(x => x.OrID == dispOrderDTO.OrID).OrStateFlag == "1";
-            if(flg)
+            if (flg)
             {
                 icon = MessageBoxIcon.Error;
                 msg = "既に確定されている受注の為、新しく登録できません";
