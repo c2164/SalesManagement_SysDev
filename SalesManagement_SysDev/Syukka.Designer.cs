@@ -34,7 +34,6 @@
             this.comboBox_Syouhin_Namae = new System.Windows.Forms.ComboBox();
             this.comboBox_Eigyousyo = new System.Windows.Forms.ComboBox();
             this.radioButton_Kakutei = new System.Windows.Forms.RadioButton();
-            this.radioButton_Mikakutei = new System.Windows.Forms.RadioButton();
             this.numericUpDown_Suuryou = new System.Windows.Forms.NumericUpDown();
             this.textBox_Syukkasyousai_ID = new System.Windows.Forms.TextBox();
             this.textBox_Kakutei_Syain_Namae = new System.Windows.Forms.TextBox();
@@ -113,17 +112,6 @@
             this.radioButton_Kakutei.TabStop = true;
             this.radioButton_Kakutei.Text = "確定済み";
             this.radioButton_Kakutei.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_Mikakutei
-            // 
-            this.radioButton_Mikakutei.AutoSize = true;
-            this.radioButton_Mikakutei.Location = new System.Drawing.Point(571, 438);
-            this.radioButton_Mikakutei.Name = "radioButton_Mikakutei";
-            this.radioButton_Mikakutei.Size = new System.Drawing.Size(113, 28);
-            this.radioButton_Mikakutei.TabIndex = 16;
-            this.radioButton_Mikakutei.TabStop = true;
-            this.radioButton_Mikakutei.Text = "未確定";
-            this.radioButton_Mikakutei.UseVisualStyleBackColor = true;
             // 
             // numericUpDown_Suuryou
             // 
@@ -348,7 +336,6 @@
             this.Controls.Add(this.comboBox_Syouhin_Namae);
             this.Controls.Add(this.comboBox_Eigyousyo);
             this.Controls.Add(this.radioButton_Kakutei);
-            this.Controls.Add(this.radioButton_Mikakutei);
             this.Controls.Add(this.numericUpDown_Suuryou);
             this.Controls.Add(this.textBox_Syukkasyousai_ID);
             this.Controls.Add(this.textBox_Kakutei_Syain_Namae);
@@ -388,7 +375,6 @@
         private System.Windows.Forms.ComboBox comboBox_Syouhin_Namae;
         private System.Windows.Forms.ComboBox comboBox_Eigyousyo;
         private System.Windows.Forms.RadioButton radioButton_Kakutei;
-        private System.Windows.Forms.RadioButton radioButton_Mikakutei;
         private System.Windows.Forms.NumericUpDown numericUpDown_Suuryou;
         private System.Windows.Forms.TextBox textBox_Syukkasyousai_ID;
         private System.Windows.Forms.TextBox textBox_Kakutei_Syain_Namae;

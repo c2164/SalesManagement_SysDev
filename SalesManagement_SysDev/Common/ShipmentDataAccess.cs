@@ -112,7 +112,7 @@ namespace SalesManagement_SysDev.Common
 
                          Product.PrName.Contains(dispShipmentDTO.PrName) && //商品名
 
-                         (dispShipmentDTO.ConfEmID == "" && Employee.EmName == null ? true :
+                         (Employee.EmName == null && dispShipmentDTO.ConfEmName == "" ? true :
                          Employee.EmName.Contains(dispShipmentDTO.ConfEmName)) && //確定社員名
 
                          (dispShipmentDTO.ShDetailID.Equals("") ? true :
@@ -147,7 +147,6 @@ namespace SalesManagement_SysDev.Common
                              ClID = Client.ClID.ToString(),
                              ClName = Client.ClName,
                              OrID = Order.OrID.ToString(),
-                             ShDate = Shipment.ShFinishDate,
                              ShStateFlag = Shipment.ShStateFlag.ToString(),
                              ShFlag = Shipment.ShFlag.ToString(),
                              ShHidden = Shipment.ShHidden,
@@ -215,7 +214,6 @@ namespace SalesManagement_SysDev.Common
                              ClID = Client.ClID.ToString(),
                              ClName = Client.ClName,
                              OrID = Order.OrID.ToString(),
-                             ShDate = Shipment.ShFinishDate,
                              ShStateFlag = Shipment.ShStateFlag.ToString(),
                              ShFlag = Shipment.ShFlag.ToString(),
                              ShHidden = Shipment.ShHidden,

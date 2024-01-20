@@ -87,7 +87,7 @@ namespace SalesManagement_SysDev.Common
                          on Syukko.EmID equals Employee.EmID into em
                          from Employee in em.DefaultIfEmpty()
                          join Chumon in context.T_Chumons
-                        on Employee.EmID equals Chumon.EmID
+                         on Syukko.OrID equals Chumon.OrID
                          join SalesOffice in context.M_SalesOffices
                          on Syukko.SoID equals SalesOffice.SoID
                          join Order in context.T_Orders
@@ -101,10 +101,11 @@ namespace SalesManagement_SysDev.Common
                          SalesOffice.SoName.Contains(dispSyukkoDTO.SoName) && //営業所名
                          ChumonEmployee.EmName.Contains(dispSyukkoDTO.ChumonEmName) && //注文社員名
                          Client.ClName.Contains(dispSyukkoDTO.ClName) && //顧客名
-                          ((dispSyukkoDTO.SyID == "") ? true :
+                          ((dispSyukkoDTO.OrID == "") ? true :
                          Order.OrID.ToString().Equals(dispSyukkoDTO.OrID)) && //受注ID
-                         Employee.EmID.ToString().Contains(dispSyukkoDTO.ConfEmName) && //確定社員名
-                          ((dispSyukkoDTO.SyID == "") ? true :
+                         (Employee.EmName == null && dispSyukkoDTO.ConfEmName == "" ? true :
+                         Employee.EmName.ToString().Contains(dispSyukkoDTO.ConfEmName)) && //確定社員名
+                          ((dispSyukkoDTO.SyDetailID == "") ? true :
                          SyukkoDetail.SyDetailID.ToString().Equals(dispSyukkoDTO.SyDetailID)) && //出庫詳細ID
                          Maker.MaName.Contains(dispSyukkoDTO.MaName) && //メーカー名
                          Product.PrName.Contains(dispSyukkoDTO.PrName) &&  //商品名

@@ -19,7 +19,7 @@ namespace SalesManagement_SysDev
     {
         private MessageDsp messageDsp = new MessageDsp();
         private DispEmplyeeDTO loginEmployee;
-
+        private int DataGridViewState;
         public Nyuuka(DispEmplyeeDTO dispEmplyee)
         {
             loginEmployee = dispEmplyee;
@@ -44,18 +44,79 @@ namespace SalesManagement_SysDev
             ArraivalDataAccess access = new ArraivalDataAccess();
             //入荷情報の全件取得
             List<DispArrivalDTO> tb = access.GetArrivalData();
+            List<DispArrivalDTO> disptb = new List<DispArrivalDTO>();
             if (tb == null)
                 return false;
             //データグリッドビューへの設定
-            SetDataGridView(tb);
+            disptb = GetDataGridViewData(tb);
+            SetDataGridView(disptb);
+            return true;
+        }
+
+        private List<DispArrivalDTO> GetDataGridViewData(List<DispArrivalDTO> tb)
+        {
+            List<DispArrivalDTO> disptb = new List<DispArrivalDTO>();
+            var grouptb = tb.GroupBy(x => x.ArID).ToList();
+            foreach (var groupingsyukkotb in grouptb)
+            {
+                foreach (var syukkotb in groupingsyukkotb)
+                {
+                    DispArrivalDTO arrivalDTO = new DispArrivalDTO();
+                    arrivalDTO.ArID = syukkotb.ArID;
+                    arrivalDTO.SoID = syukkotb.SoID;
+                    arrivalDTO.SoName = syukkotb.SoName;
+                    arrivalDTO.ArrivalEmID = syukkotb.ArrivalEmID;
+                    arrivalDTO.ArrivalEmName = syukkotb.ArrivalEmName;
+                    arrivalDTO.ConfEmID = syukkotb.ConfEmID;
+                    arrivalDTO.ConfEmName = syukkotb.ConfEmName;
+                    arrivalDTO.ClID = syukkotb.ClID;
+                    arrivalDTO.ClName = syukkotb.ClName;
+                    arrivalDTO.OrID = syukkotb.OrID;
+                    arrivalDTO.ArDate = syukkotb.ArDate;
+                    arrivalDTO.ArStateFlag = syukkotb.ArStateFlag;
+                    arrivalDTO.ArFlag = syukkotb.ArFlag;
+                    arrivalDTO.ArHidden = syukkotb.ArHidden;
+
+                    disptb.Add(arrivalDTO);
+                    break;
+                }
+            }
+            return disptb;
+        }
+
+        private bool GetSelectDetailData(string ArID)
+        {
+            ArraivalDataAccess access = new ArraivalDataAccess();
+            DispArrivalDTO dispOrder = new DispArrivalDTO()
+            {
+                ArID = ArID,
+                ClName = "",
+                SoName = "",
+                ArrivalEmName = "",
+                OrID = "",
+                PrName = "",
+                ConfEmName = "",
+                ArDetailID = "",
+                MaName = "",
+            };
+            
+            //入荷情報の全件取得
+            List<DispArrivalDTO> tb = access.GetArrivalData(dispOrder);
+            if (tb == null)
+                return false;
+            //データグリッドビューへの設定
+            SetDetailDataGridView(tb);
             return true;
         }
 
         private void SetDataGridView(List<DispArrivalDTO> tb)
         {
             dataGridView1.DataSource = tb;
+            DataGridViewState = 1;
+
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[10].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -64,66 +125,137 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //入荷ID
+            dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[0].Width = 30;
             //入荷詳細ID
+            dataGridView1.Columns[1].Visible = false;
+            //商品ID
+            dataGridView1.Columns[2].Visible = false;
+            //商品名
+            dataGridView1.Columns[3].Visible = false;
+            //メーカID
+            dataGridView1.Columns[4].Visible = false;
+            //メーカー名
+            dataGridView1.Columns[5].Visible = false;
+            //数量
+            dataGridView1.Columns[6].Visible = false;
+            //営業所ID
+            dataGridView1.Columns[7].Visible = false;
+            //営業所名
+            dataGridView1.Columns[8].Visible = true;
+            dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[8].Width = 100;
+            //入荷社員ID
+            dataGridView1.Columns[9].Visible = false;
+            //入荷社員名
+            dataGridView1.Columns[10].Visible = true;
+            dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[10].Width = 100;
+            //確定社員ID
+            dataGridView1.Columns[11].Visible = false;
+            //確定社員名
+            dataGridView1.Columns[12].Visible = true;
+            dataGridView1.Columns[12].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[12].Width = 120;
+            //顧客ID
+            dataGridView1.Columns[13].Visible = false;
+            //顧客名
+            dataGridView1.Columns[14].Visible = true;
+            dataGridView1.Columns[14].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[14].Width = 90;
+            //受注ID
+            dataGridView1.Columns[15].Visible = false;
+            //入荷年月日
+            dataGridView1.Columns[16].Visible = true;
+            dataGridView1.Columns[16].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[16].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[16].Width = 80;
+            //入荷状態フラグ
+            dataGridView1.Columns[17].Visible = true;
+            dataGridView1.Columns[17].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[17].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[17].Width = 50;
+            //入荷管理フラグ
+            dataGridView1.Columns[18].Visible = false;
+            //非表示理由
+            dataGridView1.Columns[19].Visible = false;
+        }
+
+        private void SetDetailDataGridView(List<DispArrivalDTO> tb)
+        {
+            dataGridView1.DataSource = tb;
+            DataGridViewState = 2;
+            //列幅自動設定解除
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //ヘッダーの高さ
+            dataGridView1.ColumnHeadersHeight = 50;
+            //ヘッダーの折り返し表示
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            //行単位選択
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //入荷ID
+            dataGridView1.Columns[0].Visible = true;
+            dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[0].Width = 30;
+            //入荷詳細ID
+            dataGridView1.Columns[1].Visible = true;
             dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[1].Width = 70;
             //商品ID
             dataGridView1.Columns[2].Visible = false;
             //商品名
+            dataGridView1.Columns[3].Visible = true;
             dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[3].Width = 70;
             //メーカID
             dataGridView1.Columns[4].Visible = false;
             //メーカー名
+            dataGridView1.Columns[5].Visible = true;
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[5].Width = 70;
+            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[5].Width = 100;
             //数量
+            dataGridView1.Columns[6].Visible = true;
             dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[6].Width = 60;
             //営業所ID
             dataGridView1.Columns[7].Visible = false;
             //営業所名
-            dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[8].Width = 70;
+            dataGridView1.Columns[8].Visible = false;
             //入荷社員ID
             dataGridView1.Columns[9].Visible = false;
             //入荷社員名
-            dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[10].Width = 90;
+            dataGridView1.Columns[10].Visible = false;
             //確定社員ID
             dataGridView1.Columns[11].Visible = false;
             //確定社員名
-            dataGridView1.Columns[12].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[12].Width = 60;
+            dataGridView1.Columns[12].Visible = false;
             //顧客ID
             dataGridView1.Columns[13].Visible = false;
             //顧客名
-            dataGridView1.Columns[14].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[14].Width = 60;
+            dataGridView1.Columns[14].Visible = false;
             //受注ID
             dataGridView1.Columns[15].Visible = false;
             //入荷年月日
-            dataGridView1.Columns[16].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[16].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[16].Width = 80;
+            dataGridView1.Columns[16].Visible = false;
             //入荷状態フラグ
             dataGridView1.Columns[17].Visible = false;
             //入荷管理フラグ
             dataGridView1.Columns[18].Visible = false;
             //非表示理由
             dataGridView1.Columns[19].Visible = false;
-
         }
 
         private void SetCtrlFormat()
@@ -644,22 +776,40 @@ namespace SalesManagement_SysDev
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[14].Value.ToString();
-            textBox_Nyuuka_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-            comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
-            textBox_Nyuuka_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString();
-            textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
-            comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
-            //textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
-            if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value != null)
-                textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
+            if (DataGridViewState == 1)
+            {
+                string ArID;
+                ArID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                GetSelectDetailData(ArID);
+            }
             else
             {
-                textBox_Kakutei_Syain_Namae.Text = "";
+                if (dataGridView1.CurrentRow.Index != -1)
+                {
+                    if ((e.ColumnIndex == -1) && (e.RowIndex == -1))
+                    {
+                        GetSelectData();
+                    }
+                    else
+                    {
+                        comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[14].Value.ToString();
+                        textBox_Nyuuka_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                        comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+                        textBox_Nyuuka_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString();
+                        textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
+                        comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+                        if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value != null)
+                            textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
+                        else
+                        {
+                            textBox_Kakutei_Syain_Namae.Text = "";
+                        }
+                        textBox_Nyuukasyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+                        comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+                        numericUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
+                    }
+                }
             }
-            textBox_Nyuukasyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-            comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
-            numericUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
         }
     }
 }

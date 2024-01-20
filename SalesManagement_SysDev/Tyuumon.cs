@@ -42,6 +42,50 @@ namespace SalesManagement_SysDev
 
         }
 
+        private bool GetSelectData()
+        {
+            ChumonDataAccess access = new ChumonDataAccess();
+            //出荷情報の全件取得
+            List<DispChumonDTO> tb = access.GetChumonData();
+            List<DispChumonDTO> disptb = new List<DispChumonDTO>();
+            if (tb == null)
+                return false;
+            //データグリッドビューへの設定
+            disptb = GetDataGridViewData(tb);
+
+            SetDataGridView(disptb);
+            return true;
+        }
+
+        private List<DispChumonDTO> GetDataGridViewData(List<DispChumonDTO> tb)
+        {
+            List<DispChumonDTO> disptb = new List<DispChumonDTO>();
+            var grouptb = tb.GroupBy(x => x.ChID).ToList();
+            foreach (var groupingchumontb in grouptb)
+            {
+                foreach (var chumontb in groupingchumontb)
+                {
+                    DispChumonDTO chumonDTO = new DispChumonDTO();
+                    chumonDTO.OrID = chumontb.OrID;
+                    chumonDTO.SoID = chumontb.SoID;
+                    chumonDTO.SoName = chumontb.SoName;
+                    chumonDTO.EmID = chumontb.EmID;
+                    chumonDTO.EmName = chumontb.EmName;
+                    chumonDTO.ClID = chumontb.ClID;
+                    chumonDTO.ClName = chumontb.ClName;
+                    chumonDTO.ChID = chumontb.ChID;
+                    chumonDTO.ChDate = chumontb.ChDate;
+                    chumonDTO.ChStateFlag = chumontb.ChStateFlag;
+                    chumonDTO.ChFlag = chumontb.ChFlag;
+                    chumonDTO.ChHidden = chumontb.ChHidden;
+
+                    disptb.Add(chumonDTO);
+                    break;
+                }
+            }
+            return disptb;
+        }
+
         private bool GetSelectDetailData(string ChID)
         {
             ChumonDataAccess access = new ChumonDataAccess();
@@ -105,42 +149,7 @@ namespace SalesManagement_SysDev
             comboBox_Kokyaku_Namae.SelectedIndex = -1;
         }
 
-        private bool GetSelectData()
-        {
-            ChumonDataAccess access = new ChumonDataAccess();
-            //出荷情報の全件取得
-            List<DispChumonDTO> tb = access.GetChumonData();
-            List<DispChumonDTO> disptb = new List<DispChumonDTO>();
-            if (tb == null)
-                return false;
-            //データグリッドビューへの設定
-            //データグリッドビューへの設定
-            var grouptb = tb.GroupBy(x => x.ChID).ToList();
-            foreach (var groupingchumontb in grouptb)
-            {
-                foreach (var chumontb in groupingchumontb)
-                {
-                    DispChumonDTO chumonDTO = new DispChumonDTO();
-                    chumonDTO.OrID = chumontb.OrID;
-                    chumonDTO.SoID = chumontb.SoID;
-                    chumonDTO.SoName = chumontb.SoName;
-                    chumonDTO.EmID = chumontb.EmID;
-                    chumonDTO.EmName = chumontb.EmName;
-                    chumonDTO.ClID = chumontb.ClID;
-                    chumonDTO.ClName = chumontb.ClName;
-                    chumonDTO.ChID = chumontb.ChID;
-                    chumonDTO.ChDate = chumontb.ChDate;
-                    chumonDTO.ChStateFlag = chumontb.ChStateFlag;
-                    chumonDTO.ChFlag = chumontb.ChFlag;
-                    chumonDTO.ChHidden = chumontb.ChHidden;
 
-                    disptb.Add(chumonDTO);
-                    break;
-                }
-            }
-            SetDataGridView(disptb);
-            return true;
-        }
 
         private void SetDataGridView(List<DispChumonDTO> tb)
         {
@@ -148,6 +157,7 @@ namespace SalesManagement_SysDev
             DataGridViewState = 1;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[10].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -182,7 +192,7 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[6].Visible = true;
             dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[6].Width = 80;
+            dataGridView1.Columns[6].Width = 150;
 
             //社員ID(非表示)
             dataGridView1.Columns[7].Visible = false;
@@ -191,7 +201,7 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[8].Visible = true;
             dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[8].Width = 80;
+            dataGridView1.Columns[8].Width = 120;
 
             //顧客ID(非表示)
             dataGridView1.Columns[9].Visible = false;
@@ -233,6 +243,8 @@ namespace SalesManagement_SysDev
             DataGridViewState = 2;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -267,7 +279,7 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[4].Visible = true;
             dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 50;
+            dataGridView1.Columns[4].Width = 100;
 
             //営業所ID(非表示)
             dataGridView1.Columns[5].Visible = false;
@@ -418,6 +430,9 @@ namespace SalesManagement_SysDev
 
             //注文情報検索
             retDispChumon = access.GetChumonData(ChumonDTO);
+
+            //データグリッドビューに表示できるように変換
+            retDispChumon = GetDataGridViewData(retDispChumon);
 
             return retDispChumon;
         }
