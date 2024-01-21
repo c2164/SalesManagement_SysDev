@@ -1,4 +1,5 @@
-﻿using SalesManagement_SysDev.Entity;
+﻿using SalesManagement_SysDev.Common;
+using SalesManagement_SysDev.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,9 +23,9 @@ namespace SalesManagement_SysDev
         {
             set
             {
-                loginEmployee = value;
-                label_loginEmName.Text = loginEmployee.EmName;
-                label_loginEmPosition.Text = loginEmployee.PoName;
+                    loginEmployee = value;
+                    label_loginEmName.Text = loginEmployee.EmName;
+                    label_loginEmPosition.Text = loginEmployee.PoName;
             }
             get
             {
@@ -787,7 +788,7 @@ namespace SalesManagement_SysDev
             label2.Visible = false;
             label3 .Visible = false;
             label4.Visible = false;
-            button4.Visible = false;
+            button_logout.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -843,7 +844,41 @@ namespace SalesManagement_SysDev
 
         private void button4_Click(object sender, EventArgs e)
         {
+            MessageDsp messageDsp = new MessageDsp();
+            if (messageDsp.MessageBoxDsp_OKCancel("ログアウトしますか？", "確認", MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                LimitLogout();
+                OpenLoginForm();
+            }
         }
+
+        private void LimitLogout()
+        {
+            loginEmployee = null;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label_loginEmName.Text = "";
+            label_loginEmPosition.Text = "";
+        }
+
+        private void OpenLoginForm()
+        {
+            if (panel3.Controls.Count != 0)
+            {
+                Control RemCotl;
+                RemCotl = panel3.Controls[0];
+                panel3.Controls.Remove(RemCotl);
+            }
+            SalesManagement_SysDev.Roguin login = new Roguin();
+            label1.Text = "販売在庫管理";
+            login.mainform = this;
+            panel3.Controls.Add(login);
+        }
+
 
         public void LimitBottunAdministrator()
         {
@@ -853,7 +888,7 @@ namespace SalesManagement_SysDev
             label2.Visible = true;
             label3.Visible = true;
             label4.Visible = true;
-            button4.Visible = true;
+            button_logout.Visible = true;
         }
 
         public void LimitBottunSales()
@@ -866,7 +901,7 @@ namespace SalesManagement_SysDev
             label2.Visible = true;
             label3.Visible = true;
             label4.Visible = true;
-            button4.Visible = true;
+            button_logout.Visible = true;
         }
 
         public void LimitBottunLogistics()
@@ -879,7 +914,7 @@ namespace SalesManagement_SysDev
             label2.Visible = true;
             label3.Visible = true;
             label4.Visible = true;
-            button4.Visible = true;
+            button_logout.Visible = true;
         }
 
         public void setlabeltext(string text)
