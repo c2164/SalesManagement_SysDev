@@ -94,7 +94,7 @@ namespace SalesManagement_SysDev.Common
 
                          Product.PrColor.Contains(dispProductDTO.PrColor) &&//色
 
-                         //Product.PrReleaseDate.Date==dispProductDTO.PrReleaseDate &&//発売日
+                         //Product.PrReleaseDate.Date.Equals(dispProductDTO.PrReleaseDate) &&//発売日
                          Product.PrFlag == 0 //非表示フラグ
 
                          select new DispProductDTO

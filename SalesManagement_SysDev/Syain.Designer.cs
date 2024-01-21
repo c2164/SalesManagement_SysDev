@@ -53,6 +53,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBox_Dennwa2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,10 +65,10 @@
             this.button_Touroku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Touroku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Touroku.ForeColor = System.Drawing.Color.White;
-            this.button_Touroku.Location = new System.Drawing.Point(20, 32);
+            this.button_Touroku.Location = new System.Drawing.Point(51, 32);
             this.button_Touroku.Name = "button_Touroku";
-            this.button_Touroku.Size = new System.Drawing.Size(153, 75);
-            this.button_Touroku.TabIndex = 0;
+            this.button_Touroku.Size = new System.Drawing.Size(193, 75);
+            this.button_Touroku.TabIndex = 1;
             this.button_Touroku.Text = "🖊登録";
             this.button_Touroku.UseVisualStyleBackColor = false;
             this.button_Touroku.Click += new System.EventHandler(this.button_Touroku_Click);
@@ -74,10 +78,10 @@
             this.button_Kousin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kousin.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kousin.ForeColor = System.Drawing.Color.White;
-            this.button_Kousin.Location = new System.Drawing.Point(266, 32);
+            this.button_Kousin.Location = new System.Drawing.Point(285, 32);
             this.button_Kousin.Name = "button_Kousin";
-            this.button_Kousin.Size = new System.Drawing.Size(153, 75);
-            this.button_Kousin.TabIndex = 1;
+            this.button_Kousin.Size = new System.Drawing.Size(194, 75);
+            this.button_Kousin.TabIndex = 2;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
             this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
@@ -87,10 +91,10 @@
             this.button_Kensaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
-            this.button_Kensaku.Location = new System.Drawing.Point(516, 32);
+            this.button_Kensaku.Location = new System.Drawing.Point(537, 32);
             this.button_Kensaku.Name = "button_Kensaku";
-            this.button_Kensaku.Size = new System.Drawing.Size(153, 75);
-            this.button_Kensaku.TabIndex = 2;
+            this.button_Kensaku.Size = new System.Drawing.Size(201, 75);
+            this.button_Kensaku.TabIndex = 3;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
             this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
@@ -100,10 +104,10 @@
             this.button_Itirannhyouzi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Itirannhyouzi.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Itirannhyouzi.ForeColor = System.Drawing.Color.White;
-            this.button_Itirannhyouzi.Location = new System.Drawing.Point(781, 32);
+            this.button_Itirannhyouzi.Location = new System.Drawing.Point(799, 32);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(218, 75);
-            this.button_Itirannhyouzi.TabIndex = 3;
+            this.button_Itirannhyouzi.TabIndex = 4;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
             this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
@@ -113,10 +117,10 @@
             this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
-            this.button_Sakuzyo.Location = new System.Drawing.Point(1121, 32);
+            this.button_Sakuzyo.Location = new System.Drawing.Point(1080, 32);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
-            this.button_Sakuzyo.Size = new System.Drawing.Size(153, 75);
-            this.button_Sakuzyo.TabIndex = 4;
+            this.button_Sakuzyo.Size = new System.Drawing.Size(213, 75);
+            this.button_Sakuzyo.TabIndex = 5;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
             this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
@@ -126,10 +130,10 @@
             this.button_Kuria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kuria.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
-            this.button_Kuria.Location = new System.Drawing.Point(1362, 32);
+            this.button_Kuria.Location = new System.Drawing.Point(1348, 32);
             this.button_Kuria.Name = "button_Kuria";
-            this.button_Kuria.Size = new System.Drawing.Size(153, 75);
-            this.button_Kuria.TabIndex = 5;
+            this.button_Kuria.Size = new System.Drawing.Size(214, 75);
+            this.button_Kuria.TabIndex = 6;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
             this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
@@ -210,15 +214,15 @@
             this.textBox_Syain_Namae.MaxLength = 50;
             this.textBox_Syain_Namae.Name = "textBox_Syain_Namae";
             this.textBox_Syain_Namae.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Syain_Namae.TabIndex = 14;
+            this.textBox_Syain_Namae.TabIndex = 7;
             // 
             // textBox_Syain_ID
             // 
             this.textBox_Syain_ID.Location = new System.Drawing.Point(749, 180);
             this.textBox_Syain_ID.MaxLength = 6;
             this.textBox_Syain_ID.Name = "textBox_Syain_ID";
-            this.textBox_Syain_ID.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Syain_ID.TabIndex = 15;
+            this.textBox_Syain_ID.Size = new System.Drawing.Size(268, 31);
+            this.textBox_Syain_ID.TabIndex = 8;
             // 
             // textBox_Dennwa
             // 
@@ -226,7 +230,7 @@
             this.textBox_Dennwa.MaxLength = 4;
             this.textBox_Dennwa.Name = "textBox_Dennwa";
             this.textBox_Dennwa.Size = new System.Drawing.Size(130, 31);
-            this.textBox_Dennwa.TabIndex = 18;
+            this.textBox_Dennwa.TabIndex = 13;
             // 
             // textBox_Pass
             // 
@@ -234,7 +238,7 @@
             this.textBox_Pass.MaxLength = 10;
             this.textBox_Pass.Name = "textBox_Pass";
             this.textBox_Pass.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Pass.TabIndex = 20;
+            this.textBox_Pass.TabIndex = 12;
             // 
             // comboBox_Eigyousyo
             // 
@@ -242,7 +246,7 @@
             this.comboBox_Eigyousyo.Location = new System.Drawing.Point(1264, 181);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(251, 32);
-            this.comboBox_Eigyousyo.TabIndex = 21;
+            this.comboBox_Eigyousyo.TabIndex = 9;
             // 
             // dataGridView1
             // 
@@ -252,7 +256,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
-            this.dataGridView1.TabIndex = 22;
+            this.dataGridView1.TabIndex = 16;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -260,8 +264,8 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(749, 299);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(250, 31);
-            this.dateTimePicker1.TabIndex = 23;
+            this.dateTimePicker1.Size = new System.Drawing.Size(268, 31);
+            this.dateTimePicker1.TabIndex = 11;
             // 
             // comboBox_Yakusyoku_Namae
             // 
@@ -269,7 +273,7 @@
             this.comboBox_Yakusyoku_Namae.Location = new System.Drawing.Point(253, 301);
             this.comboBox_Yakusyoku_Namae.Name = "comboBox_Yakusyoku_Namae";
             this.comboBox_Yakusyoku_Namae.Size = new System.Drawing.Size(238, 32);
-            this.comboBox_Yakusyoku_Namae.TabIndex = 24;
+            this.comboBox_Yakusyoku_Namae.TabIndex = 10;
             // 
             // textBox_Dennwa3
             // 
@@ -277,7 +281,7 @@
             this.textBox_Dennwa3.MaxLength = 4;
             this.textBox_Dennwa3.Name = "textBox_Dennwa3";
             this.textBox_Dennwa3.Size = new System.Drawing.Size(130, 31);
-            this.textBox_Dennwa3.TabIndex = 57;
+            this.textBox_Dennwa3.TabIndex = 15;
             // 
             // label9
             // 
@@ -296,7 +300,7 @@
             this.textBox_Dennwa2.MaxLength = 4;
             this.textBox_Dennwa2.Name = "textBox_Dennwa2";
             this.textBox_Dennwa2.Size = new System.Drawing.Size(130, 31);
-            this.textBox_Dennwa2.TabIndex = 55;
+            this.textBox_Dennwa2.TabIndex = 14;
             // 
             // label7
             // 
@@ -309,11 +313,67 @@
             this.label7.TabIndex = 54;
             this.label7.Text = "ー";
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton1.Location = new System.Drawing.Point(51, 113);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(189, 36);
+            this.radioButton1.TabIndex = 57;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "登録必要項目";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton2.Location = new System.Drawing.Point(285, 113);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(189, 36);
+            this.radioButton2.TabIndex = 58;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "更新可能項目";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton3.Location = new System.Drawing.Point(537, 113);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(189, 36);
+            this.radioButton3.TabIndex = 59;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "検索可能項目";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton4.Location = new System.Drawing.Point(1091, 113);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(189, 36);
+            this.radioButton4.TabIndex = 60;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "削除必要項目";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            // 
             // Syain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(235)))), ((int)(((byte)(196)))));
+            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.textBox_Dennwa3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBox_Dennwa2);
@@ -375,5 +435,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox_Dennwa2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
     }
 }

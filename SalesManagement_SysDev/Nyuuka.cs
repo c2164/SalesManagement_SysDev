@@ -99,7 +99,7 @@ namespace SalesManagement_SysDev
                 ArDetailID = "",
                 MaName = "",
             };
-            
+
             //入荷情報の全件取得
             List<DispArrivalDTO> tb = access.GetArrivalData(dispOrder);
             if (tb == null)
@@ -296,12 +296,20 @@ namespace SalesManagement_SysDev
             comboBox_Meka_Namae.DataSource = makerDateAccess.GetMakerData();
             comboBox_Meka_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Meka_Namae.SelectedIndex = -1;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+
+            radioButton_Kakutei.Checked = false;
+            radioButton_Mikakutei.Checked = false;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -585,6 +593,7 @@ namespace SalesManagement_SysDev
             List<T_ArrivalDetail> arrivalDetail = new List<T_ArrivalDetail>();
             T_Shipment shipment = new T_Shipment();
             List<T_ShipmentDetail> ListShipmentDetail = new List<T_ShipmentDetail>();
+            DialogResult result;
 
             //確定対象の入荷IDを取得
             ArID = GetArrivalRecord();
@@ -592,6 +601,13 @@ namespace SalesManagement_SysDev
             //入荷IDから入荷情報を取得
             arrival = GetArrivalAndArDetailRecord(ArID, out arrivalDetail);
             if (arrival == null)
+            {
+                return;
+            }
+
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の注文を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
             {
                 return;
             }
@@ -802,6 +818,134 @@ namespace SalesManagement_SysDev
                     }
                 }
             }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label10.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+            radioButton_Mikakutei.Enabled = false;
+            radioButton_Mikakutei.ForeColor = Color.LightGray;
+            radioButton_Kakutei.ForeColor = Color.LightGray;
+            radioButton_Kakutei.Enabled = false;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Nyuuka_ID.Enabled = false;
+            textBox_Nyuuka_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Nyuuka_Syain_Namae.Enabled = false;
+            textBox_Nyuuka_Syain_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            textBox_Kakutei_Syain_Namae.Enabled = false;
+            textBox_Kakutei_Syain_Namae.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Nyuukasyousai_ID.Enabled = false;
+            textBox_Nyuukasyousai_ID.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+            radioButton_Mikakutei.Enabled = false;
+            radioButton_Mikakutei.ForeColor = Color.LightGray;
+            radioButton_Kakutei.ForeColor = Color.LightGray;
+            radioButton_Kakutei.Enabled = false;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Nyuuka_ID.Enabled = false;
+            textBox_Nyuuka_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Nyuuka_Syain_Namae.Enabled = false;
+            textBox_Nyuuka_Syain_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            textBox_Kakutei_Syain_Namae.Enabled = false;
+            textBox_Kakutei_Syain_Namae.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Nyuukasyousai_ID.Enabled = false;
+            textBox_Nyuukasyousai_ID.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+            radioButton_Mikakutei.Enabled = false;
+            radioButton_Mikakutei.ForeColor = Color.LightGray;
+            radioButton_Kakutei.ForeColor = Color.LightGray;
+            radioButton_Kakutei.Enabled = false;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            comboBox_Kokyaku_Namae.Enabled = true;
+            comboBox_Kokyaku_Namae.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Nyuuka_ID.Enabled = true;
+            textBox_Nyuuka_ID.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textBox_Nyuuka_Syain_Namae.Enabled = true;
+            textBox_Nyuuka_Syain_Namae.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Zyutyuu_ID.Enabled = true;
+            textBox_Zyutyuu_ID.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            textBox_Kakutei_Syain_Namae.Enabled = true;
+            textBox_Kakutei_Syain_Namae.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            textBox_Nyuukasyousai_ID.Enabled = true;
+            textBox_Nyuukasyousai_ID.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label10.ForeColor = Color.Black;
+            numericUpDown_Suuryou.Enabled = true;
+            numericUpDown_Suuryou.BackColor = Color.White;
+            radioButton_Mikakutei.Enabled = true;
+            radioButton_Mikakutei.ForeColor = Color.Black;
+            radioButton_Kakutei.ForeColor = Color.Black;
+            radioButton_Kakutei.Enabled = true;
         }
     }
 }

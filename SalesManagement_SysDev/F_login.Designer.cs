@@ -38,9 +38,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button_CleateDatabase = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button_CleateDatabase = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -66,7 +66,7 @@
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(280, 228);
-            this.button3.TabIndex = 2;
+            this.button3.TabIndex = 3;
             this.button3.Text = "社員管理";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -92,7 +92,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(280, 228);
-            this.button1.TabIndex = 2;
+            this.button1.TabIndex = 1;
             this.button1.Text = "物流担当";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -142,7 +142,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(243, 75);
+            this.label3.Location = new System.Drawing.Point(243, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 24);
             this.label3.TabIndex = 4;
@@ -157,10 +157,33 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "社員名";
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button4.Location = new System.Drawing.Point(1667, 28);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(195, 64);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "👤ログアウト";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(200)))), ((int)(((byte)(230)))));
+            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 28.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(745, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(547, 93);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "販売在庫管理";
+            // 
             // button_CleateDatabase
             // 
             this.button_CleateDatabase.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.button_CleateDatabase.Location = new System.Drawing.Point(1683, 35);
+            this.button_CleateDatabase.Location = new System.Drawing.Point(1897, 52);
             this.button_CleateDatabase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_CleateDatabase.Name = "button_CleateDatabase";
             this.button_CleateDatabase.Size = new System.Drawing.Size(195, 64);
@@ -168,29 +191,6 @@
             this.button_CleateDatabase.Text = "データベース作成";
             this.button_CleateDatabase.UseVisualStyleBackColor = true;
             this.button_CleateDatabase.Click += new System.EventHandler(this.btn_CleateDabase_Click);
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.button4.Location = new System.Drawing.Point(1683, 35);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(195, 64);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "👤ログイン";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(200)))), ((int)(((byte)(230)))));
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 19.875F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(690, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(315, 93);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "販売管理";
             // 
             // panel3
             // 

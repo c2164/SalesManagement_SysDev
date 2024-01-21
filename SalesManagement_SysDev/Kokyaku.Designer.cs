@@ -57,6 +57,9 @@
             this.button_Kensaku = new System.Windows.Forms.Button();
             this.button_Kousin = new System.Windows.Forms.Button();
             this.button_Touroku = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +69,7 @@
             this.textBox_FAX3.MaxLength = 4;
             this.textBox_FAX3.Name = "textBox_FAX3";
             this.textBox_FAX3.Size = new System.Drawing.Size(122, 31);
-            this.textBox_FAX3.TabIndex = 57;
+            this.textBox_FAX3.TabIndex = 17;
             // 
             // label11
             // 
@@ -85,7 +88,7 @@
             this.textBox_FAX2.MaxLength = 4;
             this.textBox_FAX2.Name = "textBox_FAX2";
             this.textBox_FAX2.Size = new System.Drawing.Size(122, 31);
-            this.textBox_FAX2.TabIndex = 55;
+            this.textBox_FAX2.TabIndex = 16;
             // 
             // label10
             // 
@@ -104,7 +107,7 @@
             this.textBox_Dennwa3.MaxLength = 4;
             this.textBox_Dennwa3.Name = "textBox_Dennwa3";
             this.textBox_Dennwa3.Size = new System.Drawing.Size(130, 31);
-            this.textBox_Dennwa3.TabIndex = 53;
+            this.textBox_Dennwa3.TabIndex = 14;
             // 
             // label9
             // 
@@ -123,7 +126,7 @@
             this.textBox_Dennwa2.MaxLength = 4;
             this.textBox_Dennwa2.Name = "textBox_Dennwa2";
             this.textBox_Dennwa2.Size = new System.Drawing.Size(130, 31);
-            this.textBox_Dennwa2.TabIndex = 51;
+            this.textBox_Dennwa2.TabIndex = 13;
             // 
             // label8
             // 
@@ -142,7 +145,7 @@
             this.comboBox_Eigyousyo.Location = new System.Drawing.Point(1290, 174);
             this.comboBox_Eigyousyo.Name = "comboBox_Eigyousyo";
             this.comboBox_Eigyousyo.Size = new System.Drawing.Size(231, 32);
-            this.comboBox_Eigyousyo.TabIndex = 49;
+            this.comboBox_Eigyousyo.TabIndex = 9;
             // 
             // textBox_FAX1
             // 
@@ -150,7 +153,7 @@
             this.textBox_FAX1.MaxLength = 4;
             this.textBox_FAX1.Name = "textBox_FAX1";
             this.textBox_FAX1.Size = new System.Drawing.Size(122, 31);
-            this.textBox_FAX1.TabIndex = 48;
+            this.textBox_FAX1.TabIndex = 15;
             // 
             // textBox_Dennwa1
             // 
@@ -158,7 +161,7 @@
             this.textBox_Dennwa1.MaxLength = 4;
             this.textBox_Dennwa1.Name = "textBox_Dennwa1";
             this.textBox_Dennwa1.Size = new System.Drawing.Size(130, 31);
-            this.textBox_Dennwa1.TabIndex = 47;
+            this.textBox_Dennwa1.TabIndex = 12;
             // 
             // textBox_Zyuusyo
             // 
@@ -166,7 +169,7 @@
             this.textBox_Zyuusyo.MaxLength = 50;
             this.textBox_Zyuusyo.Name = "textBox_Zyuusyo";
             this.textBox_Zyuusyo.Size = new System.Drawing.Size(735, 31);
-            this.textBox_Zyuusyo.TabIndex = 46;
+            this.textBox_Zyuusyo.TabIndex = 11;
             // 
             // textBox_Yuubin
             // 
@@ -174,7 +177,7 @@
             this.textBox_Yuubin.MaxLength = 7;
             this.textBox_Yuubin.Name = "textBox_Yuubin";
             this.textBox_Yuubin.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Yuubin.TabIndex = 45;
+            this.textBox_Yuubin.TabIndex = 10;
             // 
             // textBox_Kokyaku_ID
             // 
@@ -182,7 +185,7 @@
             this.textBox_Kokyaku_ID.MaxLength = 6;
             this.textBox_Kokyaku_ID.Name = "textBox_Kokyaku_ID";
             this.textBox_Kokyaku_ID.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Kokyaku_ID.TabIndex = 44;
+            this.textBox_Kokyaku_ID.TabIndex = 8;
             // 
             // textBox_Kokyaku_Namae
             // 
@@ -190,7 +193,7 @@
             this.textBox_Kokyaku_Namae.MaxLength = 50;
             this.textBox_Kokyaku_Namae.Name = "textBox_Kokyaku_Namae";
             this.textBox_Kokyaku_Namae.Size = new System.Drawing.Size(251, 31);
-            this.textBox_Kokyaku_Namae.TabIndex = 43;
+            this.textBox_Kokyaku_Namae.TabIndex = 7;
             // 
             // dataGridView1
             // 
@@ -200,7 +203,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(1533, 351);
-            this.dataGridView1.TabIndex = 42;
+            this.dataGridView1.TabIndex = 18;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label7
@@ -280,8 +283,8 @@
             this.button_Kuria.ForeColor = System.Drawing.Color.White;
             this.button_Kuria.Location = new System.Drawing.Point(1370, 28);
             this.button_Kuria.Name = "button_Kuria";
-            this.button_Kuria.Size = new System.Drawing.Size(153, 75);
-            this.button_Kuria.TabIndex = 34;
+            this.button_Kuria.Size = new System.Drawing.Size(203, 75);
+            this.button_Kuria.TabIndex = 6;
             this.button_Kuria.Text = "クリア";
             this.button_Kuria.UseVisualStyleBackColor = false;
             this.button_Kuria.Click += new System.EventHandler(this.button_Kuria_Click);
@@ -291,10 +294,10 @@
             this.button_Sakuzyo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Sakuzyo.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Sakuzyo.ForeColor = System.Drawing.Color.White;
-            this.button_Sakuzyo.Location = new System.Drawing.Point(1111, 28);
+            this.button_Sakuzyo.Location = new System.Drawing.Point(1091, 28);
             this.button_Sakuzyo.Name = "button_Sakuzyo";
-            this.button_Sakuzyo.Size = new System.Drawing.Size(153, 75);
-            this.button_Sakuzyo.TabIndex = 33;
+            this.button_Sakuzyo.Size = new System.Drawing.Size(207, 75);
+            this.button_Sakuzyo.TabIndex = 5;
             this.button_Sakuzyo.Text = "🚮削除";
             this.button_Sakuzyo.UseVisualStyleBackColor = false;
             this.button_Sakuzyo.Click += new System.EventHandler(this.button_Sakuzyo_Click);
@@ -307,7 +310,7 @@
             this.button_Itirannhyouzi.Location = new System.Drawing.Point(804, 28);
             this.button_Itirannhyouzi.Name = "button_Itirannhyouzi";
             this.button_Itirannhyouzi.Size = new System.Drawing.Size(218, 75);
-            this.button_Itirannhyouzi.TabIndex = 32;
+            this.button_Itirannhyouzi.TabIndex = 4;
             this.button_Itirannhyouzi.Text = "📖一覧表示";
             this.button_Itirannhyouzi.UseVisualStyleBackColor = false;
             this.button_Itirannhyouzi.Click += new System.EventHandler(this.button_Itirannhyouzi_Click);
@@ -317,10 +320,10 @@
             this.button_Kensaku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kensaku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kensaku.ForeColor = System.Drawing.Color.White;
-            this.button_Kensaku.Location = new System.Drawing.Point(564, 28);
+            this.button_Kensaku.Location = new System.Drawing.Point(552, 28);
             this.button_Kensaku.Name = "button_Kensaku";
-            this.button_Kensaku.Size = new System.Drawing.Size(153, 75);
-            this.button_Kensaku.TabIndex = 31;
+            this.button_Kensaku.Size = new System.Drawing.Size(190, 75);
+            this.button_Kensaku.TabIndex = 3;
             this.button_Kensaku.Text = "🔍検索";
             this.button_Kensaku.UseVisualStyleBackColor = false;
             this.button_Kensaku.Click += new System.EventHandler(this.button_Kensaku_Click);
@@ -330,10 +333,10 @@
             this.button_Kousin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Kousin.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Kousin.ForeColor = System.Drawing.Color.White;
-            this.button_Kousin.Location = new System.Drawing.Point(306, 28);
+            this.button_Kousin.Location = new System.Drawing.Point(291, 28);
             this.button_Kousin.Name = "button_Kousin";
-            this.button_Kousin.Size = new System.Drawing.Size(153, 75);
-            this.button_Kousin.TabIndex = 30;
+            this.button_Kousin.Size = new System.Drawing.Size(188, 75);
+            this.button_Kousin.TabIndex = 2;
             this.button_Kousin.Text = "↻更新";
             this.button_Kousin.UseVisualStyleBackColor = false;
             this.button_Kousin.Click += new System.EventHandler(this.button_Kousin_Click);
@@ -343,19 +346,61 @@
             this.button_Touroku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(13)))), ((int)(((byte)(67)))));
             this.button_Touroku.Font = new System.Drawing.Font("HGPｺﾞｼｯｸM", 11F, System.Drawing.FontStyle.Bold);
             this.button_Touroku.ForeColor = System.Drawing.Color.White;
-            this.button_Touroku.Location = new System.Drawing.Point(51, 28);
+            this.button_Touroku.Location = new System.Drawing.Point(38, 28);
             this.button_Touroku.Name = "button_Touroku";
-            this.button_Touroku.Size = new System.Drawing.Size(153, 75);
-            this.button_Touroku.TabIndex = 29;
+            this.button_Touroku.Size = new System.Drawing.Size(178, 75);
+            this.button_Touroku.TabIndex = 1;
             this.button_Touroku.Text = "🖊登録";
             this.button_Touroku.UseVisualStyleBackColor = false;
             this.button_Touroku.Click += new System.EventHandler(this.button_Touroku_Click);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton1.Location = new System.Drawing.Point(38, 109);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(189, 36);
+            this.radioButton1.TabIndex = 57;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "登録必要項目";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton2.Location = new System.Drawing.Point(291, 109);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(189, 36);
+            this.radioButton2.TabIndex = 58;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "更新可能項目";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.radioButton3.Location = new System.Drawing.Point(1091, 109);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(189, 36);
+            this.radioButton3.TabIndex = 59;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "削除必要項目";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // Kokyaku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(242)))), ((int)(((byte)(184)))));
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.textBox_FAX3);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBox_FAX2);
@@ -426,5 +471,8 @@
         private System.Windows.Forms.Button button_Kensaku;
         private System.Windows.Forms.Button button_Kousin;
         private System.Windows.Forms.Button button_Touroku;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
     }
 }
