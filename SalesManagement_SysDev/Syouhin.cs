@@ -671,7 +671,7 @@ namespace SalesManagement_SysDev
             bool flg;
             msg = "";
             title = "";
-            icon = MessageBoxIcon.Question;
+            icon = MessageBoxIcon.Warning;
 
             //テーブルのデータを取得
             productTabledeta = GetTableData();

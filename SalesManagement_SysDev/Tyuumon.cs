@@ -475,7 +475,10 @@ namespace SalesManagement_SysDev
 
             //確定対象の注文IDを取得
             ChID = GetChumonRecode();
-
+            if(ChID == null)
+            {
+                return;
+            }
             //注文IDから注文情報を取得
             chumon = GetChumonAndChDetailRecord(ChID, out ListChumonDetail);
             if (chumon == null)
