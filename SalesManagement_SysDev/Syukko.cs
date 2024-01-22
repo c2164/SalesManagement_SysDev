@@ -18,6 +18,7 @@ namespace SalesManagement_SysDev
         private MessageDsp messageDsp = new MessageDsp();
         private DispEmplyeeDTO loginEmployee;
         private int DataGridViewState;
+        private int checkbox_stateflag = 0;
         public Syukko(DispEmplyeeDTO emplyeeDTO)
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace SalesManagement_SysDev
         {
             SyukkoDataAccess access = new SyukkoDataAccess();
             //入庫情報の全件取得
-            List<DispSyukkoDTO> tb = access.GetSyukkoData();
+            List<DispSyukkoDTO> tb = access.GetSyukkoData(checkbox_stateflag);
             List<DispSyukkoDTO> disptb = new List<DispSyukkoDTO>();
             if (tb == null)
                 return false;
@@ -170,6 +171,7 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "";
             //出庫ID
             dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -259,6 +261,7 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "戻る";
             //出庫ID
             dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -302,7 +305,10 @@ namespace SalesManagement_SysDev
             //確定社員ID
             dataGridView1.Columns[14].Visible = false;
             //メーカー名
-            dataGridView1.Columns[15].Visible = false;
+            dataGridView1.Columns[15].Visible = true;
+            dataGridView1.Columns[15].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[15].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[15].Width = 120;
             //受注ID
             dataGridView1.Columns[16].Visible = false;
             //確定社員ID
@@ -327,7 +333,6 @@ namespace SalesManagement_SysDev
 
         private void button_Itiranhyouzi_Click(object sender, EventArgs e)
         {
-
             ListDisplaySyukko();
         }
 
@@ -357,7 +362,7 @@ namespace SalesManagement_SysDev
             SyukkoDataAccess SyAccess = new SyukkoDataAccess();
 
             //データベースからデータを取得
-            syukko = SyAccess.GetSyukkoData();
+            syukko = SyAccess.GetSyukkoData(checkbox_stateflag);
 
 
             return syukko;
@@ -415,6 +420,8 @@ namespace SalesManagement_SysDev
                 retSyukkoDTO.PrID = comboBoxSyouhin_Namae.SelectedValue.ToString();//商品ID
             retSyukkoDTO.PrName = comboBoxSyouhin_Namae.Text.Trim();//商品名
             retSyukkoDTO.SyQuantity = domainUpDown_Suuryou.Value.ToString();//数量
+            if (checkBox_Kakutei.Checked == true)
+                retSyukkoDTO.SyStateFlag = "1"; //確定済み
 
 
             return retSyukkoDTO;
@@ -620,7 +627,7 @@ namespace SalesManagement_SysDev
                             textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value.ToString();
                         }
                         textBox_Syukkosyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-                        comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[14].Value.ToString();
+                        comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
                         comboBoxSyouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
                         domainUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString());
                     }
@@ -843,10 +850,6 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.LightGray;
             domainUpDown_Suuryou.Enabled = false;
             domainUpDown_Suuryou.BackColor = Color.LightGray;
-            checkBox_Mikakutei.Enabled = false;
-            checkBox_Mikakutei.ForeColor = Color.LightGray;
-            checkBox_Kakutei.Enabled = false;
-            checkBox_Kakutei.ForeColor = Color.LightGray;
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
@@ -882,8 +885,6 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.LightGray;
             domainUpDown_Suuryou.Enabled = false;
             domainUpDown_Suuryou.BackColor = Color.LightGray;
-            checkBox_Mikakutei.Enabled = false;
-            checkBox_Mikakutei.ForeColor = Color.LightGray;
             checkBox_Kakutei.Enabled = false;
             checkBox_Kakutei.ForeColor = Color.LightGray;
         }
@@ -921,8 +922,6 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.LightGray;
             domainUpDown_Suuryou.Enabled = false;
             domainUpDown_Suuryou.BackColor = Color.LightGray;
-            checkBox_Mikakutei.Enabled = false;
-            checkBox_Mikakutei.ForeColor = Color.LightGray;
             checkBox_Kakutei.Enabled = false;
             checkBox_Kakutei.ForeColor = Color.LightGray;
         }
@@ -959,10 +958,22 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.Black;
             domainUpDown_Suuryou.Enabled = true;
             domainUpDown_Suuryou.BackColor = Color.White;
-            checkBox_Mikakutei.Enabled = true;
-            checkBox_Mikakutei.ForeColor = Color.Black;
             checkBox_Kakutei.Enabled = true;
             checkBox_Kakutei.ForeColor = Color.Black;
+        }
+
+        private void checkBox_Kakutei_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Kakutei.Checked == true)
+            {
+                checkbox_stateflag = 1;
+            }
+            else
+            {
+                checkbox_stateflag = 0;
+            }
+            GetSelectData();
+
         }
     }
 }

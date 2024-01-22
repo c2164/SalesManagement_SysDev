@@ -623,22 +623,25 @@ namespace SalesManagement_SysDev
             ordertabledata = GetTableData();
 
             //既に確定されているかチェックする
-            flg = ordertabledata.First(x => x.OrID == dispOrderDTO.OrID).OrStateFlag == "1";
-            if (flg)
+            if (dispOrderDTO.OrID != "")
             {
-                icon = MessageBoxIcon.Error;
-                msg = "既に確定されている受注の為、新しく登録できません";
-                title = "エラー";
-                return false;
-            }
-            //同じ受注IDに同じ商品がないかチェックする
-            flg = ordertabledata.Any(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
-            if (flg)
-            {
-                icon = MessageBoxIcon.Question;
-                msg = "同じ商品が登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
-                title = "確認";
-                return false;
+                flg = ordertabledata.First(x => x.OrID == dispOrderDTO.OrID).OrStateFlag == "1";
+                if (flg)
+                {
+                    icon = MessageBoxIcon.Error;
+                    msg = "既に確定されている受注の為、新しく登録できません";
+                    title = "エラー";
+                    return false;
+                }
+                //同じ受注IDに同じ商品がないかチェックする
+                flg = ordertabledata.Any(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
+                if (flg)
+                {
+                    icon = MessageBoxIcon.Question;
+                    msg = "同じ商品が登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
+                    title = "確認";
+                    return false;
+                }
             }
 
             return true;
