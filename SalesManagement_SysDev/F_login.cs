@@ -785,9 +785,12 @@ namespace SalesManagement_SysDev
             button2.Enabled = false;
             button3.Enabled = false;
             label2.Visible = false;
-            label3 .Visible = false;
+            label3.Visible = false;
             label4.Visible = false;
             button4.Visible = false;
+            button1.BackColor = Color.LightGray;
+            button2.BackColor = Color.LightGray;
+            button3.BackColor = Color.LightGray;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -854,19 +857,23 @@ namespace SalesManagement_SysDev
             label3.Visible = true;
             label4.Visible = true;
             button4.Visible = true;
+            button1.BackColor = Color.White;
+            button2.BackColor = Color.White;
+            button3.BackColor = Color.White;
         }
 
         public void LimitBottunSales()
         {
             button1.Enabled = false;
-            button1.BackColor = Color.DarkGray;
-            button2.Enabled = true;            
+            button1.BackColor = Color.LightGray;
+            button2.Enabled = true;
             button3.Enabled = false;
             button3.BackColor = Color.LightGray;
             label2.Visible = true;
             label3.Visible = true;
             label4.Visible = true;
             button4.Visible = true;
+            button2.BackColor = Color.White;
         }
 
         public void LimitBottunLogistics()
@@ -880,6 +887,7 @@ namespace SalesManagement_SysDev
             label3.Visible = true;
             label4.Visible = true;
             button4.Visible = true;
+            button1.BackColor = Color.White;
         }
 
         public void setlabeltext(string text)
