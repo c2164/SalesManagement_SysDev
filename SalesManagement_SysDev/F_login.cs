@@ -1675,6 +1675,7 @@ namespace SalesManagement_SysDev
                 context.Dispose();
 
                 MessageBox.Show("サンプルデータ登録完了");
+                dbcnt = dbcnt + 1;
             }
         }
     }
