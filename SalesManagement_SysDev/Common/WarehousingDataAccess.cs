@@ -102,8 +102,9 @@ namespace SalesManagement_SysDev.Common
                          (dispWarehousingDTO.ConfEmID == "" && Employee.EmName == null ? true :
                          Employee.EmName.Contains(dispWarehousingDTO.ConfEmName)) && //確定社員名
                          Maker.MaName.Contains(dispWarehousingDTO.MaName) && //メーカー名
-                         Product.PrName.Contains(dispWarehousingDTO.PrName)  //商品名
-
+                         Product.PrName.Contains(dispWarehousingDTO.PrName) && //商品名
+                         (dispWarehousingDTO.WaShelfFlag == "1" ? true :
+                         Warehousing.WaShelfFlag == 0) //確定フラグ
 
 
                          select new DispWarehousingDTO
@@ -138,7 +139,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫全表示：オーバーロード
-        public List<DispWarehousingDTO> GetWarehousingData()
+        public List<DispWarehousingDTO> GetWarehousingData(int stateflag)
         {
             var context = new SalesManagement_DevContext();
             try
@@ -159,7 +160,10 @@ namespace SalesManagement_SysDev.Common
                          on Hattyu.EmID equals HattyuEmployee.EmID
 
                          where
-                         Warehousing.WaFlag == 0
+                         Warehousing.WaFlag == 0 &&
+                         (stateflag == 1 ? true :
+                         Warehousing.WaShelfFlag == 0) //確定フラグ
+
 
                          select new DispWarehousingDTO
                          {

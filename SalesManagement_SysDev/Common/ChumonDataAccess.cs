@@ -110,8 +110,10 @@ namespace SalesManagement_SysDev.Common
 
                          //Chumon.ChDate.(dispChumonDTO.ChDate)&&//注文年月日
 
-
-                         Chumon.ChFlag == 0 //非表示フラグ
+                         Chumon.ChFlag == 0 &&//非表示フラグ
+                         
+                         (dispChumonDTO.ChStateFlag == "1" ? true :
+                         Chumon.ChStateFlag == 0)
 
                          select new DispChumonDTO
                          {
@@ -145,7 +147,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //注文全表示：オーバーロード
-        public List<DispChumonDTO> GetChumonData()
+        public List<DispChumonDTO> GetChumonData(int stateflag)
         {
             var context = new SalesManagement_DevContext();
             try
@@ -167,7 +169,9 @@ namespace SalesManagement_SysDev.Common
                          on ChumonDetail.PrID equals Product.PrID
 
                          where
-                         Chumon.ChFlag == 0 //非表示フラグ
+                         Chumon.ChFlag == 0 &&//非表示フラグ
+                         (stateflag == 1 ? true :
+                         Chumon.ChStateFlag == 0)
 
                          select new DispChumonDTO
                          {

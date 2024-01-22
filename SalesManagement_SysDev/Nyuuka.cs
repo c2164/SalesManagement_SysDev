@@ -20,6 +20,7 @@ namespace SalesManagement_SysDev
         private MessageDsp messageDsp = new MessageDsp();
         private DispEmplyeeDTO loginEmployee;
         private int DataGridViewState;
+        private int checkbox_stateflag = 0;
         public Nyuuka(DispEmplyeeDTO dispEmplyee)
         {
             loginEmployee = dispEmplyee;
@@ -43,7 +44,7 @@ namespace SalesManagement_SysDev
         {
             ArraivalDataAccess access = new ArraivalDataAccess();
             //入荷情報の全件取得
-            List<DispArrivalDTO> tb = access.GetArrivalData();
+            List<DispArrivalDTO> tb = access.GetArrivalData(checkbox_stateflag);
             List<DispArrivalDTO> disptb = new List<DispArrivalDTO>();
             if (tb == null)
                 return false;
@@ -98,6 +99,7 @@ namespace SalesManagement_SysDev
                 ConfEmName = "",
                 ArDetailID = "",
                 MaName = "",
+                ArStateFlag = checkbox_stateflag.ToString() 
             };
 
             //入荷情報の全件取得
@@ -304,9 +306,6 @@ namespace SalesManagement_SysDev
             radioButton1.Checked = false;
             radioButton2.Checked = false;
             radioButton3.Checked = false;
-
-            radioButton_Kakutei.Checked = false;
-            radioButton_Mikakutei.Checked = false;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
@@ -334,6 +333,9 @@ namespace SalesManagement_SysDev
                 messageDsp.MessageBoxDsp_OK("入荷情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
             }
 
+            //グループ化
+            arrival = GetDataGridViewData(arrival);
+
             //昇順に並び替える
             sortedarrival = SortArrivalData(arrival);
 
@@ -351,7 +353,7 @@ namespace SalesManagement_SysDev
             ArraivalDataAccess ArAccess = new ArraivalDataAccess();
 
             //データベースからデータを取得
-            arrival = ArAccess.GetArrivalData();
+            arrival = ArAccess.GetArrivalData(checkbox_stateflag);
 
 
             return arrival;
@@ -408,7 +410,10 @@ namespace SalesManagement_SysDev
             retArrivalDTO.MaName = comboBox_Meka_Namae.Text.Trim();
             retArrivalDTO.ArQuantity = numericUpDown_Suuryou.Value.ToString();
             retArrivalDTO.ArFlag = "0";
-            retArrivalDTO.ArStateFlag = "0";
+            if (checkBox_Kakutei.Checked == true)
+                retArrivalDTO.ArStateFlag = "1"; //確定済み
+            else
+                retArrivalDTO.ArStateFlag = "0";
 
             return retArrivalDTO;
         }
@@ -830,10 +835,6 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.LightGray;
             numericUpDown_Suuryou.Enabled = false;
             numericUpDown_Suuryou.BackColor = Color.LightGray;
-            radioButton_Mikakutei.Enabled = false;
-            radioButton_Mikakutei.ForeColor = Color.LightGray;
-            radioButton_Kakutei.ForeColor = Color.LightGray;
-            radioButton_Kakutei.Enabled = false;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -869,10 +870,6 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.LightGray;
             numericUpDown_Suuryou.Enabled = false;
             numericUpDown_Suuryou.BackColor = Color.LightGray;
-            radioButton_Mikakutei.Enabled = false;
-            radioButton_Mikakutei.ForeColor = Color.LightGray;
-            radioButton_Kakutei.ForeColor = Color.LightGray;
-            radioButton_Kakutei.Enabled = false;
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
@@ -908,10 +905,6 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.LightGray;
             numericUpDown_Suuryou.Enabled = false;
             numericUpDown_Suuryou.BackColor = Color.LightGray;
-            radioButton_Mikakutei.Enabled = false;
-            radioButton_Mikakutei.ForeColor = Color.LightGray;
-            radioButton_Kakutei.ForeColor = Color.LightGray;
-            radioButton_Kakutei.Enabled = false;
         }
 
         private void cmbclia()
@@ -946,10 +939,19 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.Black;
             numericUpDown_Suuryou.Enabled = true;
             numericUpDown_Suuryou.BackColor = Color.White;
-            radioButton_Mikakutei.Enabled = true;
-            radioButton_Mikakutei.ForeColor = Color.Black;
-            radioButton_Kakutei.ForeColor = Color.Black;
-            radioButton_Kakutei.Enabled = true;
+        }
+
+        private void checkBox_Kakutei_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Kakutei.Checked == true)
+            {
+                checkbox_stateflag = 1;
+            }
+            else
+            {
+                checkbox_stateflag = 0;
+            }
+            GetSelectData();
         }
     }
 }

@@ -18,6 +18,8 @@ namespace SalesManagement_SysDev
         private MessageDsp messageDsp = new MessageDsp();
         private DispEmplyeeDTO loginEmployee;
         private int DataGridViewState;
+        private int checkbox_stateflag = 0;
+
         public Syukka(DispEmplyeeDTO dispEmplyee)
         {
             InitializeComponent();
@@ -43,7 +45,7 @@ namespace SalesManagement_SysDev
             ShipmentDataAccess access = new ShipmentDataAccess();
             List<DispShipmentDTO> disptb = new List<DispShipmentDTO>();
             //出荷情報の全件取得
-            List<DispShipmentDTO> tb = access.GetShipmentData();
+            List<DispShipmentDTO> tb = access.GetShipmentData(checkbox_stateflag);
             if (tb == null)
                 return false;
             //データグリッドビューへの設定
@@ -97,6 +99,7 @@ namespace SalesManagement_SysDev
                 MaName = "",
                 SoName = "",
                 PrName = "",
+                ShStateFlag = checkbox_stateflag.ToString()
             };
             //出荷情報の全件取得
             List<DispShipmentDTO> tb = access.GetShipmentData(dispOrder);
@@ -335,6 +338,9 @@ namespace SalesManagement_SysDev
             //テーブルデータ受け取り
             shipment = GetTableData();
 
+            //グループ化
+            shipment = GetDataGridViewData(shipment);
+
             //昇順に並び替える
             sortedshipment = SortShipmentData(shipment);
 
@@ -352,7 +358,7 @@ namespace SalesManagement_SysDev
             ShipmentDataAccess ShAccess = new ShipmentDataAccess();
 
             //データベースからデータを取得
-            shipment = ShAccess.GetShipmentData();
+            shipment = ShAccess.GetShipmentData(checkbox_stateflag);
 
 
             return shipment;
@@ -409,13 +415,7 @@ namespace SalesManagement_SysDev
                 retShipmentDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();//商品ID
             retShipmentDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
             retShipmentDTO.ShFlag = "0";
-            retShipmentDTO.ShStateFlag = "0";
-            /*if (radioButton_Mikakutei.Checked) //出荷状態フラグ
-                retShipmentDTO.ShStateFlag = "0";
-            else if (radioButton_Kakutei.Checked)
-                retShipmentDTO.ShStateFlag = "1";
-            else
-                retShipmentDTO.ShStateFlag = "2";*/
+            retShipmentDTO.ShStateFlag = checkbox_stateflag.ToString();
             return retShipmentDTO;
         }
 
@@ -844,8 +844,6 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.LightGray;
             numericUpDown_Suuryou.Enabled = false;
             numericUpDown_Suuryou.BackColor = Color.LightGray;
-            radioButton_Kakutei.Enabled = false;
-            radioButton_Kakutei.ForeColor = Color.LightGray;
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
@@ -881,8 +879,6 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.LightGray;
             numericUpDown_Suuryou.Enabled = false;
             numericUpDown_Suuryou.BackColor = Color.LightGray;
-            radioButton_Kakutei.Enabled = false;
-            radioButton_Kakutei.ForeColor = Color.LightGray;
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
@@ -918,8 +914,6 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.LightGray;
             numericUpDown_Suuryou.Enabled = false;
             numericUpDown_Suuryou.BackColor = Color.LightGray;
-            radioButton_Kakutei.Enabled = false;
-            radioButton_Kakutei.ForeColor = Color.LightGray;
         }
 
         private void cmbclia()
@@ -954,8 +948,19 @@ namespace SalesManagement_SysDev
             label10.ForeColor = Color.Black;
             numericUpDown_Suuryou.Enabled = true;
             numericUpDown_Suuryou.BackColor = Color.White;
-            radioButton_Kakutei.Enabled = true;
-            radioButton_Kakutei.ForeColor = Color.Black;
+        }
+
+        private void checkBox_Kakutei_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Kakutei.Checked == true)
+            {
+                checkbox_stateflag = 1;
+            }
+            else
+            {
+                checkbox_stateflag = 0;
+            }
+            GetSelectData();
         }
     }
 }

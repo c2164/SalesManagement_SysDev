@@ -20,7 +20,7 @@ namespace SalesManagement_SysDev
         private DispEmplyeeDTO loginEmployee;
         private MessageDsp messageDsp = new MessageDsp();
         private int DataGridViewState;
-
+        private int checkbox_stateflag = 0;
         public Tyuumon(DispEmplyeeDTO dispEmplyee)
         {
             loginEmployee = dispEmplyee;
@@ -46,7 +46,7 @@ namespace SalesManagement_SysDev
         {
             ChumonDataAccess access = new ChumonDataAccess();
             //出荷情報の全件取得
-            List<DispChumonDTO> tb = access.GetChumonData();
+            List<DispChumonDTO> tb = access.GetChumonData(checkbox_stateflag);
             List<DispChumonDTO> disptb = new List<DispChumonDTO>();
             if (tb == null)
                 return false;
@@ -99,6 +99,7 @@ namespace SalesManagement_SysDev
                 OrID = "",
                 ChDetailID = "",
                 SoName = "",
+                ChStateFlag = checkbox_stateflag.ToString()
             };
             //出荷情報の全件取得
             List<DispChumonDTO> tb = access.GetChumonData(dispChumon);
@@ -341,6 +342,9 @@ namespace SalesManagement_SysDev
             //データの受け取り
             chumon = GetTableData();
 
+            //グループ化
+            chumon = GetDataGridViewData(chumon);
+
             //昇順に並び変え
             sortedchumon = SortChumonDate(chumon);
 
@@ -357,7 +361,7 @@ namespace SalesManagement_SysDev
             ChumonDataAccess chAccess = new ChumonDataAccess();
 
             //データベースからデータを取得
-            chumon = chAccess.GetChumonData();
+            chumon = chAccess.GetChumonData(checkbox_stateflag);
 
             return chumon;
         }
@@ -422,6 +426,11 @@ namespace SalesManagement_SysDev
             //retChumonDTO.ChDate = dateTimePicker_Tyuumon_Nenngetu.Value;//注文年月日
 
             retChumonDTO.ChQuantity = numericUPDown_Syouhin_Namae.Value.ToString();//数量
+
+            if (checkBox_Kakutei.Checked == true)
+                retChumonDTO.ChStateFlag = "1"; //確定済み
+            else
+                retChumonDTO.ChStateFlag = "0";
 
             return retChumonDTO;
         }
@@ -1082,6 +1091,19 @@ namespace SalesManagement_SysDev
             label9.ForeColor = Color.Black;
             numericUPDown_Syouhin_Namae.Enabled = true;
             numericUPDown_Syouhin_Namae.BackColor = Color.White;
+        }
+
+        private void checkBox_Kakutei_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Kakutei.Checked == true)
+            {
+                checkbox_stateflag = 1;
+            }
+            else
+            {
+                checkbox_stateflag = 0;
+            }
+            GetSelectData();
         }
     }
 }

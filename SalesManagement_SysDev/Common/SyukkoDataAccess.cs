@@ -151,7 +151,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫全表示：オーバーロード
-        public List<DispSyukkoDTO> GetSyukkoData(int stateFlag)
+        public List<DispSyukkoDTO> GetSyukkoData(int stateflag)
         {
             var context = new SalesManagement_DevContext();
             try
@@ -179,7 +179,7 @@ namespace SalesManagement_SysDev.Common
                          on Chumon.EmID equals ChumonEmployee.EmID
 
                          where Syukko.SyFlag == 0 &&
-                         (stateFlag == 1 ? true :
+                         (stateflag == 1 ? true :
                          Syukko.SyStateFlag == 0)
 
                          select new DispSyukkoDTO
