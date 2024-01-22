@@ -70,6 +70,10 @@ namespace SalesManagement_SysDev
             comboBox_Eigyousyo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Eigyousyo.SelectedIndex = -1;
 
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+
         }
 
         private void SetDataGridView(List<DispClientDTO> tb)
@@ -88,7 +92,7 @@ namespace SalesManagement_SysDev
             //顧客ID
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[0].Width = 40;
+            dataGridView1.Columns[0].Width = 30;
             //顧客名
             dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -107,24 +111,37 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[5].Width = 80;
-            //郵便番号
-            dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[6].Width = 55;
-            //FAX
-            dataGridView1.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[7].Width = 80;
-            //顧客管理フラグ(非表示)
+            //電話番号1(非表示)
+            dataGridView1.Columns[6].Visible = false;
+            //電話番号2(非表示)
+            dataGridView1.Columns[7].Visible = false;
+            //電話番号3(非表示)
             dataGridView1.Columns[8].Visible = false;
+            //郵便番号
+            //dataGridView1.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[9].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[9].Width = 65;
+            //FAX
+            dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[10].Width = 83;
+            //FAX1(非表示)
+            dataGridView1.Columns[11].Visible = false;
+            //FAX2(非表示)
+            dataGridView1.Columns[12].Visible = false;
+            //FAX3(非表示)
+            dataGridView1.Columns[13].Visible = false;
+            //顧客管理フラグ(非表示)
+            dataGridView1.Columns[14].Visible = false;
             //非表示理由(非表示)
-            dataGridView1.Columns[9].Visible = false;
+            dataGridView1.Columns[15].Visible = false;
 
         }
 
         private void button_Touroku_Click(object sender, EventArgs e)
         {
+
             RegisterClient();
         }
 
@@ -191,15 +208,21 @@ namespace SalesManagement_SysDev
             DispClientDTO retDispClient = new DispClientDTO();
 
             //各コントロールから顧客情報を読み取る
-            retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();
-            retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();
-            retDispClient.ClPostal = textBox_Yuubin.Text.Trim();
-            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() + "-" + textBox_Dennwa2.Text.Trim() + "-" + textBox_Dennwa3.Text.Trim();
-            retDispClient.ClFAX = textBox_FAX1.Text.Trim() + "-" + textBox_FAX2.Text.Trim() + "-" + textBox_FAX3.Text.Trim();
-            retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();
+            retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();//顧客ID
+            retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();//顧客名
+            retDispClient.ClPostal = textBox_Yuubin.Text.Trim();//郵便番号
+            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() + ('-') + textBox_Dennwa2.Text.Trim() + ('-') + textBox_Dennwa3.Text.Trim();//電話番号
+            retDispClient.ClPhone1 = textBox_Dennwa1.Text.Trim();
+            retDispClient.ClPhone2 = textBox_Dennwa2.Text.Trim();
+            retDispClient.ClPhone3 = textBox_Dennwa3.Text.Trim();
+            retDispClient.ClFAX = textBox_FAX1.Text.Trim() + ('-') + textBox_FAX2.Text.Trim() + ('-') + textBox_FAX3.Text.Trim();//FAX
+            retDispClient.ClFAX1 = textBox_FAX1.Text.Trim();
+            retDispClient.ClFAX2 = textBox_FAX2.Text.Trim();
+            retDispClient.ClFAX3 = textBox_FAX3.Text.Trim();
+            retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();//住所
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
-                retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
-            retDispClient.SoName = comboBox_Eigyousyo.Text.Trim();
+                retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID
+            retDispClient.SoName = comboBox_Eigyousyo.Text.Trim();//営業所名
 
             return retDispClient;
         }
@@ -219,32 +242,9 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if (String.IsNullOrEmpty(checkClientDTO.ClAddress))
-            {
-                msg = "住所は必須入力です";
-                title = "入力エラー";
-                return false;
-            }
-
             if (String.IsNullOrEmpty(checkClientDTO.SoName))
             {
                 msg = "営業所は必須項目です";
-                title = "入力エラー";
-                return false;
-            }
-
-            if (!String.IsNullOrEmpty(checkClientDTO.ClFAX))
-            {
-                if (!formCheck.CheckPhoneAndFAX(checkClientDTO.ClFAX))
-                {
-                    msg = "FAXの値が不正です";
-                    title = "入力エラー";
-                    return false;
-                }
-            }
-            else
-            {
-                msg = "FAXは必須項目です";
                 title = "入力エラー";
                 return false;
             }
@@ -265,6 +265,13 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
+            if (String.IsNullOrEmpty(checkClientDTO.ClAddress))
+            {
+                msg = "住所は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
             if (!String.IsNullOrEmpty(checkClientDTO.ClPhone))
             {
                 if (!formCheck.CheckPhoneAndFAX(checkClientDTO.ClPhone))
@@ -280,6 +287,24 @@ namespace SalesManagement_SysDev
                 title = "入力エラー";
                 return false;
             }
+
+            if (!String.IsNullOrEmpty(checkClientDTO.ClFAX))
+            {
+                if (!formCheck.CheckPhoneAndFAX(checkClientDTO.ClFAX))
+                {
+                    msg = "FAXの値が不正です";
+                    title = "入力エラー";
+                    return false;
+                }
+            }
+            else
+            {
+                msg = "FAXは必須項目です";
+                title = "入力エラー";
+                return false;
+            }
+
+
 
             return true;
 
@@ -340,6 +365,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -662,19 +688,110 @@ namespace SalesManagement_SysDev
             textBox_Kokyaku_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             textBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
             comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
-            textBox_Yuubin.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+            textBox_Yuubin.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString();
             textBox_Zyuusyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString();
 
             textBox_Dennwa1.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString().Split('-')[0];
             textBox_Dennwa2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString().Split('-')[1];
             textBox_Dennwa3.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString().Split('-')[2];
 
-            textBox_FAX1.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString().Split('-')[0];
-            textBox_FAX2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString().Split('-')[1];
-            textBox_FAX3.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString().Split('-')[2];
+            textBox_FAX1.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString().Split('-')[0];
+            textBox_FAX2.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString().Split('-')[1];
+            textBox_FAX3.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[10].Value.ToString().Split('-')[2];
 
 
 
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_ID.Enabled = false;
+            textBox_Kokyaku_ID.BackColor = Color.LightGray;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_ID.Enabled = false;
+            textBox_Kokyaku_ID.BackColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Kokyaku_Namae.Enabled = false;
+            textBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_ID.Enabled = false;
+            textBox_Kokyaku_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Yuubin.Enabled = false;
+            textBox_Yuubin.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyuusyo.Enabled = false;
+            textBox_Zyuusyo.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            textBox_Dennwa1.Enabled = false;
+            textBox_Dennwa1.BackColor = Color.LightGray;
+            textBox_Dennwa2.Enabled = false;
+            textBox_Dennwa2.BackColor = Color.LightGray;
+            textBox_Dennwa3.Enabled = false;
+            textBox_Dennwa3.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            textBox_FAX1.Enabled = false;
+            textBox_FAX1.BackColor = Color.LightGray;
+            textBox_FAX2.Enabled = false;
+            textBox_FAX2.BackColor = Color.LightGray;
+            textBox_FAX3.Enabled = false;
+            textBox_FAX3.BackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+            label11.ForeColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Kokyaku_Namae.Enabled = true;
+            textBox_Kokyaku_Namae.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Kokyaku_ID.Enabled = true;
+            textBox_Kokyaku_ID.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textBox_Yuubin.Enabled = true;
+            textBox_Yuubin.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Zyuusyo.Enabled = true;
+            textBox_Zyuusyo.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            textBox_Dennwa1.Enabled = true;
+            textBox_Dennwa1.BackColor = Color.White;
+            textBox_Dennwa2.Enabled = true;
+            textBox_Dennwa2.BackColor = Color.White;
+            textBox_Dennwa3.Enabled = true;
+            textBox_Dennwa3.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            label9.ForeColor = Color.Black;
+            label7.ForeColor = Color.Black;
+            textBox_FAX1.Enabled = true;
+            textBox_FAX1.BackColor = Color.White;
+            textBox_FAX2.Enabled = true;
+            textBox_FAX2.BackColor = Color.White;
+            textBox_FAX3.Enabled = true;
+            textBox_FAX3.BackColor = Color.White;
+            label10.ForeColor = Color.Black;
+            label11.ForeColor = Color.Black;
         }
     }
 }

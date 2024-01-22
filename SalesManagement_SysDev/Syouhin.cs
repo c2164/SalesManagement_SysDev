@@ -66,7 +66,7 @@ namespace SalesManagement_SysDev
             //商品名
             dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[1].Width = 95;
             //メーカーID(非表示)
             dataGridView1.Columns[2].Visible = false;
             //メーカー名
@@ -80,7 +80,7 @@ namespace SalesManagement_SysDev
             //安全在庫数
             dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[5].Width = 50;
+            dataGridView1.Columns[5].Width = 60;
             //小分類ID(非表示)
             dataGridView1.Columns[6].Visible = false;
             //小分類名
@@ -98,7 +98,7 @@ namespace SalesManagement_SysDev
             //発売日
             dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[10].Width = 60;
+            dataGridView1.Columns[10].Width = 67;
             //検索用発売日(開始期間)(非表示)
             dataGridView1.Columns[11].Visible = false;
             //検索用発売日(終了期間)(非表示)
@@ -141,12 +141,18 @@ namespace SalesManagement_SysDev
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker_Nitizi_2.Value = DateTime.Now;
             dateTimePicker_Nitizi_3.Value = DateTime.Now;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
             SetCtrlFormat();
             GetSelectData();
+            cmbclia();
         }
 
         private void button_Itiran_Click(object sender, EventArgs e)
@@ -222,23 +228,36 @@ namespace SalesManagement_SysDev
             DispProductDTO retProductDTO = new DispProductDTO();
 
             //各コントロールから商品情報を読み取る
-            retProductDTO.PrID = textbox_Syouhin_ID.Text.Trim();
-            retProductDTO.PrName = textbox_Syouhin_Namae.Text.Trim();
+            retProductDTO.PrID = textbox_Syouhin_ID.Text.Trim();//商品ID
+
+            retProductDTO.PrName = textbox_Syouhin_Namae.Text.Trim();//商品名
+
             if (!(combobox_Meka_ID.SelectedIndex == -1))
-                retProductDTO.MaID = combobox_Meka_ID.SelectedValue.ToString();
-            retProductDTO.MaName = combobox_Syoubunnrui_Namae.Text.Trim();
+                retProductDTO.MaID = combobox_Meka_ID.SelectedValue.ToString();//メーカーID
+
+            retProductDTO.MaName = combobox_Meka_ID.Text.Trim();//メーカー名
+
             if (!(combobox_Syoubunnrui_Namae.SelectedIndex == -1))
-                retProductDTO.ScID = combobox_Syoubunnrui_Namae.SelectedValue.ToString();
-            retProductDTO.ScName = combobox_Syoubunnrui_Namae.Text.Trim();
-            retProductDTO.Price = textbox_Kakaku.Text.Trim();
-            retProductDTO.PrSafetyStock = textbox_Anzen.Text.Trim();
-            retProductDTO.PrModelNumber = textbox_Kataban.Text.Trim();
-            retProductDTO.PrColor = textbox_Iro.Text.Trim();
-            retProductDTO.PrReleaseDate = dateTimePicker1.Value;
-            retProductDTO.PrReleseFromDate = dateTimePicker_Nitizi_2.Value;
-            retProductDTO.PrReleaseToDate = dateTimePicker_Nitizi_3.Value;
+                retProductDTO.ScID = combobox_Syoubunnrui_Namae.SelectedValue.ToString();//小分類ID
+
+            retProductDTO.ScName = combobox_Syoubunnrui_Namae.Text.Trim();//小分類名
+
+            retProductDTO.Price = textbox_Kakaku.Text.Trim();//価格
+
+            retProductDTO.PrSafetyStock = textbox_Anzen.Text.Trim();//安全在庫数
+
+            retProductDTO.PrModelNumber = textbox_Kataban.Text.Trim();//型番
+
+            retProductDTO.PrColor = textbox_Iro.Text.Trim();//色
+
+            retProductDTO.PrReleaseDate = dateTimePicker1.Value;//発売日
+
+            retProductDTO.PrReleseFromDate = dateTimePicker_Nitizi_2.Value;//検索日時(から)
+
+            retProductDTO.PrReleaseToDate = dateTimePicker_Nitizi_3.Value;//検索日時(まで)
+
             retProductDTO.PrFlag = "0";
-            retProductDTO.PrHidden = null;
+            //retProductDTO.PrHidden = null;
             return retProductDTO;
         }
 
@@ -306,11 +325,11 @@ namespace SalesManagement_SysDev
             flg = UpdateProductRecord(product);
             if (!flg)
             {
-                messageDsp.MessageBoxDsp_OK("商品情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
             }
             else
             {
-                messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("商品情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
             }
         }
 
@@ -394,7 +413,7 @@ namespace SalesManagement_SysDev
 
             if (dataGridView1.SelectedRows.Count <= 0)
             {
-                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("表から対象を選択してください", "エラー", MessageBoxIcon.Error);
                 return null;
             }
             retPrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
@@ -422,10 +441,12 @@ namespace SalesManagement_SysDev
         private void UpdateProduct()
         {
             //変数の宣言
+            string PrID;
             DispProductDTO dispProductDTO = new DispProductDTO();
             bool flg;
             //チェック済みの入力情報を得る
             dispProductDTO = GetCheckedProductInf();
+            PrID = GetProductRecord();
             if (dispProductDTO == null)
             {
                 return;
@@ -457,6 +478,7 @@ namespace SalesManagement_SysDev
             {
                 messageDsp.MessageBoxDsp_OK("対象商品の情報を更新しました", "完了", MessageBoxIcon.Information);
             }
+
 
         }
 
@@ -551,12 +573,28 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
+            //メーカー名のチェック
+            if (combobox_Meka_ID.SelectedIndex == -1)
+            {
+                msg = "メーカーを選択してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            //小分類名のチェック
+            if (combobox_Syoubunnrui_Namae.SelectedIndex == -1)
+            {
+                msg = "小分類名を選択してください";
+                title = "入力エラー";
+                return false;
+            }
+
             //価格のチェック
             if (!String.IsNullOrEmpty(checklDispProduct.Price))
             {
                 if (!formCheck.CheckPrice(checklDispProduct.Price))
                 {
-                    msg = "価格には数字を入力してください";
+                    msg = "価格には半角数字を入力してください";
                     title = "入力エラー";
                     return false;
                 }
@@ -573,7 +611,7 @@ namespace SalesManagement_SysDev
             {
                 if (!formCheck.CheckNumeric(checklDispProduct.PrSafetyStock))
                 {
-                    msg = "安全在庫数には数字を入力してください";
+                    msg = "安全在庫数には半角数字を入力してください";
                     title = "入力エラー";
                     return false;
                 }
@@ -602,21 +640,7 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            //メーカー名のチェック
-            if (combobox_Meka_ID.SelectedIndex == -1)
-            {
-                msg = "メーカーを選択してください";
-                title = "入力エラー";
-                return false;
-            }
 
-            //小分類名のチェック
-            if (combobox_Syoubunnrui_Namae.SelectedIndex == -1)
-            {
-                msg = "小分類名を選択してください";
-                title = "入力エラー";
-                return false;
-            }
 
             return true;
         }
@@ -715,6 +739,125 @@ namespace SalesManagement_SysDev
             GetSelectData();
         }
 
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Syouhin_ID.Enabled = false;
+            textbox_Syouhin_ID.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+        }
 
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Syouhin_ID.Enabled = false;
+            textbox_Syouhin_ID.BackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Syouhin_ID.Enabled = false;
+            textbox_Syouhin_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textbox_Syouhin_Namae.Enabled = false;
+            textbox_Syouhin_Namae.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            combobox_Meka_ID.Enabled = false;
+            combobox_Meka_ID.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            combobox_Syoubunnrui_Namae.Enabled = false;
+            combobox_Syoubunnrui_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textbox_Kakaku.Enabled = false;
+            textbox_Kakaku.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            textbox_Anzen.Enabled = false;
+            textbox_Anzen.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            textbox_Kataban.Enabled = false;
+            textbox_Kataban.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textbox_Iro.Enabled = false;
+            textbox_Iro.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            groupBox1.ForeColor = Color.LightGray;
+            dateTimePicker_Nitizi_2.Enabled = false;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.LightGray;
+            dateTimePicker_Nitizi_3.Enabled = false;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textbox_Syouhin_ID.Enabled = true;
+            textbox_Syouhin_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textbox_Syouhin_Namae.Enabled = true;
+            textbox_Syouhin_Namae.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            combobox_Meka_ID.Enabled = true;
+            combobox_Meka_ID.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            combobox_Syoubunnrui_Namae.Enabled = true;
+            combobox_Syoubunnrui_Namae.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textbox_Kakaku.Enabled = true;
+            textbox_Kakaku.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            textbox_Anzen.Enabled = true;
+            textbox_Anzen.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            textbox_Kataban.Enabled = true;
+            textbox_Kataban.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            textbox_Iro.Enabled = true;
+            textbox_Iro.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker1.CalendarTitleBackColor = Color.White;
+            groupBox1.ForeColor = Color.Black;
+            dateTimePicker_Nitizi_2.Enabled = true;
+            dateTimePicker_Nitizi_2.CalendarTitleBackColor = Color.White;
+            dateTimePicker_Nitizi_3.Enabled = true;
+            dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.White;
+            label10.ForeColor = Color.Black;
+        }
     }
 }

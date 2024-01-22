@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SalesManagement_SysDev.Common;
+using SalesManagement_SysDev.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,10 +18,24 @@ namespace SalesManagement_SysDev
 {
     public partial class F_Login : Form
     {
+        private DispEmplyeeDTO loginEmployee;
+        public DispEmplyeeDTO LoginEmployee
+        {
+            set
+            {
+                    loginEmployee = value;
+                    label_loginEmName.Text = loginEmployee.EmName;
+                    label_loginEmPosition.Text = loginEmployee.PoName;
+            }
+            get
+            {
+                return loginEmployee;
+            }
+        }
+
         public F_Login()
         {
             InitializeComponent();
-
         }
 
         private void btn_CleateDabase_Click(object sender, EventArgs e)
@@ -764,8 +780,19 @@ namespace SalesManagement_SysDev
         private void F_Login_Load(object sender, EventArgs e)
         {
             SalesManagement_SysDev.Roguin roguin = new Roguin();
-
+            roguin.mainform = this;
             panel3.Controls.Add(roguin);
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            button4.Visible = false;
+            button1.BackColor = Color.LightGray;
+            button2.BackColor = Color.LightGray;
+            button3.BackColor = Color.LightGray;
+            button_logout.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -776,7 +803,9 @@ namespace SalesManagement_SysDev
                 RemCotl = panel3.Controls[0];
                 panel3.Controls.Remove(RemCotl);
             }
-            SalesManagement_SysDev.Buturyuu buturyuu = new Buturyuu();
+            SalesManagement_SysDev.Buturyuu buturyuu = new Buturyuu(loginEmployee);
+            buturyuu.mainform = this;
+            label1.Text = "販売在庫管理";
             panel3.Controls.Add(buturyuu);
         }
 
@@ -788,14 +817,16 @@ namespace SalesManagement_SysDev
                 RemCotl = panel3.Controls[0];
                 panel3.Controls.Remove(RemCotl);
             }
-            SalesManagement_SysDev.Eigyou eigyou = new Eigyou();
+            SalesManagement_SysDev.Eigyou eigyou = new Eigyou(loginEmployee);
+            eigyou.mainform = this;
+            label1.Text = "販売在庫管理";
             panel3.Controls.Add(eigyou);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             SalesManagement_SysDev.Syain syain = new Syain();
-
+            int i = 0;
             if (panel3.Controls.Count != 0)
             {
                 Control RemCotl;
@@ -803,11 +834,104 @@ namespace SalesManagement_SysDev
                 panel3.Controls.Remove(RemCotl);
             }
             panel3.Controls.Add(syain);
-
+            if (i == 0)
+            {
+                label1.Text = "社員管理";
+                i = 1;
+            }
+            else
+            {
+                label1.Text = "販売在庫管理";
+                i = 0;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            MessageDsp messageDsp = new MessageDsp();
+            if (messageDsp.MessageBoxDsp_OKCancel("ログアウトしますか？", "確認", MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                LimitLogout();
+                OpenLoginForm();
+            }
+        }
+
+        private void LimitLogout()
+        {
+            loginEmployee = null;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label_loginEmName.Text = "";
+            label_loginEmPosition.Text = "";
+        }
+
+        private void OpenLoginForm()
+        {
+            if (panel3.Controls.Count != 0)
+            {
+                Control RemCotl;
+                RemCotl = panel3.Controls[0];
+                panel3.Controls.Remove(RemCotl);
+            }
+            SalesManagement_SysDev.Roguin login = new Roguin();
+            label1.Text = "販売在庫管理";
+            login.mainform = this;
+            panel3.Controls.Add(login);
+        }
+
+
+        public void LimitBottunAdministrator()
+        {
+            button1.Enabled = true;
+            button2.Enabled = true;
+            button3.Enabled = true;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            button4.Visible = true;
+            button1.BackColor = Color.White;
+            button2.BackColor = Color.White;
+            button3.BackColor = Color.White;
+            button_logout.Visible = true;
+        }
+
+        public void LimitBottunSales()
+        {
+            button1.Enabled = false;
+            button1.BackColor = Color.LightGray;
+            button2.Enabled = true;
+            button3.Enabled = false;
+            button3.BackColor = Color.LightGray;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            button4.Visible = true;
+            button2.BackColor = Color.White;
+            button_logout.Visible = true;
+        }
+
+        public void LimitBottunLogistics()
+        {
+            button1.Enabled = true;
+            button2.Enabled = false;
+            button2.BackColor = Color.LightGray;
+            button3.Enabled = false;
+            button3.BackColor = Color.LightGray;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            button4.Visible = true;
+            button1.BackColor = Color.White;
+            button_logout.Visible = true;
+        }
+
+        public void setlabeltext(string text)
+        {
+            label1.Text = text;
         }
     }
 }

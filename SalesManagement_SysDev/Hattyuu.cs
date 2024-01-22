@@ -1,4 +1,5 @@
-﻿using SalesManagement_SysDev.Common;
+﻿using Microsoft.VisualBasic;
+using SalesManagement_SysDev.Common;
 using SalesManagement_SysDev.Entity;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,13 @@ namespace SalesManagement_SysDev
     public partial class Hattyuu : UserControl
     {
         private MessageDsp messageDsp = new MessageDsp();
-        public Hattyuu()
+        private DispEmplyeeDTO loginEmployee;
+        private int DataGridViewState;
+
+        public Hattyuu(DispEmplyeeDTO dispEmplyee)
         {
             InitializeComponent();
+            loginEmployee = dispEmplyee;
         }
 
         private void Hattyuu_Load(object sender, EventArgs e)
@@ -38,10 +43,60 @@ namespace SalesManagement_SysDev
             HattyuDataAccess access = new HattyuDataAccess();
             //商品情報の全件取得
             List<DispHattyuDTO> tb = access.GetHattyuData();
+            List<DispHattyuDTO> disptb = new List<DispHattyuDTO>();
             if (tb == null)
                 return false;
             //データグリッドビューへの設定
-            SetDataGridView(tb);
+            disptb = GetDataGridViewData(tb);
+            SetDataGridView(disptb);
+            return true;
+        }
+
+        private List<DispHattyuDTO> GetDataGridViewData(List<DispHattyuDTO> tb)
+        {
+            List<DispHattyuDTO> disptb = new List<DispHattyuDTO>();
+            var grouptb = tb.GroupBy(x => x.HaID).ToList();
+            foreach (var groupingsyukkotb in grouptb)
+            {
+                foreach (var syukkotb in groupingsyukkotb)
+                {
+                    DispHattyuDTO hattyuDTO = new DispHattyuDTO();
+                    hattyuDTO.HaID = syukkotb.HaID;
+                    hattyuDTO.MaID = syukkotb.MaID;
+                    hattyuDTO.MaName = syukkotb.MaName;
+                    hattyuDTO.EmID = syukkotb.EmID;
+                    hattyuDTO.EmName = syukkotb.EmName;
+                    hattyuDTO.HaDate = syukkotb.HaDate;
+                    hattyuDTO.WaWarehouseFlag = syukkotb.WaWarehouseFlag;
+                    hattyuDTO.HaFlag = syukkotb.HaFlag;
+                    hattyuDTO.HaHidden = syukkotb.HaHidden;
+
+                    disptb.Add(hattyuDTO);
+                    break;
+                }
+            }
+            return disptb;
+        }
+
+        private bool GetSelectDetailData(string HaID)
+        {
+            HattyuDataAccess access = new HattyuDataAccess();
+            DispHattyuDTO dispHattyu = new DispHattyuDTO()
+            {
+                HaID = HaID,
+                EmID = "",
+                EmName = "",
+                MaName = "",
+                PrID = "",
+                PrName = "",
+            };
+
+            //入荷情報の全件取得
+            List<DispHattyuDTO> tb = access.GetHattyuData(dispHattyu);
+            if (tb == null)
+                return false;
+            //データグリッドビューへの設定
+            SetDetailDataGridView(tb);
             return true;
         }
 
@@ -56,7 +111,7 @@ namespace SalesManagement_SysDev
             textBox_Hattyuu_ID.Text = "";
             textBox_Syain_ID.Text = "";
             textBox_Syouhin_ID.Text = "";
-            textBox_Suuryou.Text = "";
+            numericUpDown_suuryou.Text = "0";
             textBox_Hattyuusyousai.Text = "";
 
             //各コンボボックスを初期化
@@ -80,13 +135,20 @@ namespace SalesManagement_SysDev
 
             //日付を現在の日付にする
             dateTimePicker1.Value = DateTime.Now;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
 
         private void SetDataGridView(List<DispHattyuDTO> tb)
         {
             dataGridView1.DataSource = tb;
+            DataGridViewState = 1;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -95,7 +157,9 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "";
             //発注ID
+            dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[0].Width = 80;
@@ -104,29 +168,84 @@ namespace SalesManagement_SysDev
             //商品ID
             dataGridView1.Columns[2].Visible = false;
             //商品名
+            dataGridView1.Columns[3].Visible = false;
+            //メーカID
+            dataGridView1.Columns[4].Visible = false;
+            //メーカ名
+            dataGridView1.Columns[5].Visible = true;
+            dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[5].Width = 120;
+            //数量
+            dataGridView1.Columns[6].Visible = false;
+            //社員ID
+            dataGridView1.Columns[7].Visible = false;
+            //社員名
+            dataGridView1.Columns[8].Visible = true;
+            dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[8].Width = 70;
+            //発注年月日
+            dataGridView1.Columns[9].Visible = true;
+            dataGridView1.Columns[9].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[9].Width = 80;
+            //入庫済みフラグ
+            dataGridView1.Columns[10].Visible = true;
+            dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[10].Width = 80;
+            //発注管理フラグ
+            dataGridView1.Columns[11].Visible = false;
+            //非表示理由
+            dataGridView1.Columns[12].Visible = false;
+        }
+
+        private void SetDetailDataGridView(List<DispHattyuDTO> tb)
+        {
+            dataGridView1.DataSource = tb;
+            DataGridViewState = 2;
+            //列幅自動設定解除
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //ヘッダーの高さ
+            dataGridView1.ColumnHeadersHeight = 50;
+            //ヘッダーの折り返し表示
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            //行単位選択
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "戻る";
+            //発注ID
+            dataGridView1.Columns[0].Visible = true;
+            dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[0].Width = 80;
+            //発注詳細ID
+            dataGridView1.Columns[1].Visible = false;
+            //商品ID
+            dataGridView1.Columns[2].Visible = false;
+            //商品名
+            dataGridView1.Columns[3].Visible = true;
             dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[3].Width = 80;
             //メーカID
             dataGridView1.Columns[4].Visible = false;
             //メーカ名
-            dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[5].Width = 90;
+            dataGridView1.Columns[5].Visible = false;
             //数量
+            dataGridView1.Columns[6].Visible = true;
             dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[6].Width = 70;
             //社員ID
             dataGridView1.Columns[7].Visible = false;
             //社員名
-            dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[8].Width = 70;
+            dataGridView1.Columns[8].Visible = false;
             //発注年月日
-            dataGridView1.Columns[9].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[9].Width = 80;
+            dataGridView1.Columns[9].Visible = false;
             //入庫済みフラグ
             dataGridView1.Columns[10].Visible = false;
             //発注管理フラグ
@@ -137,8 +256,9 @@ namespace SalesManagement_SysDev
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
-            //GetSelectData();
-            //SetCtrlFormat();
+            GetSelectData();
+            SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -148,7 +268,7 @@ namespace SalesManagement_SysDev
 
         private void ListDisplayHattyu()
         {
-            List<DispHattyuDTO> hattyu= new List<DispHattyuDTO>();
+            List<DispHattyuDTO> hattyu = new List<DispHattyuDTO>();
             List<DispHattyuDTO> sortedhattyu = new List<DispHattyuDTO>();
 
             hattyu = GetTableData();
@@ -165,7 +285,7 @@ namespace SalesManagement_SysDev
 
             HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
 
-            hattyu=hattyuDataAccess.GetHattyuData();
+            hattyu = hattyuDataAccess.GetHattyuData();
 
             return hattyu;
         }
@@ -199,27 +319,29 @@ namespace SalesManagement_SysDev
 
             //各コントロールの情報
 
-            retHattyuDTO.HaID=textBox_Hattyuu_ID.Text.Trim();
-            retHattyuDTO.EmID=textBox_Syain_ID.Text.Trim();
+            retHattyuDTO.HaID = textBox_Hattyuu_ID.Text.Trim();
+            retHattyuDTO.EmID = textBox_Syain_ID.Text.Trim();
 
-            if(!(comboBox_Syain_Namae.SelectedIndex==-1))
-                retHattyuDTO.EmID=comboBox_Syain_Namae.SelectedValue.ToString();
-                retHattyuDTO.EmName=comboBox_Syain_Namae.Text.Trim();
+            if (!(comboBox_Syain_Namae.SelectedIndex == -1))
+                retHattyuDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();
+            retHattyuDTO.EmName = comboBox_Syain_Namae.Text.Trim();
 
 
             if (!(comboBox_Meka_Namae.SelectedIndex == -1))
-            retHattyuDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
+                retHattyuDTO.MaID = comboBox_Meka_Namae.SelectedValue.ToString();
             retHattyuDTO.MaName = comboBox_Meka_Namae.Text.Trim();
 
-            retHattyuDTO.PrID=textBox_Syouhin_ID.Text.Trim();
+            retHattyuDTO.PrID = textBox_Syouhin_ID.Text.Trim();
 
             if (!(comboBox_Syouhin_Namae.SelectedIndex == -1))
                 retHattyuDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
             retHattyuDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
 
-            retHattyuDTO.HaQuantity=textBox_Suuryou.Text.Trim();
-            retHattyuDTO.HaDetailID=textBox_Hattyuusyousai.Text.Trim();
+            retHattyuDTO.HaQuantity = numericUpDown_suuryou.Value.ToString();
+            retHattyuDTO.HaDetailID = textBox_Hattyuusyousai.Text.Trim();
             retHattyuDTO.HaDate = dateTimePicker1.Value;
+
+            retHattyuDTO.HaFlag = "0";
 
             return retHattyuDTO;
 
@@ -249,12 +371,15 @@ namespace SalesManagement_SysDev
             T_HattyuDetail hattyuDetail = new T_HattyuDetail();
             //データグリッドビューで選択されているデータの商品IDを受け取る
             HaID = GetHattyuRecode();
+            if (HaID == null)
+            {
+                return;
+            }
 
             //取得した商品IDでデータベースを検索する
             hattyu = SelectRemoveHattyu(HaID, out hattyuDetail);
             if (hattyu == null)
             {
-                messageDsp.MessageBoxDsp_OK("商品情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return;
             }
 
@@ -266,6 +391,7 @@ namespace SalesManagement_SysDev
         {
             //変数宣言
             DialogResult result;
+            bool flg;
 
             //非表示実行確認
             result = messageDsp.MessageBoxDsp_OKCancel("対象のデータを非表示にしてよろしいですか", "確認", MessageBoxIcon.Question);
@@ -281,10 +407,18 @@ namespace SalesManagement_SysDev
                 return;
             }
             //データの更新
-            UpdateHattyuRecord(hattyu, hattyuDetail);
+            flg = UpdateHattyuRecord(hattyu, hattyuDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("対象のデータを非表示にしました", "非表示完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("対象のデータの非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
         }
 
-        private void UpdateHattyuRecord(T_Hattyu hattyu, T_HattyuDetail hattyuDetail)
+        private bool UpdateHattyuRecord(T_Hattyu hattyu, T_HattyuDetail hattyuDetail)
         {
             //変数の宣言
             bool flg;
@@ -292,17 +426,13 @@ namespace SalesManagement_SysDev
             //データベース接続のインスタンス化
             HattyuDataAccess access = new HattyuDataAccess();
             flg = access.UpdateHattyuData(hattyu, hattyuDetail);
-            if (!flg)
-            {
-                messageDsp.MessageBoxDsp_OK("対象のデータの非表示に失敗しました", "エラー", MessageBoxIcon.Error);
-            }
-            else
-            {
-                messageDsp.MessageBoxDsp_OK("対象のデータを非表示にしました", "非表示完了", MessageBoxIcon.Information);
-            }
 
             SetCtrlFormat();
             GetSelectData();
+
+            return flg;
+
+
         }
 
         private T_Hattyu ChangeHaFlg(T_Hattyu hattyu)
@@ -331,6 +461,7 @@ namespace SalesManagement_SysDev
 
             if (dispHattyus == null) //データの取得失敗
             {
+                messageDsp.MessageBoxDsp_OK("発注情報を受け取ることができませんでした", "エラー", MessageBoxIcon.Error);
                 return null;
             }
 
@@ -348,24 +479,34 @@ namespace SalesManagement_SysDev
         {
             T_Hattyu rethattyu = new T_Hattyu();
 
-            rethattyu.HaID = int.Parse(dispHattyuDTO.HaID);
+            if (dispHattyuDTO.HaID != "")
+            {
+                rethattyu.HaID = int.Parse(dispHattyuDTO.HaID);//受注ID
+            }
             rethattyu.MaID = int.Parse(dispHattyuDTO.MaID);
             rethattyu.EmID = int.Parse(dispHattyuDTO.EmID);
             rethattyu.HaDate = dispHattyuDTO.HaDate.Value;
-            rethattyu.HaFlag = int.Parse(dispHattyuDTO .HaFlag);
+            rethattyu.HaFlag = int.Parse(dispHattyuDTO.HaFlag);
             rethattyu.HaHidden = dispHattyuDTO.HaHidden;
 
-            
+
             return rethattyu;
         }
 
         private T_HattyuDetail FormalizationHattyuDetailInputRecord(DispHattyuDTO dispHattyuDTO)
         {
             T_HattyuDetail rethattyuDetail = new T_HattyuDetail();
+            if (dispHattyuDTO.HaID != "")
+            {
+                rethattyuDetail.HaID = int.Parse(dispHattyuDTO.HaID);
+            }
 
-            rethattyuDetail.HaDetailID = int.Parse( dispHattyuDTO.HaDetailID);
-            rethattyuDetail.HaID = int.Parse(dispHattyuDTO.HaID);
-            rethattyuDetail.PrID=int.Parse(dispHattyuDTO.PrID);
+            if (dispHattyuDTO.HaID != "")
+            {
+                rethattyuDetail.HaDetailID = int.Parse(dispHattyuDTO.HaDetailID);
+            }
+
+            rethattyuDetail.PrID = int.Parse(dispHattyuDTO.PrID);
             rethattyuDetail.HaQuantity = int.Parse(dispHattyuDTO.HaQuantity);
 
             return rethattyuDetail;
@@ -375,25 +516,581 @@ namespace SalesManagement_SysDev
         {
             //変数の宣言
             string retHaID;
-
+            if (dataGridView1.SelectedRows.Count <= 0)
+            {
+                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                return null;
+            }
             retHaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
             return retHaID;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox_Hattyuu_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-            textBox_Syain_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
-            textBox_Syouhin_ID.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
-            textBox_Hattyuusyousai.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-            textBox_Suuryou.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
-            comboBox_Meka_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
-            comboBox_Syain_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
-            comboBox_Syouhin_Namae.Text= dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
-            dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString());
+            if (DataGridViewState == 1)
+            {
+                string HaID;
+                HaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                GetSelectDetailData(HaID);
+            }
+            else
+            {
+                if (dataGridView1.CurrentRow.Index != -1)
+                {
+                    if ((e.ColumnIndex == -1) && (e.RowIndex == -1))
+                    {
+                        GetSelectData();
+                    }
+                    else
+                    {
+                        textBox_Hattyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                        textBox_Syain_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
+                        textBox_Syouhin_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+                        textBox_Hattyuusyousai.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+                        numericUpDown_suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
+                        comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+                        comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+                        comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+                        dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString());
+                    }
+                }
+            }
+        }
+
+        private void button_Touroku_Click(object sender, EventArgs e)
+        {
+            RegisterHattyu();
+        }
+
+        private void RegisterHattyu()
+        {
+            string msg;
+            string title;
+            DialogResult result;
+            MessageBoxIcon icon;
+            DispHattyuDTO dispHattyuDTO = new DispHattyuDTO();
+
+            //入力チェック済のデータを受け取る
+            dispHattyuDTO = GetCheckedHattyuInf();
+            //NULLなら失敗
+            if (dispHattyuDTO == null)
+            {
+                return;
+            }
+
+            //重複チェックを行う
+            if (!DuplicationCheckHattyuInputRecord(dispHattyuDTO, out msg, out title, out icon))
+            {
+                result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
+
+            //登録確認
+            //須田オーダー
+            result = messageDsp.MessageBoxDsp_OKCancel("登録しますか？", "確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //データ登録
+            RegisrationHattyuInf(dispHattyuDTO);
+        }
+
+        private void RegisrationHattyuInf(DispHattyuDTO dispHattyuDTO)
+        {
+            //変数の宣言
+            bool flg;
+            T_Hattyu hattyu;
+            T_HattyuDetail HattyuDetail;
+            //インスタンス化
+            HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
+
+            //登録用データに変換
+            hattyu = FormalizationHattyuInputRecord(dispHattyuDTO);
+            HattyuDetail = FormalizationHattyuDetailInputRecord(dispHattyuDTO);
+            //登録処理
+            flg = hattyuDataAccess.RegisterHattyuData(hattyu, HattyuDetail);
+
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("発注情報を登録しました", "登録完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                //須田オーダー
+                messageDsp.MessageBoxDsp_OK("発注情報の登録に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+
+            SetCtrlFormat();
+            GetSelectData();
+        }
+
+        private T_Hattyu FormalizationHattyuInputRecord(DispHattyuDTO dispHattyu, T_HattyuDetail hattyuDetail)
+        {
+            //変数の宣言
+            T_Hattyu hattyu = new T_Hattyu();
+            T_HattyuDetail HattyuDetail = new T_HattyuDetail();
+
+            //登録用データに形式化
+            if (dispHattyu.HaID != "")
+            {
+                hattyu.HaID = int.Parse(dispHattyu.HaID);
+                hattyuDetail.HaID = hattyu.HaID;
+            }
+            hattyu.MaID = int.Parse(dispHattyu.MaID);
+            hattyu.EmID = int.Parse(dispHattyu.EmID);
+            hattyu.HaDate = DateTime.Now;
+            hattyu.HaFlag = 0;
+            hattyu.HaHidden = dispHattyu.HaHidden;
+            hattyuDetail.PrID = int.Parse(dispHattyu.PrID);
+            hattyuDetail.HaQuantity = int.Parse(dispHattyu.HaQuantity);
+
+            return hattyu;
+        }
+
+        private bool DuplicationCheckHattyuInputRecord(DispHattyuDTO dispHattyuDTO, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispHattyuDTO> hattyutabledata = new List<DispHattyuDTO>();
+            bool flg;
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Question;
+
+            //テーブルのデータを取得
+            hattyutabledata = GetTableData();
+
+            //同じ受注IDに同じ商品がないかチェックする
+            flg = hattyutabledata.Any(x => x.HaID == dispHattyuDTO.HaID && x.PrID == dispHattyuDTO.PrID);
+            if (flg)
+            {
+                msg = "同じデータが登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
+                title = "確認";
+                return false;
+            }
+
+            return true;
+        }
+
+        private DispHattyuDTO GetCheckedHattyuInf()
+        {
+            //変数の宣言
+            DispHattyuDTO dispHattyu = new DispHattyuDTO();
+            bool flg;
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+
+            //各コントロールから登録する受注情報を取得
+            dispHattyu = GetHattyuInf();
+
+            //取得した受注情報のデータ形式のチェック
+            flg = CheckHattyuInf(dispHattyu, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+
+            return dispHattyu;
+
+        }
+
+        private bool CheckHattyuInf(DispHattyuDTO checkdata, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //チェッククラスのインスタンス化
+            DataInputFormCheck inputFormCheck = new DataInputFormCheck();
+
+            //初期値代入(返却時エラー解消のため)
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            if (string.IsNullOrEmpty(checkdata.EmName))
+            {
+                msg = "社員名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+            if (string.IsNullOrEmpty(checkdata.MaName))
+            {
+                msg = "メーカ名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+            if (string.IsNullOrEmpty(checkdata.PrName))
+            {
+                msg = "商品名は必須入力です";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (int.Parse(checkdata.HaQuantity) <= 0)
+            {
+                msg = "数量には1以上を入力してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            return true;
+        }
+
+        private void button_Kakutei_Click(object sender, EventArgs e)
+        {
+            DecisionHattyu();
+        }
+
+        private void DecisionHattyu()
+        {
+            //変数宣言
+            string HaID;
+            bool flg;
+            T_Hattyu hattyu = new T_Hattyu();
+            List<T_HattyuDetail> hattyuDetails = new List<T_HattyuDetail>();
+            T_Warehousing warehousing = new T_Warehousing();
+            List<T_WarehousingDetail> warehousingDetails = new List<T_WarehousingDetail>();
+            DialogResult result;
+
+            //確定対象の発注IDを取得
+            HaID = GetHattyuRecode();
+            if (HaID == null)
+            {
+                return;
+            }
+
+            //発注IDから発注情報を取得
+            hattyu = GetHattyuAndDetailRecord(HaID, out hattyuDetails);
+            if (hattyu == null)
+            {
+                return;
+            }
+
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の注文を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            //入庫レコードの登録
+            flg = RegisrationWarehousingInf(hattyu, hattyuDetails);
+            if (!flg)
+            {
+                return;
+            }
+
+            UpdateHaFlagg(hattyu, hattyuDetails[0]);
+
+        }
+
+        private void UpdateHaFlagg(T_Hattyu hattyu, T_HattyuDetail hattyuDetail)
+        {
+            //変数の宣言
+            bool flg;
+
+            //入庫済みフラグを0から1にする
+            hattyu = ChangeWaWarehousingFlag(hattyu);
+            ///発注情報を更新
+            flg = UpdateHattyuRecord(hattyu, hattyuDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("発注情報を確定しました", "確定完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報の確定に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+
+        }
+
+        private T_Hattyu ChangeWaWarehousingFlag(T_Hattyu hattyu)
+        {
+            hattyu.WaWarehouseFlag = 1;
+            return hattyu;
+        }
+
+        private bool RegisrationWarehousingInf(T_Hattyu hattyu, List<T_HattyuDetail> hattyuDetails)
+        {
+            //変数の宣言
+            bool flg;
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            T_Warehousing Warehousing;
+            List<T_WarehousingDetail> warehousingDetail;
+
+            //入庫と入庫詳細のレコード作成
+            Warehousing = CreateWarehousingInputRecord(hattyu, hattyuDetails, out warehousingDetail);
+
+            //注文と注文詳細の情報を登録
+            flg = RegistrationWarehousingRecord(Warehousing, warehousingDetail, out msg, out title, out icon);
+            if (!flg)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return false;
+            }
+
+            return true;
+
+        }
+
+        private bool RegistrationWarehousingRecord(T_Warehousing warehousing, List<T_WarehousingDetail> warehousingDetail, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数宣言
+            bool flg = false;
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+            //インスタンス化
+            WarehousingDataAccess access = new WarehousingDataAccess();
+            flg = access.RegisterWerehousingData(warehousing, warehousingDetail);
+
+            if (!flg)
+            {
+                msg = "注文情報の登録中にエラーが発生しました";
+                title = "エラー";
+                return false;
+            }
+
+            return true;
+
+        }
+
+        private T_Hattyu GetHattyuAndDetailRecord(string HaID, out List<T_HattyuDetail> hattyuDetail)
+        {
+            //変数の宣言
+            List<DispHattyuDTO> hattyuDTO = new List<DispHattyuDTO>();
+            T_Hattyu hattyu = new T_Hattyu();
+            string msg;
+            string title;
+            MessageBoxIcon icon;
+            //初期値代入
+            hattyuDetail = new List<T_HattyuDetail>();
+
+            //発注情報取得
+            hattyuDTO = CreateHattyuRecord(HaID, out msg, out title, out icon);
+            if (hattyuDTO == null)
+            {
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return null;
+            }
+
+            //発注情報をテーブルデータに形式化
+            hattyu = FormalizationHattyuInputRecord(hattyuDTO[0]);
+            foreach (var HattyuDTO in hattyuDTO)
+            {
+                hattyuDetail.Add(FormalizationHattyuDetailInputRecord(HattyuDTO));
+            }
+
+            return hattyu;
+
+        }
+
+        private T_Warehousing CreateWarehousingInputRecord(T_Hattyu hattyu, List<T_HattyuDetail> hattyuDetails, out List<T_WarehousingDetail> warehousingDetail)
+        {
+            //変数の宣言
+            T_Warehousing warehousing = new T_Warehousing();
+            warehousingDetail = new List<T_WarehousingDetail>();
+
+            //入庫レコードの作成
+
+            warehousing.HaID = hattyu.HaID;
+            warehousing.EmID = hattyu.EmID;
+            warehousing.WaDate = DateTime.Now;
+            warehousing.WaShelfFlag = 0;
+            warehousing.WaFlag = 0;
+            warehousing.WaHidden = null;
+
+            //入庫詳細レコード  の作成
+            foreach (var hattyudetail in hattyuDetails)
+            {
+                T_WarehousingDetail warehousingDetails = new T_WarehousingDetail();
+                warehousingDetails.PrID = hattyudetail.PrID;
+                warehousingDetails.WaQuantity = hattyudetail.HaQuantity;
+                warehousingDetail.Add(warehousingDetails);
+            }
+
+            return warehousing;
+        }
+
+        private List<DispHattyuDTO> CreateHattyuRecord(string haID, out string msg, out string title, out MessageBoxIcon icon)
+        {
+            //変数の宣言
+            List<DispHattyuDTO> dispHattyu = new List<DispHattyuDTO>();
+            //初期値代入
+            msg = "";
+            title = "";
+            icon = MessageBoxIcon.Error;
+
+            //発注IDの一致する発注情報を取得
+            dispHattyu = GetTableData().Where(x => x.HaID == haID).ToList();
+            if (dispHattyu == null || dispHattyu.Count == 0)
+            {
+                msg = "発注情報を取得できませんでした";
+                title = "エラー";
+                return null;
+            }
+            if (dispHattyu[0].WaWarehouseFlag == "1")
+            {
+                msg = "既に確定済みです";
+                title = "エラー";
+                return null;
+            }
+
+            return dispHattyu;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Syouhin_ID.Enabled = false;
+            textBox_Syouhin_ID.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+            cmbclia();
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+
+
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Syouhin_ID.Enabled = false;
+            textBox_Syouhin_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Syouhin_ID.Enabled = false;
+            textBox_Syouhin_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Hattyuu_ID.Enabled = true;
+            textBox_Hattyuu_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Syain_ID.Enabled = true;
+            textBox_Syain_ID.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Syain_Namae.Enabled = true;
+            comboBox_Syain_Namae.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Syouhin_ID.Enabled = true;
+            textBox_Syouhin_ID.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            numericUpDown_suuryou.Enabled = true;
+            numericUpDown_suuryou.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            textBox_Hattyuusyousai.Enabled = true;
+            textBox_Hattyuusyousai.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker1.CalendarTitleBackColor = Color.White;
+            checkBox1.Enabled = true;
+            checkBox1.ForeColor = Color.Black;
         }
     }
-
-
 
 }

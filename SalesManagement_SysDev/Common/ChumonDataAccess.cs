@@ -38,14 +38,13 @@ namespace SalesManagement_SysDev.Common
         }
 
         //注文情報アップデート(アップデート情報)
-        public bool UpdateChumonData(T_Chumon UpChumon, T_ChumonDetail UpChumonDetail)
+        public bool UpdateChumonData(T_Chumon UpChumon)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.T_Chumons.Single(x => x.ChID == UpChumon.ChID);
-                    var UpdateTargetDetail = context.T_ChumonDetails.Single(x => x.ChDetailID == UpChumonDetail.ChDetailID);
 
                     UpdateTarget.ChID = UpChumon.ChID;
                     UpdateTarget.SoID = UpChumon.SoID;
@@ -56,12 +55,6 @@ namespace SalesManagement_SysDev.Common
                     UpdateTarget.ChStateFlag = UpChumon.ChStateFlag;
                     UpdateTarget.ChFlag = UpChumon.ChFlag;
                     UpdateTarget.ChHidden = UpChumon.ChHidden;
-
-                    UpdateTargetDetail.ChDetailID = UpChumonDetail.ChDetailID;
-                    UpdateTargetDetail.ChID = UpChumonDetail.ChID;
-                    UpdateTargetDetail.PrID = UpChumonDetail.PrID;
-                    UpdateTargetDetail.ChQuantity = UpChumonDetail.ChQuantity;
-
 
                     context.SaveChanges();
                     return true;
@@ -99,7 +92,7 @@ namespace SalesManagement_SysDev.Common
                          where
                          (dispChumonDTO.ChID.Equals("") ? true :
                          Chumon.ChID.ToString().Equals(dispChumonDTO.ChID)) && //注文ID
-                                                                               //
+                                                                               
                          Product.PrName.Contains(dispChumonDTO.PrName) && //商品名
 
                          SalesOffice.SoName.Contains(dispChumonDTO.SoName) && //営業所名
@@ -112,7 +105,8 @@ namespace SalesManagement_SysDev.Common
 
                          Client.ClName.Contains(dispChumonDTO.ClName) && //顧客名
 
-                         Employee.EmName.Contains(dispChumonDTO.EmName) &&//社員名
+                         (Employee.EmName == null && dispChumonDTO.EmName == "" ? true :
+                         Employee.EmName.Contains(dispChumonDTO.EmName)) &&//社員名
 
                          //Chumon.ChDate.(dispChumonDTO.ChDate)&&//注文年月日
 
@@ -137,9 +131,6 @@ namespace SalesManagement_SysDev.Common
                              ChStateFlag = Chumon.ChStateFlag.ToString(),
                              ChFlag = Chumon.ChFlag.ToString(),
                              ChHidden = Chumon.ChHidden.ToString(),
-
-
-
 
                          };
 

@@ -13,15 +13,21 @@ namespace SalesManagement_SysDev.Common
 {
     class ArraivalDataAccess
     {
-        public bool RegisterArrivalsData(T_Arrival RegArrival, T_ArrivalDetail RegArrivalDetail)
+        public bool RegisterArrivalsData(T_Arrival RegArrival, List<T_ArrivalDetail> ListRegArrivalDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     context.T_Arrivals.Add(RegArrival);
-                    context.T_ArrivalDetails.Add(RegArrivalDetail);
                     context.SaveChanges();
+                    int ArID = context.T_Arrivals.Max(x => x.ArID);
+                    foreach (var RegArrivalDetail in ListRegArrivalDetail)
+                    {
+                        RegArrivalDetail.ArID = ArID;
+                        context.T_ArrivalDetails.Add(RegArrivalDetail);
+                        context.SaveChanges();
+                    }
                     return true;
                 }
                 catch (Exception ex)
@@ -32,16 +38,22 @@ namespace SalesManagement_SysDev.Common
             }
         }
 
-        public bool UpdateArrivalData(T_Arrival UpArrival,T_ArrivalDetail UpArrivalDetail)
+        public bool UpdateArrivalData(T_Arrival UpArrival)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.T_Arrivals.Single(x => x.ArID == UpArrival.ArID);
-                    var UpdateTargetDetail = context.T_ArrivalDetails.Single(x => x.ArDetailID == UpArrivalDetail.ArID);
-                    UpdateTarget = UpArrival;
-                    UpdateTargetDetail = UpArrivalDetail;
+                    UpdateTarget.ArID = UpArrival.ArID;
+                    UpdateTarget.ClID = UpArrival.ClID;
+                    UpdateTarget.EmID = UpArrival.EmID;
+                    UpdateTarget.SoID = UpArrival.SoID;
+                    UpdateTarget.OrID = UpArrival.OrID;
+                    UpdateTarget.ArDate = UpArrival.ArDate;
+                    UpdateTarget.ArStateFlag = UpArrival.ArStateFlag;
+                    UpdateTarget.ArFlag = UpArrival.ArFlag;
+                    UpdateTarget.ArHidden = UpArrival.ArHidden;
 
                     context.SaveChanges();
                     return true;
@@ -68,7 +80,8 @@ namespace SalesManagement_SysDev.Common
                          join SalesOffice in context.M_SalesOffices
                          on Arrival.SoID equals SalesOffice.SoID
                          join Employee in context.M_Employees
-                         on Arrival.EmID equals Employee.EmID
+                         on Arrival.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join Client in context.M_Clients
                          on Arrival.ClID equals Client.ClID
                          join Order in context.T_Orders
@@ -81,18 +94,18 @@ namespace SalesManagement_SysDev.Common
                          on Product.MaID equals Maker.MaID
                          where
                          Client.ClName.Contains(dispArrivalDTO.ClName) && //顧客名
-
-                         ArrivalDetail.ArID.ToString().Contains(dispArrivalDTO.ArID) && //入荷ID
-
+                         (dispArrivalDTO.ArID.Equals("") ? true :
+                         Arrival.ArID.ToString() == (dispArrivalDTO.ArID)) && //入荷ID
                          SalesOffice.SoName.Contains(dispArrivalDTO.SoName) && //営業所名
                          ChumonEm.EmName.Contains(dispArrivalDTO.ArrivalEmName) && //入荷社員名
-                         Arrival.OrID.ToString().Contains(dispArrivalDTO.OrID) && //受注ID
+                         (dispArrivalDTO.OrID.Equals("") ? true :
+                         Order.OrID.ToString().Contains(dispArrivalDTO.OrID)) && //受注ID
                          Product.PrName.Contains(dispArrivalDTO.PrName) && //商品名
-                         Employee.EmID.ToString().Contains(dispArrivalDTO.ConfEmName) && //確定社員名
-                         ArrivalDetail.ArDetailID.ToString().Contains(dispArrivalDTO.ArDetailID) && //入荷詳細ID
+                         (dispArrivalDTO.ConfEmName == "" && Employee.EmName == null ? true :
+                         Employee.EmName.Contains(dispArrivalDTO.ConfEmName)) && //確定社員名
+                         (dispArrivalDTO.ArDetailID.Equals("") ? true :
+                         ArrivalDetail.ArDetailID.ToString().Contains(dispArrivalDTO.ArDetailID)) && //入荷詳細ID
                          Maker.MaName.Contains(dispArrivalDTO.MaName) && //メーカー名
-                         ArrivalDetail.ArQuantity.ToString().Contains(dispArrivalDTO.ArQuantity) && //数量
-                         Arrival.ArStateFlag == int.Parse(dispArrivalDTO.ArStateFlag) &&//入荷状態フラグ
                          Arrival.ArFlag == 0 //非表示フラグ
 
 
@@ -102,21 +115,22 @@ namespace SalesManagement_SysDev.Common
                              ArDetailID = ArrivalDetail.ArDetailID.ToString(),
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName.ToString(),
-                             MaID = Product.MaID.ToString(),
+                             MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
                              ArQuantity = ArrivalDetail.ArQuantity.ToString(),
-                             SoID = Arrival.SoID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName.ToString(),
-                             ArrivalEmID = Chumon.ClID.ToString(),
+                             ArrivalEmID = ChumonEm.EmID.ToString(),
                              ArrivalEmName = ChumonEm.EmName.ToString(),
-                             ConfEmID = Arrival.EmID.ToString(),
+                             ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName.ToString(),
-                             ClID = Arrival.ClID.ToString(),
+                             ClID = Client.ClID.ToString(),
                              ClName = Client.ClName.ToString(),
-                             OrID = Arrival.OrID.ToString(),
+                             OrID = Order.OrID.ToString(),
                              ArDate = Arrival.ArDate,
-                             ArStateFlag = Arrival.ArStateFlag.ToString()
-
+                             ArStateFlag = Arrival.ArStateFlag.ToString(),
+                             ArFlag = Arrival.ArFlag.ToString(),
+                             ArHidden = Arrival.ArHidden,
                          };
 
                 return tb.ToList();
@@ -127,7 +141,7 @@ namespace SalesManagement_SysDev.Common
                 MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             return null;
-        
+
         }
 
         public List<DispArrivalDTO> GetArrivalData()
@@ -144,7 +158,8 @@ namespace SalesManagement_SysDev.Common
                          join SalesOffice in context.M_SalesOffices
                          on Arrival.SoID equals SalesOffice.SoID
                          join Employee in context.M_Employees
-                         on Arrival.EmID equals Employee.EmID
+                         on Arrival.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join Client in context.M_Clients
                          on Arrival.ClID equals Client.ClID
                          join Order in context.T_Orders
@@ -156,6 +171,8 @@ namespace SalesManagement_SysDev.Common
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
 
+                         where
+                         Arrival.ArFlag == 0 //非表示フラグ
 
                          select new DispArrivalDTO
                          {
@@ -163,20 +180,22 @@ namespace SalesManagement_SysDev.Common
                              ArDetailID = ArrivalDetail.ArDetailID.ToString(),
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName.ToString(),
-                             MaID = Product.MaID.ToString(),
+                             MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
                              ArQuantity = ArrivalDetail.ArQuantity.ToString(),
-                             SoID = Arrival.SoID.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
                              SoName = SalesOffice.SoName.ToString(),
-                             ArrivalEmID = Chumon.ClID.ToString(),
-                             ArrivalEmName = ChumonEm.EmName.ToString(),
-                             ConfEmID = Arrival.EmID.ToString(),
-                             ConfEmName = Employee.EmName.ToString(),
-                             ClID = Arrival.ClID.ToString(),
+                             ArrivalEmID = ChumonEm.EmID.ToString(),//
+                             ArrivalEmName = ChumonEm.EmName.ToString(),//
+                             ConfEmID = Employee.EmID.ToString(),//
+                             ConfEmName = Employee.EmName,//
+                             ClID = Client.ClID.ToString(),
                              ClName = Client.ClName.ToString(),
-                             OrID = Arrival.OrID.ToString(),
+                             OrID = Order.OrID.ToString(),
                              ArDate = Arrival.ArDate,
-                             ArStateFlag = Arrival.ArStateFlag.ToString()
+                             ArStateFlag = Arrival.ArStateFlag.ToString(),
+                             ArFlag = Arrival.ArFlag.ToString(),
+                             ArHidden = Arrival.ArHidden,
 
                          };
 
@@ -190,5 +209,7 @@ namespace SalesManagement_SysDev.Common
             return null;
 
         }
+
+
     }
 }

@@ -58,50 +58,55 @@
             // 
             // button_Nyuuko_Kannri
             // 
+            this.button_Nyuuko_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button_Nyuuko_Kannri.Location = new System.Drawing.Point(0, 753);
             this.button_Nyuuko_Kannri.Name = "button_Nyuuko_Kannri";
             this.button_Nyuuko_Kannri.Size = new System.Drawing.Size(337, 107);
-            this.button_Nyuuko_Kannri.TabIndex = 4;
+            this.button_Nyuuko_Kannri.TabIndex = 5;
             this.button_Nyuuko_Kannri.Text = "入庫管理";
             this.button_Nyuuko_Kannri.UseVisualStyleBackColor = true;
             this.button_Nyuuko_Kannri.Click += new System.EventHandler(this.button_Nyuuko_Kannri_Click);
             // 
             // button_Hattyuu_Kannri
             // 
+            this.button_Hattyuu_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button_Hattyuu_Kannri.Location = new System.Drawing.Point(0, 569);
             this.button_Hattyuu_Kannri.Name = "button_Hattyuu_Kannri";
             this.button_Hattyuu_Kannri.Size = new System.Drawing.Size(337, 107);
-            this.button_Hattyuu_Kannri.TabIndex = 3;
+            this.button_Hattyuu_Kannri.TabIndex = 4;
             this.button_Hattyuu_Kannri.Text = "発注管理";
             this.button_Hattyuu_Kannri.UseVisualStyleBackColor = true;
             this.button_Hattyuu_Kannri.Click += new System.EventHandler(this.button_Hattyuu_Kannri_Click);
             // 
             // button_Syukko_Kannri
             // 
+            this.button_Syukko_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button_Syukko_Kannri.Location = new System.Drawing.Point(0, 371);
             this.button_Syukko_Kannri.Name = "button_Syukko_Kannri";
             this.button_Syukko_Kannri.Size = new System.Drawing.Size(337, 107);
-            this.button_Syukko_Kannri.TabIndex = 2;
+            this.button_Syukko_Kannri.TabIndex = 3;
             this.button_Syukko_Kannri.Text = "出庫管理";
             this.button_Syukko_Kannri.UseVisualStyleBackColor = true;
             this.button_Syukko_Kannri.Click += new System.EventHandler(this.button_Syukko_Kannri_Click);
             // 
             // button_Zaiko_Kannri
             // 
+            this.button_Zaiko_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.button_Zaiko_Kannri.Location = new System.Drawing.Point(0, 191);
             this.button_Zaiko_Kannri.Name = "button_Zaiko_Kannri";
             this.button_Zaiko_Kannri.Size = new System.Drawing.Size(337, 107);
-            this.button_Zaiko_Kannri.TabIndex = 1;
+            this.button_Zaiko_Kannri.TabIndex = 2;
             this.button_Zaiko_Kannri.Text = "在庫管理";
             this.button_Zaiko_Kannri.UseVisualStyleBackColor = true;
             this.button_Zaiko_Kannri.Click += new System.EventHandler(this.button_Zaiko_Kannri_Click);
             // 
             // button_Syouhin_Kannri
             // 
+            this.button_Syouhin_Kannri.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button_Syouhin_Kannri.Location = new System.Drawing.Point(0, 3);
             this.button_Syouhin_Kannri.Name = "button_Syouhin_Kannri";
             this.button_Syouhin_Kannri.Size = new System.Drawing.Size(337, 107);
-            this.button_Syouhin_Kannri.TabIndex = 0;
+            this.button_Syouhin_Kannri.TabIndex = 1;
             this.button_Syouhin_Kannri.Text = "商品管理";
             this.button_Syouhin_Kannri.UseVisualStyleBackColor = true;
             this.button_Syouhin_Kannri.Click += new System.EventHandler(this.button_Syouhin_Kannri_Click);

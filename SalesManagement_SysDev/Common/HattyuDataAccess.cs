@@ -10,16 +10,26 @@ namespace SalesManagement_SysDev.Common
 {
     internal class HattyuDataAccess
     {
-        public bool RegisterHattyuData(T_Hattyu RegHattyu)
+        public bool RegisterHattyuData(T_Hattyu RegHattyu,T_HattyuDetail HattyuDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
-                    context.T_Hattyus.Add(RegHattyu);
+                    int HaID = RegHattyu.HaID;
+                    if (!context.T_Hattyus.Any(x => x.HaID == HaID))
+                    {
+                        context.T_Hattyus.Add(RegHattyu);
+                        context.SaveChanges();
+                        HaID = context.T_Hattyus.Max(x => x.HaID);
+                    }
+                    HattyuDetail.HaID=HaID;
+                    context.T_HattyuDetails.Add(HattyuDetail);
                     context.SaveChanges();
                     return true;
                 }
+
+
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "例外エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -110,7 +120,8 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
-                             HaDate= Hattyu.HaDate,
+                             WaWarehouseFlag = Hattyu.WaWarehouseFlag.ToString(),
+                             HaDate = Hattyu.HaDate,
                              HaQuantity=HattyuDetail.HaQuantity.ToString(),
                              HaFlag=Hattyu.HaFlag.ToString(),
                              HaHidden=Hattyu.HaHidden.ToString(),
@@ -158,11 +169,11 @@ namespace SalesManagement_SysDev.Common
                              MaName = Maker.MaName,
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
+                             WaWarehouseFlag = Hattyu.WaWarehouseFlag.ToString(),
                              HaDate = Hattyu.HaDate,
                              HaQuantity = HattyuDetail.HaQuantity.ToString(),
                              HaFlag=Hattyu.HaFlag.ToString(),
                              HaHidden = Hattyu.HaHidden.ToString(),
-                             
                          };
 
                 return tb.ToList();

@@ -30,11 +30,29 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("電話番号")]
         public string ClPhone { get; set; }
 
+        [DisplayName("電話番号1")]
+        public string ClPhone1 { get; set; }
+
+        [DisplayName("電話番号2")]
+        public string ClPhone2 { get; set; }
+
+        [DisplayName("電話番号3")]
+        public string ClPhone3 { get; set; }
+
         [DisplayName("郵便番号")]
         public string ClPostal { get; set; }
 
         [DisplayName("FAX")]
         public string ClFAX { get; set; }
+
+        [DisplayName("FAX1")]
+        public string ClFAX1 { get; set; }
+
+        [DisplayName("FAX2")]
+        public string ClFAX2 { get; set; }
+
+        [DisplayName("FAX3")]
+        public string ClFAX3 { get; set; }
 
         [DisplayName("顧客管理フラグ")]
         public string ClFlag { get; set; }
@@ -44,7 +62,7 @@ namespace SalesManagement_SysDev.Entity
     }
 
     //社員管理画面表示用
-    class DispEmplyeeDTO
+    public class DispEmplyeeDTO
     {
         [DisplayName("社員ID")]
         public string EmID { get; set; }
@@ -72,6 +90,15 @@ namespace SalesManagement_SysDev.Entity
 
         [DisplayName("電話番号")]
         public string EmPhone { get; set; }
+
+        [DisplayName("電話番号1")]
+        public string EmPhone1 { get; set; }
+
+        [DisplayName("電話番号2")]
+        public string EmPhone2 { get; set; }
+
+        [DisplayName("電話番号3")]
+        public string EmPhone3 { get; set; }
 
         [DisplayName("社員管理フラグ")]
         public string EmFlag { get; set; }
@@ -141,6 +168,9 @@ namespace SalesManagement_SysDev.Entity
 
         [DisplayName("商品名")]
         public string PrName { get; set; }
+
+        [DisplayName("メーカーID")]
+        public string MaID { get; set; }
 
         [DisplayName("メーカー名")]
         public string MaName { get; set; }
@@ -283,20 +313,11 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("数量")]
         public string SyQuantity { get; set; }
 
-        [DisplayName("営業所")]
-        public string SaleceOffice { get; set; }
-
         [DisplayName("営業所ID")]
         public string SoID { get; set; }
 
         [DisplayName("営業所名")]
         public string SoName { get; set; }
-
-        [DisplayName("社員ID")]
-        public string EmID { get; set; }
-
-        [DisplayName("社員名")]
-        public string EmName { get; set; }
 
         [DisplayName("顧客ID")]
         public string ClID { get; set; }
@@ -319,11 +340,17 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("確定社員名")]
         public string ConfEmName { get; set; }
 
+        [DisplayName("メーカーID")]
+        public string MaID { get; set; }
+
         [DisplayName("メーカー名")]
         public string MaName { get; set; }
 
         [DisplayName("受注ID")]
         public string OrID { get; set; }
+
+        [DisplayName("社員ID")]
+        public string EmID { get; set; }
 
         [DisplayName("出庫年月日")]
         public DateTime? SyDate { get; set; }
@@ -425,7 +452,7 @@ namespace SalesManagement_SysDev.Entity
         public string PrName { get; set; }
 
         [DisplayName("数量")]
-        public string ArQuantity { get; set; }
+        public string ShQuantity { get; set; }
 
         [DisplayName("営業所ID")]
         public string SoID { get; set; }
@@ -454,8 +481,8 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("受注ID")]
         public string OrID { get; set; }
 
-        [DisplayName("出荷年月日")]
-        public DateTime? ShDate { get; set; }
+        [DisplayName("出荷完了年月日")]
+        public DateTime? ShFinishDate { get; set; }
 
         [DisplayName("出荷状態フラグ")]
         public string ShStateFlag { get; set; }
@@ -465,7 +492,13 @@ namespace SalesManagement_SysDev.Entity
 
         [DisplayName("非表示理由")]
         public string ShHidden { get; set; }
-    }
+
+        [DisplayName("社員ID")]
+        public string EmID { get; set; }
+
+
+
+        }
 
 
     //発注管理画面表示用
@@ -502,7 +535,7 @@ namespace SalesManagement_SysDev.Entity
         public DateTime? HaDate { get; set; }
 
         [DisplayName("入庫済みフラグ")]
-        public string H { get; set; }
+        public string WaWarehouseFlag { get; set; }
 
         [DisplayName("発注管理フラグ")]
         public string HaFlag { get; set; }

@@ -17,11 +17,13 @@ namespace SalesManagement_SysDev
     public partial class Zyutyuu : UserControl
     {
         private MessageDsp messageDsp = new MessageDsp();
+        private DispEmplyeeDTO loginEmployee;
+        private int DataGridViewState; //データグリッドビューの表示ステータス(1：受注　　2：受注詳細)
 
-
-        public Zyutyuu()
+        public Zyutyuu(DispEmplyeeDTO dispEmplyee)
         {
             InitializeComponent();
+            loginEmployee = dispEmplyee;
         }
 
         private void Zyutyuu_Load(object sender, EventArgs e)
@@ -79,6 +81,11 @@ namespace SalesManagement_SysDev
             comboBox_Syain_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Syain_Namae.SelectedIndex = -1;
 
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
+
         }
 
         private bool GetSelectData()
@@ -86,18 +93,77 @@ namespace SalesManagement_SysDev
             OrderDataAccess access = new OrderDataAccess();
             //出荷情報の全件取得
             List<DispOrderDTO> tb = access.GetOrderData();
+            List<DispOrderDTO> disptb = new List<DispOrderDTO>();
             if (tb == null)
                 return false;
             //データグリッドビューへの設定
-            SetDataGridView(tb);
+            disptb = GetDataGridViewData(tb);
+            SetDataGridView(disptb);
             return true;
         }
+
+        private List<DispOrderDTO> GetDataGridViewData(List<DispOrderDTO> tb)
+        {
+            List<DispOrderDTO> disptb = new List<DispOrderDTO>();
+            var grouptb = tb.GroupBy(x => x.OrID).ToList();
+            foreach (var groupingordertb in grouptb)
+            {
+                foreach (var ordertb in groupingordertb)
+                {
+                    DispOrderDTO orderDTO = new DispOrderDTO();
+                    orderDTO.OrID = ordertb.OrID;
+                    orderDTO.SoID = ordertb.SoID;
+                    orderDTO.SoName = ordertb.SoName;
+                    orderDTO.EmID = ordertb.EmID;
+                    orderDTO.EmName = ordertb.EmName;
+                    orderDTO.ClID = ordertb.ClID;
+                    orderDTO.ClName = ordertb.ClName;
+                    orderDTO.ClCharge = ordertb.ClCharge;
+                    orderDTO.OrDate = ordertb.OrDate;
+                    orderDTO.OrStateFlag = ordertb.OrStateFlag;
+                    orderDTO.OrFlag = ordertb.OrFlag;
+                    orderDTO.OrHidden = ordertb.OrHidden;
+
+                    disptb.Add(orderDTO);
+                    break;
+                }
+            }
+            return disptb;
+        }
+
+        private bool GetSelectDetailData(string OrID)
+        {
+            OrderDataAccess access = new OrderDataAccess();
+            DispOrderDTO dispOrder = new DispOrderDTO()
+            {
+                OrID = OrID,
+                ClCharge = "",
+                EmName = "",
+                ClName = "",
+                OrDetailID = "",
+                MaName = "",
+                SoName = "",
+                PrName = ""
+            };
+            //出荷情報の全件取得
+            List<DispOrderDTO> tb = access.GetOrderData(dispOrder);
+
+            if (tb == null)
+                return false;
+            //データグリッドビューへの設定
+            SetDetailDataGridView(tb);
+            return true;
+        }
+
 
         private void SetDataGridView(List<DispOrderDTO> tb)
         {
             dataGridView1.DataSource = tb;
+            DataGridViewState = 1;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -106,39 +172,33 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
-
+            dataGridView1.TopLeftHeaderCell.Value = "";
             //受注ID
+            dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[0].Width = 40;
+            dataGridView1.Columns[0].Width = 30;
 
             //受注詳細ID
-            dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[1].Width = 80;
+            dataGridView1.Columns[1].Visible = false;
 
             //商品ID(非表示)
             dataGridView1.Columns[2].Visible = false;
 
             //商品名
-            dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[3].Width = 80;
+            dataGridView1.Columns[3].Visible = false;
 
             //数量
-            dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[4].Visible = false;
 
             //合計金額
-            dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[5].Width = 80;
+            dataGridView1.Columns[5].Visible = false;
 
             //営業所ID(非表示)
             dataGridView1.Columns[6].Visible = false;
 
             //営業所名
+            dataGridView1.Columns[7].Visible = true;
             dataGridView1.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[7].Width = 80;
@@ -147,6 +207,7 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[8].Visible = false;
 
             //社員名
+            dataGridView1.Columns[9].Visible = true;
             dataGridView1.Columns[9].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[9].Width = 80;
@@ -155,21 +216,25 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[10].Visible = false;
 
             //顧客名
+            dataGridView1.Columns[11].Visible = true;
             dataGridView1.Columns[11].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[11].Width = 80;
 
             //顧客担当者名
+            dataGridView1.Columns[12].Visible = true;
             dataGridView1.Columns[12].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[12].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[12].Width = 80;
+            dataGridView1.Columns[12].Width = 110;
 
             //受注年月日
+            dataGridView1.Columns[13].Visible = true;
             dataGridView1.Columns[13].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[13].Width = 80;
+            dataGridView1.Columns[13].Width = 90;
 
             //受注状態フラグ
+            dataGridView1.Columns[14].Visible = true;
             dataGridView1.Columns[14].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[14].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[14].Width = 80;
@@ -180,14 +245,110 @@ namespace SalesManagement_SysDev
             //非表示理由(非表示)
             dataGridView1.Columns[16].Visible = false;
 
+            //メーカー名
+            dataGridView1.Columns[17].Visible = false;
 
+            //価格(非表示)
+            dataGridView1.Columns[18].Visible = false;
+        }
 
+        private void SetDetailDataGridView(List<DispOrderDTO> tb)
+        {
+            dataGridView1.DataSource = tb;
+            DataGridViewState = 2;
+            //列幅自動設定解除
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //ヘッダーの高さ
+            dataGridView1.ColumnHeadersHeight = 50;
+            //ヘッダーの折り返し表示
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            //行単位選択
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "戻る";
+            //受注ID
+            dataGridView1.Columns[0].Visible = true;
+            dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[0].Width = 30;
+
+            //受注詳細ID
+            dataGridView1.Columns[1].Visible = true;
+            dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[1].Width = 45;
+
+            //商品ID(非表示)
+            dataGridView1.Columns[2].Visible = false;
+
+            //商品名
+            dataGridView1.Columns[3].Visible = true;
+            dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[3].Width = 80;
+
+            //数量
+            dataGridView1.Columns[4].Visible = true;
+            dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[4].Width = 60;
+
+            //合計金額
+            dataGridView1.Columns[5].Visible = true;
+            dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[5].Width = 80;
+
+            //営業所ID(非表示)
+            dataGridView1.Columns[6].Visible = false;
+
+            //営業所名
+            dataGridView1.Columns[7].Visible = false;
+
+            //社員ID(非表示)
+            dataGridView1.Columns[8].Visible = false;
+
+            //社員名
+            dataGridView1.Columns[9].Visible = false;
+
+            //顧客ID(非表示)
+            dataGridView1.Columns[10].Visible = false;
+
+            //顧客名
+            dataGridView1.Columns[11].Visible = false;
+
+            //顧客担当者名
+            dataGridView1.Columns[12].Visible = false;
+
+            //受注年月日
+            dataGridView1.Columns[13].Visible = false;
+
+            //受注状態フラグ
+            dataGridView1.Columns[14].Visible = false;
+
+            //受注管理フラグ
+            dataGridView1.Columns[15].Visible = false;
+
+            //非表示理由(非表示)
+            dataGridView1.Columns[16].Visible = false;
+
+            //メーカー名
+            dataGridView1.Columns[17].Visible = true;
+            dataGridView1.Columns[17].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[17].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[17].Width = 180;
+
+            //価格(非表示)
+            dataGridView1.Columns[18].Visible = false;
         }
 
         private void button_Kuria_Click(object sender, EventArgs e)
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -266,7 +427,7 @@ namespace SalesManagement_SysDev
             if (!(comboBox_Syain_Namae.SelectedIndex == -1))
                 retOrderDTO.EmID = comboBox_Syain_Namae.SelectedValue.ToString();//社員ID
             retOrderDTO.EmName = comboBox_Syain_Namae.Text.Trim();//社員名
-            retOrderDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();//受注ID 
+            retOrderDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();//受注ID
             retOrderDTO.OrDetailID = textBox_Zyutyuusyousai_ID.Text.Trim();//受注詳細ID
             retOrderDTO.MaName = comboBox_Meka_Namae.Text.Trim();//メーカー名
             if (!(comboBox_Eigyousyo.SelectedIndex == -1)) retOrderDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所名
@@ -275,6 +436,8 @@ namespace SalesManagement_SysDev
                 retOrderDTO.PrID = comboBox_Syouhin_Namae.SelectedValue.ToString();
             retOrderDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();//商品名
             retOrderDTO.OrQuantity = numericUpDown_Suuryou.Value.ToString();//数量
+            retOrderDTO.OrFlag = "0";
+            retOrderDTO.OrStateFlag = "0";
 
 
             return retOrderDTO;
@@ -290,6 +453,9 @@ namespace SalesManagement_SysDev
 
             //商品検索
             retDispOrder = OrAccess.GetOrderData(orderDTO);
+
+            //データグリッドビューに表示できるように変換
+            retDispOrder = GetDataGridViewData(retDispOrder);
 
             return retDispOrder;
         }
@@ -319,24 +485,75 @@ namespace SalesManagement_SysDev
             //重複チェックを行う
             if (!DuplicationCheckOrderInputRecord(dispOrderDTO, out msg, out title, out icon))
             {
+                if (icon == MessageBoxIcon.Error)
+                {
+                    messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                    return;
+                }
                 result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
                 if (result == DialogResult.Cancel)
                 {
                     return;
                 }
-            }
 
-            //登録確認
-            //須田オーダー
-            result = messageDsp.MessageBoxDsp_OKCancel("登録すりゅ～？", "かくにん(はーと)", MessageBoxIcon.Question);
-            if (result == DialogResult.Cancel)
+                //数量を加算する
+                dispOrderDTO = AddQuantity(dispOrderDTO);
+                //データを更新する
+                UpdateOrderInf(dispOrderDTO);
+            }
+            else
             {
-                return;
+                //登録確認
+                result = messageDsp.MessageBoxDsp_OKCancel("登録しますか？", "確認", MessageBoxIcon.Question);
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+                //データを登録する
+                RegisrationOrderInf(dispOrderDTO);
             }
+        }
 
-            //データを登録する
-            RegisrationOrderInf(dispOrderDTO);
+        private DispOrderDTO AddQuantity(DispOrderDTO dispOrderDTO)
+        {
+            List<DispOrderDTO> orders = new List<DispOrderDTO>();
+            DispOrderDTO orderDTO = new DispOrderDTO();
+            orders = GetTableData();
+            orderDTO = orders.Single(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
 
+            dispOrderDTO.OrQuantity = (int.Parse(orderDTO.OrQuantity) + int.Parse(dispOrderDTO.OrQuantity)).ToString();
+            return dispOrderDTO;
+        }
+
+        private void UpdateOrderInf(DispOrderDTO dispOrderDTO)
+        {
+            //変数の宣言
+            bool flg;
+            T_Order order;
+            T_OrderDetail orderDetail;
+            //インスタンス化
+            OrderDataAccess orderDataAccess = new OrderDataAccess();
+
+            //更新用データに変換
+            order = FormalizationOrderInputRecord(dispOrderDTO, out orderDetail);
+            orderDetail.OrDetailID = int.Parse(dispOrderDTO.OrDetailID);
+            //更新処理
+            flg = orderDataAccess.UpdateOrderData(order, orderDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報を更新しました", "更新完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+        }
+        private DispOrderDTO SetLoginEmInf(DispOrderDTO order)
+        {
+            order.EmID = loginEmployee.EmID;
+            order.EmName = loginEmployee.EmName;
+
+            return order;
         }
 
         private void RegisrationOrderInf(DispOrderDTO dispOrderDTO)
@@ -349,19 +566,21 @@ namespace SalesManagement_SysDev
             OrderDataAccess orderDataAccess = new OrderDataAccess();
 
             //登録用データに変換
+            dispOrderDTO = SetLoginEmInf(dispOrderDTO);
             order = FormalizationOrderInputRecord(dispOrderDTO, out orderDetail);
             //登録処理
             flg = orderDataAccess.RegisterOrderData(order, orderDetail);
             if (flg)
             {
-                //須田オーダー
-                messageDsp.MessageBoxDsp_OK("登録したおっ！", "とろくかんりょう！", MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("受注情報を登録しました", "登録完了", MessageBoxIcon.Information);
             }
             else
             {
-                //須田オーダー
-                messageDsp.MessageBoxDsp_OK("はぁ(*´Д｀)", "とうろくしっぱい...", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("受注情報の登録に失敗しました", "エラー", MessageBoxIcon.Error);
             }
+
+            SetCtrlFormat();
+            GetSelectData();
 
         }
 
@@ -382,8 +601,8 @@ namespace SalesManagement_SysDev
             order.ClID = int.Parse(dispOrderDTO.ClID);//顧客ID
             order.ClCharge = dispOrderDTO.ClCharge;//顧客担当者名
             order.OrDate = DateTime.Now;//日付
-            order.OrStateFlag = 0;//受注状態フラグ
-            order.OrFlag = 0;//受注管理フラグ
+            order.OrStateFlag = int.Parse(dispOrderDTO.OrStateFlag);//受注状態フラグ
+            order.OrFlag = int.Parse(dispOrderDTO.OrFlag);//受注管理フラグ
             orderDetail.PrID = int.Parse(dispOrderDTO.PrID);//商品ID
             orderDetail.OrQuantity = int.Parse(dispOrderDTO.OrQuantity);//数量
             //合計金額はデータベース接続の登録処理側で行う
@@ -398,21 +617,32 @@ namespace SalesManagement_SysDev
             bool flg;
             msg = "";
             title = "";
-            icon = MessageBoxIcon.Question;
+            icon = MessageBoxIcon.Error;
 
             //テーブルのデータを取得
             ordertabledata = GetTableData();
 
-            //同じ受注IDに同じ商品がないかチェックする
-            flg = ordertabledata.Any(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
-            if (flg)
+            //既に確定されているかチェックする
+            if (dispOrderDTO.OrID != "")
             {
-                msg = "同じ商品が登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
-                title = "確認";
-                return false;
+                flg = ordertabledata.First(x => x.OrID == dispOrderDTO.OrID).OrStateFlag == "1";
+                if (flg)
+                {
+                    icon = MessageBoxIcon.Error;
+                    msg = "既に確定されている受注の為、新しく登録できません";
+                    title = "エラー";
+                    return false;
+                }
+                //同じ受注IDに同じ商品がないかチェックする
+                flg = ordertabledata.Any(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
+                if (flg)
+                {
+                    icon = MessageBoxIcon.Question;
+                    msg = "同じ商品が登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
+                    title = "確認";
+                    return false;
+                }
             }
-
-
 
             return true;
         }
@@ -466,16 +696,33 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if (String.IsNullOrEmpty(checkdata.SoName))
+            if (String.IsNullOrEmpty(checkdata.EmName))
             {
-                msg = "営業所は必須入力です";
+                msg = "社員名は必須入力です";
                 title = "入力エラー";
                 return false;
             }
 
-            if (!inputFormCheck.CheckNumeric(checkdata.OrID))
+            if (!String.IsNullOrEmpty(checkdata.OrID))
             {
-                msg = "受注IDには半角数字を入力してください";
+                if (!inputFormCheck.CheckNumeric(checkdata.OrID))
+                {
+                    msg = "受注IDには半角数字を入力してください";
+                    title = "入力エラー";
+                    return false;
+                }
+            }
+
+            if (comboBox_Meka_Namae.SelectedIndex == -1)
+            {
+                msg = "メーカーを選択してください";
+                title = "入力エラー";
+                return false;
+            }
+
+            if (String.IsNullOrEmpty(checkdata.SoName))
+            {
+                msg = "営業所は必須入力です";
                 title = "入力エラー";
                 return false;
             }
@@ -535,7 +782,7 @@ namespace SalesManagement_SysDev
 
             if (dataGridView1.SelectedRows.Count <= 0)
             {
-                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("表から対象を選択してください", "エラー", MessageBoxIcon.Error);
                 return null;
             }
 
@@ -623,11 +870,11 @@ namespace SalesManagement_SysDev
             flg = UpdateOrderRecord(order, orderDetail);
             if (flg)
             {
-                messageDsp.MessageBoxDsp_OK("受注情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("受注情報を非表示にしました", "非表示完了", MessageBoxIcon.Information);
             }
             else
             {
-                messageDsp.MessageBoxDsp_OK("受注情報を非表示にしました", "非表示完了", MessageBoxIcon.Information);
+                messageDsp.MessageBoxDsp_OK("受注情報の非表示に失敗しました", "エラー", MessageBoxIcon.Error);
             }
         }
 
@@ -657,28 +904,36 @@ namespace SalesManagement_SysDev
             SetCtrlFormat();
             GetSelectData();
 
-            if (!flg)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
+            return flg;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
-            textBox_Kokyaku_Tantou.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
-            comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString();
-            textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-            textBox_Zyutyuusyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-            comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[17].Value.ToString();
-            comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
-            comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
-            numericUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString()); ;
+            if (DataGridViewState == 1)
+            {
+                string OrID;
+                OrID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                GetSelectDetailData(OrID);
+            }
+            else
+            {
+                if ((e.ColumnIndex == -1) && (e.RowIndex == -1))
+                {
+                    GetSelectData();
+                }
+                else
+                {
+                    comboBox_Kokyaku_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
+                    textBox_Kokyaku_Tantou.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[12].Value.ToString();
+                    comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString();
+                    textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                    textBox_Zyutyuusyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+                    comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[17].Value.ToString();
+                    comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+                    comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+                    numericUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString());
+                }
+            }
         }
 
         private void button_Zyutyuu_Kakutei_Click(object sender, EventArgs e)
@@ -695,6 +950,7 @@ namespace SalesManagement_SysDev
             List<T_OrderDetail> orderDetail = new List<T_OrderDetail>();
             T_Chumon chumon = new T_Chumon();
             List<T_ChumonDetail> ListChumonDetail = new List<T_ChumonDetail>();
+            DialogResult result;
 
             //確定対象の受注IDを取得
             OrID = GetOrderRecord();
@@ -702,6 +958,13 @@ namespace SalesManagement_SysDev
             //受注IDから受注情報を取得
             order = GetOrderAndOrDetailRecord(OrID, out orderDetail);
             if (order == null)
+            {
+                return;
+            }
+
+            //確定確認
+            result = messageDsp.MessageBoxDsp_OKCancel("対象の注文を確定してもよろしいですか？", "確定確認", MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
             {
                 return;
             }
@@ -859,7 +1122,7 @@ namespace SalesManagement_SysDev
 
             //受注IDの一致する受注情報を取得
             DispOrders = GetTableData().Where(x => x.OrID == orID).ToList();
-            if (DispOrders == null)
+            if (DispOrders == null || DispOrders.Count == 0)
             {
                 msg = "受注情報を取得できませんでした";
                 title = "エラー";
@@ -874,6 +1137,125 @@ namespace SalesManagement_SysDev
 
             return DispOrders;
 
+        }
+
+        private void numericUpDown_Suuryou_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label4.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuusyousai_ID.Enabled = false;
+            textBox_Zyutyuusyousai_ID.BackColor = Color.LightGray;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label9.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_Tantou.Enabled = false;
+            textBox_Kokyaku_Tantou.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuusyousai_ID.Enabled = false;
+            textBox_Zyutyuusyousai_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_Tantou.Enabled = false;
+            textBox_Kokyaku_Tantou.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuusyousai_ID.Enabled = false;
+            textBox_Zyutyuusyousai_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUpDown_Suuryou.Enabled = false;
+            numericUpDown_Suuryou.BackColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            comboBox_Kokyaku_Namae.Enabled = true;
+            comboBox_Kokyaku_Namae.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Kokyaku_Tantou.Enabled = true;
+            textBox_Kokyaku_Tantou.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Syain_Namae.Enabled = true;
+            comboBox_Syain_Namae.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textBox_Zyutyuu_ID.Enabled = true;
+            textBox_Zyutyuu_ID.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Zyutyuusyousai_ID.Enabled = true;
+            textBox_Zyutyuusyousai_ID.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            numericUpDown_Suuryou.Enabled = true;
+            numericUpDown_Suuryou.BackColor = Color.White;
         }
     }
 }

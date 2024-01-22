@@ -10,22 +10,21 @@ namespace SalesManagement_SysDev.Common
 {
     internal class ShipmentDataAccess
     {
-        public bool RegisterShipmentData(T_Shipment RegShipment, T_ShipmentDetail RegShipmentDetail)
+        public bool RegisterShipmentData(T_Shipment RegShipment, List<T_ShipmentDetail> ListRegShipmentDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
-                    int ShID = RegShipment.ShID;
-                    if(!context.T_Shipments.Any(x => x.ShID == RegShipment.ShID))
-                    {
-                        context.T_Shipments.Add(RegShipment);
-                        context.SaveChanges();
-                        ShID = context.T_Shipments.Max(x => x.ShID);
-                    }
-                    RegShipmentDetail.ShID = ShID;
-                    context.T_ShipmentDetails.Add(RegShipmentDetail);
+                    context.T_Shipments.Add(RegShipment);
                     context.SaveChanges();
+                    int ShID = context.T_Shipments.Max(x => x.ShID);
+                    foreach (var RegShipmentDetail in ListRegShipmentDetail)
+                    {
+                        RegShipmentDetail.ShID = ShID;
+                        context.T_ShipmentDetails.Add(RegShipmentDetail);
+                        context.SaveChanges();
+                    }
                     return true;
                 }
                 catch (Exception ex)
@@ -36,14 +35,29 @@ namespace SalesManagement_SysDev.Common
             }
         }
 
-        public bool UpdateShipmentData(T_Shipment UpShipment)
+        public bool UpdateShipmentData(T_Shipment UpShipment, T_ShipmentDetail UpShipmentDetail)
         {
             using (var context = new SalesManagement_DevContext())
             {
                 try
                 {
                     var UpdateTarget = context.T_Shipments.Single(x => x.ShID == UpShipment.ShID);
-                    UpdateTarget = UpShipment;
+                    var UpdateTargetDetails = context.T_ShipmentDetails.Single(x => x.ShDetailID == UpShipmentDetail.ShDetailID);
+
+                    UpdateTarget.ShID = UpShipment.ShID;
+                    UpdateTarget.ClID = UpShipment.ClID;
+                    UpdateTarget.EmID = UpShipment.EmID;
+                    UpdateTarget.SoID = UpShipment.SoID;
+                    UpdateTarget.OrID = UpShipment.OrID;
+                    UpdateTarget.ShStateFlag = UpShipment.ShStateFlag;
+                    UpdateTarget.ShFinishDate = UpShipment.ShFinishDate;
+                    UpdateTarget.ShFlag = UpShipment.ShFlag;
+                    UpdateTarget.ShHidden = UpShipment.ShHidden;
+
+                    UpdateTargetDetails.ShDetailID = UpShipmentDetail.ShDetailID;
+                    UpdateTargetDetails.ShID = UpShipmentDetail.ShID;
+                    UpdateTargetDetails.PrID = UpShipmentDetail.PrID;
+                    UpdateTargetDetails.ShQuantity = UpShipmentDetail.ShQuantity;
 
                     context.SaveChanges();
                     return true;
@@ -72,7 +86,8 @@ namespace SalesManagement_SysDev.Common
                          join SalesOffice in context.M_SalesOffices
                          on Shipment.SoID equals SalesOffice.SoID
                          join Employee in context.M_Employees
-                         on Shipment.EmID equals Employee.EmID
+                         on Shipment.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join Order in context.T_Orders
                          on Shipment.OrID equals Order.OrID
                          join Arrival in context.T_Arrivals
@@ -81,23 +96,36 @@ namespace SalesManagement_SysDev.Common
                          on Arrival.EmID equals ArrivalEmployee.EmID
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
+
                          where
                          Client.ClName.Contains(dispShipmentDTO.ClName) && //顧客名
-                         dispShipmentDTO.ShID.Equals("")? true:
-                         Shipment.ShID.ToString().Equals(dispShipmentDTO.ShID) && //出荷ID
+
+                         (dispShipmentDTO.ShID.Equals("") ? true :
+                         Shipment.ShID.ToString().Equals(dispShipmentDTO.ShID)) && //出荷ID
+
                          SalesOffice.SoName.Contains(dispShipmentDTO.SoName) && //営業所名
+
                          ArrivalEmployee.EmName.Contains(dispShipmentDTO.ArrivalEmName) && //入荷社員名
-                         dispShipmentDTO.OrID.Equals("")?true:
-                         Shipment.OrID.ToString().Equals(dispShipmentDTO.OrID) && //受注ID
+
+                         (dispShipmentDTO.OrID.Equals("") ? true :
+                         Order.OrID.ToString().Equals(dispShipmentDTO.OrID)) && //受注ID
+
                          Product.PrName.Contains(dispShipmentDTO.PrName) && //商品名
-                         Employee.EmID.ToString().Contains(dispShipmentDTO.ConfEmName) && //確定社員名
-                         dispShipmentDTO.ShDetailID.Equals("")? true:
-                         ShipmentDetail.ShDetailID.ToString().Equals(dispShipmentDTO.ShDetailID) && //出荷詳細ID
+
+                         (Employee.EmName == null && dispShipmentDTO.ConfEmName == "" ? true :
+                         Employee.EmName.Contains(dispShipmentDTO.ConfEmName)) && //確定社員名
+
+                         (dispShipmentDTO.ShDetailID.Equals("") ? true :
+                         ShipmentDetail.ShDetailID.ToString().Equals(dispShipmentDTO.ShDetailID)) && //出荷詳細ID
+
                          Maker.MaName.Contains(dispShipmentDTO.MaName) && //メーカー名
-                         dispShipmentDTO.ArQuantity.Equals("")? true:
-                         ShipmentDetail.ShQuantity.ToString().Equals(dispShipmentDTO.ArQuantity)  &&//数量
-                         dispShipmentDTO.ShStateFlag.Contains("2") ? true:
-                         Shipment.ShStateFlag.ToString() == dispShipmentDTO.ShStateFlag &&//出荷状態フラグ
+
+                         /*(dispShipmentDTO.ShQuantity.Equals("") ? true :
+                         ShipmentDetail.ShQuantity.ToString().Equals(dispShipmentDTO.ShQuantity)) &&//数量
+
+                         (dispShipmentDTO.ShStateFlag.Contains("2") ? true :
+                         Shipment.ShStateFlag.ToString().Equals(dispShipmentDTO.ShStateFlag)) &&//出荷状態フラグ*/
+
                          Shipment.ShFlag == 0 //非表示フラグ
 
 
@@ -106,22 +134,24 @@ namespace SalesManagement_SysDev.Common
                              ShID = Shipment.ShID.ToString(),
                              ShDetailID = ShipmentDetail.ShDetailID.ToString(),
                              PrID = Product.PrID.ToString(),
-                             PrName = Product.PrName.ToString(),
-                             MaID = Product.MaID.ToString(),
-                             MaName = Maker.MaName.ToString(),
-                             ArQuantity = ShipmentDetail.ShDetailID.ToString(),
-                             SoID = Shipment.SoID.ToString(),
-                             SoName = SalesOffice.SoName.ToString(),
-                             ArrivalEmID = Arrival.ClID.ToString(),
-                             ArrivalEmName = ArrivalEmployee.EmName.ToString(),
-                             ConfEmID = Shipment.EmID.ToString(),
-                             ConfEmName = Employee.EmName.ToString(),
-                             ClID = Shipment.ClID.ToString(),
-                             ClName = Client.ClName.ToString(),
-                             OrID = Shipment.OrID.ToString(),
-                             ShDate = Shipment.ShFinishDate,
-                             ShStateFlag = Shipment.ShStateFlag.ToString()
-
+                             PrName = Product.PrName,
+                             MaID = Maker.MaID.ToString(),
+                             MaName = Maker.MaName,
+                             ShQuantity = ShipmentDetail.ShQuantity.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName,
+                             ArrivalEmID = ArrivalEmployee.EmID.ToString(),
+                             ArrivalEmName = ArrivalEmployee.EmName,
+                             ConfEmID = Employee.EmID.ToString(),
+                             ConfEmName = Employee.EmName,
+                             ClID = Client.ClID.ToString(),
+                             ClName = Client.ClName,
+                             OrID = Order.OrID.ToString(),
+                             ShStateFlag = Shipment.ShStateFlag.ToString(),
+                             ShFlag = Shipment.ShFlag.ToString(),
+                             ShHidden = Shipment.ShHidden,
+                             ShFinishDate=Shipment.ShFinishDate,
+                             EmID = Employee.EmID.ToString(),
                          };
 
                 return tb.ToList();
@@ -151,13 +181,15 @@ namespace SalesManagement_SysDev.Common
                          join SalesOffice in context.M_SalesOffices
                          on Shipment.SoID equals SalesOffice.SoID
                          join Employee in context.M_Employees
-                         on Shipment.EmID equals Employee.EmID
+                         on Shipment.EmID equals Employee.EmID into em
+                         from Employee in em.DefaultIfEmpty()
                          join Order in context.T_Orders
                          on Shipment.OrID equals Order.OrID
                          join Arrival in context.T_Arrivals
                          on Shipment.OrID equals Arrival.OrID
                          join ArrivalEmployee in context.M_Employees
-                         on Arrival.EmID equals ArrivalEmployee.EmID
+                         on Arrival.EmID equals ArrivalEmployee.EmID into Arem
+                         from ArrivalEmployee in Arem.DefaultIfEmpty()
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
                          where
@@ -169,21 +201,24 @@ namespace SalesManagement_SysDev.Common
                              ShID = Shipment.ShID.ToString(),
                              ShDetailID = ShipmentDetail.ShDetailID.ToString(),
                              PrID = Product.PrID.ToString(),
-                             PrName = Product.PrName.ToString(),
-                             MaID = Product.MaID.ToString(),
-                             MaName = Maker.MaName.ToString(),
-                             ArQuantity = ShipmentDetail.ShDetailID.ToString(),
-                             SoID = Shipment.SoID.ToString(),
-                             SoName = SalesOffice.SoName.ToString(),
-                             ArrivalEmID = Arrival.ClID.ToString(),
-                             ArrivalEmName = ArrivalEmployee.EmName.ToString(),
-                             ConfEmID = Shipment.EmID.ToString(),
-                             ConfEmName = Employee.EmName.ToString(),
-                             ClID = Shipment.ClID.ToString(),
-                             ClName = Client.ClName.ToString(),
-                             OrID = Shipment.OrID.ToString(),
-                             ShDate = Shipment.ShFinishDate,
-                             ShStateFlag = Shipment.ShStateFlag.ToString()
+                             PrName = Product.PrName,
+                             MaID = Maker.MaID.ToString(),
+                             MaName = Maker.MaName,
+                             ShQuantity = ShipmentDetail.ShQuantity.ToString(),
+                             SoID = SalesOffice.SoID.ToString(),
+                             SoName = SalesOffice.SoName,
+                             ArrivalEmID = ArrivalEmployee.EmID.ToString(),
+                             ArrivalEmName = ArrivalEmployee.EmName,
+                             ConfEmID = Employee.EmID.ToString(),
+                             ConfEmName = Employee.EmName,
+                             ClID = Client.ClID.ToString(),
+                             ClName = Client.ClName,
+                             OrID = Order.OrID.ToString(),
+                             ShStateFlag = Shipment.ShStateFlag.ToString(),
+                             ShFlag = Shipment.ShFlag.ToString(),
+                             ShHidden = Shipment.ShHidden,
+                             ShFinishDate = Shipment.ShFinishDate,
+                             EmID = Employee.EmID.ToString(),
                          };
 
                 return tb.ToList();
