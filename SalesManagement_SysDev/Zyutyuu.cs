@@ -710,12 +710,12 @@ namespace SalesManagement_SysDev
                 }
             }
 
-            /*if (comboBox_Meka_Namae.SelectedIndex == -1)
+            if (comboBox_Meka_Namae.SelectedIndex == -1)
             {
                 msg = "メーカーを選択してください";
                 title = "入力エラー";
                 return false;
-            }*/
+            }
 
             if (String.IsNullOrEmpty(checkdata.SoName))
             {

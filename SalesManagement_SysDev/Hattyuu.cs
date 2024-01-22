@@ -942,47 +942,47 @@ namespace SalesManagement_SysDev
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            
-                cmbclia();
-                label1.ForeColor = Color.LightGray;
-                textBox_Hattyuu_ID.Enabled = false;
-                textBox_Hattyuu_ID.BackColor = Color.LightGray;
-                label2.ForeColor = Color.LightGray;
-                textBox_Syain_ID.Enabled = false;
-                textBox_Syain_ID.BackColor = Color.LightGray;
-                label5.ForeColor = Color.LightGray;
-                textBox_Syouhin_ID.Enabled = false;
-                textBox_Syouhin_ID.BackColor = Color.LightGray;
-                label8.ForeColor = Color.LightGray;
-                textBox_Hattyuusyousai.Enabled = false;
-                textBox_Hattyuusyousai.BackColor = Color.LightGray;
-                label9.ForeColor = Color.LightGray;
-                dateTimePicker1.Enabled = false;
-                dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
-                checkBox1.Enabled = false;
-                checkBox1.ForeColor = Color.LightGray;          
-            
+
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Syouhin_ID.Enabled = false;
+            textBox_Syouhin_ID.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+
 
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            
-                cmbclia();
-                label7.ForeColor = Color.LightGray;
-                numericUpDown_suuryou.Enabled = false;
-                numericUpDown_suuryou.BackColor = Color.LightGray;
-                label8.ForeColor = Color.LightGray;
-                textBox_Hattyuusyousai.Enabled = false;
-                textBox_Hattyuusyousai.BackColor = Color.LightGray;
-                label9.ForeColor = Color.LightGray;
-                dateTimePicker1.Enabled = false;
-                dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
-                checkBox1.Enabled = false;
-                checkBox1.ForeColor = Color.LightGray;
-            
-         
-            
+
+            cmbclia();
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+
+
+
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
