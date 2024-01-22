@@ -87,7 +87,7 @@ namespace SalesManagement_SysDev.Common
                          on Syukko.EmID equals Employee.EmID into em
                          from Employee in em.DefaultIfEmpty()
                          join Chumon in context.T_Chumons
-                        on Employee.EmID equals Chumon.EmID
+                         on Syukko.OrID equals Chumon.OrID
                          join SalesOffice in context.M_SalesOffices
                          on Syukko.SoID equals SalesOffice.SoID
                          join Order in context.T_Orders
@@ -101,13 +101,16 @@ namespace SalesManagement_SysDev.Common
                          SalesOffice.SoName.Contains(dispSyukkoDTO.SoName) && //営業所名
                          ChumonEmployee.EmName.Contains(dispSyukkoDTO.ChumonEmName) && //注文社員名
                          Client.ClName.Contains(dispSyukkoDTO.ClName) && //顧客名
-                          ((dispSyukkoDTO.SyID == "") ? true :
+                          ((dispSyukkoDTO.OrID == "") ? true :
                          Order.OrID.ToString().Equals(dispSyukkoDTO.OrID)) && //受注ID
-                         Employee.EmID.ToString().Contains(dispSyukkoDTO.ConfEmName) && //確定社員名
-                          ((dispSyukkoDTO.SyID == "") ? true :
+                         (Employee.EmName == null && dispSyukkoDTO.ConfEmName == "" ? true :
+                         Employee.EmName.ToString().Contains(dispSyukkoDTO.ConfEmName)) && //確定社員名
+                          ((dispSyukkoDTO.SyDetailID == "") ? true :
                          SyukkoDetail.SyDetailID.ToString().Equals(dispSyukkoDTO.SyDetailID)) && //出庫詳細ID
                          Maker.MaName.Contains(dispSyukkoDTO.MaName) && //メーカー名
                          Product.PrName.Contains(dispSyukkoDTO.PrName) &&  //商品名
+                         (dispSyukkoDTO.SyStateFlag == "1" ? true :
+                         Syukko.SyStateFlag == 0) &&
 
                          Syukko.SyFlag == 0
 
@@ -120,6 +123,7 @@ namespace SalesManagement_SysDev.Common
                              ConfEmID = Employee.EmID.ToString(),
                              ConfEmName = Employee.EmName,
                              SyDetailID = SyukkoDetail.SyDetailID.ToString(),
+                             MaID = Maker.MaID.ToString(),
                              MaName = Maker.MaName.ToString(),
                              PrID = Product.PrID.ToString(),
                              PrName = Product.PrName,
@@ -147,14 +151,11 @@ namespace SalesManagement_SysDev.Common
         }
 
         //入庫全表示：オーバーロード
-        public List<DispSyukkoDTO> GetSyukkoData()
+        public List<DispSyukkoDTO> GetSyukkoData(int stateFlag)
         {
             var context = new SalesManagement_DevContext();
             try
             {
-
-
-
                 //「T_Syukko」テーブルから「T_SyukkoDetail」「M_Product] 「M_Maker] 「M_Client] 「M_SalesOffice]「M_Employee] 「T_Order]「M_Chumon]「M_ChumonEmployee] を参照
                 var tb = from SyukkoDetail in context.T_SyukkoDetails
                          join Syukko in context.T_Syukkos
@@ -177,7 +178,9 @@ namespace SalesManagement_SysDev.Common
                          join ChumonEmployee in context.M_Employees
                          on Chumon.EmID equals ChumonEmployee.EmID
 
-                         where Syukko.SyFlag == 0
+                         where Syukko.SyFlag == 0 &&
+                         (stateFlag == 1 ? true :
+                         Syukko.SyStateFlag == 0)
 
                          select new DispSyukkoDTO
                          {
@@ -204,8 +207,6 @@ namespace SalesManagement_SysDev.Common
                              SyFlag = Syukko.SyFlag.ToString(),
                              SyHidden = Syukko.SyHidden.ToString(),
                          };
-
-
 
                 return tb.ToList();
             }

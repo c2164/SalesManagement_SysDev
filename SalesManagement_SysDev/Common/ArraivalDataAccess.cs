@@ -101,7 +101,7 @@ namespace SalesManagement_SysDev.Common
                          (dispArrivalDTO.OrID.Equals("") ? true :
                          Order.OrID.ToString().Contains(dispArrivalDTO.OrID)) && //受注ID
                          Product.PrName.Contains(dispArrivalDTO.PrName) && //商品名
-                         (dispArrivalDTO.ConfEmID == "" && Employee.EmName == null ? true :
+                         (dispArrivalDTO.ConfEmName == "" && Employee.EmName == null ? true :
                          Employee.EmName.Contains(dispArrivalDTO.ConfEmName)) && //確定社員名
                          (dispArrivalDTO.ArDetailID.Equals("") ? true :
                          ArrivalDetail.ArDetailID.ToString().Contains(dispArrivalDTO.ArDetailID)) && //入荷詳細ID

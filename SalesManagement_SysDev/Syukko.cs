@@ -17,6 +17,8 @@ namespace SalesManagement_SysDev
     {
         private MessageDsp messageDsp = new MessageDsp();
         private DispEmplyeeDTO loginEmployee;
+        private int DataGridViewState;
+        private int checkbox_stateflag = 0;
         public Syukko(DispEmplyeeDTO emplyeeDTO)
         {
             InitializeComponent();
@@ -40,11 +42,71 @@ namespace SalesManagement_SysDev
         {
             SyukkoDataAccess access = new SyukkoDataAccess();
             //入庫情報の全件取得
-            List<DispSyukkoDTO> tb = access.GetSyukkoData();
+            List<DispSyukkoDTO> tb = access.GetSyukkoData(checkbox_stateflag);
+            List<DispSyukkoDTO> disptb = new List<DispSyukkoDTO>();
             if (tb == null)
                 return false;
             //データグリッドビューへの設定
-            SetDataGridView(tb);
+            disptb = GetDataGridViewData(tb);
+
+            SetDataGridView(disptb);
+            return true;
+        }
+
+        private List<DispSyukkoDTO> GetDataGridViewData(List<DispSyukkoDTO> tb)
+        {
+            List<DispSyukkoDTO> disptb = new List<DispSyukkoDTO>();
+            var grouptb = tb.GroupBy(x => x.ChID).ToList();
+            foreach (var groupingsyukkotb in grouptb)
+            {
+                foreach (var syukkotb in groupingsyukkotb)
+                {
+                    DispSyukkoDTO syukkoDTO = new DispSyukkoDTO();
+                    syukkoDTO.SyID = syukkotb.SyID;
+                    syukkoDTO.SoID = syukkotb.SoID;
+                    syukkoDTO.SoName = syukkotb.SoName;
+                    syukkoDTO.ChumonEmID = syukkotb.ChumonEmID;
+                    syukkoDTO.ChumonEmName = syukkotb.ChumonEmName;
+                    syukkoDTO.ConfEmID = syukkotb.ConfEmID;
+                    syukkoDTO.ConfEmName = syukkotb.ConfEmName;
+                    syukkoDTO.ClID = syukkotb.ClID;
+                    syukkoDTO.ClName = syukkotb.ClName;
+                    syukkoDTO.ChID = syukkotb.ChID;
+                    syukkoDTO.OrID = syukkotb.OrID;
+                    syukkoDTO.SyDate = syukkotb.SyDate;
+                    syukkoDTO.SyStateFlag = syukkotb.SyStateFlag;
+                    syukkoDTO.SyFlag = syukkotb.SyFlag;
+                    syukkoDTO.SyHidden = syukkotb.SyHidden;
+
+                    disptb.Add(syukkoDTO);
+                    break;
+                }
+            }
+            return disptb;
+        }
+
+        private bool GetSelectDetailData(string SyID)
+        {
+            SyukkoDataAccess access = new SyukkoDataAccess();
+            DispSyukkoDTO dispOrder = new DispSyukkoDTO()
+            {
+                SyID = SyID,
+                ChumonEmName = "",
+                OrID = "",
+                ClName = "",
+                ConfEmName = "",
+                SyDetailID = "",
+                MaName = "",
+                SoName = "",
+                PrName = "",
+            };
+            //出荷情報の全件取得
+            List<DispSyukkoDTO> tb = access.GetSyukkoData(dispOrder);
+
+            if (tb == null)
+                return false;
+            //データグリッドビューへの設定
+            SetDetailDataGridView(tb);
             return true;
         }
 
@@ -89,12 +151,18 @@ namespace SalesManagement_SysDev
 
             //数量の初期化
             domainUpDown_Suuryou.Value = 0;
+
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
         private void SetDataGridView(List<DispSyukkoDTO> tb)
         {
             dataGridView1.DataSource = tb;
+            DataGridViewState = 1;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[19].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -103,72 +171,152 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "";
             //出庫ID
+            dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[0].Width = 30;
             //出庫詳細ID
-            dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[1].Width = 45;
+            dataGridView1.Columns[1].Visible = false;
             //商品ID
             dataGridView1.Columns[2].Visible = false;
             //商品名
-            dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[3].Width = 130;
+            dataGridView1.Columns[3].Visible = false;
             //数量
-            dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[4].Visible = false;
             //営業所ID
             dataGridView1.Columns[5].Visible = false;
             //営業所名
+            dataGridView1.Columns[6].Visible = true;
             dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[6].Width = 80;
             //顧客ID
             dataGridView1.Columns[7].Visible = false;
             //顧客名
+            dataGridView1.Columns[8].Visible = true;
             dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[8].Width = 80;
             //注文ID
+            dataGridView1.Columns[9].Visible = true;
             dataGridView1.Columns[9].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[9].Width = 30;
             //注文社員ID
             dataGridView1.Columns[10].Visible = false;
             //注文社員名
+            dataGridView1.Columns[11].Visible = true;
             dataGridView1.Columns[11].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[11].Width = 103;
             //確定社員ID
             dataGridView1.Columns[12].Visible = false;
             //確定社員名
+            dataGridView1.Columns[13].Visible = true;
             dataGridView1.Columns[13].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[13].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[13].Width = 103;
             //確定社員ID
             dataGridView1.Columns[14].Visible = false;
             //メーカー名
-            dataGridView1.Columns[15].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[15].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[15].Width = 80;
+            dataGridView1.Columns[15].Visible = false;
             //受注ID
+            dataGridView1.Columns[16].Visible = true;
             dataGridView1.Columns[16].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[16].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[16].Width = 30;
             //確定社員ID
             dataGridView1.Columns[17].Visible = false;
             //出庫年月日
+            dataGridView1.Columns[18].Visible = true;
             dataGridView1.Columns[18].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[18].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[18].Width = 90;
             //出庫状態フラグ
+            dataGridView1.Columns[19].Visible = true;
             dataGridView1.Columns[19].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[19].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView1.Columns[19].Width = 80;
+            //出庫管理フラグ(非表示)
+            dataGridView1.Columns[20].Visible = false;
+            //非表示理由(非表示)
+            dataGridView1.Columns[21].Visible = false;
+
+        }
+
+        private void SetDetailDataGridView(List<DispSyukkoDTO> tb)
+        {
+            dataGridView1.DataSource = tb;
+            DataGridViewState = 2;
+            //列幅自動設定解除
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //ヘッダーの高さ
+            dataGridView1.ColumnHeadersHeight = 50;
+            //ヘッダーの折り返し表示
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            //行単位選択
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "戻る";
+            //出庫ID
+            dataGridView1.Columns[0].Visible = true;
+            dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[0].Width = 30;
+            //出庫詳細ID
+            dataGridView1.Columns[1].Visible = true;
+            dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[1].Width = 45;
+            //商品ID
+            dataGridView1.Columns[2].Visible = false;
+            //商品名
+            dataGridView1.Columns[3].Visible = true;
+            dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[3].Width = 120;
+            //数量
+            dataGridView1.Columns[4].Visible = true;
+            dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[4].Width = 100;
+            //営業所ID
+            dataGridView1.Columns[5].Visible = false;
+            //営業所名
+            dataGridView1.Columns[6].Visible = false;
+            //顧客ID
+            dataGridView1.Columns[7].Visible = false;
+            //顧客名
+            dataGridView1.Columns[8].Visible = false;
+            //注文ID
+            dataGridView1.Columns[9].Visible = false;
+            //注文社員ID
+            dataGridView1.Columns[10].Visible = false;
+            //注文社員名
+            dataGridView1.Columns[11].Visible = false;
+            //確定社員ID
+            dataGridView1.Columns[12].Visible = false;
+            //確定社員名
+            dataGridView1.Columns[13].Visible = false;
+            //確定社員ID
+            dataGridView1.Columns[14].Visible = false;
+            //メーカー名
+            dataGridView1.Columns[15].Visible = true;
+            dataGridView1.Columns[15].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[15].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[15].Width = 120;
+            //受注ID
+            dataGridView1.Columns[16].Visible = false;
+            //確定社員ID
+            dataGridView1.Columns[17].Visible = false;
+            //出庫年月日
+            dataGridView1.Columns[18].Visible = false;
+            //出庫状態フラグ
+            dataGridView1.Columns[19].Visible = false;
             //出庫管理フラグ(非表示)
             dataGridView1.Columns[20].Visible = false;
             //非表示理由(非表示)
@@ -180,11 +328,11 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itiranhyouzi_Click(object sender, EventArgs e)
         {
-
             ListDisplaySyukko();
         }
 
@@ -214,7 +362,7 @@ namespace SalesManagement_SysDev
             SyukkoDataAccess SyAccess = new SyukkoDataAccess();
 
             //データベースからデータを取得
-            syukko = SyAccess.GetSyukkoData();
+            syukko = SyAccess.GetSyukkoData(checkbox_stateflag);
 
 
             return syukko;
@@ -272,6 +420,8 @@ namespace SalesManagement_SysDev
                 retSyukkoDTO.PrID = comboBoxSyouhin_Namae.SelectedValue.ToString();//商品ID
             retSyukkoDTO.PrName = comboBoxSyouhin_Namae.Text.Trim();//商品名
             retSyukkoDTO.SyQuantity = domainUpDown_Suuryou.Value.ToString();//数量
+            if (checkBox_Kakutei.Checked == true)
+                retSyukkoDTO.SyStateFlag = "1"; //確定済み
 
 
             return retSyukkoDTO;
@@ -285,6 +435,9 @@ namespace SalesManagement_SysDev
             SyukkoDataAccess access = new SyukkoDataAccess();
             //出庫情報検索
             retDispSyukko = access.GetSyukkoData(syukkoDTO);
+            //データグリッドビューに表示できるように変換
+            retDispSyukko = GetDataGridViewData(retDispSyukko);
+
             return retDispSyukko;
 
 
@@ -444,25 +597,41 @@ namespace SalesManagement_SysDev
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.CurrentRow.Index != -1)
+            if (DataGridViewState == 1)
             {
-                textBox_Syukko_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-                comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
-                textBox_Syain.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
-                comboBox_Kokyaku.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
-                textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
-                if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value == null)
+                string SyID;
+                SyID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                GetSelectDetailData(SyID);
+            }
+            else
+            {
+                if (dataGridView1.CurrentRow.Index != -1)
                 {
-                    textBox_Kakutei_Syain_Namae.Text = "";
+                    if ((e.ColumnIndex == -1) && (e.RowIndex == -1))
+                    {
+                        GetSelectData();
+                    }
+                    else
+                    {
+                        textBox_Syukko_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                        comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+                        textBox_Syain.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
+                        comboBox_Kokyaku.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+                        textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
+                        if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value == null)
+                        {
+                            textBox_Kakutei_Syain_Namae.Text = "";
+                        }
+                        else
+                        {
+                            textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value.ToString();
+                        }
+                        textBox_Syukkosyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+                        comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
+                        comboBoxSyouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+                        domainUpDown_Suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString());
+                    }
                 }
-                else
-                {
-                    textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value.ToString();
-                }
-                textBox_Syukkosyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-                comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[14].Value.ToString();
-                comboBoxSyouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
-                domainUpDown_Suuryou.Value= int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value.ToString());
             }
 
         }
@@ -535,7 +704,8 @@ namespace SalesManagement_SysDev
         }
         private T_Syukko FormalizationSyukkoRecord(T_Syukko syukko)
         {
-            syukko.EmID =int.Parse(loginEmployee.EmID);
+            syukko.EmID = int.Parse(loginEmployee.EmID);
+            syukko.SyDate = DateTime.Now;
             syukko.SyStateFlag = 1;
             return syukko;
         }
@@ -674,5 +844,136 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label10.ForeColor = Color.LightGray;
+            domainUpDown_Suuryou.Enabled = false;
+            domainUpDown_Suuryou.BackColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Syukko_ID.Enabled = false;
+            textBox_Syukko_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            textBox_Syain.Enabled = false;
+            textBox_Syain.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            comboBox_Kokyaku.Enabled = false;
+            comboBox_Kokyaku.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            textBox_Kakutei_Syain_Namae.Enabled = false;
+            textBox_Kakutei_Syain_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            textBox_Syukkosyousai_ID.Enabled = false;
+            textBox_Syukkosyousai_ID.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            comboBoxSyouhin_Namae.Enabled = false;
+            comboBoxSyouhin_Namae.BackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+            domainUpDown_Suuryou.Enabled = false;
+            domainUpDown_Suuryou.BackColor = Color.LightGray;
+            checkBox_Kakutei.Enabled = false;
+            checkBox_Kakutei.ForeColor = Color.LightGray;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Syukko_ID.Enabled = false;
+            textBox_Syukko_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            textBox_Syain.Enabled = false;
+            textBox_Syain.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            comboBox_Kokyaku.Enabled = false;
+            comboBox_Kokyaku.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyutyuu_ID.Enabled = false;
+            textBox_Zyutyuu_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            textBox_Kakutei_Syain_Namae.Enabled = false;
+            textBox_Kakutei_Syain_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            textBox_Syukkosyousai_ID.Enabled = false;
+            textBox_Syukkosyousai_ID.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            comboBoxSyouhin_Namae.Enabled = false;
+            comboBoxSyouhin_Namae.BackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+            domainUpDown_Suuryou.Enabled = false;
+            domainUpDown_Suuryou.BackColor = Color.LightGray;
+            checkBox_Kakutei.Enabled = false;
+            checkBox_Kakutei.ForeColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Syukko_ID.Enabled = true;
+            textBox_Syukko_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            textBox_Syain.Enabled = true;
+            textBox_Syain.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            comboBox_Kokyaku.Enabled = true;
+            comboBox_Kokyaku.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Zyutyuu_ID.Enabled = true;
+            textBox_Zyutyuu_ID.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            textBox_Kakutei_Syain_Namae.Enabled = true;
+            textBox_Kakutei_Syain_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            textBox_Syukkosyousai_ID.Enabled = true;
+            textBox_Syukkosyousai_ID.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            comboBoxSyouhin_Namae.Enabled = true;
+            comboBoxSyouhin_Namae.BackColor = Color.White;
+            label10.ForeColor = Color.Black;
+            domainUpDown_Suuryou.Enabled = true;
+            domainUpDown_Suuryou.BackColor = Color.White;
+            checkBox_Kakutei.Enabled = true;
+            checkBox_Kakutei.ForeColor = Color.Black;
+        }
+
+        private void checkBox_Kakutei_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Kakutei.Checked == true)
+            {
+                checkbox_stateflag = 1;
+            }
+            else
+            {
+                checkbox_stateflag = 0;
+            }
+            GetSelectData();
+
+        }
     }
 }

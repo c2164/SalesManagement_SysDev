@@ -17,6 +17,8 @@ namespace SalesManagement_SysDev
     {
         private MessageDsp messageDsp = new MessageDsp();
         private DispEmplyeeDTO loginEmployee;
+        private int DataGridViewState;
+
         public Hattyuu(DispEmplyeeDTO dispEmplyee)
         {
             InitializeComponent();
@@ -41,10 +43,60 @@ namespace SalesManagement_SysDev
             HattyuDataAccess access = new HattyuDataAccess();
             //商品情報の全件取得
             List<DispHattyuDTO> tb = access.GetHattyuData();
+            List<DispHattyuDTO> disptb = new List<DispHattyuDTO>();
             if (tb == null)
                 return false;
             //データグリッドビューへの設定
-            SetDataGridView(tb);
+            disptb = GetDataGridViewData(tb);
+            SetDataGridView(disptb);
+            return true;
+        }
+
+        private List<DispHattyuDTO> GetDataGridViewData(List<DispHattyuDTO> tb)
+        {
+            List<DispHattyuDTO> disptb = new List<DispHattyuDTO>();
+            var grouptb = tb.GroupBy(x => x.HaID).ToList();
+            foreach (var groupingsyukkotb in grouptb)
+            {
+                foreach (var syukkotb in groupingsyukkotb)
+                {
+                    DispHattyuDTO hattyuDTO = new DispHattyuDTO();
+                    hattyuDTO.HaID = syukkotb.HaID;
+                    hattyuDTO.MaID = syukkotb.MaID;
+                    hattyuDTO.MaName = syukkotb.MaName;
+                    hattyuDTO.EmID = syukkotb.EmID;
+                    hattyuDTO.EmName = syukkotb.EmName;
+                    hattyuDTO.HaDate = syukkotb.HaDate;
+                    hattyuDTO.WaWarehouseFlag = syukkotb.WaWarehouseFlag;
+                    hattyuDTO.HaFlag = syukkotb.HaFlag;
+                    hattyuDTO.HaHidden = syukkotb.HaHidden;
+
+                    disptb.Add(hattyuDTO);
+                    break;
+                }
+            }
+            return disptb;
+        }
+
+        private bool GetSelectDetailData(string HaID)
+        {
+            HattyuDataAccess access = new HattyuDataAccess();
+            DispHattyuDTO dispHattyu = new DispHattyuDTO()
+            {
+                HaID = HaID,
+                EmID = "",
+                EmName = "",
+                MaName = "",
+                PrID = "",
+                PrName = "",
+            };
+
+            //入荷情報の全件取得
+            List<DispHattyuDTO> tb = access.GetHattyuData(dispHattyu);
+            if (tb == null)
+                return false;
+            //データグリッドビューへの設定
+            SetDetailDataGridView(tb);
             return true;
         }
 
@@ -83,13 +135,20 @@ namespace SalesManagement_SysDev
 
             //日付を現在の日付にする
             dateTimePicker1.Value = DateTime.Now;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
 
         private void SetDataGridView(List<DispHattyuDTO> tb)
         {
             dataGridView1.DataSource = tb;
+            DataGridViewState = 1;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -98,7 +157,9 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "";
             //発注ID
+            dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[0].Width = 80;
@@ -107,29 +168,84 @@ namespace SalesManagement_SysDev
             //商品ID
             dataGridView1.Columns[2].Visible = false;
             //商品名
+            dataGridView1.Columns[3].Visible = false;
+            //メーカID
+            dataGridView1.Columns[4].Visible = false;
+            //メーカ名
+            dataGridView1.Columns[5].Visible = true;
+            dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[5].Width = 120;
+            //数量
+            dataGridView1.Columns[6].Visible = false;
+            //社員ID
+            dataGridView1.Columns[7].Visible = false;
+            //社員名
+            dataGridView1.Columns[8].Visible = true;
+            dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns[8].Width = 70;
+            //発注年月日
+            dataGridView1.Columns[9].Visible = true;
+            dataGridView1.Columns[9].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[9].Width = 80;
+            //入庫済みフラグ
+            dataGridView1.Columns[10].Visible = true;
+            dataGridView1.Columns[10].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[10].Width = 80;
+            //発注管理フラグ
+            dataGridView1.Columns[11].Visible = false;
+            //非表示理由
+            dataGridView1.Columns[12].Visible = false;
+        }
+
+        private void SetDetailDataGridView(List<DispHattyuDTO> tb)
+        {
+            dataGridView1.DataSource = tb;
+            DataGridViewState = 2;
+            //列幅自動設定解除
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //ヘッダーの高さ
+            dataGridView1.ColumnHeadersHeight = 50;
+            //ヘッダーの折り返し表示
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView1.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            //行単位選択
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "戻る";
+            //発注ID
+            dataGridView1.Columns[0].Visible = true;
+            dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView1.Columns[0].Width = 80;
+            //発注詳細ID
+            dataGridView1.Columns[1].Visible = false;
+            //商品ID
+            dataGridView1.Columns[2].Visible = false;
+            //商品名
+            dataGridView1.Columns[3].Visible = true;
             dataGridView1.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[3].Width = 80;
             //メーカID
             dataGridView1.Columns[4].Visible = false;
             //メーカ名
-            dataGridView1.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[5].Width = 90;
+            dataGridView1.Columns[5].Visible = false;
             //数量
+            dataGridView1.Columns[6].Visible = true;
             dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.Columns[6].Width = 70;
             //社員ID
             dataGridView1.Columns[7].Visible = false;
             //社員名
-            dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[8].Width = 70;
+            dataGridView1.Columns[8].Visible = false;
             //発注年月日
-            dataGridView1.Columns[9].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[9].Width = 80;
+            dataGridView1.Columns[9].Visible = false;
             //入庫済みフラグ
             dataGridView1.Columns[10].Visible = false;
             //発注管理フラグ
@@ -142,6 +258,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -410,15 +527,34 @@ namespace SalesManagement_SysDev
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            textBox_Hattyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-            textBox_Syain_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
-            textBox_Syouhin_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
-            textBox_Hattyuusyousai.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
-            numericUpDown_suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
-            comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
-            comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
-            comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
-            dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString());
+            if (DataGridViewState == 1)
+            {
+                string HaID;
+                HaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                GetSelectDetailData(HaID);
+            }
+            else
+            {
+                if (dataGridView1.CurrentRow.Index != -1)
+                {
+                    if ((e.ColumnIndex == -1) && (e.RowIndex == -1))
+                    {
+                        GetSelectData();
+                    }
+                    else
+                    {
+                        textBox_Hattyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                        textBox_Syain_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
+                        textBox_Syouhin_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+                        textBox_Hattyuusyousai.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
+                        numericUpDown_suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
+                        comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+                        comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+                        comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
+                        dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString());
+                    }
+                }
+            }
         }
 
         private void button_Touroku_Click(object sender, EventArgs e)
@@ -809,8 +945,152 @@ namespace SalesManagement_SysDev
             return dispHattyu;
         }
 
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Syouhin_ID.Enabled = false;
+            textBox_Syouhin_ID.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
 
 
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+            cmbclia();
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+
+
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Syouhin_ID.Enabled = false;
+            textBox_Syouhin_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Hattyuu_ID.Enabled = false;
+            textBox_Hattyuu_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Syain_ID.Enabled = false;
+            textBox_Syain_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Syouhin_ID.Enabled = false;
+            textBox_Syouhin_ID.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            numericUpDown_suuryou.Enabled = false;
+            numericUpDown_suuryou.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            textBox_Hattyuusyousai.Enabled = false;
+            textBox_Hattyuusyousai.BackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+            checkBox1.Enabled = false;
+            checkBox1.ForeColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Hattyuu_ID.Enabled = true;
+            textBox_Hattyuu_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Syain_ID.Enabled = true;
+            textBox_Syain_ID.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Syain_Namae.Enabled = true;
+            comboBox_Syain_Namae.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            comboBox_Meka_Namae.Enabled = true;
+            comboBox_Meka_Namae.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Syouhin_ID.Enabled = true;
+            textBox_Syouhin_ID.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            numericUpDown_suuryou.Enabled = true;
+            numericUpDown_suuryou.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            textBox_Hattyuusyousai.Enabled = true;
+            textBox_Hattyuusyousai.BackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker1.CalendarTitleBackColor = Color.White;
+            checkBox1.Enabled = true;
+            checkBox1.ForeColor = Color.Black;
+        }
     }
 
 }

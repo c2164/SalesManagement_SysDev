@@ -481,8 +481,8 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("受注ID")]
         public string OrID { get; set; }
 
-        [DisplayName("出荷年月日")]
-        public DateTime? ShDate { get; set; }
+        [DisplayName("出荷完了年月日")]
+        public DateTime? ShFinishDate { get; set; }
 
         [DisplayName("出荷状態フラグ")]
         public string ShStateFlag { get; set; }
@@ -496,8 +496,7 @@ namespace SalesManagement_SysDev.Entity
         [DisplayName("社員ID")]
         public string EmID { get; set; }
 
-        [DisplayName("出荷完了年月日")]
-        public DateTime? ShFinishDate { get; set; }
+
 
         }
 

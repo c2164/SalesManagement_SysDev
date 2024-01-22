@@ -70,6 +70,10 @@ namespace SalesManagement_SysDev
             comboBox_Eigyousyo.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Eigyousyo.SelectedIndex = -1;
 
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+
         }
 
         private void SetDataGridView(List<DispClientDTO> tb)
@@ -361,6 +365,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -698,6 +703,95 @@ namespace SalesManagement_SysDev
 
         }
 
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_ID.Enabled = false;
+            textBox_Kokyaku_ID.BackColor = Color.LightGray;
+        }
 
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_ID.Enabled = false;
+            textBox_Kokyaku_ID.BackColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textBox_Kokyaku_Namae.Enabled = false;
+            textBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            textBox_Kokyaku_ID.Enabled = false;
+            textBox_Kokyaku_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textBox_Yuubin.Enabled = false;
+            textBox_Yuubin.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textBox_Zyuusyo.Enabled = false;
+            textBox_Zyuusyo.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            textBox_Dennwa1.Enabled = false;
+            textBox_Dennwa1.BackColor = Color.LightGray;
+            textBox_Dennwa2.Enabled = false;
+            textBox_Dennwa2.BackColor = Color.LightGray;
+            textBox_Dennwa3.Enabled = false;
+            textBox_Dennwa3.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            textBox_FAX1.Enabled = false;
+            textBox_FAX1.BackColor = Color.LightGray;
+            textBox_FAX2.Enabled = false;
+            textBox_FAX2.BackColor = Color.LightGray;
+            textBox_FAX3.Enabled = false;
+            textBox_FAX3.BackColor = Color.LightGray;
+            label10.ForeColor = Color.LightGray;
+            label11.ForeColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textBox_Kokyaku_Namae.Enabled = true;
+            textBox_Kokyaku_Namae.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            textBox_Kokyaku_ID.Enabled = true;
+            textBox_Kokyaku_ID.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textBox_Yuubin.Enabled = true;
+            textBox_Yuubin.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textBox_Zyuusyo.Enabled = true;
+            textBox_Zyuusyo.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            textBox_Dennwa1.Enabled = true;
+            textBox_Dennwa1.BackColor = Color.White;
+            textBox_Dennwa2.Enabled = true;
+            textBox_Dennwa2.BackColor = Color.White;
+            textBox_Dennwa3.Enabled = true;
+            textBox_Dennwa3.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            label9.ForeColor = Color.Black;
+            label7.ForeColor = Color.Black;
+            textBox_FAX1.Enabled = true;
+            textBox_FAX1.BackColor = Color.White;
+            textBox_FAX2.Enabled = true;
+            textBox_FAX2.BackColor = Color.White;
+            textBox_FAX3.Enabled = true;
+            textBox_FAX3.BackColor = Color.White;
+            label10.ForeColor = Color.Black;
+            label11.ForeColor = Color.Black;
+        }
     }
 }

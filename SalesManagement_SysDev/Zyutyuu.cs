@@ -86,33 +86,6 @@ namespace SalesManagement_SysDev
             radioButton3.Checked = false;
             radioButton4.Checked = false;
 
-            label1.ForeColor = Color.Black;
-            comboBox_Kokyaku_Namae.Enabled = true;
-            comboBox_Kokyaku_Namae.BackColor = Color.White;
-            label2.ForeColor = Color.Black;
-            textBox_Kokyaku_Tantou.Enabled = true;
-            textBox_Kokyaku_Tantou.BackColor = Color.White;
-            label3.ForeColor = Color.Black;
-            comboBox_Syain_Namae.Enabled = true;
-            comboBox_Syain_Namae.BackColor = Color.White;
-            label4.ForeColor = Color.Black;
-            textBox_Zyutyuu_ID.Enabled = true;
-            textBox_Zyutyuu_ID.BackColor = Color.White;
-            label5.ForeColor = Color.Black;
-            textBox_Zyutyuusyousai_ID.Enabled = true;
-            textBox_Zyutyuusyousai_ID.BackColor = Color.White;
-            label6.ForeColor = Color.Black;
-            comboBox_Meka_Namae.Enabled = true;
-            comboBox_Meka_Namae.BackColor = Color.White;
-            label7.ForeColor = Color.Black;
-            comboBox_Eigyousyo.Enabled = true;
-            comboBox_Eigyousyo.BackColor = Color.White;
-            label8.ForeColor = Color.Black;
-            comboBox_Syouhin_Namae.Enabled = true;
-            comboBox_Syouhin_Namae.BackColor = Color.White;
-            label9.ForeColor = Color.Black;
-            numericUpDown_Suuryou.Enabled = true;
-            numericUpDown_Suuryou.BackColor = Color.White;
         }
 
         private bool GetSelectData()
@@ -124,6 +97,14 @@ namespace SalesManagement_SysDev
             if (tb == null)
                 return false;
             //データグリッドビューへの設定
+            disptb = GetDataGridViewData(tb);
+            SetDataGridView(disptb);
+            return true;
+        }
+
+        private List<DispOrderDTO> GetDataGridViewData(List<DispOrderDTO> tb)
+        {
+            List<DispOrderDTO> disptb = new List<DispOrderDTO>();
             var grouptb = tb.GroupBy(x => x.OrID).ToList();
             foreach (var groupingordertb in grouptb)
             {
@@ -147,8 +128,7 @@ namespace SalesManagement_SysDev
                     break;
                 }
             }
-            SetDataGridView(disptb);
-            return true;
+            return disptb;
         }
 
         private bool GetSelectDetailData(string OrID)
@@ -182,6 +162,8 @@ namespace SalesManagement_SysDev
             DataGridViewState = 1;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -276,6 +258,7 @@ namespace SalesManagement_SysDev
             DataGridViewState = 2;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -355,7 +338,7 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[17].Visible = true;
             dataGridView1.Columns[17].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[17].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[17].Width = 80;
+            dataGridView1.Columns[17].Width = 180;
 
             //価格(非表示)
             dataGridView1.Columns[18].Visible = false;
@@ -365,6 +348,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -470,6 +454,9 @@ namespace SalesManagement_SysDev
             //商品検索
             retDispOrder = OrAccess.GetOrderData(orderDTO);
 
+            //データグリッドビューに表示できるように変換
+            retDispOrder = GetDataGridViewData(retDispOrder);
+
             return retDispOrder;
         }
 
@@ -498,12 +485,19 @@ namespace SalesManagement_SysDev
             //重複チェックを行う
             if (!DuplicationCheckOrderInputRecord(dispOrderDTO, out msg, out title, out icon))
             {
+                if (icon == MessageBoxIcon.Error)
+                {
+                    messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                    return;
+                }
                 result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
                 if (result == DialogResult.Cancel)
                 {
                     return;
                 }
 
+                //数量を加算する
+                dispOrderDTO = AddQuantity(dispOrderDTO);
                 //データを更新する
                 UpdateOrderInf(dispOrderDTO);
             }
@@ -520,6 +514,17 @@ namespace SalesManagement_SysDev
             }
         }
 
+        private DispOrderDTO AddQuantity(DispOrderDTO dispOrderDTO)
+        {
+            List<DispOrderDTO> orders = new List<DispOrderDTO>();
+            DispOrderDTO orderDTO = new DispOrderDTO();
+            orders = GetTableData();
+            orderDTO = orders.Single(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
+
+            dispOrderDTO.OrQuantity = (int.Parse(orderDTO.OrQuantity) + int.Parse(dispOrderDTO.OrQuantity)).ToString();
+            return dispOrderDTO;
+        }
+
         private void UpdateOrderInf(DispOrderDTO dispOrderDTO)
         {
             //変数の宣言
@@ -529,9 +534,10 @@ namespace SalesManagement_SysDev
             //インスタンス化
             OrderDataAccess orderDataAccess = new OrderDataAccess();
 
-            //登録用データに変換
+            //更新用データに変換
             order = FormalizationOrderInputRecord(dispOrderDTO, out orderDetail);
-            //登録処理
+            orderDetail.OrDetailID = int.Parse(dispOrderDTO.OrDetailID);
+            //更新処理
             flg = orderDataAccess.UpdateOrderData(order, orderDetail);
             if (flg)
             {
@@ -541,6 +547,13 @@ namespace SalesManagement_SysDev
             {
                 messageDsp.MessageBoxDsp_OK("受注情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
             }
+        }
+        private DispOrderDTO SetLoginEmInf(DispOrderDTO order)
+        {
+            order.EmID = loginEmployee.EmID;
+            order.EmName = loginEmployee.EmName;
+
+            return order;
         }
 
         private void RegisrationOrderInf(DispOrderDTO dispOrderDTO)
@@ -553,6 +566,7 @@ namespace SalesManagement_SysDev
             OrderDataAccess orderDataAccess = new OrderDataAccess();
 
             //登録用データに変換
+            dispOrderDTO = SetLoginEmInf(dispOrderDTO);
             order = FormalizationOrderInputRecord(dispOrderDTO, out orderDetail);
             //登録処理
             flg = orderDataAccess.RegisterOrderData(order, orderDetail);
@@ -603,18 +617,31 @@ namespace SalesManagement_SysDev
             bool flg;
             msg = "";
             title = "";
-            icon = MessageBoxIcon.Question;
+            icon = MessageBoxIcon.Error;
 
             //テーブルのデータを取得
             ordertabledata = GetTableData();
 
-            //同じ受注IDに同じ商品がないかチェックする
-            flg = ordertabledata.Any(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
-            if (flg)
+            //既に確定されているかチェックする
+            if (dispOrderDTO.OrID != "")
             {
-                msg = "同じ商品が登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
-                title = "確認";
-                return false;
+                flg = ordertabledata.First(x => x.OrID == dispOrderDTO.OrID).OrStateFlag == "1";
+                if (flg)
+                {
+                    icon = MessageBoxIcon.Error;
+                    msg = "既に確定されている受注の為、新しく登録できません";
+                    title = "エラー";
+                    return false;
+                }
+                //同じ受注IDに同じ商品がないかチェックする
+                flg = ordertabledata.Any(x => x.OrID == dispOrderDTO.OrID && x.PrID == dispOrderDTO.PrID);
+                if (flg)
+                {
+                    icon = MessageBoxIcon.Question;
+                    msg = "同じ商品が登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
+                    title = "確認";
+                    return false;
+                }
             }
 
             return true;

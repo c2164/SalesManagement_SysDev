@@ -42,6 +42,50 @@ namespace SalesManagement_SysDev
 
         }
 
+        private bool GetSelectData()
+        {
+            ChumonDataAccess access = new ChumonDataAccess();
+            //出荷情報の全件取得
+            List<DispChumonDTO> tb = access.GetChumonData();
+            List<DispChumonDTO> disptb = new List<DispChumonDTO>();
+            if (tb == null)
+                return false;
+            //データグリッドビューへの設定
+            disptb = GetDataGridViewData(tb);
+
+            SetDataGridView(disptb);
+            return true;
+        }
+
+        private List<DispChumonDTO> GetDataGridViewData(List<DispChumonDTO> tb)
+        {
+            List<DispChumonDTO> disptb = new List<DispChumonDTO>();
+            var grouptb = tb.GroupBy(x => x.ChID).ToList();
+            foreach (var groupingchumontb in grouptb)
+            {
+                foreach (var chumontb in groupingchumontb)
+                {
+                    DispChumonDTO chumonDTO = new DispChumonDTO();
+                    chumonDTO.OrID = chumontb.OrID;
+                    chumonDTO.SoID = chumontb.SoID;
+                    chumonDTO.SoName = chumontb.SoName;
+                    chumonDTO.EmID = chumontb.EmID;
+                    chumonDTO.EmName = chumontb.EmName;
+                    chumonDTO.ClID = chumontb.ClID;
+                    chumonDTO.ClName = chumontb.ClName;
+                    chumonDTO.ChID = chumontb.ChID;
+                    chumonDTO.ChDate = chumontb.ChDate;
+                    chumonDTO.ChStateFlag = chumontb.ChStateFlag;
+                    chumonDTO.ChFlag = chumontb.ChFlag;
+                    chumonDTO.ChHidden = chumontb.ChHidden;
+
+                    disptb.Add(chumonDTO);
+                    break;
+                }
+            }
+            return disptb;
+        }
+
         private bool GetSelectDetailData(string ChID)
         {
             ChumonDataAccess access = new ChumonDataAccess();
@@ -103,44 +147,13 @@ namespace SalesManagement_SysDev
             comboBox_Kokyaku_Namae.DataSource = clientDataAccess.GetClientData();
             comboBox_Kokyaku_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_Kokyaku_Namae.SelectedIndex = -1;
+
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            radioButton4.Checked = false;
         }
 
-        private bool GetSelectData()
-        {
-            ChumonDataAccess access = new ChumonDataAccess();
-            //出荷情報の全件取得
-            List<DispChumonDTO> tb = access.GetChumonData();
-            List<DispChumonDTO> disptb = new List<DispChumonDTO>();
-            if (tb == null)
-                return false;
-            //データグリッドビューへの設定
-            //データグリッドビューへの設定
-            var grouptb = tb.GroupBy(x => x.ChID).ToList();
-            foreach (var groupingchumontb in grouptb)
-            {
-                foreach (var chumontb in groupingchumontb)
-                {
-                    DispChumonDTO chumonDTO = new DispChumonDTO();
-                    chumonDTO.OrID = chumontb.OrID;
-                    chumonDTO.SoID = chumontb.SoID;
-                    chumonDTO.SoName = chumontb.SoName;
-                    chumonDTO.EmID = chumontb.EmID;
-                    chumonDTO.EmName = chumontb.EmName;
-                    chumonDTO.ClID = chumontb.ClID;
-                    chumonDTO.ClName = chumontb.ClName;
-                    chumonDTO.ChID = chumontb.ChID;
-                    chumonDTO.ChDate = chumontb.ChDate;
-                    chumonDTO.ChStateFlag = chumontb.ChStateFlag;
-                    chumonDTO.ChFlag = chumontb.ChFlag;
-                    chumonDTO.ChHidden = chumontb.ChHidden;
 
-                    disptb.Add(chumonDTO);
-                    break;
-                }
-            }
-            SetDataGridView(disptb);
-            return true;
-        }
 
         private void SetDataGridView(List<DispChumonDTO> tb)
         {
@@ -148,6 +161,7 @@ namespace SalesManagement_SysDev
             DataGridViewState = 1;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[10].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -156,7 +170,7 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
-
+            dataGridView1.TopLeftHeaderCell.Value = "";
             //注文ID
             dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -182,7 +196,7 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[6].Visible = true;
             dataGridView1.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[6].Width = 80;
+            dataGridView1.Columns[6].Width = 150;
 
             //社員ID(非表示)
             dataGridView1.Columns[7].Visible = false;
@@ -191,7 +205,7 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[8].Visible = true;
             dataGridView1.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[8].Width = 80;
+            dataGridView1.Columns[8].Width = 120;
 
             //顧客ID(非表示)
             dataGridView1.Columns[9].Visible = false;
@@ -233,6 +247,8 @@ namespace SalesManagement_SysDev
             DataGridViewState = 2;
             //列幅自動設定解除
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
             //ヘッダーの高さ
             dataGridView1.ColumnHeadersHeight = 50;
             //ヘッダーの折り返し表示
@@ -241,6 +257,7 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "戻る";
 
             //注文ID
             dataGridView1.Columns[0].Visible = true;
@@ -267,7 +284,7 @@ namespace SalesManagement_SysDev
             dataGridView1.Columns[4].Visible = true;
             dataGridView1.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView1.Columns[4].Width = 50;
+            dataGridView1.Columns[4].Width = 100;
 
             //営業所ID(非表示)
             dataGridView1.Columns[5].Visible = false;
@@ -307,6 +324,7 @@ namespace SalesManagement_SysDev
         {
             GetSelectData();
             SetCtrlFormat();
+            cmbclia();
         }
 
         private void button_Itirannhyouzi_Click(object sender, EventArgs e)
@@ -418,6 +436,9 @@ namespace SalesManagement_SysDev
 
             //注文情報検索
             retDispChumon = access.GetChumonData(ChumonDTO);
+
+            //データグリッドビューに表示できるように変換
+            retDispChumon = GetDataGridViewData(retDispChumon);
 
             return retDispChumon;
         }
@@ -955,6 +976,112 @@ namespace SalesManagement_SysDev
                 }
             }
 
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label8.ForeColor = Color.LightGray;
+            dateTimePicker_Tyuumon_Nenngetu.Enabled = false;
+            dateTimePicker_Tyuumon_Nenngetu.CalendarTitleBackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUPDown_Syouhin_Namae.Enabled = false;
+            numericUPDown_Syouhin_Namae.BackColor = Color.LightGray;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Tyuumon_ID.Enabled = false;
+            textbox_Tyuumon_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textbox_Tyuumonsyousai_ID.Enabled = false;
+            textbox_Tyuumonsyousai_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textbox_Zyutyuusyousai.Enabled = false;
+            textbox_Zyutyuusyousai.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            dateTimePicker_Tyuumon_Nenngetu.Enabled = false;
+            dateTimePicker_Tyuumon_Nenngetu.CalendarTitleBackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUPDown_Syouhin_Namae.Enabled = false;
+            numericUPDown_Syouhin_Namae.BackColor = Color.LightGray;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbclia();
+            label1.ForeColor = Color.LightGray;
+            textbox_Tyuumon_ID.Enabled = false;
+            textbox_Tyuumon_ID.BackColor = Color.LightGray;
+            label2.ForeColor = Color.LightGray;
+            comboBox_Syouhin_Namae.Enabled = false;
+            comboBox_Syouhin_Namae.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Eigyousyo.Enabled = false;
+            comboBox_Eigyousyo.BackColor = Color.LightGray;
+            label4.ForeColor = Color.LightGray;
+            textbox_Tyuumonsyousai_ID.Enabled = false;
+            textbox_Tyuumonsyousai_ID.BackColor = Color.LightGray;
+            label5.ForeColor = Color.LightGray;
+            textbox_Zyutyuusyousai.Enabled = false;
+            textbox_Zyutyuusyousai.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Kokyaku_Namae.Enabled = false;
+            comboBox_Kokyaku_Namae.BackColor = Color.LightGray;
+            label7.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label8.ForeColor = Color.LightGray;
+            dateTimePicker_Tyuumon_Nenngetu.Enabled = false;
+            dateTimePicker_Tyuumon_Nenngetu.CalendarTitleBackColor = Color.LightGray;
+            label9.ForeColor = Color.LightGray;
+            numericUPDown_Syouhin_Namae.Enabled = false;
+            numericUPDown_Syouhin_Namae.BackColor = Color.LightGray;
+        }
+
+        private void cmbclia()
+        {
+            label1.ForeColor = Color.Black;
+            textbox_Tyuumon_ID.Enabled = true;
+            textbox_Tyuumon_ID.BackColor = Color.White;
+            label2.ForeColor = Color.Black;
+            comboBox_Syouhin_Namae.Enabled = true;
+            comboBox_Syouhin_Namae.BackColor = Color.White;
+            label3.ForeColor = Color.Black;
+            comboBox_Eigyousyo.Enabled = true;
+            comboBox_Eigyousyo.BackColor = Color.White;
+            label4.ForeColor = Color.Black;
+            textbox_Tyuumonsyousai_ID.Enabled = true;
+            textbox_Tyuumonsyousai_ID.BackColor = Color.White;
+            label5.ForeColor = Color.Black;
+            textbox_Zyutyuusyousai.Enabled = true;
+            textbox_Zyutyuusyousai.BackColor = Color.White;
+            label6.ForeColor = Color.Black;
+            comboBox_Kokyaku_Namae.Enabled = true;
+            comboBox_Kokyaku_Namae.BackColor = Color.White;
+            label7.ForeColor = Color.Black;
+            comboBox_Syain_Namae.Enabled = true;
+            comboBox_Syain_Namae.BackColor = Color.White;
+            label8.ForeColor = Color.Black;
+            dateTimePicker_Tyuumon_Nenngetu.Enabled = true;
+            dateTimePicker_Tyuumon_Nenngetu.CalendarTitleBackColor = Color.White;
+            label9.ForeColor = Color.Black;
+            numericUPDown_Syouhin_Namae.Enabled = true;
+            numericUPDown_Syouhin_Namae.BackColor = Color.White;
         }
     }
 }
