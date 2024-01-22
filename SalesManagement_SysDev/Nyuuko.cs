@@ -159,6 +159,7 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "";
             //入庫ID
             dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -229,6 +230,7 @@ namespace SalesManagement_SysDev
             //行単位選択
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //ヘッダー文字位置、セル文字位置、列幅の設定
+            dataGridView1.TopLeftHeaderCell.Value = "戻る";
             //入庫ID
             dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
