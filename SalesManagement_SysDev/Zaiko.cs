@@ -520,7 +520,7 @@ namespace SalesManagement_SysDev
             }
 
             return true;
-        }
+        }       
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
