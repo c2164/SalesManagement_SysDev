@@ -1,4 +1,5 @@
-﻿using SalesManagement_SysDev.Common;
+﻿using Microsoft.VisualBasic;
+using SalesManagement_SysDev.Common;
 using SalesManagement_SysDev.CommonMethod;
 using SalesManagement_SysDev.Entity;
 using System;
@@ -62,7 +63,7 @@ namespace SalesManagement_SysDev
             //社員ID
             dataGridView1.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView1.Columns[0].Width = 30;
+            dataGridView1.Columns[0].Width = 50;
             //社員名
             dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -213,7 +214,7 @@ namespace SalesManagement_SysDev
 
             //各コントロールから社員情報を読み取る
             retEmployeeDTO.EmName = textBox_Syain_Namae.Text.Trim();
-            retEmployeeDTO.EmID = textBox_Syain_ID.Text.Trim();
+            retEmployeeDTO.EmID = Strings.StrConv(textBox_Syain_ID.Text.Trim(), VbStrConv.Narrow);
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retEmployeeDTO.SoID = comboBox_Eigyousyo.SelectedValue.ToString();
             retEmployeeDTO.SoName = comboBox_Eigyousyo.Text.Trim();
@@ -221,10 +222,10 @@ namespace SalesManagement_SysDev
                 retEmployeeDTO.PoID = comboBox_Yakusyoku_Namae.SelectedValue.ToString();
             retEmployeeDTO.PoName = comboBox_Yakusyoku_Namae.Text.Trim();
             retEmployeeDTO.EmHiredate = dateTimePicker1.Value;
-            retEmployeeDTO.EmPhone = textBox_Dennwa.Text.Trim() + ('-') + textBox_Dennwa2.Text.Trim() + ('-') + textBox_Dennwa3.Text.Trim();
-            retEmployeeDTO.EmPhone1 = textBox_Dennwa.Text.Trim();
-            retEmployeeDTO.EmPhone2 = textBox_Dennwa2.Text.Trim();
-            retEmployeeDTO.EmPhone3 = textBox_Dennwa3.Text.Trim();
+            retEmployeeDTO.EmPhone = Strings.StrConv(textBox_Dennwa.Text.Trim(), VbStrConv.Narrow) + ('-') + Strings.StrConv(textBox_Dennwa2.Text.Trim(), VbStrConv.Narrow) + ('-') + Strings.StrConv(textBox_Dennwa3.Text.Trim(), VbStrConv.Narrow);
+            retEmployeeDTO.EmPhone1 = Strings.StrConv(textBox_Dennwa.Text.Trim(), VbStrConv.Narrow);
+            retEmployeeDTO.EmPhone2 = Strings.StrConv(textBox_Dennwa2.Text.Trim(), VbStrConv.Narrow);
+            retEmployeeDTO.EmPhone3 = Strings.StrConv(textBox_Dennwa3.Text.Trim(), VbStrConv.Narrow);
             //Fax削除予定
             retEmployeeDTO.EmPassword = textBox_Pass.Text.Trim();
 
