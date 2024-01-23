@@ -609,6 +609,19 @@ namespace SalesManagement_SysDev
         {
             if (DataGridViewState == 1)
             {
+                textBox_Syukko_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
+                textBox_Syain.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
+                comboBox_Kokyaku.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+                textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
+                if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value == null)
+                {
+                    textBox_Kakutei_Syain_Namae.Text = "";
+                }
+                else
+                {
+                    textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value.ToString();
+                }
                 string SyID;
                 SyID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
                 GetSelectDetailData(SyID);
@@ -623,19 +636,6 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        textBox_Syukko_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-                        comboBox_Eigyousyo.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString();
-                        textBox_Syain.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[11].Value.ToString();
-                        comboBox_Kokyaku.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
-                        textBox_Zyutyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
-                        if (dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value == null)
-                        {
-                            textBox_Kakutei_Syain_Namae.Text = "";
-                        }
-                        else
-                        {
-                            textBox_Kakutei_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[13].Value.ToString();
-                        }
                         textBox_Syukkosyousai_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
                         comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[15].Value.ToString();
                         comboBoxSyouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();

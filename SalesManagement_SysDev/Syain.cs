@@ -422,11 +422,9 @@ namespace SalesManagement_SysDev
             //重複チェックを行う
             if (!DuplicationCheckEmployeeInputRecord(dispEmployeeDTO, out msg, out title, out icon))
             {
-                result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
-                if (result == DialogResult.Cancel)
-                {
-                    return;
-                }
+                messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                return;
+                
             }
 
             //登録確認
@@ -476,7 +474,7 @@ namespace SalesManagement_SysDev
             bool flg;
             msg = "";
             title = "";
-            icon = MessageBoxIcon.Question;
+            icon = MessageBoxIcon.Error;
 
             //テーブルのデータを取得
             employeetabledata = GetTableData();
