@@ -75,7 +75,14 @@ namespace SalesManagement_SysDev
                     chumonDTO.ClName = chumontb.ClName;
                     chumonDTO.ChID = chumontb.ChID;
                     chumonDTO.ChDate = chumontb.ChDate;
-                    chumonDTO.ChStateFlag = chumontb.ChStateFlag;
+                    if (chumontb.ChStateFlag == "1")
+                    {
+                        chumonDTO.ChStateFlag = "済";
+                    }
+                    else
+                    {
+                        chumonDTO.ChStateFlag = "未";
+                    }
                     chumonDTO.ChFlag = chumontb.ChFlag;
                     chumonDTO.ChHidden = chumontb.ChHidden;
 

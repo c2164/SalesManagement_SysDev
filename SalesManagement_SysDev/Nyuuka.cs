@@ -60,23 +60,30 @@ namespace SalesManagement_SysDev
             var grouptb = tb.GroupBy(x => x.ArID).ToList();
             foreach (var groupingsyukkotb in grouptb)
             {
-                foreach (var syukkotb in groupingsyukkotb)
+                foreach (var arrivaltb in groupingsyukkotb)
                 {
                     DispArrivalDTO arrivalDTO = new DispArrivalDTO();
-                    arrivalDTO.ArID = syukkotb.ArID;
-                    arrivalDTO.SoID = syukkotb.SoID;
-                    arrivalDTO.SoName = syukkotb.SoName;
-                    arrivalDTO.ArrivalEmID = syukkotb.ArrivalEmID;
-                    arrivalDTO.ArrivalEmName = syukkotb.ArrivalEmName;
-                    arrivalDTO.ConfEmID = syukkotb.ConfEmID;
-                    arrivalDTO.ConfEmName = syukkotb.ConfEmName;
-                    arrivalDTO.ClID = syukkotb.ClID;
-                    arrivalDTO.ClName = syukkotb.ClName;
-                    arrivalDTO.OrID = syukkotb.OrID;
-                    arrivalDTO.ArDate = syukkotb.ArDate;
-                    arrivalDTO.ArStateFlag = syukkotb.ArStateFlag;
-                    arrivalDTO.ArFlag = syukkotb.ArFlag;
-                    arrivalDTO.ArHidden = syukkotb.ArHidden;
+                    arrivalDTO.ArID = arrivaltb.ArID;
+                    arrivalDTO.SoID = arrivaltb.SoID;
+                    arrivalDTO.SoName = arrivaltb.SoName;
+                    arrivalDTO.ArrivalEmID = arrivaltb.ArrivalEmID;
+                    arrivalDTO.ArrivalEmName = arrivaltb.ArrivalEmName;
+                    arrivalDTO.ConfEmID = arrivaltb.ConfEmID;
+                    arrivalDTO.ConfEmName = arrivaltb.ConfEmName;
+                    arrivalDTO.ClID = arrivaltb.ClID;
+                    arrivalDTO.ClName = arrivaltb.ClName;
+                    arrivalDTO.OrID = arrivaltb.OrID;
+                    arrivalDTO.ArDate = arrivaltb.ArDate;
+                    if (arrivaltb.ArStateFlag == "1")
+                    {
+                        arrivalDTO.ArStateFlag = "済";
+                    }
+                    else
+                    {
+                        arrivalDTO.ArStateFlag = "未";
+                    }
+                    arrivalDTO.ArFlag = arrivaltb.ArFlag;
+                    arrivalDTO.ArHidden = arrivaltb.ArHidden;
 
                     disptb.Add(arrivalDTO);
                     break;

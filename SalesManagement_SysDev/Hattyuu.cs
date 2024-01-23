@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace SalesManagement_SysDev
 {
@@ -516,7 +517,7 @@ namespace SalesManagement_SysDev
                 rethattyuDetail.HaID = int.Parse(dispHattyuDTO.HaID);
             }
 
-            if (dispHattyuDTO.HaID != "")
+            if (dispHattyuDTO.HaDetailID != "")
             {
                 rethattyuDetail.HaDetailID = int.Parse(dispHattyuDTO.HaDetailID);
             }
@@ -544,6 +545,11 @@ namespace SalesManagement_SysDev
         {
             if (DataGridViewState == 1)
             {
+                textBox_Hattyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                textBox_Syain_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+                comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
+                comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
+
                 string HaID;
                 HaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
                 GetSelectDetailData(HaID);
@@ -558,13 +564,9 @@ namespace SalesManagement_SysDev
                     }
                     else
                     {
-                        textBox_Hattyuu_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-                        textBox_Syain_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
-                        textBox_Syouhin_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[7].Value.ToString();
+                        textBox_Syouhin_ID.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value.ToString();
                         textBox_Hattyuusyousai.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value.ToString();
                         numericUpDown_suuryou.Value = int.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[6].Value.ToString());
-                        comboBox_Meka_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value.ToString();
-                        comboBox_Syain_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[8].Value.ToString();
                         comboBox_Syouhin_Namae.Text = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value.ToString();
                         dateTimePicker1.Value = DateTime.Parse(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[9].Value.ToString());
                     }
@@ -690,7 +692,14 @@ namespace SalesManagement_SysDev
             }
 
             SetCtrlFormat();
-            GetSelectData();
+            if (DataGridViewState == 1)
+            {
+                GetSelectData();
+            }
+            else
+            {
+                GetSelectDetailData(dispHattyuDTO.HaID);
+            }
         }
 
         private DispHattyuDTO SetLoginEmInf(DispHattyuDTO dispHattyuDTO)
@@ -748,6 +757,16 @@ namespace SalesManagement_SysDev
                     return false;
                 }
 
+                //商品IDとメーカーIDに一貫性があるか確認
+                flg = hattyutabledata.Any(x => x.HaID == dispHattyuDTO.HaID && x.MaID == dispHattyuDTO.MaID);
+                if (!flg)
+                {
+                    icon = MessageBoxIcon.Error;
+                    msg = "発注しようとしているメーカーと選択されたメーカーが異なっています";
+                    title = "エラー";
+                    return false;
+                }
+
                 //同じ受注IDに同じ商品がないかチェックする
                 flg = hattyutabledata.Any(x => x.HaID == dispHattyuDTO.HaID && x.PrID == dispHattyuDTO.PrID);
                 if (flg)
@@ -757,6 +776,8 @@ namespace SalesManagement_SysDev
                     title = "確認";
                     return false;
                 }
+
+                
 
             }
 
@@ -1171,6 +1192,29 @@ namespace SalesManagement_SysDev
                 checkbox_stateflag = 0;
             }
             GetSelectData();
+        }
+
+        private void comboBox_Meka_Namae_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string MaName = comboBox_Meka_Namae.Text;
+            ProductDataAccess access = new ProductDataAccess();
+            List<DispProductDTO> productDTOs = new List<DispProductDTO>();
+            DispProductDTO dispProductDTO = new DispProductDTO()
+            {
+                PrName = "",
+                PrID = "",
+                MaName = MaName,
+                ScName = "",
+                Price = "",
+                PrSafetyStock = "",
+                PrModelNumber = "",
+                PrColor = "",
+            };
+
+            productDTOs = access.GetProductData(dispProductDTO);
+            comboBox_Syouhin_Namae.DataSource = productDTOs;
+            comboBox_Syouhin_Namae.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_Syouhin_Namae.SelectedIndex = -1;
         }
     }
 

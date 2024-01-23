@@ -99,6 +99,7 @@
             this.comboBox_Meka_Namae.Name = "comboBox_Meka_Namae";
             this.comboBox_Meka_Namae.Size = new System.Drawing.Size(194, 26);
             this.comboBox_Meka_Namae.TabIndex = 10;
+            this.comboBox_Meka_Namae.SelectedIndexChanged += new System.EventHandler(this.comboBox_Meka_Namae_SelectedIndexChanged);
             // 
             // comboBox_Syain_Namae
             // 
@@ -333,7 +334,7 @@
             // numericUpDown_suuryou
             // 
             this.numericUpDown_suuryou.Location = new System.Drawing.Point(195, 260);
-            this.numericUpDown_suuryou.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDown_suuryou.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown_suuryou.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -348,7 +349,7 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.radioButton1.Location = new System.Drawing.Point(34, 86);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(145, 29);
             this.radioButton1.TabIndex = 67;
@@ -362,7 +363,7 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.radioButton2.Location = new System.Drawing.Point(219, 86);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(145, 29);
             this.radioButton2.TabIndex = 68;
@@ -376,7 +377,7 @@
             this.radioButton3.AutoSize = true;
             this.radioButton3.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.radioButton3.Location = new System.Drawing.Point(640, 86);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(145, 29);
             this.radioButton3.TabIndex = 69;
@@ -390,7 +391,7 @@
             this.radioButton4.AutoSize = true;
             this.radioButton4.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.radioButton4.Location = new System.Drawing.Point(845, 86);
-            this.radioButton4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(145, 29);
             this.radioButton4.TabIndex = 70;
@@ -446,7 +447,7 @@
             this.Controls.Add(this.button_Itirannhyouzi);
             this.Controls.Add(this.button_Kennsaku);
             this.Controls.Add(this.button_Touroku);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Hattyuu";
             this.Size = new System.Drawing.Size(1238, 656);
             this.Load += new System.EventHandler(this.Hattyuu_Load);

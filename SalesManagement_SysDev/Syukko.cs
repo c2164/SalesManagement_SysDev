@@ -74,7 +74,14 @@ namespace SalesManagement_SysDev
                     syukkoDTO.ChID = syukkotb.ChID;
                     syukkoDTO.OrID = syukkotb.OrID;
                     syukkoDTO.SyDate = syukkotb.SyDate;
-                    syukkoDTO.SyStateFlag = syukkotb.SyStateFlag;
+                    if (syukkotb.SyStateFlag == "1")
+                    {
+                        syukkoDTO.SyStateFlag = "済";
+                    }
+                    else
+                    {
+                        syukkoDTO.SyStateFlag = "未";
+                    }
                     syukkoDTO.SyFlag = syukkotb.SyFlag;
                     syukkoDTO.SyHidden = syukkotb.SyHidden;
 

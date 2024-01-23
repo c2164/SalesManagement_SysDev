@@ -60,23 +60,30 @@ namespace SalesManagement_SysDev
             var grouptb = tb.GroupBy(x => x.ShID).ToList();
             foreach (var groupingsyukkotb in grouptb)
             {
-                foreach (var syukkotb in groupingsyukkotb)
+                foreach (var shipmenttb in groupingsyukkotb)
                 {
                     DispShipmentDTO shipmentDTO = new DispShipmentDTO();
-                    shipmentDTO.ShID = syukkotb.ShID;
-                    shipmentDTO.SoID = syukkotb.SoID;
-                    shipmentDTO.SoName = syukkotb.SoName;
-                    shipmentDTO.ArrivalEmID = syukkotb.ArrivalEmID;
-                    shipmentDTO.ArrivalEmName = syukkotb.ArrivalEmName;
-                    shipmentDTO.ConfEmID = syukkotb.ConfEmID;
-                    shipmentDTO.ConfEmName = syukkotb.ConfEmName;
-                    shipmentDTO.ClID = syukkotb.ClID;
-                    shipmentDTO.ClName = syukkotb.ClName;
-                    shipmentDTO.OrID = syukkotb.OrID;
-                    shipmentDTO.ShFinishDate = syukkotb.ShFinishDate;
-                    shipmentDTO.ShStateFlag = syukkotb.ShStateFlag;
-                    shipmentDTO.ShFlag = syukkotb.ShFlag;
-                    shipmentDTO.ShHidden = syukkotb.ShHidden;
+                    shipmentDTO.ShID = shipmenttb.ShID;
+                    shipmentDTO.SoID = shipmenttb.SoID;
+                    shipmentDTO.SoName = shipmenttb.SoName;
+                    shipmentDTO.ArrivalEmID = shipmenttb.ArrivalEmID;
+                    shipmentDTO.ArrivalEmName = shipmenttb.ArrivalEmName;
+                    shipmentDTO.ConfEmID = shipmenttb.ConfEmID;
+                    shipmentDTO.ConfEmName = shipmenttb.ConfEmName;
+                    shipmentDTO.ClID = shipmenttb.ClID;
+                    shipmentDTO.ClName = shipmenttb.ClName;
+                    shipmentDTO.OrID = shipmenttb.OrID;
+                    shipmentDTO.ShFinishDate = shipmenttb.ShFinishDate;
+                    if (shipmenttb.ShStateFlag == "1")
+                    {
+                        shipmentDTO.ShStateFlag = "済";
+                    }
+                    else
+                    {
+                        shipmentDTO.ShStateFlag = "未";
+                    }
+                    shipmentDTO.ShFlag = shipmenttb.ShFlag;
+                    shipmentDTO.ShHidden = shipmenttb.ShHidden;
 
                     disptb.Add(shipmentDTO);
                     break;

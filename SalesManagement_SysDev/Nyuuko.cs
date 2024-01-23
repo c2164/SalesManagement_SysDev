@@ -94,7 +94,14 @@ namespace SalesManagement_SysDev
                     warehousingDTO.ConfEmID = warehousingtb.ConfEmID;
                     warehousingDTO.ConfEmName = warehousingtb.ConfEmName;
                     warehousingDTO.WaDate = warehousingtb.WaDate;
-                    warehousingDTO.WaShelfFlag = warehousingtb.WaShelfFlag;
+                    if (warehousingtb.WaShelfFlag == "1")
+                    {
+                        warehousingDTO.WaShelfFlag = "済";
+                    }
+                    else
+                    {
+                        warehousingDTO.WaShelfFlag = "未";
+                    }
                     warehousingDTO.WaFlag = warehousingtb.WaFlag;
                     warehousingDTO.WaHidden = warehousingtb.WaHidden;
 
