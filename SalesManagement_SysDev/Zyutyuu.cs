@@ -19,6 +19,7 @@ namespace SalesManagement_SysDev
         private MessageDsp messageDsp = new MessageDsp();
         private DispEmplyeeDTO loginEmployee;
         private int DataGridViewState; //データグリッドビューの表示ステータス(1：受注　　2：受注詳細)
+        private int checkbox_stateflag = 0;
 
         public Zyutyuu(DispEmplyeeDTO dispEmplyee)
         {
@@ -92,7 +93,7 @@ namespace SalesManagement_SysDev
         {
             OrderDataAccess access = new OrderDataAccess();
             //出荷情報の全件取得
-            List<DispOrderDTO> tb = access.GetOrderData();
+            List<DispOrderDTO> tb = access.GetOrderData(checkbox_stateflag);
             List<DispOrderDTO> disptb = new List<DispOrderDTO>();
             if (tb == null)
                 return false;
@@ -143,7 +144,8 @@ namespace SalesManagement_SysDev
                 OrDetailID = "",
                 MaName = "",
                 SoName = "",
-                PrName = ""
+                PrName = "",
+                OrStateFlag = checkbox_stateflag.ToString()
             };
             //出荷情報の全件取得
             List<DispOrderDTO> tb = access.GetOrderData(dispOrder);
@@ -365,6 +367,9 @@ namespace SalesManagement_SysDev
             //テーブルデータの受け取り
             order = GetTableData();
 
+            //グループ化
+            order = GetDataGridViewData(order);
+
             //昇順に並び変え
             sortedorder = SortOrderDate(order);
 
@@ -381,7 +386,7 @@ namespace SalesManagement_SysDev
             OrderDataAccess OrAccess = new OrderDataAccess();
 
             //データベースからデータを取得
-            order = OrAccess.GetOrderData();
+            order = OrAccess.GetOrderData(checkbox_stateflag);
 
             return order;
         }
@@ -406,12 +411,23 @@ namespace SalesManagement_SysDev
 
             //データの読み取り
             orderDTO = Getorderinf();
+            orderDTO = GetCheckStateFlag(orderDTO);
 
             //データの検索
             DisplayOrder = SelectOrderInf(orderDTO);
 
             //データグリッドビューに表示
             SetDataGridView(DisplayOrder);
+        }
+
+        private DispOrderDTO GetCheckStateFlag(DispOrderDTO orderDTO)
+        {
+            if (checkBox_Kakutei.Checked == true)
+                orderDTO.OrStateFlag = "1"; //確定済み
+            else
+                orderDTO.OrStateFlag = "0";
+
+            return orderDTO;
         }
 
         private DispOrderDTO Getorderinf()
@@ -438,7 +454,6 @@ namespace SalesManagement_SysDev
             retOrderDTO.OrQuantity = numericUpDown_Suuryou.Value.ToString();//数量
             retOrderDTO.OrFlag = "0";
             retOrderDTO.OrStateFlag = "0";
-
 
             return retOrderDTO;
         }
@@ -580,7 +595,14 @@ namespace SalesManagement_SysDev
             }
 
             SetCtrlFormat();
-            GetSelectData();
+            if(DataGridViewState == 1)
+            {
+                GetSelectData();
+            }
+            else
+            {
+                GetSelectDetailData(dispOrderDTO.OrID);
+            }
 
         }
 
@@ -696,13 +718,6 @@ namespace SalesManagement_SysDev
                 return false;
             }
 
-            if (String.IsNullOrEmpty(checkdata.EmName))
-            {
-                msg = "社員名は必須入力です";
-                title = "入力エラー";
-                return false;
-            }
-
             if (!String.IsNullOrEmpty(checkdata.OrID))
             {
                 if (!inputFormCheck.CheckNumeric(checkdata.OrID))
@@ -711,13 +726,6 @@ namespace SalesManagement_SysDev
                     title = "入力エラー";
                     return false;
                 }
-            }
-
-            if (comboBox_Meka_Namae.SelectedIndex == -1)
-            {
-                msg = "メーカーを選択してください";
-                title = "入力エラー";
-                return false;
             }
 
             if (String.IsNullOrEmpty(checkdata.SoName))
@@ -1153,6 +1161,12 @@ namespace SalesManagement_SysDev
             label5.ForeColor = Color.LightGray;
             textBox_Zyutyuusyousai_ID.Enabled = false;
             textBox_Zyutyuusyousai_ID.BackColor = Color.LightGray;
+            label3.ForeColor = Color.LightGray;
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
+            label6.ForeColor = Color.LightGray;
+            comboBox_Meka_Namae.Enabled = false;
+            comboBox_Meka_Namae.BackColor = Color.LightGray;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -1256,6 +1270,19 @@ namespace SalesManagement_SysDev
             label9.ForeColor = Color.Black;
             numericUpDown_Suuryou.Enabled = true;
             numericUpDown_Suuryou.BackColor = Color.White;
+        }
+
+        private void checkBox_Kakutei_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Kakutei.Checked == true)
+            {
+                checkbox_stateflag = 1;
+            }
+            else
+            {
+                checkbox_stateflag = 0;
+            }
+            GetSelectData();
         }
     }
 }

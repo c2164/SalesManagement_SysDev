@@ -18,6 +18,7 @@ namespace SalesManagement_SysDev
         private MessageDsp messageDsp = new MessageDsp();
         private DispEmplyeeDTO loginEmployee;
         private int DataGridViewState;
+        private int checkbox_stateflag = 0;
 
         public Hattyuu(DispEmplyeeDTO dispEmplyee)
         {
@@ -42,7 +43,7 @@ namespace SalesManagement_SysDev
         {
             HattyuDataAccess access = new HattyuDataAccess();
             //商品情報の全件取得
-            List<DispHattyuDTO> tb = access.GetHattyuData();
+            List<DispHattyuDTO> tb = access.GetHattyuData(checkbox_stateflag);
             List<DispHattyuDTO> disptb = new List<DispHattyuDTO>();
             if (tb == null)
                 return false;
@@ -89,6 +90,7 @@ namespace SalesManagement_SysDev
                 MaName = "",
                 PrID = "",
                 PrName = "",
+                WaWarehouseFlag = checkbox_stateflag.ToString()
             };
 
             //入荷情報の全件取得
@@ -273,6 +275,9 @@ namespace SalesManagement_SysDev
 
             hattyu = GetTableData();
 
+            //グループ化
+            hattyu = GetDataGridViewData(hattyu);
+
             sortedhattyu = SortHattyuData(hattyu);
 
             SetDataGridView(sortedhattyu);
@@ -285,7 +290,7 @@ namespace SalesManagement_SysDev
 
             HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
 
-            hattyu = hattyuDataAccess.GetHattyuData();
+            hattyu = hattyuDataAccess.GetHattyuData(checkbox_stateflag);
 
             return hattyu;
         }
@@ -307,10 +312,21 @@ namespace SalesManagement_SysDev
             List<DispHattyuDTO> displayHattyu = new List<DispHattyuDTO>();
 
             hattyuDTO = GetHattyuInf();
+            hattyuDTO = GetCheckStateFlag(hattyuDTO);
 
             displayHattyu = SelectHattyuInf(hattyuDTO);
 
             SetDataGridView(displayHattyu);
+        }
+
+        private DispHattyuDTO GetCheckStateFlag(DispHattyuDTO hattyuDTO)
+        {
+            if (checkBox_Kakutei.Checked == true)
+                hattyuDTO.WaWarehouseFlag = "1"; //確定済み
+            else
+                hattyuDTO.WaWarehouseFlag = "0";
+
+            return hattyuDTO;
         }
 
         private DispHattyuDTO GetHattyuInf()
@@ -489,7 +505,6 @@ namespace SalesManagement_SysDev
             rethattyu.HaFlag = int.Parse(dispHattyuDTO.HaFlag);
             rethattyu.HaHidden = dispHattyuDTO.HaHidden;
 
-
             return rethattyu;
         }
 
@@ -518,7 +533,7 @@ namespace SalesManagement_SysDev
             string retHaID;
             if (dataGridView1.SelectedRows.Count <= 0)
             {
-                messageDsp.MessageBoxDsp_OK("表から削除対象を選択してください", "エラー", MessageBoxIcon.Error);
+                messageDsp.MessageBoxDsp_OK("表から対象を選択してください", "エラー", MessageBoxIcon.Error);
                 return null;
             }
             retHaID = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
@@ -581,15 +596,24 @@ namespace SalesManagement_SysDev
             //重複チェックを行う
             if (!DuplicationCheckHattyuInputRecord(dispHattyuDTO, out msg, out title, out icon))
             {
+                if (icon == MessageBoxIcon.Error)
+                {
+                    messageDsp.MessageBoxDsp_OK(msg, title, icon);
+                    return;
+                }
                 result = messageDsp.MessageBoxDsp_OKCancel(msg, title, icon);
                 if (result == DialogResult.Cancel)
                 {
                     return;
                 }
+
+                //数量を加算する
+                dispHattyuDTO = AddQuantity(dispHattyuDTO);
+                //データを更新する
+                UpdateHattyuInf(dispHattyuDTO);
             }
 
             //登録確認
-            //須田オーダー
             result = messageDsp.MessageBoxDsp_OKCancel("登録しますか？", "確認", MessageBoxIcon.Question);
             if (result == DialogResult.Cancel)
             {
@@ -598,6 +622,42 @@ namespace SalesManagement_SysDev
 
             //データ登録
             RegisrationHattyuInf(dispHattyuDTO);
+        }
+
+        private void UpdateHattyuInf(DispHattyuDTO dispHattyuDTO)
+        {
+            //変数の宣言
+            bool flg;
+            T_Hattyu hattyu;
+            T_HattyuDetail hattyuDetail;
+            //インスタンス化
+            HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
+
+            //更新用データに変換
+            hattyu = FormalizationHattyuInputRecord(dispHattyuDTO);
+            hattyuDetail = FormalizationHattyuDetailInputRecord(dispHattyuDTO);
+            hattyuDetail.HaDetailID = int.Parse(dispHattyuDTO.HaDetailID);
+            //更新処理
+            flg = hattyuDataAccess.UpdateHattyuData(hattyu, hattyuDetail);
+            if (flg)
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報を更新しました", "更新完了", MessageBoxIcon.Information);
+            }
+            else
+            {
+                messageDsp.MessageBoxDsp_OK("受注情報の更新に失敗しました", "エラー", MessageBoxIcon.Error);
+            }
+        }
+
+        private DispHattyuDTO AddQuantity(DispHattyuDTO dispHattyuDTO)
+        {
+            List<DispHattyuDTO> hattyus = new List<DispHattyuDTO>();
+            DispHattyuDTO hattyuDTO = new DispHattyuDTO();
+            hattyus = GetTableData();
+            hattyuDTO = hattyus.Single(x => x.HaID == dispHattyuDTO.HaID && x.PrID == dispHattyuDTO.PrID);
+
+            dispHattyuDTO.HaQuantity = (int.Parse(hattyuDTO.HaQuantity) + int.Parse(dispHattyuDTO.HaQuantity)).ToString();
+            return dispHattyuDTO;
         }
 
         private void RegisrationHattyuInf(DispHattyuDTO dispHattyuDTO)
@@ -609,9 +669,14 @@ namespace SalesManagement_SysDev
             //インスタンス化
             HattyuDataAccess hattyuDataAccess = new HattyuDataAccess();
 
+
+            //ログインデータを登録用データに入れる
+            dispHattyuDTO = SetLoginEmInf(dispHattyuDTO);
+
             //登録用データに変換
             hattyu = FormalizationHattyuInputRecord(dispHattyuDTO);
             HattyuDetail = FormalizationHattyuDetailInputRecord(dispHattyuDTO);
+
             //登録処理
             flg = hattyuDataAccess.RegisterHattyuData(hattyu, HattyuDetail);
 
@@ -621,12 +686,19 @@ namespace SalesManagement_SysDev
             }
             else
             {
-                //須田オーダー
                 messageDsp.MessageBoxDsp_OK("発注情報の登録に失敗しました", "エラー", MessageBoxIcon.Error);
             }
 
             SetCtrlFormat();
             GetSelectData();
+        }
+
+        private DispHattyuDTO SetLoginEmInf(DispHattyuDTO dispHattyuDTO)
+        {
+            dispHattyuDTO.EmID = loginEmployee.EmID;
+            dispHattyuDTO.EmName = loginEmployee.EmName;
+
+            return dispHattyuDTO;
         }
 
         private T_Hattyu FormalizationHattyuInputRecord(DispHattyuDTO dispHattyu, T_HattyuDetail hattyuDetail)
@@ -664,13 +736,28 @@ namespace SalesManagement_SysDev
             //テーブルのデータを取得
             hattyutabledata = GetTableData();
 
-            //同じ受注IDに同じ商品がないかチェックする
-            flg = hattyutabledata.Any(x => x.HaID == dispHattyuDTO.HaID && x.PrID == dispHattyuDTO.PrID);
-            if (flg)
+            //既に確定されているかチェックする
+            if (dispHattyuDTO.HaID != "")
             {
-                msg = "同じデータが登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
-                title = "確認";
-                return false;
+                flg = hattyutabledata.First(x => x.HaID == dispHattyuDTO.HaID).WaWarehouseFlag == "1";
+                if (flg)
+                {
+                    icon = MessageBoxIcon.Error;
+                    msg = "既に確定されている発注の為、新しく登録できません";
+                    title = "エラー";
+                    return false;
+                }
+
+                //同じ受注IDに同じ商品がないかチェックする
+                flg = hattyutabledata.Any(x => x.HaID == dispHattyuDTO.HaID && x.PrID == dispHattyuDTO.PrID);
+                if (flg)
+                {
+                    icon = MessageBoxIcon.Question;
+                    msg = "同じデータが登録されているので、既にあるデータに加算しますがよろしいでしょうか？";
+                    title = "確認";
+                    return false;
+                }
+
             }
 
             return true;
@@ -710,12 +797,6 @@ namespace SalesManagement_SysDev
             title = "";
             icon = MessageBoxIcon.Error;
 
-            if (string.IsNullOrEmpty(checkdata.EmName))
-            {
-                msg = "社員名は必須入力です";
-                title = "入力エラー";
-                return false;
-            }
             if (string.IsNullOrEmpty(checkdata.MaName))
             {
                 msg = "メーカ名は必須入力です";
@@ -964,10 +1045,8 @@ namespace SalesManagement_SysDev
             label9.ForeColor = Color.LightGray;
             dateTimePicker1.Enabled = false;
             dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
-            checkBox1.Enabled = false;
-            checkBox1.ForeColor = Color.LightGray;
-
-
+            comboBox_Syain_Namae.Enabled = false;
+            comboBox_Syain_Namae.BackColor = Color.LightGray;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -983,11 +1062,6 @@ namespace SalesManagement_SysDev
             label9.ForeColor = Color.LightGray;
             dateTimePicker1.Enabled = false;
             dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
-            checkBox1.Enabled = false;
-            checkBox1.ForeColor = Color.LightGray;
-
-
-
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
@@ -1020,8 +1094,6 @@ namespace SalesManagement_SysDev
             label9.ForeColor = Color.LightGray;
             dateTimePicker1.Enabled = false;
             dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
-            checkBox1.Enabled = false;
-            checkBox1.ForeColor = Color.LightGray;
 
         }
 
@@ -1055,8 +1127,6 @@ namespace SalesManagement_SysDev
             label9.ForeColor = Color.LightGray;
             dateTimePicker1.Enabled = false;
             dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
-            checkBox1.Enabled = false;
-            checkBox1.ForeColor = Color.LightGray;
         }
 
         private void cmbclia()
@@ -1088,8 +1158,19 @@ namespace SalesManagement_SysDev
             label9.ForeColor = Color.Black;
             dateTimePicker1.Enabled = true;
             dateTimePicker1.CalendarTitleBackColor = Color.White;
-            checkBox1.Enabled = true;
-            checkBox1.ForeColor = Color.Black;
+        }
+
+        private void checkBox_Kakutei_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Kakutei.Checked == true)
+            {
+                checkbox_stateflag = 1;
+            }
+            else
+            {
+                checkbox_stateflag = 0;
+            }
+            GetSelectData();
         }
     }
 

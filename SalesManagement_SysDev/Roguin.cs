@@ -142,7 +142,10 @@ namespace SalesManagement_SysDev
             //社員情報取得
             dispEmplyees = GetTableData();
             //取得した社員情報から社員IDで絞り込む
-            retdispEmplyeeDTO = dispEmplyees.SingleOrDefault(x => x.EmID == dispEmplyeeDTO.EmID);
+            if (dispEmplyeeDTO != null)
+            {
+                retdispEmplyeeDTO = dispEmplyees.SingleOrDefault(x => x.EmID == dispEmplyeeDTO.EmID);
+            }
 
             return retdispEmplyeeDTO;
 

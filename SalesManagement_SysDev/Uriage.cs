@@ -307,10 +307,16 @@ namespace SalesManagement_SysDev
 
             retSaleDTO.OrID = textBox_Zyutyuu_ID.Text.Trim();
 
-            retSaleDTO.SaReleseFromDate = dateTimePicker_Nitizi_2.Value;
+            if (checkBox_BetweenDate.Checked == true)
+            {
+                retSaleDTO.SaReleseFromDate = dateTimePicker_Nitizi_2.Value;
 
-            retSaleDTO.SaReleaseToDate = dateTimePicker_Nitizi_3.Value;
-
+                retSaleDTO.SaReleaseToDate = dateTimePicker_Nitizi_3.Value;
+            }
+            else
+            {
+                retSaleDTO.SaReleseFromDate = null;
+            }
             return retSaleDTO;
 
         }
@@ -322,6 +328,9 @@ namespace SalesManagement_SysDev
             SaleDataAccess SaAcsess = new SaleDataAccess();
 
             retDispSale = SaAcsess.GetSaleData(SaleDTO);
+
+            //データグリッドビューに表示できるように変換
+            retDispSale = GetDataGridViewData(retDispSale);
             return retDispSale;
 
         }
@@ -500,6 +509,9 @@ namespace SalesManagement_SysDev
 
             sale = GetTableData();
 
+            //グループ化
+            sale = GetDataGridViewData(sale);
+
             sortedsale = SortSaleData(sale);
 
             SetDataGridView(sortedsale);
@@ -615,6 +627,7 @@ namespace SalesManagement_SysDev
             dateTimePicker_Nitizi_3.Enabled = false;
             dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.LightGray;
             label8.ForeColor = Color.LightGray;
+            checkBox_BetweenDate.Enabled = false;
         }
 
         private void cmbclia()
@@ -646,6 +659,21 @@ namespace SalesManagement_SysDev
             dateTimePicker_Nitizi_3.Enabled = true;
             dateTimePicker_Nitizi_3.CalendarTitleBackColor = Color.White;
             label8.ForeColor = Color.Black;
+            checkBox_BetweenDate.Enabled = true;
+        }
+
+        private void checkBox_BetweenDate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_BetweenDate.Checked)
+            {
+                dateTimePicker_Nitizi_2.Enabled = true;
+                dateTimePicker_Nitizi_3.Enabled = true;
+            }
+            else
+            {
+                dateTimePicker_Nitizi_2.Enabled = false;
+                dateTimePicker_Nitizi_3.Enabled = false;
+            }
         }
     }
 }

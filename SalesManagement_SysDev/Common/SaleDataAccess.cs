@@ -109,10 +109,12 @@ namespace SalesManagement_SysDev.Common
 
                          Employee.EmName.Contains(dispSaleDTO.EmName) && //社員名
 
-                         dispSaleDTO.OrID.Equals("") ? true :
-                         Order.OrID.ToString().Equals(dispSaleDTO.OrID) && //受注ID
+                         (dispSaleDTO.OrID.Equals("") ? true :
+                         Order.OrID.ToString().Equals(dispSaleDTO.OrID)) && //受注ID
 
-                         //検索用日時
+                         (dispSaleDTO.SaReleseFromDate == null ? true :
+                         dispSaleDTO.SaReleseFromDate <= Sale.SaDate &&
+                         dispSaleDTO.SaReleaseToDate >= Sale.SaDate  )&&//検索用日時
 
                          Sale.SaFlag == 0 //非表示フラグ
 

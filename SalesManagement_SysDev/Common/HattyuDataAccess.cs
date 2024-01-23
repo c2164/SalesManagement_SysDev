@@ -108,7 +108,10 @@ namespace SalesManagement_SysDev.Common
 
                         //発注年月日
 
-                        Hattyu.HaFlag == 0 //非表示フラグ
+                        Hattyu.HaFlag == 0 && //非表示フラグ
+
+                                                 (dispHattyuDTO.WaWarehouseFlag == "1" ? true :
+                         Hattyu.WaWarehouseFlag == 0) //確定フラグ
 
                          select new DispHattyuDTO
                          {
@@ -140,7 +143,7 @@ namespace SalesManagement_SysDev.Common
         //続きから
 
         //商品全表示：オーバーロード
-        public List<DispHattyuDTO> GetHattyuData()
+        public List<DispHattyuDTO> GetHattyuData(int stateflag)
         {
             var context = new SalesManagement_DevContext();
             try
@@ -157,7 +160,9 @@ namespace SalesManagement_SysDev.Common
 
                          where 
 
-                         Hattyu.HaFlag == 0 //非表示フラグ
+                         Hattyu.HaFlag == 0 && //非表示フラグ
+                         (stateflag == 1 ? true :
+                         Hattyu.WaWarehouseFlag == 0) //確定フラグ
 
                          select new DispHattyuDTO
                          {

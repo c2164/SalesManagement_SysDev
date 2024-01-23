@@ -866,8 +866,12 @@ namespace SalesManagement_SysDev
             label2.Visible = false;
             label3.Visible = false;
             label4.Visible = false;
+            button_logout.Visible = false;
             label_loginEmName.Text = "";
             label_loginEmPosition.Text = "";
+            button1.BackColor = Color.White;
+            button2.BackColor = Color.White;
+            button3.BackColor = Color.White;
         }
 
         private void OpenLoginForm()

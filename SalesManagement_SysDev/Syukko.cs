@@ -99,6 +99,7 @@ namespace SalesManagement_SysDev
                 MaName = "",
                 SoName = "",
                 PrName = "",
+                SyStateFlag = checkbox_stateflag.ToString()
             };
             //出荷情報の全件取得
             List<DispSyukkoDTO> tb = access.GetSyukkoData(dispOrder);
@@ -345,6 +346,9 @@ namespace SalesManagement_SysDev
             //テーブルデータ受け取り
             syukko = GetTableData();
 
+            //グループ化
+            syukko = GetDataGridViewData(syukko);
+
             //昇順に並び替える
             sortedsyukko = SortSyukkoData(syukko);
 
@@ -420,8 +424,7 @@ namespace SalesManagement_SysDev
                 retSyukkoDTO.PrID = comboBoxSyouhin_Namae.SelectedValue.ToString();//商品ID
             retSyukkoDTO.PrName = comboBoxSyouhin_Namae.Text.Trim();//商品名
             retSyukkoDTO.SyQuantity = domainUpDown_Suuryou.Value.ToString();//数量
-            if (checkBox_Kakutei.Checked == true)
-                retSyukkoDTO.SyStateFlag = "1"; //確定済み
+            retSyukkoDTO.SyStateFlag = checkbox_stateflag.ToString();
 
 
             return retSyukkoDTO;

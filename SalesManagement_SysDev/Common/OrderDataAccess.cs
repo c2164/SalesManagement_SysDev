@@ -104,16 +104,17 @@ namespace SalesManagement_SysDev.Common
                          Order.ClCharge.Contains(dispOrderDTO.ClCharge) &&//顧客担当社員名
                          Employee.EmName.Contains(dispOrderDTO.EmName) &&//社員名
                          (dispOrderDTO.OrID.Equals("") ? true :
-                         Order.OrID.ToString().Contains(dispOrderDTO.OrID)) &&//受注ID
+                         Order.OrID.ToString().Equals(dispOrderDTO.OrID)) &&//受注ID
                          (dispOrderDTO.OrDetailID.Equals("") ? true :
                          OrderDetail.OrDetailID.ToString().Equals(dispOrderDTO.OrDetailID)) &&//受注詳細ID
                          Maker.MaName.Contains(dispOrderDTO.MaName) && //メーカー名
                          SalesOffice.SoName.Contains(dispOrderDTO.SoName) && // 営業所
                          Product.PrName.Contains(dispOrderDTO.PrName) && //商品名
 
+                         Order.OrFlag == 0 &&//非表示フラグ
+                          (dispOrderDTO.OrStateFlag == "1" ? true :
+                         Order.OrStateFlag == 0)
 
-
-                         Order.OrFlag == 0 //非表示フラグ
 
                          select new DispOrderDTO
                          {
@@ -150,7 +151,7 @@ namespace SalesManagement_SysDev.Common
         }
 
         //受注全表示：オーバーロード
-        public List<DispOrderDTO> GetOrderData()
+        public List<DispOrderDTO> GetOrderData(int stateflag)
         {
             var context = new SalesManagement_DevContext();
             try
@@ -172,7 +173,9 @@ namespace SalesManagement_SysDev.Common
                          on Product.MaID equals Maker.MaID
 
                          where
-                         Order.OrFlag == 0 //非表示フラグ
+                         Order.OrFlag == 0 && //非表示フラグ
+                         (stateflag == 1 ? true :
+                         Order.OrStateFlag == 0)
 
                          select new DispOrderDTO
                          {

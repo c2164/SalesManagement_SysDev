@@ -18,6 +18,7 @@ namespace SalesManagement_SysDev
         private MessageDsp messageDsp = new MessageDsp();
         private DispEmplyeeDTO loginEmployee;
         private int DataGridViewState;
+        private int checkbox_stateflag = 0;
         public Nyuuko(DispEmplyeeDTO dispEmplyee)
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace SalesManagement_SysDev
         {
             WarehousingDataAccess access = new WarehousingDataAccess();
             //入庫情報の全件取得
-            List<DispWarehousingDTO> tb = access.GetWarehousingData();
+            List<DispWarehousingDTO> tb = access.GetWarehousingData(checkbox_stateflag);
             List<DispWarehousingDTO> disptb = new List<DispWarehousingDTO>();
             if (tb == null)
                 return false;
@@ -63,6 +64,7 @@ namespace SalesManagement_SysDev
                 PrName = "",
                 ConfEmName = "",
                 MaName = "",
+                WaShelfFlag = checkbox_stateflag.ToString()
             };
 
             //入荷情報の全件取得
@@ -300,6 +302,9 @@ namespace SalesManagement_SysDev
             //テーブルデータ受け取り
             warehousing = GetTableData();
 
+            //グループ化
+            warehousing = GetDataGridViewData(warehousing);
+
             //昇順に並び替える
             sortedwarehousing = SortWarehousingData(warehousing);
 
@@ -316,7 +321,7 @@ namespace SalesManagement_SysDev
             WarehousingDataAccess WaAccess = new WarehousingDataAccess();
 
             //データベースからデータを取得
-            warehousing = WaAccess.GetWarehousingData();
+            warehousing = WaAccess.GetWarehousingData(checkbox_stateflag);
 
 
             return warehousing;
@@ -369,6 +374,7 @@ namespace SalesManagement_SysDev
             retWarehousingDTO.PrName = comboBox_Syouhin_Namae.Text.Trim();
             retWarehousingDTO.WaQuantity = numericUpDown_Suuryou.Value.ToString();
             retWarehousingDTO.HattyuEmName = textBox_Hattyuu_Syain_Namae.Text.Trim();
+            retWarehousingDTO.WaShelfFlag = checkbox_stateflag.ToString();
 
             return retWarehousingDTO;
         }
@@ -933,6 +939,19 @@ namespace SalesManagement_SysDev
             label8.ForeColor = Color.Black;
             numericUpDown_Suuryou.Enabled = true;
             numericUpDown_Suuryou.BackColor = Color.White;
+        }
+
+        private void checkBox_Kakutei_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Kakutei.Checked == true)
+            {
+                checkbox_stateflag = 1;
+            }
+            else
+            {
+                checkbox_stateflag = 0;
+            }
+            GetSelectData();
         }
     }
 

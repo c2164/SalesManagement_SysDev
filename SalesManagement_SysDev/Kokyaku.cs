@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -208,17 +209,17 @@ namespace SalesManagement_SysDev
             DispClientDTO retDispClient = new DispClientDTO();
 
             //各コントロールから顧客情報を読み取る
-            retDispClient.ClID = textBox_Kokyaku_ID.Text.Trim();//顧客ID
+            retDispClient.ClID = Strings.StrConv(textBox_Kokyaku_ID.Text.Trim(), VbStrConv.Narrow);//顧客ID
             retDispClient.ClName = textBox_Kokyaku_Namae.Text.Trim();//顧客名
-            retDispClient.ClPostal = textBox_Yuubin.Text.Trim();//郵便番号
-            retDispClient.ClPhone = textBox_Dennwa1.Text.Trim() + ('-') + textBox_Dennwa2.Text.Trim() + ('-') + textBox_Dennwa3.Text.Trim();//電話番号
-            retDispClient.ClPhone1 = textBox_Dennwa1.Text.Trim();
-            retDispClient.ClPhone2 = textBox_Dennwa2.Text.Trim();
-            retDispClient.ClPhone3 = textBox_Dennwa3.Text.Trim();
-            retDispClient.ClFAX = textBox_FAX1.Text.Trim() + ('-') + textBox_FAX2.Text.Trim() + ('-') + textBox_FAX3.Text.Trim();//FAX
-            retDispClient.ClFAX1 = textBox_FAX1.Text.Trim();
-            retDispClient.ClFAX2 = textBox_FAX2.Text.Trim();
-            retDispClient.ClFAX3 = textBox_FAX3.Text.Trim();
+            retDispClient.ClPostal = Strings.StrConv(textBox_Yuubin.Text.Trim(), VbStrConv.Narrow);//郵便番号
+            retDispClient.ClPhone = Strings.StrConv(textBox_Dennwa1.Text.Trim(), VbStrConv.Narrow) + ('-') + Strings.StrConv(textBox_Dennwa2.Text.Trim(), VbStrConv.Narrow) + ('-') + Strings.StrConv(textBox_Dennwa3.Text.Trim(), VbStrConv.Narrow);//電話番号
+            retDispClient.ClPhone1 = Strings.StrConv(textBox_Dennwa1.Text.Trim(), VbStrConv.Narrow);
+            retDispClient.ClPhone2 = Strings.StrConv(textBox_Dennwa2.Text.Trim(), VbStrConv.Narrow);
+            retDispClient.ClPhone3 = Strings.StrConv(textBox_Dennwa3.Text.Trim(), VbStrConv.Narrow);
+            retDispClient.ClFAX = Strings.StrConv(textBox_FAX1.Text.Trim(), VbStrConv.Narrow) + ('-') + Strings.StrConv(textBox_FAX2.Text.Trim(), VbStrConv.Narrow) + ('-') + Strings.StrConv(textBox_FAX3.Text.Trim(), VbStrConv.Narrow);//FAX
+            retDispClient.ClFAX1 = Strings.StrConv(textBox_FAX1.Text.Trim(), VbStrConv.Narrow);
+            retDispClient.ClFAX2 = Strings.StrConv(textBox_FAX2.Text.Trim(), VbStrConv.Narrow);
+            retDispClient.ClFAX3 = Strings.StrConv(textBox_FAX3.Text.Trim(), VbStrConv.Narrow);
             retDispClient.ClAddress = textBox_Zyuusyo.Text.Trim();//住所
             if (!(comboBox_Eigyousyo.SelectedIndex == -1))
                 retDispClient.SoID = comboBox_Eigyousyo.SelectedValue.ToString();//営業所ID

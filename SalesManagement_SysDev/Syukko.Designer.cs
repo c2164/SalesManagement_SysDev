@@ -392,7 +392,7 @@
             // checkBox_Kakutei
             // 
             this.checkBox_Kakutei.AutoSize = true;
-            this.checkBox_Kakutei.Location = new System.Drawing.Point(438, 347);
+            this.checkBox_Kakutei.Location = new System.Drawing.Point(1046, 357);
             this.checkBox_Kakutei.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox_Kakutei.Name = "checkBox_Kakutei";
             this.checkBox_Kakutei.Size = new System.Drawing.Size(151, 22);

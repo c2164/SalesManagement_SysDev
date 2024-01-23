@@ -120,11 +120,8 @@ namespace SalesManagement_SysDev.Common
 
                          Maker.MaName.Contains(dispShipmentDTO.MaName) && //メーカー名
 
-                         /*(dispShipmentDTO.ShQuantity.Equals("") ? true :
-                         ShipmentDetail.ShQuantity.ToString().Equals(dispShipmentDTO.ShQuantity)) &&//数量
-
-                         (dispShipmentDTO.ShStateFlag.Contains("2") ? true :
-                         Shipment.ShStateFlag.ToString().Equals(dispShipmentDTO.ShStateFlag)) &&//出荷状態フラグ*/
+                        (dispShipmentDTO.ShStateFlag == "1" ? true :
+                         Shipment.ShStateFlag == 0) &&
 
                          Shipment.ShFlag == 0 //非表示フラグ
 
@@ -165,7 +162,7 @@ namespace SalesManagement_SysDev.Common
 
         }
 
-        public List<DispShipmentDTO> GetShipmentData()
+        public List<DispShipmentDTO> GetShipmentData(int stateflag)
         {
             var context = new SalesManagement_DevContext();
             try
@@ -193,8 +190,9 @@ namespace SalesManagement_SysDev.Common
                          join Maker in context.M_Makers
                          on Product.MaID equals Maker.MaID
                          where
-                         Shipment.ShFlag == 0  //非表示フラグ
-
+                         Shipment.ShFlag == 0  &&//非表示フラグ
+                         (stateflag == 1 ? true :
+                         Shipment.ShStateFlag == 0)
 
                          select new DispShipmentDTO
                          {
