@@ -714,6 +714,7 @@ namespace SalesManagement_SysDev
             label5.ForeColor = Color.LightGray;
             dateTimePicker1.Enabled = false;
             dateTimePicker1.CalendarTitleBackColor = Color.LightGray;
+
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
