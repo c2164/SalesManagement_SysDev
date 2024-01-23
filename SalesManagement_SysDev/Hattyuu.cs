@@ -482,7 +482,7 @@ namespace SalesManagement_SysDev
             }
 
             //Listの中を受け取った商品IDで検索
-            dispHattyuDTO = dispHattyus.Single(x => x.HaID == HaID);
+            dispHattyuDTO = dispHattyus.First(x => x.HaID == HaID);
 
             //検索結果を返却用にする
             rethattyu = FormalizationHattyuInputRecord(dispHattyuDTO);
